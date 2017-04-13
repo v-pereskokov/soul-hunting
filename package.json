@@ -1,0 +1,27 @@
+{
+  "name": "soul-hunting",
+  "version": "0.0.1",
+  "description": "Soul-hunting",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "Ananymous",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "sass-loader": "^6.0.3",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3"
+  }
+}
