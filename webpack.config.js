@@ -29,12 +29,12 @@ module.exports = {
 
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style", "css")
+        loader: ExtractTextPlugin.extract({ fallback: 'style', use: 'css' })
       },
 
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style", "css!sass")
+        loader: ExtractTextPlugin.extract({ fallback: 'style', use: 'css!sass' })
       },
 
       {
@@ -50,7 +50,8 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('style.css', {
+    new ExtractTextPlugin({
+      filename: 'style.css',
       allChunks: true
     })
   ]
