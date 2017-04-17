@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import {Logo} from './components/Logo/Logo';
+import {App} from './application';
 
 ReactDOM.render(
-  <Logo />,
-  document.getElementById('example')
+  <App />,
+  document.getElementById('root')
 );

@@ -1,0 +1,30 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+  <div class="form__wrapper-elements">
+    <div class="form__header">
+      <span>Soul Hunting</span>
+    </div>
+    <form class="form" name="{data.title}">
+      <span class="errorText__response"></span>
+      <ul>
+        <fest:for iterate="data.elements" index="i" value="input">
+          <li name="{input.name}">
+            <label for="{input.name}">
+              <fest:value>input.title</fest:value>
+            </label>
+            <input name="{input.name}" type="{input.type}" placeholder="{input.placeholder}" maxlength="100"/>
+            <span name="{input.name}">
+              <fest:value>input.description</fest:value>
+            </span>
+          </li>
+        </fest:for>
+        <div class="form-button">
+          <div class="form-button__background">
+            <a class="form-button__text">
+              <fest:value>data.control</fest:value>
+            </a>
+          </div>
+        </div>
+      </ul>
+    </form>
+  </div>
+</fest:template>

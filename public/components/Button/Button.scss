@@ -1,0 +1,54 @@
+.main__form-button {
+  margin: 0 auto 50px;
+  height: 40px;
+  width: 300px;
+  cursor: pointer;
+
+  &__background {
+    margin: 0 auto 50px;
+    height: 60px;
+    width: 300px;
+    border: 2px solid #ccc !important;
+    border-radius: 4px !important;
+    position: absolute;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
+
+  &__text {
+    font-family: 'Keep Calm';
+    font-size: 24pt;
+    top: 25%;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    margin-left: -10px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+  }
+}
+
+.start__background {
+  background: #FF6C00 !important;
+  border: 2px solid #FF6C00!important;
+}
+
+.start__button {
+  font-size: 28pt !important;
+  color: black !important;
+}
+
+.open__form__animation {
+  animation-name: open;
+  animation-duration: 2s;
+}
+
+@keyframes open__form {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

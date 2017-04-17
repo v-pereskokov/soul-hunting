@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+import './Logo.scss';
+
 export class Logo extends React.Component<void, void> {
   render() {
     return (
-      <div className='wrapper__main__wrapper animation-open'>
-        <div className='wrapper__main__header'>
+      <div className='logo__wrapper animation-open'>
+        <div className='logo__header'>
           SOUL HUNTING
-          <p className='wrapper__main__header-register'>&#174;</p>
+          <p className='logo__header-register'>&#174;</p>
         </div>
       </div>
     );

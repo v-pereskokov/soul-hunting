@@ -28,18 +28,13 @@ module.exports = {
       },
 
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style', use: 'css' })
-      },
-
-      {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style', use: 'css!sass' })
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
 
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'url?limit=10000!img?progressive=true'
+        loader: 'url-loader?limit=10000!img-loader?progressive=true'
       },
 
       {
