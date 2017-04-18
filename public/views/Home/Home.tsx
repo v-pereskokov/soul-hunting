@@ -14,7 +14,9 @@ export class Home extends React.Component<void, void> {
             <Link to='/signin'>
               <Button text='SING IN' isActive={ true }/>
             </Link>
-            <Button text='REGISTER' isActive={ false }/>
+            <Link to='/signup'>
+              <Button text='REGISTER' isActive={ false }/>
+            </Link>
           </div>
         </div>
       </div>

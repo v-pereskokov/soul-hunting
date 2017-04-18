@@ -6,6 +6,7 @@ import {Button} from "../Button/Button";
 
 interface Props {
   fields?: Array<any>;
+  control: string;
 }
 
 export class Form extends React.Component<Props, void> {
@@ -20,11 +21,11 @@ export class Form extends React.Component<Props, void> {
       return (
         <li key={index}>
           <label>
-            { item.author }
+            { item.title }
           </label>
           <input name={item.name} type={item.type} placeholder={item.placeholder}/>
           <span name="{input.name}">
-            { item.text }
+            { item.description }
             </span>
         </li>
       )
@@ -43,7 +44,7 @@ export class Form extends React.Component<Props, void> {
               {content}
             </ul>
             <Link to="/">
-              <Button text="SIGN IN" isActive={true}/>
+              <Button text={this.props.control} isActive={true}/>
             </Link>
           </form>
         </div>

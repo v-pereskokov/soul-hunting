@@ -5,6 +5,7 @@ import {createBrowserHistory} from 'history';
 import {MainTemplate} from './teamplates/MainTemplate/MainTemplate';
 import {Home} from "./views/Home/Home";
 import {SignIn} from "./views/SignIn/SignIn";
+import {SignUp} from "./views/SignUp/SignUp";
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 
@@ -20,6 +21,7 @@ export const App = () => (
       <MainTemplate>
         <Route path={ RoutesMap.HOME } component={ Home }/>
         <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
+        <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
       </MainTemplate>
     </Router>
   </BrowserRouter>

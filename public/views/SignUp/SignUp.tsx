@@ -3,23 +3,35 @@ import {Link} from "react-router-dom";
 
 import {Form} from "../../components/Form/Form";
 
-import './SignIn.scss';
+import './SignUp.scss';
 
-const signInFields = [{
+const signUpFields = [{
   title: 'Login',
   name: 'login',
   type: 'text',
   description: 'Enter username',
   placeholder: 'Username'
 }, {
+  title: 'Email',
+  name: 'email',
+  type: 'email',
+  description: 'Enter email',
+  placeholder: 'Email address'
+}, {
   title: 'Password',
   name: 'password1',
   type: 'password',
   description: 'Enter password',
   placeholder: '••••••••'
+}, {
+  title: 'Repeat password',
+  name: 'password2',
+  type: 'password',
+  description: 'Enter password',
+  placeholder: '••••••••'
 }];
 
-export class SignIn extends React.Component<void, void> {
+export class SignUp extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper__registration'>
@@ -31,7 +43,7 @@ export class SignIn extends React.Component<void, void> {
         <div className='registration__back'>
         </div>
         <div className='registration'>
-          <Form fields={signInFields} control='Sign In'/>
+          <Form fields={signUpFields} control='Sign Up'/>
         </div>
       </div>
     );
