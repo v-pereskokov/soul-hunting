@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Link} from "react-router-dom";
 
 import {Form} from "../../components/Form/Form";
+import {Background} from "../../components/Background/Background";
 
 import './SignIn.scss';
 
@@ -23,13 +23,7 @@ export class SignIn extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper__registration'>
-        <Link to='/'>
-          <span className='close'>
-            &times;
-          </span>
-        </Link>
-        <div className='registration__back'>
-        </div>
+        <Background />
         <div className='registration'>
           <Form fields={signInFields} control='Sign In'/>
         </div>
