@@ -1,8 +1,11 @@
 import * as React from 'react';
-import {Link} from "react-router-dom";
 
 import {Button} from "../../components/Button/Button";
 import {Table} from "../../components/Table/Table";
+import {Background} from "../../components/Background/Background";
+
+import './Scoreboard.scss';
+import {Link} from "react-router-dom";
 
 const header = [{
   title: 'Username'
@@ -36,7 +39,15 @@ const content = [{
 export class Scoreboard extends React.Component<void, void> {
   render() {
     return (
-      <Table header={ header } content={ content }/>
+      <div className="wrapper__scoreboard">
+        <Background />
+        <Table header={ header } content={ content }/>
+        <div className="more__button">
+          <Link to="/">
+            <Button text="More" isActive={ true }/>
+          </Link>
+        </div>
+      </div>
     );
   }
 }
