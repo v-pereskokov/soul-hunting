@@ -11,8 +11,9 @@ export class Home extends React.Component<void, void> {
       <div className="wrapper__form">
         <div className="wrapper__main__form">
           <div className='main__form'>
+
             <Link to='/signin'>
-              <Button text='SING IN' isActive={ true }/>
+              <Button text='SIGN IN' isActive={ true }/>
             </Link>
             <Link to='/signup'>
               <Button text='REGISTER' isActive={ false }/>
