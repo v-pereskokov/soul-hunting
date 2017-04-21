@@ -7,7 +7,15 @@ import { connect } from 'react-redux';
 
 import './MainTemplate.scss';
 
-class MainTemplate extends React.Component<void, void> {
+interface Props {
+  state: any;
+}
+
+class MainTemplate extends React.Component<Props, void> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className='wrapper'>
@@ -21,8 +29,8 @@ class MainTemplate extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
-    return {state}
+const mapStateToProps = (state: any) => {
+    return {state};
 };
 
 

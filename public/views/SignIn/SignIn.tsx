@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {Form} from "../../components/Form/Form";
 import {Background} from "../../components/Background/Background";
+import {connect} from "react-redux";
 
 import './SignIn.scss';
 
@@ -19,7 +20,7 @@ const signInFields = [{
   placeholder: '••••••••'
 }];
 
-export class SignIn extends React.Component<void, void> {
+class SignIn extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper__registration'>
@@ -31,3 +32,5 @@ export class SignIn extends React.Component<void, void> {
     );
   }
 }
+
+export default connect()(SignIn);
