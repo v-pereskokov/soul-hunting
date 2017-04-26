@@ -11,12 +11,7 @@ class Home extends React.Component<void, void> {
       <div className="wrapper__form">
         <div className="wrapper__main__form">
           <div className='main__form'>
-<<<<<<< HEAD
             <Link to='/signin'>
-=======
-
-            <Link to='/signin' key="010101001">
->>>>>>> e8b03d0d05bad9cfbbd1c60c1a8dbcc29d01db86
               <Button text='SIGN IN' isActive={ true }/>
             </Link>
             <Link to='/signup' key="101010110">
