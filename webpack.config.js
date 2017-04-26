@@ -49,5 +49,10 @@ module.exports = {
       filename: 'style.css',
       allChunks: true
     })
-  ]
+  ],
+
+  devServer: {
+    contentBase: './public/',
+    publicPath: '/built/'
+  }
 };
