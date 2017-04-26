@@ -3,30 +3,37 @@ import {Link} from "react-router-dom";
 
 import './Form.scss';
 import {Button} from "../Button/Button";
+import {FormDescription} from "./FormDescription/FormDescription";
+import {FormHeader} from "./FormHeader/FormHeader";
+import {FormError} from "./FormError/FormError";
+import {FormInput} from "./FormInput/FormInput";
+import {FormLabel} from "./FormLabel/FormLabel";
+import {FormContent} from "./FormContent/FormContent";
 
 interface Props {
   fields?: Array<any>;
+  error?: string;
   control: string;
 }
 
 export class Form extends React.Component<Props, void> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
   }
 
   render() {
-    const data = this.props.fields;
+    const { fields, error } = this.props;
 
-    const content = data.map((item, index) => {
+    const content = fields.map((item, index) => {
       return (
         <li key={index}>
-          <label>
-            { item.title }
-          </label>
-          <input name={item.name} type={item.type} placeholder={item.placeholder}/>
-          <span name="{input.name}">
-            { item.description }
-            </span>
+          <FormLabel title={ item.title }/>
+          <FormInput
+            name={ item.name }
+            type={ item.type }
+            placeholder={ item.placeholder }
+          />
+          <FormDescription text={ item.description }/>
         </li>
       )
     });
@@ -34,17 +41,12 @@ export class Form extends React.Component<Props, void> {
     return (
       <div className="form__wrapper-elements">
         <div className="wrapper__form-center">
-          <div className="form__header">
-            <span>Soul Hunting</span>
-          </div>
+          <FormHeader />
           <form className="form" name="{data.title}">
-            <span className="errorText__response">
-            </span>
-            <ul>
-              {content}
-            </ul>
+            <FormError text={ error }/>
+            <FormContent content={ content }/>
             <Link to="/">
-              <Button text={this.props.control} isActive={true}/>
+              <Button text={ this.props.control } isActive={ true }/>
             </Link>
           </form>
         </div>

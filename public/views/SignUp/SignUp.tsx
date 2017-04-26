@@ -4,6 +4,7 @@ import {Form} from "../../components/Form/Form";
 import {Background} from "../../components/Background/Background";
 
 import './SignUp.scss';
+import {connect} from "react-redux";
 
 const signUpFields = [{
   title: 'Login',
@@ -31,7 +32,7 @@ const signUpFields = [{
   placeholder: '••••••••'
 }];
 
-export class SignUp extends React.Component<void, void> {
+class SignUp extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper__registration'>
@@ -43,3 +44,9 @@ export class SignUp extends React.Component<void, void> {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {state}
+};
+
+export default connect(mapStateToProps)(SignUp);

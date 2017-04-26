@@ -23,6 +23,7 @@
     "@types/react-dom": "^0.14.23",
     "@types/react-redux": "^4.4.38",
     "@types/react-router-dom": "^4.0.3",
+    "@types/redux-form": "^6.6.1",
     "awesome-typescript-loader": "^3.1.2",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",

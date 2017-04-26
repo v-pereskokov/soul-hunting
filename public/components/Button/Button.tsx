@@ -3,12 +3,20 @@ import * as React from 'react';
 import './Button.scss';
 
 interface Props {
-  text: string;
-  isActive: boolean;
+  text?: string;
+  isActive?: boolean;
+  onClick?: () => void;
+  type?: string;
 }
 
 export class Button extends React.Component<Props, void> {
-  constructor(props: Props) {
+  constructor(props: Props =
+                {
+                  text: 'text',
+                  isActive: true,
+                  onClick: null,
+                  type: 'button'
+                }) {
     super(props);
   }
 
