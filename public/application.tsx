@@ -14,7 +14,6 @@ import './static/css/reset.scss';
 import './static/css/fonts.scss';
 import './static/css/main.scss';
 import {Provider} from "react-redux";
-import store from "./modules/Store/Store";
 
 import store from './modules/index';
 
