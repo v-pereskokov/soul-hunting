@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {Background} from "../../components/Background/Background";
+import {connect} from "react-redux";
 
 import './SignIn.scss';
 import {connect} from "react-redux";

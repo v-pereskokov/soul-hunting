@@ -4,9 +4,16 @@ import {createBrowserHistory} from 'history';
 import {Provider} from 'react-redux';
 
 import MainTemplate from './teamplates/MainTemplate/MainTemplate';
+<<<<<<< HEAD
 import Home from "./views/Home/Home";
 import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
+=======
+import {Home} from "./views/Home/Home";
+import {SignIn} from "./views/SignIn/SignIn";
+import {SignUp} from "./views/SignUp/SignUp";
+import {Scoreboard} from "./views/Scoreboard/Scoreboard";
+>>>>>>> e8b03d0d05bad9cfbbd1c60c1a8dbcc29d01db86
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 
@@ -28,6 +35,10 @@ export const App = () => (
           <Route path={ RoutesMap.HOME } component={ Home }/>
           <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
           <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
+<<<<<<< HEAD
+=======
+          <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
+>>>>>>> e8b03d0d05bad9cfbbd1c60c1a8dbcc29d01db86
         </MainTemplate>
       </Router>
     </BrowserRouter>
