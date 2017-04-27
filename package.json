@@ -5,7 +5,8 @@
   "main": "bundle.js",
   "scripts": {
     "start": "node server.js",
-    "test": "npm start"
+    "test": "npm start",
+    "webpack": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },
   "author": "Ananymous",
   "license": "ISC",

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Router, Route, BrowserRouter} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import browserHistory from 'react-router/lib/browserHistory';
 
@@ -16,8 +15,6 @@ import './static/css/fonts.scss';
 import './static/css/main.scss';
 
 import store from './modules/index';
-
-const history = createBrowserHistory();
 
 export const App = () => (
   <Provider store={ store }>

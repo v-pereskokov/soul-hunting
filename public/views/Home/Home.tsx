@@ -3,7 +3,7 @@ import {Button} from "../../components/Button/Button";
 
 import './Home.scss';
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import { Link } from 'react-router'
 
 class Home extends React.Component<void, void> {
   render() {

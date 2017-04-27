@@ -5,7 +5,7 @@ import {Table} from "../../components/Table/Table";
 import {Background} from "../../components/Background/Background";
 
 import './Scoreboard.scss';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router'
 
 const header = [{
   title: 'Username'
