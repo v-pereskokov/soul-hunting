@@ -45,8 +45,4 @@ class Home extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
-  return {state}
-};
-
-export default connect(mapStateToProps)(Home);
+export default connect()(Home);

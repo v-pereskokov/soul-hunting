@@ -11,7 +11,6 @@ class MainTemplate extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper'>
-        {console.log(this.props.state)}
         <PreLoader />
         <Logo />
         { this.props.children }
@@ -21,8 +20,4 @@ class MainTemplate extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
-  return {state}
-};
-
-export default connect(mapStateToProps)(MainTemplate);
+export default connect()(MainTemplate);

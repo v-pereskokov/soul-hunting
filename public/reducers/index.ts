@@ -4,7 +4,7 @@ import data from '../reducers/Test/Test';
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
-  data,
+  // data,
   routing: routerReducer
 });
 

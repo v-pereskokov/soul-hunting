@@ -22,13 +22,28 @@ const signInFields = [{
   error: ''
 }];
 
-class SignIn extends React.Component<void, void> {
+interface Props {
+  username: string;
+  password: string;
+}
+
+class SignIn extends React.Component<Props, void> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className='wrapper__registration'>
+        { console.log(this.props.username) }
+        { console.log(this.props.password) }
         <Background />
         <div className='registration'>
-          <Form fields={signInFields} error="sdfds" control='Sign In'/>
+          <Form
+            fields={signInFields}
+            error='jio'
+            control='Sign In'
+          />
         </div>
       </div>
     );
@@ -36,7 +51,10 @@ class SignIn extends React.Component<void, void> {
 }
 
 const mapStateToProps = state => {
-  return {state}
+  return {
+    username: state.signin,
+    password: state.data
+  }
 };
 
 export default connect(mapStateToProps)(SignIn);
