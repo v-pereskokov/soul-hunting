@@ -6,7 +6,6 @@ import {Footer} from "../../components/Footer/Footer";
 import { connect } from 'react-redux';
 
 import './MainTemplate.scss';
-import {connect} from "react-redux";
 
 class MainTemplate extends React.Component<void, void> {
   render() {

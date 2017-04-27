@@ -4,7 +4,6 @@ import {Background} from "../../components/Background/Background";
 import {connect} from "react-redux";
 
 import './SignIn.scss';
-import {connect} from "react-redux";
 import {Form} from "../../components/Form/Form";
 
 const signInFields = [{
