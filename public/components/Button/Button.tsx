@@ -20,16 +20,24 @@ export class Button extends React.Component<Props, void> {
     super(props);
   }
 
+  alertt() {
+    alert('hello');
+  }
+
   render() {
+    const { isActive, text, onClick, type } = this.props;
+
     return (
-      <div className='main__form-button'>
+      <div
+        className='main__form-button'
+      >
         <div
           className={`main__form-button__background
-          ${this.props.isActive ? 'start__background' : ''}`}>
+          ${isActive ? 'start__background' : ''}`}>
           <p
             className={`main__form-button__text
-            ${this.props.isActive ? 'start__button' : ''}`}>
-            {this.props.text}
+            ${isActive ? 'start__button' : ''}`}>
+            { text }
           </p>
         </div>
       </div>

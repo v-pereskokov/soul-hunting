@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {Background} from "../../components/Background/Background";
 import {connect} from "react-redux";
+import { Field, reduxForm } from 'redux-form'
 
 import './SignIn.scss';
 import {Form} from "../../components/Form/Form";
@@ -25,6 +26,7 @@ const signInFields = [{
 interface Props {
   username: string;
   password: string;
+  handleSubmit?: () => void;
 }
 
 class SignIn extends React.Component<Props, void> {
@@ -33,6 +35,8 @@ class SignIn extends React.Component<Props, void> {
   }
 
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div className='wrapper__registration'>
         { console.log(this.props.username) }
@@ -43,18 +47,45 @@ class SignIn extends React.Component<Props, void> {
             fields={signInFields}
             error='jio'
             control='Sign In'
+            submit={ handleSubmit }
           />
         </div>
       </div>
     );
   }
+
+  static validate(values) {
+    const errors = { username: '', password: '' };
+
+    if (!values.username) {
+      errors.username = 'Username is required.';
+      console.log('username');
+    }
+
+    if (!values.password) {
+      errors.password = 'Password is required.';
+      console.log('pswd');
+
+    }
+
+    return errors;
+  }
 }
 
-const mapStateToProps = state => {
-  return {
-    username: state.signin,
-    password: state.data
-  }
-};
+// const mapStateToProps = state => {
+//   return {
+//     username: state.signIn.username,
+//     password: state.signIn.password
+//   }
+// };
+//
+// export default connect(mapStateToProps)(SignIn);
 
-export default connect(mapStateToProps)(SignIn);
+export default reduxForm({
+  form: 'login',
+  fields: [
+    'username',
+    'password',
+  ],
+  validate: SignIn.validate,
+})(SignIn);

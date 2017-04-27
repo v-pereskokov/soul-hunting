@@ -13,7 +13,7 @@ import './static/css/reset.scss';
 import './static/css/fonts.scss';
 import './static/css/main.scss';
 
-import store from './modules/index';
+import store from './store/Store';
 
 export const App = () => (
   <Provider store={ store }>

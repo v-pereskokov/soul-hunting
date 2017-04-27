@@ -14,6 +14,8 @@ interface Props {
   fields?: Array<any>;
   error?: string;
   control: string;
+  submit: any;
+  type?: string;
 }
 
 export class Form extends React.Component<Props, void> {
@@ -22,7 +24,7 @@ export class Form extends React.Component<Props, void> {
   }
 
   render() {
-    const { fields, error } = this.props;
+    const { fields, error, control, type, submit } = this.props;
 
     const content = fields.map((item, index) => {
       return (
@@ -42,12 +44,11 @@ export class Form extends React.Component<Props, void> {
       <div className="form__wrapper-elements">
         <div className="wrapper__form-center">
           <FormHeader />
-          <form className="form" name="{data.title}">
+          <form className="form" name="{data.title}" onSubmit={ submit }>
             <FormError text={ error }/>
             <FormContent content={ content }/>
-            <Link to="/">
-              <Button text={ this.props.control } isActive={ true }/>
-            </Link>
+            <Button text={ control } isActive={ true } type={ type }/>
+            <button type="submit">tooooop</button>
           </form>
         </div>
       </div>

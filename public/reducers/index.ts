@@ -1,11 +1,12 @@
-import {formReducer} from "redux-form";
 import {combineReducers} from "redux";
-import data from '../reducers/Test/Test';
+import signIn from '../reducers/SignIn/SignIn';
 import { routerReducer } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form';
 
 const reducer = combineReducers({
-  // data,
-  routing: routerReducer
+  signIn,
+  routing: routerReducer,
+  form: formReducer
 });
 
 export default reducer;
