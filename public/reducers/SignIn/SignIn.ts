@@ -1,8 +1,8 @@
-const signIn = (state =
-                  {
-                    username: 'top',
-                    password: 'top'
-                  }) => {
+const initialState = {
+
+};
+
+const signIn = (state = initialState) => {
   return state;
 };
 

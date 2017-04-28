@@ -6,7 +6,6 @@ interface Props {
   text?: string;
   isActive?: boolean;
   onClick?: () => void;
-  type?: string;
 }
 
 export class Button extends React.Component<Props, void> {
@@ -20,16 +19,13 @@ export class Button extends React.Component<Props, void> {
     super(props);
   }
 
-  alertt() {
-    alert('hello');
-  }
-
   render() {
-    const { isActive, text, onClick, type } = this.props;
+    const { isActive, text, onClick } = this.props;
 
     return (
       <div
         className='main__form-button'
+        onClick={ onClick }
       >
         <div
           className={`main__form-button__background
@@ -44,3 +40,5 @@ export class Button extends React.Component<Props, void> {
     );
   }
 }
+
+//onClick={ onClick() }

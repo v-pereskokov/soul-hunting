@@ -4,6 +4,7 @@ interface Props {
   name: string;
   type: string;
   placeholder: string;
+  input?: any;
 }
 
 export class FormInput extends React.Component<Props, void> {
@@ -14,9 +15,10 @@ export class FormInput extends React.Component<Props, void> {
   render() {
     return (
       <input
-        name={this.props.name}
-        type={this.props.type}
-        placeholder={this.props.placeholder}
+        name={ this.props.name }
+        type={ this.props.type }
+        placeholder={ this.props.placeholder }
+        { this.props.input }
       />
     );
   }
