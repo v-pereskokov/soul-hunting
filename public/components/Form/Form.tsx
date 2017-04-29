@@ -2,13 +2,13 @@ import * as React from 'react';
 import {Link} from 'react-router'
 import {Field, reduxForm} from 'redux-form';
 
-import {Button} from "../Button/Button";
 import {FormDescription} from "./FormDescription/FormDescription";
 import {FormHeader} from "./FormHeader/FormHeader";
 import {FormError} from "./FormError/FormError";
 import {FormInput} from "./FormInput/FormInput";
 import {FormLabel} from "./FormLabel/FormLabel";
 import {FormContent} from "./FormContent/FormContent";
+import FormButton from "./FormButton/FormButton";
 
 import './Form.scss';
 
@@ -79,7 +79,7 @@ class Form extends React.Component<Props, void> {
           >
             <FormError text={ error }/>
             <FormContent content={ content }/>
-            <Button text={ control } isActive={ true }/>
+            <FormButton text={ control } />
           </form>
         </div>
       </div>
@@ -104,10 +104,8 @@ const validate = values => {
   return errors;
 };
 
-export default validate;
-
-
 export default reduxForm({
-  form: 'asyncValidation',
-  validate
+  form: 'form',
+  validate,
+  onSubmit: () => {}
 })(Form);

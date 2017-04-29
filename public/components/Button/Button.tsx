@@ -5,27 +5,21 @@ import './Button.scss';
 interface Props {
   text?: string;
   isActive?: boolean;
-  onClick?: () => void;
+  click?: () => void;
 }
 
 export class Button extends React.Component<Props, void> {
-  constructor(props: Props =
-                {
-                  text: 'text',
-                  isActive: true,
-                  onClick: null,
-                  type: 'button'
-                }) {
+  constructor(props: Props) {
     super(props);
   }
 
   render() {
-    const { isActive, text, onClick } = this.props;
+    const { isActive, text, click } = this.props;
 
     return (
       <div
         className='main__form-button'
-        onClick={ onClick }
+        onClick={ click }
       >
         <div
           className={`main__form-button__background
@@ -40,5 +34,3 @@ export class Button extends React.Component<Props, void> {
     );
   }
 }
-
-//onClick={ onClick() }
