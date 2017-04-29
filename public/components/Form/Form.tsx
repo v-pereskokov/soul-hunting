@@ -9,6 +9,7 @@ import {FormInput} from "./FormInput/FormInput";
 import {FormLabel} from "./FormLabel/FormLabel";
 import {FormContent} from "./FormContent/FormContent";
 import FormButton from "./FormButton/FormButton";
+import validate from "../../service/Validators/index";
 
 import './Form.scss';
 
@@ -89,23 +90,6 @@ class Form extends React.Component<Props, void> {
     );
   }
 }
-
-const validate = values => {
-  const errors = {};
-  if (!values.login) {
-    errors.login = 'Required';
-  }
-  if (!values.password1) {
-    errors.password1 = 'Required';
-  }
-  if (!values.password2) {
-    errors.password2 = 'Required';
-  }
-  if (!values.email) {
-    errors.email = 'Required';
-  }
-  return errors;
-};
 
 export default reduxForm({
   form: 'form',

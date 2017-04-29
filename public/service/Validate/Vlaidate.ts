@@ -1,14 +1,17 @@
 const validate = values => {
   const errors = {};
-
-  if (!values.username) {
-    errors.username = 'Required'
+  if (!values.login) {
+    errors.login = 'Required';
   }
-
-  if (!values.password) {
-    errors.password = 'Required'
+  if (!values.password1) {
+    errors.password1 = 'Required';
   }
-
+  if (!values.password2) {
+    errors.password2 = 'Required';
+  }
+  if (!values.email) {
+    errors.email = 'Required';
+  }
   return errors;
 };
 
