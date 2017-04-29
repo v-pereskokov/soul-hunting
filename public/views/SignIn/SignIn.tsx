@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import {Background} from "../../components/Background/Background";
-import {connect} from "react-redux";
 import Form from "../../components/Form/Form";
 
 import './SignIn.scss';
@@ -22,16 +21,7 @@ const signInFields = [{
   error: ''
 }];
 
-interface Props {
-  username: string;
-  password: string;
-}
-
-class SignIn extends React.Component<Props, void> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+export class SignIn extends React.Component<void, void> {
   render() {
     return (
       <div className='wrapper__registration'>
@@ -47,11 +37,3 @@ class SignIn extends React.Component<Props, void> {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    state
-  }
-};
-
-export default connect(mapStateToProps)(SignIn);

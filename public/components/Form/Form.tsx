@@ -21,9 +21,14 @@ interface Props {
 }
 
 const renderField = (
-  { input, label, type, meta: { asyncValidating, touched, error } },
+  { input, label, type, description,
+    meta: {
+    asyncValidating,
+      touched,
+      error
+  }},
 ) => (
-    <li>
+    <li className={ touched && error && 'error' }>
       <FormLabel title={ label }/>
       <FormInput
         name={ name }
@@ -32,17 +37,10 @@ const renderField = (
       />
       <FormDescription
         touched={ touched }
-        description={ 'hey' }
-        error={ error }/>
+        description={ description }
+        error={ error }
+      />
     </li>
-  // <div>
-  //   <label>{label}</label>
-  //   { console.log(touched) }
-  //   <div className={asyncValidating ? 'async-validating' : ''}>
-  //     <input {...input} type={type} placeholder={label} />
-  //     {touched && error && <span>{error}</span>}
-  //   </div>
-  // </div>
 );
 
 class Form extends React.Component<Props, void> {
@@ -55,17 +53,15 @@ class Form extends React.Component<Props, void> {
 
     const content = fields.map((item, index) => {
       return (
-        <li key={index}>
-          <FormLabel title={ item.title }/>
-          <FormInput
+        <div key={ index }>
+          <Field
             name={ item.name }
             type={ item.type }
-            placeholder={ item.placeholder }
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
+            component={renderField}
+            label={ item.title }
+            description={ item.description }
           />
-          <FormDescription text={ item.description }/>
-        </li>
+        </div>
       )
     });
 
@@ -82,19 +78,7 @@ class Form extends React.Component<Props, void> {
             onSubmit={handleSubmit}
           >
             <FormError text={ error }/>
-            {/*<FormContent content={ top }/>*/}
-            <Field
-              name="login"
-              type="text"
-              component={renderField}
-              label="Login"
-            />
-            <Field
-              name="password"
-              type="password"
-              component={renderField}
-              label="Password"
-            />
+            <FormContent content={ content }/>
             <Button text={ control } isActive={ true }/>
           </form>
         </div>
@@ -108,11 +92,14 @@ const validate = values => {
   if (!values.login) {
     errors.login = 'Required';
   }
-  if (!values.password) {
-    errors.password = 'Required';
+  if (!values.password1) {
+    errors.password1 = 'Required';
   }
-  if (!values.username) {
-    errors.username = 'Required';
+  if (!values.password2) {
+    errors.password2 = 'Required';
+  }
+  if (!values.email) {
+    errors.email = 'Required';
   }
   return errors;
 };

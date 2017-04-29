@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 
 import MainTemplate from './teamplates/MainTemplate/MainTemplate';
 import Home from "./views/Home/Home";
-import SignIn from "./views/SignIn/SignIn";
-import SignUp from "./views/SignUp/SignUp";
+import { SignIn } from "./views/SignIn/SignIn";
+import { SignUp } from "./views/SignUp/SignUp";
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 

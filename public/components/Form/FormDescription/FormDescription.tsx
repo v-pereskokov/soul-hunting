@@ -17,7 +17,9 @@ export class FormDescription extends React.Component<Props, void> {
     console.log(touched);
 
     return (
-      <span>
+      <span
+        className={ touched && error && 'errorText' }
+      >
         {
           touched && error
             ?
