@@ -71,6 +71,12 @@
     letter-spacing: 0.05em;
   }
 
+  & input[type="text"]::placeholder,
+  & input[type="email"]::placeholder,
+  & input[type="password"]::placeholder {
+    opacity: 0.3;
+  }
+
   & li > span {
     background: #F3F3F3;
     display: block;

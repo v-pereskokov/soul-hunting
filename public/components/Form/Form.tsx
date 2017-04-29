@@ -21,7 +21,8 @@ interface Props {
 }
 
 const renderField = (
-  { input, label, type, description,
+  { input, label, type,
+    description, placeholder,
     meta: {
     asyncValidating,
       touched,
@@ -34,6 +35,7 @@ const renderField = (
         name={ name }
         type={ type }
         input={ ...input }
+        placeholder={ placeholder }
       />
       <FormDescription
         touched={ touched }
@@ -60,6 +62,7 @@ class Form extends React.Component<Props, void> {
             component={renderField}
             label={ item.title }
             description={ item.description }
+            placeholder={ item.placeholder }
           />
         </div>
       )
