@@ -2,6 +2,7 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {Link, browserHistory} from 'react-router';
 import {Button} from "../../components/Button/Button";
+import transport from '../../service/Transport/Transoprt';
 
 import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
 
@@ -26,6 +27,14 @@ class Home extends React.Component<void, void> {
     super();
 
     this.setKeysButtons(auth ? 3 : 2);
+    this.test();
+  }
+
+  test() {
+    transport.get('/cur-user')
+      .then(response => {
+        console.log(response);
+      });
   }
 
   setKeysButtons(max) {
@@ -73,6 +82,7 @@ class Home extends React.Component<void, void> {
   }
 
   render() {
+    console.log(this.props.auth);
     const buttons = this._setButtons();
 
     const buttonsRender = buttons.map((item, index) => {
@@ -137,6 +147,7 @@ class Home extends React.Component<void, void> {
 
 export default connect(
   state => ({
+    auth: state.authentication,
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,
