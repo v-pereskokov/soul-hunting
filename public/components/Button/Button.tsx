@@ -6,6 +6,7 @@ interface Props {
   text?: string;
   isActive?: boolean;
   click?: () => void;
+  mouseOver?: () => void;
 }
 
 export class Button extends React.Component<Props, void> {
@@ -14,12 +15,13 @@ export class Button extends React.Component<Props, void> {
   }
 
   render() {
-    const { isActive, text, click } = this.props;
+    const { isActive, text, click, mouseOver } = this.props;
 
     return (
       <div
         className='main__form-button'
         onClick={ click }
+        onMouseOver={ mouseOver }
       >
         <div
           className={`main__form-button__background
