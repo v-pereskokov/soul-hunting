@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import {browserHistory} from 'react-router';
 import {Background} from "../../components/Background/Background";
 import Form from "../../components/Form/Form";
 
@@ -22,6 +22,24 @@ const signInFields = [{
 }];
 
 export class SignIn extends React.Component<void, void> {
+  constructor() {
+    super();
+
+    this.setEscape();
+  }
+
+  setEscape() {
+    document.addEventListener('keydown', event => {
+      switch (event.keyCode) {
+        case 27:
+          browserHistory.push('/');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   render() {
     return (
       <div className='wrapper__registration'>
