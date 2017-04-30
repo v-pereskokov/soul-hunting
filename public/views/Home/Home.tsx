@@ -5,6 +5,7 @@ import {Button} from "../../components/Button/Button";
 import transport from '../../service/Transport/Transoprt';
 
 import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
+import {LOGIN_REQUEST, LOGIN_FAIL, LOGIN_SUCCESS} from "../../constants/User/User";
 
 import './Home.scss';
 
@@ -12,8 +13,8 @@ const auth = false;
 
 const urls = auth ? [
   '/game',
-  'top',
-  'asdasd'
+  '/top',
+  '/asdasd'
 ] : [
   '/signin',
   '/signup'
@@ -27,13 +28,41 @@ class Home extends React.Component<void, void> {
     super();
 
     this.setKeysButtons(auth ? 3 : 2);
-    this.test();
+  }
+
+  top() {
+    // this.props.auth();
+
+    console.log(this.props.authen);
+  }
+
+  logout() {
+    transport.post('/logout');
   }
 
   test() {
-    transport.get('/cur-user')
+    transport.post('/signin', JSON.stringify({
+      'username': 'vladoss',
+      'password': 'qqqqqqqq'
+    }))
       .then(response => {
-        console.log(response);
+        if (+response.status) {
+          return response.json();
+        } else {
+          console.log('here');
+        }
+      })
+      .then(data => {
+        console.log('data:');
+        console.log(data);
+        transport.get('/cur-user')
+          .then(data => {
+            return data.json();
+          })
+          .then(data => {
+            console.log('op:');
+            console.log(data);
+          });
       });
   }
 
@@ -82,8 +111,8 @@ class Home extends React.Component<void, void> {
   }
 
   render() {
-    console.log(this.props.auth);
-    const buttons = this._setButtons();
+    const { isAuthenticated } = this.props;
+    const buttons = this._setButtons(isAuthenticated);
 
     const buttonsRender = buttons.map((item, index) => {
       return (
@@ -108,7 +137,7 @@ class Home extends React.Component<void, void> {
     );
   }
 
-  _setButtons() {
+  _setButtons(auth) {
     return auth ? [
       {
         number: 1,
@@ -147,7 +176,7 @@ class Home extends React.Component<void, void> {
 
 export default connect(
   state => ({
-    auth: state.authentication,
+    isAuthenticated: state.authentication.isAuthenticated,
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,

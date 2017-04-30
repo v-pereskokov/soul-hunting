@@ -1,13 +1,16 @@
-import { IS_AUTH, RESET_AUTH } from "../../constants/User/User";
+import { LOGIN_REQUEST,
+LOGIN_SUCCESS,
+LOGIN_FAIL,
+LOGOUT_SUCCESS } from
+  "../../constants/User/User";
 
-function authentication(state = null, action) {
+function authentication(state = {
+                isFetching: false,
+                isAuthenticated: false
+              }, action) {
   switch (action.type) {
-    case RESET_AUTH:
-      return false;
-    case IS_AUTH:
-      return action.value;
     default:
-      return state;
+      return state
   }
 }
 
