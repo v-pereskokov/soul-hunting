@@ -26,6 +26,10 @@
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
+
+  &:active {
+    opacity: 0.7;
+  }
 }
 
 .start__background {
