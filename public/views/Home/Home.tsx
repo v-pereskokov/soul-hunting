@@ -29,36 +29,6 @@ class Home extends React.Component<void, void> {
     this.setKeysButtons(auth ? 3 : 2);
   }
 
-  logout() {
-    transport.post('/logout');
-  }
-
-  test() {
-    transport.post('/signin', JSON.stringify({
-      'username': 'vladoss',
-      'password': 'qqqqqqqq'
-    }))
-      .then(response => {
-        if (+response.status) {
-          return response.json();
-        } else {
-          console.log('here');
-        }
-      })
-      .then(data => {
-        console.log('data:');
-        console.log(data);
-        transport.get('/cur-user')
-          .then(data => {
-            return data.json();
-          })
-          .then(data => {
-            console.log('op:');
-            console.log(data);
-          });
-      });
-  }
-
   setKeysButtons(max) {
     document.addEventListener('keydown', event => {
       let current = +this.props.current;
