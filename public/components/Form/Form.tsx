@@ -123,7 +123,7 @@ class Form extends React.Component<Props, void> {
                 error
               }
             },) => (
-      <li className={ touched && error && 'error' }>
+      <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
         { this._setError(names, error) }
         <FormLabel title={ label }/>
         <FormInput
