@@ -7,6 +7,7 @@ import Home from "./views/Home/Home";
 import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
 import Scoreboard from "./views/Scoreboard/Scoreboard";
+import About from "./views/About/About";
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 
@@ -29,6 +30,7 @@ export const App = () => (
         <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
         <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
         <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
+        <Route path={ RoutesMap.ABOUT } component={ About }/>
       </Route>
     </Router>
   </Provider>
