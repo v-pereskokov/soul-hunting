@@ -13,10 +13,11 @@ class UserBlock extends React.Component<void, void> {
   render() {
     const { user } = this.props;
 
+    user = this._checkName(user);
     return (
       <div className='userblock'>
         <p className='userblock__username'>
-          { user.toUpperCase() }
+          { user }
         </p>
         <div className='userblock__button'>
           <Button
@@ -29,6 +30,13 @@ class UserBlock extends React.Component<void, void> {
         <img src="/static/images/userphoto.png" className="userblock__userphoto" />
       </div>
     );
+  }
+
+  _checkName(name) {
+    if (name.length > 8) {
+      name = name.slice(0, 8) + '...';
+    }
+    return name.toUpperCase();
   }
 }
 
