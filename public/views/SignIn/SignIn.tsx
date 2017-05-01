@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {browserHistory} from 'react-router';
+import {connect} from "react-redux";
 import {Background} from "../../components/Background/Background";
 import Form from "../../components/Form/Form";
 
@@ -21,7 +22,7 @@ const signInFields = [{
   error: ''
 }];
 
-export class SignIn extends React.Component<void, void> {
+class SignIn extends React.Component<void, void> {
   constructor() {
     super();
 
@@ -41,17 +42,28 @@ export class SignIn extends React.Component<void, void> {
   }
 
   render() {
+    const { isAuthenticated } = this.props;
+
     return (
       <div className='wrapper__registration'>
         <Background />
-        <div className='registration'>
-          <Form
-            fields={ signInFields }
-            error=''
-            control='Sign In'
-          />
-        </div>
+        { isAuthenticated ?
+          browserHistory.push('/')
+          : <div className='registration'>
+            <Form
+              fields={ signInFields }
+              error=''
+              control='Sign In'
+            />
+          </div>
+        }
       </div>
     );
   }
 }
+
+export default connect(
+  state => ({
+    isAuthenticated: state.authentication.isAuthenticated
+  })
+)(SignIn);
