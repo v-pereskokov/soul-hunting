@@ -7,7 +7,6 @@ import {Table} from "../../components/Table/Table";
 import {Background} from "../../components/Background/Background";
 import Random from '../../service/Random/Random';
 import transport from "../../service/Transport/Transoprt";
-import {Link} from "react-router-dom";
 
 import './Scoreboard.scss';
 

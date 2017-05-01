@@ -6,6 +6,7 @@ import {Button} from "../../components/Button/Button";
 import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
 
 import './Home.scss';
+import transport from "../../service/Transport/Transoprt";
 
 const auth = localStorage.token;
 
@@ -26,6 +27,10 @@ class Home extends React.Component<void, void> {
     super();
 
     this.setKeysButtons(auth ? 3 : 2);
+  }
+
+  componentWillMount() {
+    this.props.checkAuth();
   }
 
   setKeysButtons(max) {
@@ -172,6 +177,26 @@ export default connect(
           }
         ]
       })
+    },
+
+    checkAuth: () => {
+      transport.get('/cur-user')
+        .then(response => {
+          if (+response.status === 200) {
+            return response.json();
+          } else {
+            return null;
+          }
+        })
+        .then(data => {
+          if (data) {
+            localStorage.setItem('token', data.login);
+            dispatch({
+              type: 'SET_CURRENT_USER',
+              user: data.login
+            })
+          }
+        });
     }
   })
 )(Home);
