@@ -90,8 +90,15 @@ class Home extends React.Component<void, void> {
     });
 
     return (
-      <div className="wrapper__form">
-        <div className="wrapper__main__form">
+      <div
+        className={ isAuthenticated ?
+          'wrapper__form1' :
+          'wrapper__form' }
+      >
+        <div className={ isAuthenticated ?
+          'wrapper__main__form1' :
+          'wrapper__main__form' }
+        >
           <div className='main__form'>
             { buttonsRender }
           </div>
@@ -105,19 +112,19 @@ class Home extends React.Component<void, void> {
       {
         number: 1,
         text: 'GAME',
-        url: '/signin',
+        url: '/game',
         isActive: this.props.button1
       },
       {
         number: 2,
-        text: 'MAP',
-        url: '/signup',
+        text: 'SCOREBOARD',
+        url: '/scoreboard',
         isActive: this.props.button2
       },
       {
         number: 3,
-        text: 'MAP2',
-        url: '/signup',
+        text: 'ABOUT',
+        url: '/about',
         isActive: this.props.button3
       }
     ] : [

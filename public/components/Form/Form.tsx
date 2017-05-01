@@ -50,13 +50,12 @@ class Form extends React.Component<Props, void> {
   }
 
   _send(url, data) {
-    console.log(data);
-
     return this.props.send(url, data)
       .then(response => {
+        data = JSON.parse(data);
         if (+response.status === 200) {
-          localStorage.setItem('token', data);
-          this.props.setCurrentUser(data);
+          localStorage.setItem('token', data.username);
+          this.props.setCurrentUser(data.username);
           browserHistory.push('/');
         }
       });
