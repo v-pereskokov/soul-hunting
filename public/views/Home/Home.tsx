@@ -11,8 +11,8 @@ const auth = localStorage.token;
 
 const urls = auth ? [
   '/game',
-  '/top',
-  '/asdasd'
+  '/scoreboard',
+  '/about'
 ] : [
   '/signin',
   '/signup'

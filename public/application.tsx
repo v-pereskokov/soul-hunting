@@ -6,6 +6,7 @@ import MainTemplate from './teamplates/MainTemplate/MainTemplate';
 import Home from "./views/Home/Home";
 import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
+import Scoreboard from "./views/Scoreboard/Scoreboard";
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 
@@ -27,6 +28,7 @@ export const App = () => (
         <IndexRoute component={ Home }/>
         <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
         <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
+        <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
       </Route>
     </Router>
   </Provider>

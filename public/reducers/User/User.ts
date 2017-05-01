@@ -20,7 +20,8 @@ export default function authentication(state = initialState, action = {}) {
         isAuthenticated: isEmpty(action.user),
         user: action.user
       };
-    default: return state;
+    default:
+      return state;
   }
 }
 
