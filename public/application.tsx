@@ -4,16 +4,23 @@ import {Provider} from 'react-redux';
 
 import MainTemplate from './teamplates/MainTemplate/MainTemplate';
 import Home from "./views/Home/Home";
-import { SignIn } from "./views/SignIn/SignIn";
-import { SignUp } from "./views/SignUp/SignUp";
+import {SignIn} from "./views/SignIn/SignIn";
+import {SignUp} from "./views/SignUp/SignUp";
 
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
+
+import store from './store/Store';
+import {setCurrentUser} from "./actions/User/User";
 
 import './static/css/reset.scss';
 import './static/css/fonts.scss';
 import './static/css/main.scss';
 
-import store from './store/Store';
+localStorage.removeItem('token');
+
+if (localStorage.token) {
+  store.dispatch(setCurrentUser(localStorage.token));
+}
 
 export const App = () => (
   <Provider store={ store }>

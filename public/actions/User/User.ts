@@ -1,28 +1,35 @@
 import { browserHistory } from 'react-router';
 import transport from "../../service/Transport/Transoprt";
 
-import { LOGIN_REQUEST, LOGIN_FAIL } from "../../constants/User/User";
+export function setCurrentUser(user) {
+  return {
+    type: 'SET_CURRENT_USER',
+    user
+  };
+}
 
-export function handleSignIn() {
+export function logout() {
   return dispatch => {
-    dispatch({
-      type: LOGIN_REQUEST
-    });
-
-    transport.post('/signup', JSON.stringify({
-      'login': 'asdfdsf',
-      'email': 'adsfasdf@mail.eq',
-      'password': 'qqqqqqqq'
-    }))
+    transport.post('/logout')
       .then(response => {
-        if (+response.status === 200) {
-          browserHistory.push('/');
-        } else {
-          dispatch({
-            type: LOGIN_FAIL,
-            error: true
-          })
+        if (!response.status === 200) {
+          localStorage.removeItem('token');
+          dispatch(setCurrentUser({}));
         }
+      });
+  }
+}
+
+export function login(data) {
+  return dispatch => {
+    return transport.post('/cur-user', data)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        // localStorage.setItem('token', token);
+        // dispatch(setCurrentUser(token));
       });
   }
 }

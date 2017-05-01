@@ -9,7 +9,7 @@ import {LOGIN_REQUEST, LOGIN_FAIL, LOGIN_SUCCESS} from "../../constants/User/Use
 
 import './Home.scss';
 
-const auth = false;
+const auth = localStorage.token;
 
 const urls = auth ? [
   '/game',
@@ -28,12 +28,6 @@ class Home extends React.Component<void, void> {
     super();
 
     this.setKeysButtons(auth ? 3 : 2);
-  }
-
-  top() {
-    // this.props.auth();
-
-    console.log(this.props.authen);
   }
 
   logout() {

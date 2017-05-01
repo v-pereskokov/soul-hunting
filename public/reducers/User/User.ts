@@ -1,16 +1,20 @@
-import { LOGIN_REQUEST,
-LOGIN_SUCCESS,
-LOGIN_FAIL,
-LOGOUT_SUCCESS } from
-  "../../constants/User/User";
+const initialState = {
+  isAuthenticated: false,
+  user: {}
+};
 
-function authentication(state = {
-                isFetching: false,
-                isAuthenticated: false
-              }, action) {
-  switch (action.type) {
-    default:
-      return state
+const isEmpty = (word) => {
+  return word.trim().length === 0;
+};
+
+export default function authentication(state = initialState, action = {}) {
+  switch(action.type) {
+    case 'SET_CURRENT_USER':
+      return {
+        isAuthenticated: !isEmpty(action.user),
+        user: action.user
+      };
+    default: return state;
   }
 }
 
