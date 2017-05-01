@@ -10,6 +10,7 @@ const isEmpty = (word) => {
 export default function authentication(state = initialState, action = {}) {
   switch(action.type) {
     case 'SET_CURRENT_USER':
+      console.log('here');
       return {
         isAuthenticated: !isEmpty(action.user),
         user: action.user

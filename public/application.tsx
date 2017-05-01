@@ -16,8 +16,6 @@ import './static/css/reset.scss';
 import './static/css/fonts.scss';
 import './static/css/main.scss';
 
-localStorage.removeItem('token');
-
 if (localStorage.token) {
   store.dispatch(setCurrentUser(localStorage.token));
 }

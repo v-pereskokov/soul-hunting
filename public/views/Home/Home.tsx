@@ -5,7 +5,6 @@ import {Button} from "../../components/Button/Button";
 import transport from '../../service/Transport/Transoprt';
 
 import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
-import {LOGIN_REQUEST, LOGIN_FAIL, LOGIN_SUCCESS} from "../../constants/User/User";
 
 import './Home.scss';
 
@@ -106,6 +105,7 @@ class Home extends React.Component<void, void> {
 
   render() {
     const { isAuthenticated } = this.props;
+    console.log(isAuthenticated);
     const buttons = this._setButtons(isAuthenticated);
 
     const buttonsRender = buttons.map((item, index) => {
