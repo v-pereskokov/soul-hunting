@@ -7,6 +7,7 @@ interface Props {
   isActive?: boolean;
   click?: () => void;
   mouseOver?: () => void;
+  size?: string;
 }
 
 export class Button extends React.Component<Props, void> {
@@ -15,11 +16,13 @@ export class Button extends React.Component<Props, void> {
   }
 
   render() {
-    const { isActive, text, click, mouseOver } = this.props;
+    const { isActive, text, click, mouseOver, size = 'l' } = this.props;
+
+    size = this._getSize(size);
 
     return (
       <div
-        className='main__form-button'
+        className={ 'main__form-button ' + size}
         onClick={ click }
         onMouseOver={ mouseOver }
       >
@@ -34,5 +37,16 @@ export class Button extends React.Component<Props, void> {
         </div>
       </div>
     );
+  }
+
+  _getSize(size) {
+    switch (size) {
+      case 's':
+        return 'main__form-button__size-s';
+      case 'm':
+        return 'main__form-button__size-m';
+      default:
+        return '';
+    }
   }
 }
