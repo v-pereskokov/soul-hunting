@@ -4,14 +4,20 @@ const initialState = {
 };
 
 const isEmpty = (word) => {
-  return word.trim().length === 0;
+  if (word) {
+    if (word.trim().length !== 0) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 export default function authentication(state = initialState, action = {}) {
   switch(action.type) {
     case 'SET_CURRENT_USER':
       return {
-        isAuthenticated: !isEmpty(action.user),
+        isAuthenticated: isEmpty(action.user),
         user: action.user
       };
     default: return state;

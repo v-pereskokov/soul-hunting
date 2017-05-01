@@ -1,13 +1,23 @@
 import * as React from 'react';
 import {connect} from "react-redux";
+import {browserHistory} from 'react-router';
 
 import {Button} from "../Button/Button";
+import transport from "../../service/Transport/Transoprt";
 
 import './UserBlock.scss';
 
 class UserBlock extends React.Component<void, void> {
-  top() {
-    alert('top');
+  logout() {
+    this.props.logout()
+      .then(response => {
+        if (+response.status === 200) {
+          localStorage.removeItem('token');
+          this.props.setCurrentUser(null);
+        }
+
+        browserHistory.push('/');
+      });
   }
 
   render() {
@@ -23,7 +33,7 @@ class UserBlock extends React.Component<void, void> {
           <Button
           text='LOGOUT'
           isActive={ false }
-          click={ this.top.bind(this) }
+          click={ this.logout.bind(this) }
           size='s'
           />
         </div>
@@ -43,5 +53,17 @@ class UserBlock extends React.Component<void, void> {
 export default connect(
   state => ({
     user: state.authentication.user
+  }),
+  dispatch => ({
+    logout: () => {
+      return transport.post('/logout');
+    },
+
+    setCurrentUser: user => {
+      dispatch({
+        type: 'SET_CURRENT_USER',
+        user
+      })
+    }
   })
 )(UserBlock);

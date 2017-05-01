@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link, browserHistory} from 'react-router'
+import {Link, browserHistory} from 'react-router';
 import {connect} from "react-redux";
 import {Field, reduxForm} from 'redux-form';
 
@@ -53,9 +53,11 @@ class Form extends React.Component<Props, void> {
     return this.props.send(url, data)
       .then(response => {
         data = JSON.parse(data);
+        data = data.username ? data.username : data.login;
+
         if (+response.status === 200) {
-          localStorage.setItem('token', data.username);
-          this.props.setCurrentUser(data.username);
+          localStorage.setItem('token', data);
+          this.props.setCurrentUser(data);
           browserHistory.push('/');
         }
       });
