@@ -5,6 +5,8 @@ let app = express();
 app.use('/', express.static('public'));
 app.use('/signup', express.static('public'));
 app.use('/signin', express.static('public'));
+app.use('/scoreboard', express.static('public'));
+app.use('/about', express.static('public'));
 
 app.use(parser.json());
 
