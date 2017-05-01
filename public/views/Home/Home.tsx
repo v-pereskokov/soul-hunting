@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 import {Link, browserHistory} from 'react-router';
-import {Button} from "../../components/Button/Button";
-import transport from '../../service/Transport/Transoprt';
 
+import {Button} from "../../components/Button/Button";
 import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
 
 import './Home.scss';

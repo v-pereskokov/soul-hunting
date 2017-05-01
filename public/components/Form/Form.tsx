@@ -11,9 +11,9 @@ import {FormLabel} from "./FormLabel/FormLabel";
 import {FormContent} from "./FormContent/FormContent";
 import FormButton from "./FormButton/FormButton";
 import validate from "../../service/Validators/index";
+import transport from "../../service/Transport/Transoprt";
 
 import './Form.scss';
-import transport from "../../service/Transport/Transoprt";
 
 interface Props {
   fields?: Array<any>;
