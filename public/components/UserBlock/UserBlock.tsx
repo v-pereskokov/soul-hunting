@@ -2,44 +2,30 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
-import {Button} from '../Button/Button';
-import transport from '../../service/Transport/Transoprt';
-import {setCurrentUser} from '../../actions/User/User.actions';
+import {UserBlockBase} from './UserBlockBase/UserBlockBase';
+import {UserBlockNickName} from './UserBlockNickName/UserBlockNickName';
+import {UserBlockButton} from './UserBlockButton/UserBlockButton';
+import {logoutUser, setCurrentUser} from '../../actions/User/User.actions';
+import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './UserBlock.scss';
+import {UserBlockIcon} from './UserBlockIcon/UserBlockIcon';
 
 class UserBlock extends React.Component<void, void> {
   logout() {
-    this.props.logout()
-      .then(response => {
-        if (+response.status === 200) {
-          localStorage.removeItem('token');
-          this.props.setCurrentUser(null);
-        }
-
-        browserHistory.push('/');
-      });
+    this.props.logout();
   }
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
 
     user = this._checkName(user);
     return (
-      <div className='userblock'>
-        <p className='userblock__username'>
-          { user }
-        </p>
-        <div className='userblock__button'>
-          <Button
-          text='LOGOUT'
-          isActive={ false }
-          click={ this.logout.bind(this) }
-          size='s'
-          />
-        </div>
-        <img src='/static/images/userphoto.png' className='userblock__userphoto' />
-      </div>
+      <UserBlockBase>
+        <UserBlockNickName nickname={ user } />
+        <UserBlockButton click={ this.logout.bind(this) } />
+        <UserBlockIcon />
+      </UserBlockBase>
     );
   }
 
@@ -60,7 +46,18 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
-      return transport.post('/logout');
+      dispatch(togglePreloader());
+
+      return logoutUser()
+        .then(response => {
+          if (+response.status === 200) {
+            localStorage.removeItem('token');
+            dispatch(setCurrentUser(null));
+          }
+
+          dispatch(togglePreloader());
+          browserHistory.push('/');
+        });
     },
 
     setCurrentUser: user => {

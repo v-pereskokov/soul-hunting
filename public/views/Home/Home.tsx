@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {Link, browserHistory} from 'react-router';
 
 import {Button} from '../../components/Button/Button';
-import {setCurrentUser} from '../../actions/User/User.actions';
-import {checkAuthentication, setActive} from '../../actions/Buttons/Buttons.actions';
+import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actions';
+import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Home.scss';
