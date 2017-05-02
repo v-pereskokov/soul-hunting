@@ -15,7 +15,7 @@ import {Mobile} from './views/Mobile/Mobile';
 
 import {setCurrentUser} from './actions/User/User.actions';
 import {startServiceWorker} from './service/ServiceWorker/ServiceWorker';
-import * as device from './Top.js';
+import * as device from './service/CheckDevices/CheckDevices.js';
 
 import './static/css/reset.scss';
 import './static/css/fonts.scss';
