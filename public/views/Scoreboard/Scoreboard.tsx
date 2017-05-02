@@ -74,14 +74,16 @@ class Scoreboard extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated,
     page: state.page,
     users: state.users
-  }),
+  }
+};
 
-  dispatch => ({
+const mapDispatchToProps = dispatch => {
+  return {
     getUsers: (page = 1) => {
       dispatch({
         type: 'TOGGLE__PRELOADER'
@@ -106,5 +108,7 @@ export default connect(
           });
         });
     }
-  })
-)(Scoreboard);
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard);

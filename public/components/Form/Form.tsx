@@ -175,9 +175,8 @@ const ReduxForm = reduxForm({
   }
 })(Form);
 
-export default connect(
-  null,
-  dispatch => ({
+const mapDispatchToProps = dispatch => {
+  return {
     send: (url, data) => {
       return transport.post(url, data);
     },
@@ -194,5 +193,7 @@ export default connect(
         type: 'TOGGLE__PRELOADER'
       })
     }
-  })
-)(ReduxForm);
+  }
+};
+
+export default connect(null, mapDispatchToProps)(ReduxForm);

@@ -50,11 +50,14 @@ class UserBlock extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     user: state.authentication.user
-  }),
-  dispatch => ({
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
     logout: () => {
       return transport.post('/logout');
     },
@@ -65,5 +68,7 @@ export default connect(
         user
       })
     }
-  })
-)(UserBlock);
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);

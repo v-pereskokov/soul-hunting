@@ -24,8 +24,10 @@ class MainTemplate extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated
-  })
-)(MainTemplate);
+  }
+};
+
+export default connect(mapStateToProps)(MainTemplate);

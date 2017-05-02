@@ -23,8 +23,10 @@ class PreLoader extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     show: state.preloader
-  })
-)(PreLoader);
+  }
+};
+
+export default connect(mapStateToProps)(PreLoader);

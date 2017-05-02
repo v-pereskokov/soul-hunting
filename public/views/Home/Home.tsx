@@ -148,16 +148,18 @@ class Home extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated,
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,
-    button3: state.buttons[3].button,
-  }),
+    button3: state.buttons[3].button
+  }
+};
 
-  dispatch => ({
+const mapDispatchToProps = dispatch => {
+  return {
     setActive: (button1, button2, button3, current) => {
       dispatch({
         type: NEXT_BUTTON,
@@ -197,5 +199,7 @@ export default connect(
           }
         });
     }
-  })
-)(Home);
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -62,8 +62,11 @@ class SignIn extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated
-  })
-)(SignIn);
+  }
+};
+
+export default connect(mapStateToProps)(SignIn);
+

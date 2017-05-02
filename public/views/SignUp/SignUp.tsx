@@ -70,8 +70,10 @@ export class SignUp extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated
-  })
-)(SignUp);
+  }
+};
+
+export default connect(mapStateToProps)(SignUp);
