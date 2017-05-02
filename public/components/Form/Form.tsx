@@ -11,7 +11,9 @@ import {FormLabel} from "./FormLabel/FormLabel";
 import {FormContent} from "./FormContent/FormContent";
 import FormButton from "./FormButton/FormButton";
 import validate from "../../service/Validators/index";
-import transport from "../../service/Transport/Transoprt";
+import {send} from "../../actions/Form/Form";
+import {setCurrentUser} from "../../actions/User/User";
+import {togglePreloader} from "../../actions/PreLoader/PreLoader";
 
 import './Form.scss';
 
@@ -43,27 +45,13 @@ class Form extends React.Component<Props, void> {
 
       data = JSON.stringify(data);
 
-      this.props.togglePreloader();
-
       isSignIn ? this._send('/signin', data)
         : this._send('/signup', data);
     }
   }
 
   _send(url, data) {
-    return this.props.send(url, data)
-      .then(response => {
-        data = JSON.parse(data);
-        data = data.username ? data.username : data.login;
-
-        if (+response.status === 200) {
-          localStorage.setItem('token', data);
-          this.props.setCurrentUser(data);
-          browserHistory.push('/');
-        }
-
-        this.props.togglePreloader();
-      });
+    return this.props.send(url, data);
   }
 
   render() {
@@ -178,20 +166,21 @@ const ReduxForm = reduxForm({
 const mapDispatchToProps = dispatch => {
   return {
     send: (url, data) => {
-      return transport.post(url, data);
-    },
+      dispatch(togglePreloader());
 
-    setCurrentUser: user => {
-      dispatch({
-        type: 'SET_CURRENT_USER',
-        user
-      })
-    },
+      return send(url, data)
+        .then(response => {
+          data = JSON.parse(data);
+          data = data.username ? data.username : data.login;
 
-    togglePreloader: () => {
-      dispatch({
-        type: 'TOGGLE__PRELOADER'
-      })
+          if (+response.status === 200) {
+            localStorage.setItem('token', data);
+            dispatch(setCurrentUser(data));
+            browserHistory.push('/');
+          }
+
+          dispatch(togglePreloader());
+        });
     }
   }
 };

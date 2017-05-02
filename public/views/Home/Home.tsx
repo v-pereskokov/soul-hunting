@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import {Link, browserHistory} from 'react-router';
 
 import {Button} from "../../components/Button/Button";
-import {NEXT_BUTTON} from '../../constants/Buttons/Buttons';
+import {setCurrentUser} from "../../actions/User/User";
+import {checkAuthentication, setActive} from "../../actions/Buttons/Buttons";
+import {togglePreloader} from "../../actions/PreLoader/PreLoader";
 
 import './Home.scss';
-import transport from "../../service/Transport/Transoprt";
 
 const auth = localStorage.token;
 
@@ -161,42 +162,23 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setActive: (button1, button2, button3, current) => {
-      dispatch({
-        type: NEXT_BUTTON,
-        payload: [
-          {
-            current
-          },
-          {
-            button: button1
-          },
-          {
-            button: button2
-          },
-          {
-            button: button3
-          }
-        ]
-      })
+      dispatch(setActive(button1, button2, button3, current));
     },
 
     checkAuth: () => {
-      transport.get('/cur-user')
+      dispatch(togglePreloader());
+
+      checkAuthentication()
         .then(response => {
-          if (+response.status === 200) {
-            return response.json();
-          } else {
-            return null;
-          }
+          return +response.status === 200 ? response.json() : null;
         })
         .then(data => {
           if (data) {
             localStorage.setItem('token', data.login);
-            dispatch({
-              type: 'SET_CURRENT_USER',
-              user: data.login
-            })
+            dispatch(setCurrentUser(data.login));
           }
+
+          dispatch(togglePreloader());
         });
     }
   }

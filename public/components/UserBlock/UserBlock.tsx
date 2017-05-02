@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 
 import {Button} from "../Button/Button";
 import transport from "../../service/Transport/Transoprt";
+import {setCurrentUser} from "../../actions/User/User";
 
 import './UserBlock.scss';
 
@@ -63,10 +64,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     setCurrentUser: user => {
-      dispatch({
-        type: 'SET_CURRENT_USER',
-        user
-      })
+      dispatch(setCurrentUser(user))
     }
   }
 };

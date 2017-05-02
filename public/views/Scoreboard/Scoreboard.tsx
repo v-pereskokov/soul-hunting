@@ -6,7 +6,8 @@ import {Button} from "../../components/Button/Button";
 import {Table} from "../../components/Table/Table";
 import {Background} from "../../components/Background/Background";
 import Random from '../../service/Random/Random';
-import transport from "../../service/Transport/Transoprt";
+import {togglePreloader} from "../../actions/PreLoader/PreLoader";
+import {addPage, addUser, getUsers} from "../../actions/Scoreboard/Scoreboard";
 
 import './Scoreboard.scss';
 
@@ -85,27 +86,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUsers: (page = 1) => {
-      dispatch({
-        type: 'TOGGLE__PRELOADER'
-      });
+      dispatch(togglePreloader());
 
-      return transport.get('/users?page=' + page)
+      return getUsers(page)
         .then(response => {
           return response.json();
         })
         .then(data => {
-          dispatch({
-            type: 'ADD_PAGE',
-          });
-
-          dispatch({
-            type: 'ADD_USER',
-            data
-          });
-
-          dispatch({
-            type: 'TOGGLE__PRELOADER'
-          });
+          dispatch(addPage());
+          dispatch(addUser(data));
+          dispatch(togglePreloader());
         });
     }
   }

@@ -1,19 +1,11 @@
+import isEmpty from "../../service/Validators/CheckUser/CheckUser";
+
 const initialState = {
   isAuthenticated: false,
   user: {}
 };
 
-const isEmpty = (word) => {
-  if (word) {
-    if (word.trim().length !== 0) {
-      return true;
-    }
-  }
-
-  return false;
-};
-
-export default function authentication(state = initialState, action = {}) {
+export function authentication(state = initialState, action = {}) {
   switch(action.type) {
     case 'SET_CURRENT_USER':
       return {
@@ -24,5 +16,3 @@ export default function authentication(state = initialState, action = {}) {
       return state;
   }
 }
-
-export default authentication;
