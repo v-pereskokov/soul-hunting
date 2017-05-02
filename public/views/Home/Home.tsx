@@ -35,7 +35,7 @@ class Home extends React.Component<void, void> {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const {isAuthenticated} = this.props;
     const buttons = this._setButtons(isAuthenticated);
 
     const buttonsRender = buttons.map((item, index) => {
@@ -170,15 +170,26 @@ const mapDispatchToProps = dispatch => {
 
       checkAuthentication()
         .then(response => {
-          return +response.status === 200 ? response.json() : null;
+          return +response.status === 200 ? {
+            data: response.json(),
+            isLogin: true
+          } : {
+            isLogin: false
+          };
         })
         .then(data => {
-          if (data) {
-            localStorage.setItem('token', data.login);
-            dispatch(setCurrentUser(data.login));
+          if (data.isLogin) {
+            data.data
+              .then(user => {
+                localStorage.setItem('token', user.login);
+                dispatch(setCurrentUser(user.login));
+                dispatch(togglePreloader());
+              });
+          } else {
+            localStorage.removeItem('token');
+            dispatch(setCurrentUser(''));
+            dispatch(togglePreloader());
           }
-
-          dispatch(togglePreloader());
         });
     }
   }

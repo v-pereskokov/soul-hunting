@@ -24,7 +24,7 @@ if (localStorage.token) {
   store.dispatch(setCurrentUser(localStorage.token));
 }
 
-startServiceWorker();
+// startServiceWorker();
 
 export const App = () => (
   <Provider store={ store }>
