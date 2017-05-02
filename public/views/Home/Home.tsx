@@ -33,6 +33,40 @@ class Home extends React.Component<void, void> {
     this.props.checkAuth();
   }
 
+  render() {
+    const { isAuthenticated } = this.props;
+    const buttons = this._setButtons(isAuthenticated);
+
+    const buttonsRender = buttons.map((item, index) => {
+      return (
+        <Link to={ item.url } key={ index }>
+          <Button
+            text={ item.text }
+            isActive={ item.isActive }
+            mouseOver={ this.setActiveButton.bind(this, item.number) }
+          />
+        </Link>
+      );
+    });
+
+    return (
+      <div
+        className={ isAuthenticated ?
+          'wrapper__form1' :
+          'wrapper__form' }
+      >
+        <div className={ isAuthenticated ?
+          'wrapper__main__form1' :
+          'wrapper__main__form' }
+        >
+          <div className='main__form'>
+            { buttonsRender }
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   setKeysButtons(max) {
     document.addEventListener('keydown', event => {
       let current = +this.props.current;
@@ -75,41 +109,6 @@ class Home extends React.Component<void, void> {
       default:
         break;
     }
-  }
-
-  render() {
-    const { isAuthenticated } = this.props;
-    console.log(isAuthenticated);
-    const buttons = this._setButtons(isAuthenticated);
-
-    const buttonsRender = buttons.map((item, index) => {
-      return (
-        <Link to={ item.url } key={ index }>
-          <Button
-            text={ item.text }
-            isActive={ item.isActive }
-            mouseOver={ this.setActiveButton.bind(this, item.number) }
-          />
-        </Link>
-      );
-    });
-
-    return (
-      <div
-        className={ isAuthenticated ?
-          'wrapper__form1' :
-          'wrapper__form' }
-      >
-        <div className={ isAuthenticated ?
-          'wrapper__main__form1' :
-          'wrapper__main__form' }
-        >
-          <div className='main__form'>
-            { buttonsRender }
-          </div>
-        </div>
-      </div>
-    );
   }
 
   _setButtons(auth) {

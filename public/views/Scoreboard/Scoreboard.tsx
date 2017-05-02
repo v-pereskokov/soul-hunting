@@ -83,6 +83,10 @@ export default connect(
 
   dispatch => ({
     getUsers: (page = 1) => {
+      dispatch({
+        type: 'TOGGLE__PRELOADER'
+      });
+
       return transport.get('/users?page=' + page)
         .then(response => {
           return response.json();
@@ -95,6 +99,10 @@ export default connect(
           dispatch({
             type: 'ADD_USER',
             data
+          });
+
+          dispatch({
+            type: 'TOGGLE__PRELOADER'
           });
         });
     }

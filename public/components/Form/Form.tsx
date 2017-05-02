@@ -41,8 +41,9 @@ class Form extends React.Component<Props, void> {
         this._signInPack(fields) :
         this._signUpPack(fields);
 
-      console.log(data);
       data = JSON.stringify(data);
+
+      this.props.togglePreloader();
 
       isSignIn ? this._send('/signin', data)
         : this._send('/signup', data);
@@ -60,6 +61,8 @@ class Form extends React.Component<Props, void> {
           this.props.setCurrentUser(data);
           browserHistory.push('/');
         }
+
+        this.props.togglePreloader();
       });
   }
 
@@ -183,6 +186,12 @@ export default connect(
       dispatch({
         type: 'SET_CURRENT_USER',
         user
+      })
+    },
+
+    togglePreloader: () => {
+      dispatch({
+        type: 'TOGGLE__PRELOADER'
       })
     }
   })
