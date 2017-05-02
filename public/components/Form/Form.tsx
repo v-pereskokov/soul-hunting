@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {Link, browserHistory} from 'react-router';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 
-import {FormDescription} from "./FormDescription/FormDescription";
-import {FormHeader} from "./FormHeader/FormHeader";
-import {FormError} from "./FormError/FormError";
-import {FormInput} from "./FormInput/FormInput";
-import {FormLabel} from "./FormLabel/FormLabel";
-import {FormContent} from "./FormContent/FormContent";
-import FormButton from "./FormButton/FormButton";
-import validate from "../../service/Validators/index";
-import {send} from "../../actions/Form/Form";
-import {setCurrentUser} from "../../actions/User/User";
-import {togglePreloader} from "../../actions/PreLoader/PreLoader";
+import {FormDescription} from './FormDescription/FormDescription';
+import {FormHeader} from './FormHeader/FormHeader';
+import {FormError} from './FormError/FormError';
+import {FormInput} from './FormInput/FormInput';
+import {FormLabel} from './FormLabel/FormLabel';
+import {FormContent} from './FormContent/FormContent';
+import FormButton from './FormButton/FormButton';
+import validate from '../../service/Validators/index';
+import {send} from '../../actions/Form/Form.actions';
+import {setCurrentUser} from '../../actions/User/User.actions';
+import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Form.scss';
 
@@ -74,12 +74,12 @@ class Form extends React.Component<Props, void> {
     });
 
     return (
-      <div className="form__wrapper-elements">
-        <div className="wrapper__form-center">
+      <div className='form__wrapper-elements'>
+        <div className='wrapper__form-center'>
           <FormHeader />
           <form
-            className="form"
-            name="form"
+            className='form'
+            name='form'
             ref={ (form) => {
               this.form = form
             }}

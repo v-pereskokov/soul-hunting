@@ -14,7 +14,7 @@ export class FormError extends React.Component<Props, void> {
 
   render() {
     return (
-      <span className="errorText__response">
+      <span className='errorText__response'>
         { this.props.text }
       </span>
     );

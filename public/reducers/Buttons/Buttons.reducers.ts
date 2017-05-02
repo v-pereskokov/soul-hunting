@@ -1,4 +1,4 @@
-import { NEXT_BUTTON } from "../../constants/Buttons/Buttons.constants";
+import { NEXT_BUTTON } from '../../constants/Buttons/Buttons.constants';
 
 const initialState = [
   {

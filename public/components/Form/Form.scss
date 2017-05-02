@@ -53,9 +53,9 @@
     color: black;
   }
 
-  & input[type="text"],
-  & input[type="email"],
-  & input[type="password"] {
+  & input[type='text'],
+  & input[type='email'],
+  & input[type='password'] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -71,9 +71,9 @@
     letter-spacing: 0.05em;
   }
 
-  & input[type="text"]::placeholder,
-  & input[type="email"]::placeholder,
-  & input[type="password"]::placeholder {
+  & input[type='text']::placeholder,
+  & input[type='email']::placeholder,
+  & input[type='password']::placeholder {
     opacity: 0.3;
   }
 
@@ -88,8 +88,8 @@
     font-size: 11px;
   }
 
-  & input[type="submit"],
-  & input[type="button"] {
+  & input[type='submit'],
+  & input[type='button'] {
     background: #2471FF;
     border: none;
     padding: 10px 20px 10px 20px;
@@ -98,8 +98,8 @@
     color: #D2E2FF;
   }
 
-  & input[type="submit"]:hover,
-  & input[type="button"]:hover {
+  & input[type='submit']:hover,
+  & input[type='button']:hover {
     background: #6B9FFF;
     color: #fff;
   }
@@ -125,7 +125,7 @@
 
     & span {
       color: white;
-      font-family: "Astakhov Skin";
+      font-family: 'Astakhov Skin';
       font-size: 30pt;
       padding-right: 10px;
     }

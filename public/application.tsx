@@ -12,7 +12,7 @@ import About from "./views/About/About";
 import * as RoutesMap from './service/RoutesMap/RoutesMap';
 
 import store from './store/Store';
-import {setCurrentUser} from "./actions/User/User";
+import {setCurrentUser} from "./actions/User/User.actions";
 
 import './static/css/reset.scss';
 import './static/css/fonts.scss';

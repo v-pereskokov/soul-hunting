@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Link} from 'react-router'
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {Button} from "../../components/Button/Button";
-import {Table} from "../../components/Table/Table";
-import {Background} from "../../components/Background/Background";
+import {Button} from '../../components/Button/Button';
+import {Table} from '../../components/Table/Table';
+import {Background} from '../../components/Background/Background';
 import Random from '../../service/Random/Random';
-import {togglePreloader} from "../../actions/PreLoader/PreLoader";
-import {addPage, addUser, getUsers} from "../../actions/Scoreboard/Scoreboard";
+import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
+import {addPage, addUser, getUsers} from '../../actions/Scoreboard/Scoreboard.actions';
 
 import './Scoreboard.scss';
 
@@ -30,16 +30,16 @@ class Scoreboard extends React.Component<void, void> {
     this._users = this._costyl(users);
 
     return (
-      <div className="wrapper__scoreboard">
+      <div className='wrapper__scoreboard'>
         <Background />
         { !isAuthenticated ?
           browserHistory.push('/')
           :
-          <div className="table">
+          <div className='table'>
             <Table header={ header } content={ this._users }/>
-            <div className="more__button">
+            <div className='more__button'>
               <Button
-                text="More"
+                text='More'
                 isActive={ true }
                 click={ () => {
                   this.props.getUsers(this.props.page);

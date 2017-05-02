@@ -39,7 +39,7 @@ export class Table extends React.Component<Props, void> {
     });
 
     return (
-      <table className="scoreboard">
+      <table className='scoreboard'>
         <thead>
         <tr>
           { header }

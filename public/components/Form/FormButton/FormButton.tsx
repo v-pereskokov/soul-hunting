@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button} from "../../Button/Button";
+import {Button} from '../../Button/Button';
 import {submit} from 'redux-form';
 import {connect} from 'react-redux';
 

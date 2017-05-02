@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
-import {Button} from "../Button/Button";
-import transport from "../../service/Transport/Transoprt";
-import {setCurrentUser} from "../../actions/User/User";
+import {Button} from '../Button/Button';
+import transport from '../../service/Transport/Transoprt';
+import {setCurrentUser} from '../../actions/User/User.actions';
 
 import './UserBlock.scss';
 
@@ -38,7 +38,7 @@ class UserBlock extends React.Component<void, void> {
           size='s'
           />
         </div>
-        <img src="/static/images/userphoto.png" className="userblock__userphoto" />
+        <img src='/static/images/userphoto.png' className='userblock__userphoto' />
       </div>
     );
   }

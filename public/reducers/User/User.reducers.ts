@@ -1,4 +1,4 @@
-import isEmpty from "../../service/Validators/CheckUser/CheckUser";
+import isEmpty from '../../service/Validators/CheckUser/CheckUser';
 
 const initialState = {
   isAuthenticated: false,
