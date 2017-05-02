@@ -1,0 +1,1 @@
+export const TOGGLE__PRELOADER = 'TOGGLE__PRELOADER';
