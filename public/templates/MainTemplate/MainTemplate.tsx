@@ -10,7 +10,7 @@ import './MainTemplate.scss';
 
 class MainTemplate extends React.Component<void, void> {
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, device } = this.props;
 
     return (
       <div className='wrapper'>
@@ -18,7 +18,7 @@ class MainTemplate extends React.Component<void, void> {
         <PreLoader />
         <Logo />
         { this.props.children }
-        <Footer />
+        { device && <Footer /> }
       </div>
     );
   }
@@ -26,7 +26,8 @@ class MainTemplate extends React.Component<void, void> {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.authentication.isAuthenticated
+    isAuthenticated: state.authentication.isAuthenticated,
+    device: state.device
   }
 };
 

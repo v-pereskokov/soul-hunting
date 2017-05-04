@@ -35,7 +35,7 @@ class Home extends React.Component<void, void> {
   }
 
   render() {
-    const {isAuthenticated} = this.props;
+    const {isAuthenticated, device} = this.props;
     const buttons = this._setButtons(isAuthenticated);
 
     const buttonsRender = buttons.map((item, index) => {
@@ -52,10 +52,10 @@ class Home extends React.Component<void, void> {
 
     return (
       <div
-        className={ isAuthenticated ?
+        className={ isAuthenticated && device ?
           'wrapper__form1' :
           'wrapper__form' }>
-        <div className={ isAuthenticated ?
+        <div className={ isAuthenticated && device ?
           'wrapper__main__form1' :
           'wrapper__main__form' }>
           <div className='main__form'>
