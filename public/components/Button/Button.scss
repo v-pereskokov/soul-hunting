@@ -15,6 +15,17 @@
     transition-duration: 0.3s;
   }
 
+  &__background:visited {
+    margin: 0 auto 50px;
+    height: 60px;
+    width: 300px;
+    border: 2px solid #ccc !important;
+    border-radius: 4px !important;
+    position: absolute;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
+
   &__text {
     font-family: 'Keep Calm';
     font-size: 24pt;
