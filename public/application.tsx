@@ -11,9 +11,9 @@ import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
 import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
-import {Mobile} from './views/Mobile/Mobile';
 
 import {setCurrentUser} from './actions/User/User.actions';
+import {setDevice} from './actions/Mobile/Mobile.actions';
 import {startServiceWorker} from './service/ServiceWorker/ServiceWorker';
 import * as device from './service/CheckDevices/CheckDevices.js';
 
@@ -21,28 +21,24 @@ import './static/css/reset.scss';
 import './static/css/fonts.scss';
 import './static/css/main.scss';
 
-
 if (localStorage.token) {
   store.dispatch(setCurrentUser(localStorage.token));
 }
+
+store.dispatch(setDevice(device.desktop()));
 
 // startServiceWorker();
 
 export const App = () => (
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      { device.desktop() ?
-        <Route path={ RoutesMap.HOME } component={ MainTemplate }>
-          <IndexRoute component={ Home }/>
-          <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
-          <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
-          <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
-          <Route path={ RoutesMap.ABOUT } component={ About }/>
-        </Route> : <Route path={ RoutesMap.HOME } component={ MainTemplate }>
-          <IndexRoute component={ Mobile }/>
-          <Route path='*' component={ Mobile }/>
-        </Route>
-      }
+      <Route path={ RoutesMap.HOME } component={ MainTemplate }>
+        <IndexRoute component={ Home }/>
+        <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
+        <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
+        <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
+        <Route path={ RoutesMap.ABOUT } component={ About }/>
+      </Route>
     </Router>
   </Provider>
 );

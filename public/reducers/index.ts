@@ -6,6 +6,7 @@ import buttons from './Buttons/Buttons.reducers';
 import {authentication} from './User/User.reducers';
 import {page, users} from './Scoreboard/Scoreboard.reducers';
 import preloader from './PreLoader/Preloader.reducers';
+import device from './Mobile/Mobile.reducers';
 
 const reducer = combineReducers({
   authentication,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   page,
   users,
   preloader,
+  device,
   routing: routerReducer,
   form: formReducer
 });

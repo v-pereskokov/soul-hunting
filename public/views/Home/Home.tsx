@@ -54,12 +54,10 @@ class Home extends React.Component<void, void> {
       <div
         className={ isAuthenticated ?
           'wrapper__form1' :
-          'wrapper__form' }
-      >
+          'wrapper__form' }>
         <div className={ isAuthenticated ?
           'wrapper__main__form1' :
-          'wrapper__main__form' }
-        >
+          'wrapper__main__form' }>
           <div className='main__form'>
             { buttonsRender }
           </div>
@@ -155,7 +153,8 @@ const mapStateToProps = state => {
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,
-    button3: state.buttons[3].button
+    button3: state.buttons[3].button,
+    device: state.device
   }
 };
 
