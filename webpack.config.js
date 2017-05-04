@@ -27,18 +27,19 @@ module.exports = {
         loader: 'source-map-loader'
       },
 
-      {
-        test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1',
-          'postcss-loader'
-        ]
-      },
+      // {
+      //   test: /\.scss$/,
+      //   use: ['style-loader', 'css-loader', 'sass-loader']
+      // },
 
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: [
+          'style-loader',
+          'css-loader',/*?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]*/
+          'resolve-url-loader',
+          'sass-loader'
+        ]
       },
 
       {
