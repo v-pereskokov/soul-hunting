@@ -31,7 +31,7 @@ class Scoreboard extends React.Component<void, void> {
 
     return (
       <div className='wrapper__scoreboard'>
-        <Background />
+        <Background closed={ true }/>
         { !isAuthenticated ?
           browserHistory.push('/')
           :

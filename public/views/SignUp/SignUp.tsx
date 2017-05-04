@@ -56,7 +56,7 @@ export class SignUp extends React.Component<void, void> {
 
     return (
       <div className='wrapper__registration'>
-        <Background />
+        <Background closed={ true }/>
         { isAuthenticated ?
           browserHistory.push('/')
           : <div className='registration'>

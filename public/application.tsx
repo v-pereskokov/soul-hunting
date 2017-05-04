@@ -11,6 +11,8 @@ import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
 import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
+import {Error} from './views/Error/Error';
+import Game from './views/Game/Game';
 
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
@@ -38,6 +40,8 @@ export const App = () => (
         <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
         <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
         <Route path={ RoutesMap.ABOUT } component={ About }/>
+        <Route path={ RoutesMap.GAME } component={ Game }/>
+        <Route path="*" component={ Error }/>
       </Route>
     </Router>
   </Provider>

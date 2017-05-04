@@ -1,21 +1,26 @@
 import * as React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
 import './Background.scss';
 
-export class Background extends React.Component<void, void> {
-  constructor() {
-    super();
+interface Props {
+  closed?: boolean;
+}
+
+export class Background extends React.Component<Props, void> {
+  constructor(props: Props) {
+    super(props);
   }
 
   render() {
     return (
       <div>
-        <Link to='/'>
+        { this.props.closed && <Link to='/'>
           <span className='close'>
             &times;
           </span>
         </Link>
+        }
         <div className='back'>
         </div>
       </div>
