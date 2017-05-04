@@ -17,7 +17,7 @@ import Game from './views/Game/Game';
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
 import {startServiceWorker} from './service/ServiceWorker/ServiceWorker';
-import * as device from './service/CheckDevices/CheckDevices.js';
+import Device from './service/Device/Device';
 
 import './static/css/reset.scss';
 import './static/css/fonts.scss';
@@ -27,7 +27,7 @@ if (localStorage.token) {
   store.dispatch(setCurrentUser(localStorage.token));
 }
 
-store.dispatch(setDevice(device.desktop()));
+store.dispatch(setDevice(new Device().isDesktop()));
 
 // startServiceWorker();
 
