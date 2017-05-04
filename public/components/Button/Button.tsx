@@ -16,9 +16,9 @@ export class Button extends React.Component<Props, void> {
   }
 
   render() {
-    const { isActive, text, click, mouseOver, size = 'l' } = this.props;
+    const { isActive, text, click, mouseOver, size }: any = this.props;
 
-    size = this._getSize(size);
+    const sizeStyle: any = this._getSize(size);
 
     return (
       <div
@@ -39,7 +39,7 @@ export class Button extends React.Component<Props, void> {
     );
   }
 
-  _getSize(size) {
+  _getSize(size: any): string {
     switch (size) {
       case 's':
         return 'main__form-button__size-s';

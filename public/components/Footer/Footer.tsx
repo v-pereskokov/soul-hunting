@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import {FooterBase} from './FooterBase/FooterBase';
+import {FooterTeam} from './FooterTeam/FooterTeam';
+import {FooterHelp} from './FooterHelp/FooterHelp';
 
 import './Footer.scss';
-import {FooterHelp} from './FooterHelp/FooterHelp';
-import {FooterTeam} from './FooterTeam/FooterTeam';
 
 export class Footer extends React.Component<void, void> {
   render() {

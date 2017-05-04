@@ -18,7 +18,7 @@ export class FormInput extends React.Component<Props, void> {
         name={ this.props.name }
         type={ this.props.type }
         placeholder={ this.props.placeholder }
-        { this.props.input }
+        { ...this.props.input }
       />
     );
   }

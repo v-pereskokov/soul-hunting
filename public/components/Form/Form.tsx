@@ -23,15 +23,22 @@ interface Props {
   control: string;
   submit: any;
   type?: string;
+  send: () => any;
+  handleSubmit?: any;
+  name?: string;
+  _errors: any;
+  _form?: any;
 }
 
 class Form extends React.Component<Props, void> {
   _errors: any;
+  _form: any;
 
   constructor(props: Props) {
     super(props);
 
     this._errors = {};
+    this._form = {};
   }
 
   submit() {
@@ -39,7 +46,7 @@ class Form extends React.Component<Props, void> {
       const fields = this._getFields();
       const isSignIn = fields.length === 2;
 
-      const data = isSignIn ?
+      let data: any = isSignIn ?
         this._signInPack(fields) :
         this._signUpPack(fields);
 
@@ -50,14 +57,14 @@ class Form extends React.Component<Props, void> {
     }
   }
 
-  _send(url, data) {
+  _send(url: string, data: any): any {
     return this.props.send(url, data);
   }
 
   render() {
-    const {handleSubmit, fields, error, control} = this.props;
+    const {handleSubmit, fields, error, control}: any = this.props;
 
-    const content = fields.map((item, index) => {
+    const content: Array<any> = fields.map((item: any, index: number) => {
       return (
         <div key={ index }>
           <Field
@@ -80,7 +87,7 @@ class Form extends React.Component<Props, void> {
           <form
             className='form'
             name='form'
-            ref={ (form) => {
+            ref={ (form: any) => {
               this.form = form
             }}
             onSubmit={handleSubmit}
@@ -94,7 +101,7 @@ class Form extends React.Component<Props, void> {
     );
   }
 
-  _isValid(errors) {
+  _isValid(errors: any) {
     for (let error in errors) {
       if (errors[error]) {
         return false;
@@ -113,7 +120,7 @@ class Form extends React.Component<Props, void> {
                 touched,
                 error
               }
-            },) => (
+            }: any) => (
       <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
         { this._setError(names, error) }
         <FormLabel title={ label }/>
@@ -132,7 +139,7 @@ class Form extends React.Component<Props, void> {
     );
   }
 
-  _setError(name, error) {
+  _setError(name: string, error: string) {
     this._errors[name] = error;
   }
 
@@ -140,14 +147,14 @@ class Form extends React.Component<Props, void> {
     return this.form.querySelectorAll('input');
   }
 
-  _signInPack(data) {
+  _signInPack(data: any) {
     return {
       'username': data[0].value,
       'password': data[1].value
     };
   }
 
-  _signUpPack(data) {
+  _signUpPack(data: any) {
     return {
       'login': data[0].value,
       'email': data[1].value,
@@ -156,20 +163,20 @@ class Form extends React.Component<Props, void> {
   }
 }
 
-const ReduxForm = reduxForm({
+const ReduxForm: any = reduxForm({
   form: 'form',
   validate,
   onSubmit: () => {
   }
 })(Form);
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    send: (url, data) => {
+    send: (url: string, data: any) => {
       dispatch(togglePreloader());
 
       return send(url, data)
-        .then(response => {
+        .then((response: any) => {
           data = JSON.parse(data);
           data = data.username ? data.username : data.login;
 
