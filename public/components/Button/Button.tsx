@@ -22,7 +22,7 @@ export class Button extends React.Component<Props, void> {
 
     return (
       <div
-        className={ 'main__form-button ' + size}
+        className={ 'main__form-button ' + sizeStyle}
         onClick={ click }
         onMouseOver={ mouseOver }
       >

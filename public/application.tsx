@@ -40,8 +40,10 @@ export const App = () => (
         <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
         <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
         <Route path={ RoutesMap.ABOUT } component={ About }/>
-        <Route path={ RoutesMap.GAME } component={ Game }/>
-        <Route path="*" component={ Error }/>
+        <Route path={ RoutesMap.GAME } component={ Game }>
+          <Route path={ RoutesMap.SINGLEPLAYER } component={ Game } />
+        </Route>
+        <Route path='*' component={ Error }/>
       </Route>
     </Router>
   </Provider>

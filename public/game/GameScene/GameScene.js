@@ -31,6 +31,16 @@ export default class GameScene {
     this._start(this._init.bind(this), this._animate.bind(this));
   }
 
+  start() {
+    $(document).ready(function () {
+      $('body').append('<div id="intro">Click to start</div>');
+      $('#intro').css({width: WIDTH, height: HEIGHT});
+    });
+
+    this._init();
+    this._animate();
+  }
+
   _start(init, animate) {
     $(document).ready(function () {
       $('body').append('<div id="intro">Click to start</div>');

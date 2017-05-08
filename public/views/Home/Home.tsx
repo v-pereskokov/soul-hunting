@@ -7,7 +7,7 @@ import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actio
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
-import style from './Home.scss';
+import './Home.scss';
 
 const auth = localStorage.token;
 
@@ -37,8 +37,6 @@ class Home extends React.Component<void, void> {
   render() {
     const {isAuthenticated, device} = this.props;
     const buttons = this._setButtons(isAuthenticated);
-
-    console.log(style);
 
     const buttonsRender = buttons.map((item, index) => {
       return (
