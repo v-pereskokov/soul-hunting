@@ -1,0 +1,13 @@
+.wrapper__game {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 22;
+}
+
+canvas {
+  z-index: 21;
+  position: fixed;
+  left: 0;
+}

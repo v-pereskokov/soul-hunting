@@ -19,7 +19,6 @@ import {
   HEIGHT,
   UNITSIZE,
   WALLHEIGHT,
-  MOVESPEED,
   MOVESPEEDAI,
   BULLETMOVESPEED
 } from '../Constants/Constants';
@@ -27,31 +26,11 @@ import {
 export default class GameScene {
   constructor() {
     this._isAnimate = true;
-
-    this._start(this._init.bind(this), this._animate.bind(this));
   }
 
   start() {
-    $(document).ready(function () {
-      $('body').append('<div id="intro">Click to start</div>');
-      $('#intro').css({width: WIDTH, height: HEIGHT});
-    });
-
     this._init();
     this._animate();
-  }
-
-  _start(init, animate) {
-    $(document).ready(function () {
-      $('body').append('<div id="intro">Click to start</div>');
-      $('#intro').css({width: WIDTH, height: HEIGHT}).one('click', function (e) {
-        e.preventDefault();
-        $(this).fadeOut();
-
-        init();
-        animate();
-      });
-    });
   }
 
   _init() {
@@ -105,7 +84,18 @@ export default class GameScene {
     this._renderer.setClearColor(0xD6F1FF);
     this._renderer.setSize(WIDTH, HEIGHT);
 
-    document.body.appendChild(this._renderer.domElement);
+    document.body
+      .querySelector('.wrapper__game')
+      .appendChild(this._renderer.domElement);
+
+    window.addEventListener('resize', this._resize.bind(this), false);
+  }
+
+  _resize() {
+    this._camera.aspect = window.innerWidth / window.innerHeight;
+    this._camera.updateProjectionMatrix();
+
+    this._renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   _makeScene() {
