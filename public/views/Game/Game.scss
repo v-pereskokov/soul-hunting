@@ -20,19 +20,6 @@ canvas {
   z-index: 40;
 }
 
-.wrapper__weapon {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 39;
-
-  &-target {
-    background: url(/static/gameSource/weapon.png);
-    bottom: 0;
-    position: fixed;
-  }
-}
-
 .weapon {
   position: fixed;
   bottom: 0;
@@ -42,25 +29,15 @@ canvas {
 
   &__img {
     position: absolute;
-    bottom: -30px;
-    right: 100px;
+    bottom: -2%;
+    right: 8%;
   }
-}
-
-.aim {
-  width: 100%;
-  height: 100%;
-  background: url(/static/gameSource/aim.png) no-repeat center center fixed;
-  position: fixed;
-  transform: scale(0.05, 0.05);
-  top: 20px;
-  z-index: 42;
 }
 
 .wrapper__health {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 40px;
+  right: 50px;
   z-index: 43;
   color: #000 !important;
   background-color: rgba(176, 176, 176, 0.95) !important;
@@ -70,6 +47,106 @@ canvas {
     color: #fff !important;
     background-color: #f40110 !important;
     height: 24px;
-    width: 72%;
+    width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: 5px;
+    font-family: "Keep Calm";
+    color: #e9e9e9;
+  }
+}
+
+.wrapper__patrons {
+  position: absolute;
+  right: 140px;
+  z-index: 43;
+  width: 150px;
+
+  &-inf {
+    transform: scale(0.2, 0.2);
+    margin-top: 270%;
+    position: absolute;
+    z-index: 45;
+  }
+
+  &-red {
+    color: #fff !important;
+    background-color: #f40110 !important;
+    height: 24px;
+    width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: 5px;
+    font-family: "Keep Calm";
+    color: #e9e9e9;
+  }
+}
+
+.parent__aim {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 45;
+
+  &__wrapper {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+    &-img {
+      transform: scale(0.1, 0.1);
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: none;
+    }
+  }
+}
+
+.parent__inf {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 45;
+
+  &__wrapper {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: -90px;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    &-img {
+      transform: scale(0.2, 0.2);
+      opacity: 0.9;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: none;
+    }
   }
 }

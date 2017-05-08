@@ -17,8 +17,18 @@ class SinglePlayer extends React.Component<void, void> {
 
     return (
       <div className='wrapper__game'>
-        <div className='aim'/>
+        <div className='parent__inf'>
+          <div className='parent__inf__wrapper'>
+            <img className='parent__inf__wrapper-img' src='/static/gameSource/infinity-icon.png'/>
+          </div>
+        </div>
+        <div className='parent__aim'>
+          <div className='parent__aim__wrapper'>
+            <img className='parent__aim__wrapper-img' src='/static/gameSource/aim.png'/>
+          </div>
+        </div>
         <div className='wrapper__health'>
+          <p className='wrapper__health-text'>100 HP</p>
           <div className='wrapper__health-red'/>
         </div>
         <div className='game__background'/>
