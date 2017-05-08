@@ -1,5 +1,6 @@
 import threeFactory from '../../ThreeFactory/ThreeFactory';
 import Objects from '../Objects/Objects';
+import textureLoader from '../../../Services/LoaderService/LoaderService';
 
 export default class Walls extends Objects {
   constructor(color = 1, ...settings) {
@@ -8,8 +9,8 @@ export default class Walls extends Objects {
     this._color = color;
 
     this._materials = [
-      0x00CCAA,
-      0xC5EDA0,
+      textureLoader.load('/game/images/wall-1.jpg'),
+      textureLoader.load('/game/images/wall-2.jpg'),
       0xFBEBCD
     ];
 
@@ -22,7 +23,7 @@ export default class Walls extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
-      color: this._materials[this._color]
+      map: this._materials[this._color]
     });
   }
 }

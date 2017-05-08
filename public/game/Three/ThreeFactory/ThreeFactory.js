@@ -137,6 +137,10 @@ class ThreeFactory {
   clamp(x, a, b) {
     return this._three.clamp(x, a, b);
   }
+
+  textureLoader() {
+    return new this._three.TextureLoader();
+  }
 }
 
 const threeFactory = new ThreeFactory();

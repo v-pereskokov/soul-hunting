@@ -81,7 +81,7 @@ export default class GameScene {
 
   _setUpRender() {
     this._renderer = threeFactory.webGLRender();
-    this._renderer.setClearColor(0xD6F1FF);
+    this._renderer.setClearColor(0xC0C0C0);
     this._renderer.setSize(WIDTH, HEIGHT);
 
     document.body
@@ -221,12 +221,12 @@ export default class GameScene {
       const player = playersService.getPlayer(i);
       const sector = Helper.getMapSector(player.object.position);
 
-      AIService.shoot(
-        this._camera,
-        player,
-        sector,
-        this._createBullet.bind(this)
-      );
+      // AIService.shoot(
+      //   this._camera,
+      //   player,
+      //   sector,
+      //   this._createBullet.bind(this)
+      // );
     }
 
     this._renderer.render(this._scene, this._camera);

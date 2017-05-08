@@ -1,5 +1,6 @@
 import threeFactory from '../../ThreeFactory/ThreeFactory';
 import Objects from '../Objects/Objects';
+import textureLoader from '../../../Services/LoaderService/LoaderService';
 
 export default class Floor extends Objects {
   constructor(length) {
@@ -16,7 +17,7 @@ export default class Floor extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
-      color: 0x1f1ff0
+      map: textureLoader.load('/game/images/floor-1.jpg')
     });
   }
 }

@@ -9,7 +9,7 @@ export default class Bullet extends Objects {
   }
 
   _setGeometry(settings) {
-    this._geometry = threeFactory.sphereGeometry(0.000001, 1, 1);
+    this._geometry = threeFactory.sphereGeometry(3, 6, 6);
   }
 
   _setMaterial() {
