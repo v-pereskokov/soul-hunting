@@ -7,24 +7,22 @@ import {Information} from '../../components/Information/Information';
 import {Mobile} from '../Mobile/Mobile';
 import {Button} from '../../components/Button/Button';
 
+import GameManager from '../../game/Managers/GameManager/GameManager.js';
+
 class Game extends React.Component<void, void> {
   render() {
     const { device } = this.props;
 
+    new GameManager().startGame();
+
     return (
       <div className='wrapper__mobile'>
-        <Background closed={ false }/>
         { device ?
-          <Information>
-            <span className='developer'>ANANYMOUS</span>
-            <p className='sorry'>Soon</p>
-            <hr />
-            <Link to='/'>
-              <Button text='Go to home' isActive={ true }/>
-            </Link>
-          </Information>
+          <div />
           :
-          <Mobile />
+          <Background closed={ false }>
+            <Mobile />
+          </Background>
         }
       </div>
     );
