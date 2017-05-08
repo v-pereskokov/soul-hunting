@@ -221,12 +221,12 @@ export default class GameScene {
       const player = playersService.getPlayer(i);
       const sector = Helper.getMapSector(player.object.position);
 
-      // AIService.shoot(
-      //   this._camera,
-      //   player,
-      //   sector,
-      //   this._createBullet.bind(this)
-      // );
+      AIService.shoot(
+        this._camera,
+        player,
+        sector,
+        this._createBullet.bind(this)
+      );
     }
 
     this._renderer.render(this._scene, this._camera);
@@ -238,30 +238,7 @@ export default class GameScene {
   _death() {
     if (playerStats.health <= 0) {
       this._isAnimate = false;
-      $(this._renderer.domElement).fadeOut();
-      $('#radar, #hud, #credits').fadeOut();
-      $('#intro').fadeIn();
-      $('#intro').html('Ouch! Click to restart...');
-      $('#intro').one('click', function () {
-        location = location;
-        $(this._renderer.domElement).fadeIn();
-        $('#radar, #hud, #credits').fadeIn();
-        $(this).fadeOut();
-
-        this._isAnimate = true;
-        this._animate();
-
-        playerStats.health = 100;
-        $('#health').html(playerStats.health);
-
-        if (playerStats.kills <= 0) {
-          playerStats.kills = 0;
-        }
-        $('#score').html(playerStats.kills * 100);
-
-        this._camera.translateX(-this._camera.position.x);
-        this._camera.translateZ(-this._camera.position.z);
-      });
+      document.body.querySelector('.wrapper__game').style.display = 'none';
     }
   }
 

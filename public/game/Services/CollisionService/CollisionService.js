@@ -58,23 +58,17 @@ export default class CollisionService {
         camera.position.z
       ) < 25 &&
       bullet.owner !== camera) {
-      $('#hurt').fadeIn(75);
-
       playerStats.health = playerStats.health - 10;
 
       if (playerStats.health < 0) {
         playerStats.health = 0;
       }
 
-      const health = playerStats.health < 25 ?
-        '<span style="color: darkRed">' + playerStats.health + '</span>' :
-        playerStats.health;
-      $('#health').html(health);
+      document.body.querySelector('.wrapper__health-text').innerHTML = `${playerStats.health}  HP`;
+      document.body.querySelector('.wrapper__health-red').style.width = `${playerStats.health}%`;
 
       bulletsService.remove(bulletIndex);
       scene.remove(bullet.object);
-
-      $('#hurt').fadeOut(350);
     }
   }
 }

@@ -51,7 +51,8 @@ class Game extends React.Component<void, void> {
                     { buttonsRender }
                   </div>
                 </div>
-              </div> : <div className='wrapper__mobile'>
+              </div> :
+              <div className='wrapper__mobile'>
                 <Background closed={ false }/>
                 <Mobile />
               </div>
