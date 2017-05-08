@@ -13,6 +13,7 @@ import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
 import {Error} from './views/Error/Error';
 import Game from './views/Game/Game';
+import SinglePlayer from './views/Game/SinglePlayer/SinglePlayer';
 
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
@@ -40,9 +41,8 @@ export const App = () => (
         <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
         <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
         <Route path={ RoutesMap.ABOUT } component={ About }/>
-        <Route path={ RoutesMap.GAME } component={ Game }>
-          <Route path={ RoutesMap.SINGLEPLAYER } component={ Game } />
-        </Route>
+        <Route path={ RoutesMap.GAME } component={ Game }/>
+        <Route path={ RoutesMap.SINGLEPLAYER } component={ SinglePlayer } />
         <Route path='*' component={ Error }/>
       </Route>
     </Router>
