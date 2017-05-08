@@ -20,15 +20,31 @@ canvas {
   z-index: 40;
 }
 
-.weapon {
+.wrapper__weapon {
   width: 100%;
   height: 100%;
-  background: url(/static/gameSource/weapon.png) no-repeat;
-  position: fixed;
-  bottom: -280px;
-  margin-left: 100px;
-  transform: scale(0.7, 0.7);
+  position: absolute;
   z-index: 39;
+
+  &-target {
+    background: url(/static/gameSource/weapon.png);
+    bottom: 0;
+    position: fixed;
+  }
+}
+
+.weapon {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 39;
+
+  &__img {
+    position: absolute;
+    bottom: -30px;
+    right: 100px;
+  }
 }
 
 .aim {
@@ -39,4 +55,21 @@ canvas {
   transform: scale(0.05, 0.05);
   top: 20px;
   z-index: 42;
+}
+
+.wrapper__health {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 43;
+  color: #000 !important;
+  background-color: rgba(176, 176, 176, 0.95) !important;
+  width: 150px;
+
+  &-red {
+    color: #fff !important;
+    background-color: #f40110 !important;
+    height: 24px;
+    width: 72%;
+  }
 }
