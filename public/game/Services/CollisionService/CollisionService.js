@@ -32,7 +32,7 @@ export default class CollisionService {
         const percent = player.health / 100;
 
         if (!player.isAngry && percent < 1) {
-          player.object.material.map = textureLoader.load('/game/images/mad.gif');
+          player.object.material.map = textureLoader.load('/static/gameSource/mad.gif');
           player.isAngry = true;
         }
 

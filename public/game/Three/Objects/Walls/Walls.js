@@ -9,8 +9,8 @@ export default class Walls extends Objects {
     this._color = color;
 
     this._materials = [
-      textureLoader.load('/game/images/wall-1.jpg'),
-      textureLoader.load('/game/images/wall-2.jpg'),
+      textureLoader.load('/static/gameSource/wall-1.jpg'),
+      textureLoader.load('/static/gameSource//wall-2.jpg'),
       0xFBEBCD
     ];
 

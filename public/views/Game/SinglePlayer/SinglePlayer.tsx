@@ -17,6 +17,7 @@ class SinglePlayer extends React.Component<void, void> {
 
     return (
       <div className='wrapper__game'>
+        <div className='game__background'/>
       </div>
     );
   }
