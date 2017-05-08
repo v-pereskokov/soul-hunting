@@ -1,5 +1,6 @@
 import threeFactory from '../../ThreeFactory/ThreeFactory';
 import Objects from '../Objects/Objects';
+import textureLoader from '../../../Services/LoaderService/LoaderService';
 
 export default class Player extends Objects {
   constructor() {
@@ -14,7 +15,7 @@ export default class Player extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
-      color: 0xffffff
+      map: textureLoader.load('/game/images/face1.png')
     });
   }
 }

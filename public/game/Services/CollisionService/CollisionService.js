@@ -1,5 +1,6 @@
 import Helper from "../../Tools/Helper/Helper";
 import { DAMAGE } from '../../Constants/Constants';
+import textureLoader from '../LoaderService/LoaderService';
 
 export default class CollisionService {
   static collisionBulletWithWall(position) {
@@ -29,6 +30,11 @@ export default class CollisionService {
 
         const color = player.object.material.color;
         const percent = player.health / 100;
+
+        if (!player.isAngry && percent < 1) {
+          player.object.material.map = textureLoader.load('/game/images/mad.gif');
+          player.isAngry = true;
+        }
 
         player.object.material.color.setRGB(
           Math.max(percent, 1) * color.r,

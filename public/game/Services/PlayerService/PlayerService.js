@@ -7,6 +7,8 @@ export default class PlayerService {
     this._lastRandomX = Math.random();
     this._lastRandomZ = Math.random();
 
+    this._isAngry = false;
+
     this._lastShot = Date.now();
   }
 
@@ -28,6 +30,10 @@ export default class PlayerService {
 
   set lastShot(date) {
     this._lastShot = date;
+  }
+
+  set isAngry(value) {
+    this._isAngry = value;
   }
 
   get health() {
@@ -52,6 +58,10 @@ export default class PlayerService {
 
   get lastShot() {
     return this._lastShot;
+  }
+
+  get isAngry() {
+    return this._isAngry;
   }
 
   translateX(speed) {

@@ -17,7 +17,7 @@ export default class Floor extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
-      map: textureLoader.load('/game/images/floor-1.jpg')
+      map: textureLoader.load('/game/images/floor.jpg')
     });
   }
 }

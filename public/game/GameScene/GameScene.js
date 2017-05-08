@@ -63,7 +63,7 @@ export default class GameScene {
   }
 
   _setUpFog() {
-    this._scene.fog = threeFactory.fogExp2(0xD6F1FF, 0.0005);
+    this._scene.fog = threeFactory.fogExp2(0x000000, 0.0005);
   }
 
   _setUpCamera() {
@@ -81,7 +81,7 @@ export default class GameScene {
 
   _setUpRender() {
     this._renderer = threeFactory.webGLRender();
-    this._renderer.setClearColor(0xC0C0C0);
+    this._renderer.setClearColor(0xC0C0A1);
     this._renderer.setSize(WIDTH, HEIGHT);
 
     document.body
@@ -103,8 +103,8 @@ export default class GameScene {
 
     this._setUpWalls();
 
-    this._setUpLight(0xF7EFBE, 0.7, 0.5, 1, 0.5);
-    this._setUpLight(0xF7EFBE, 0.5, -0.5, -1, -0.5);
+    this._setUpLight(0x000000, 0.7, 0.5, 1, 0.5);
+    this._setUpLight(0x000000, 0.5, -0.5, -1, -0.5);
   }
 
   _setUpFloor(size) {
