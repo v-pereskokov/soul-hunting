@@ -27,7 +27,7 @@ class SinglePlayer extends React.Component<void, void> {
         { !isAuthenticated ?
           browserHistory.push('/')
           :
-          <div className='wrapper__game'>
+          <div>
             { device ?
               <div>
                 <div className='blocker'>
@@ -41,24 +41,28 @@ class SinglePlayer extends React.Component<void, void> {
                     (F = Fullscreen, ESC - Exit)
                   </div>
                 </div>
-                <div className='parent__inf'>
-                  <div className='parent__inf__wrapper'>
-                    <img className='parent__inf__wrapper-img' src='/static/gameSource/infinity-icon.png'/>
+                <div className='wrapper__game'>
+                  <div>
+                    <div className='parent__inf'>
+                      <div className='parent__inf__wrapper'>
+                        <img className='parent__inf__wrapper-img' src='/static/gameSource/infinity-icon.png'/>
+                      </div>
+                    </div>
+                    <div className='sight'>
+                      <div className='sight__top'/>
+                      <div className='sight__right'/>
+                      <div className='sight__bottom'/>
+                      <div className='sight__left'/>
+                    </div>
+                    <div className='wrapper__health'>
+                      <p className='wrapper__health-text'>100 HP</p>
+                      <div className='wrapper__health-red'/>
+                    </div>
+                    <div className='game__background'/>
+                    <div className='weapon__wrapper'>
+                      <img className='weapon__wrapper-img' src='/static/gameSource/weapon.png'/>
+                    </div>
                   </div>
-                </div>
-                <div className='sight'>
-                  <div className='sight__top'/>
-                  <div className='sight__right'/>
-                  <div className='sight__bottom'/>
-                  <div className='sight__left'/>
-                </div>
-                <div className='wrapper__health'>
-                  <p className='wrapper__health-text'>100 HP</p>
-                  <div className='wrapper__health-red'/>
-                </div>
-                <div className='game__background'/>
-                <div className='weapon__wrapper'>
-                  <img className='weapon__wrapper-img' src='/static/gameSource/weapon.png'/>
                 </div>
               </div>
               :

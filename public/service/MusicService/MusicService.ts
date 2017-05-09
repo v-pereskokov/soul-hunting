@@ -6,7 +6,6 @@ class MusicService {
   }
 
   startBackground() {
-    console.log(this._background._getObject().currentTime);
     this._background.loopPlay();
   }
 

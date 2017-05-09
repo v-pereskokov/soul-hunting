@@ -37,6 +37,8 @@ export default class GameManager {
       (isFirst) => {
         if (isFirst) {
           this._gameScene._init();
+
+          document.body.querySelector('.wrapper__game').style.display = 'block';
         }
         this._gameScene.resume();
         this._gameScene._animate();
@@ -49,7 +51,6 @@ export default class GameManager {
   }
 }
 
-// resume + animate
 // shift
 // tab
 // esc
