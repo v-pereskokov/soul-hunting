@@ -6,6 +6,14 @@ export default class Mouse {
     this._enabled = false;
   }
 
+  setEvents(onClickCallback) {
+    document.addEventListener('contextmenu', event => {
+      event.preventDefault();
+    });
+
+    document.addEventListener('click', this.onClickMouse(onClickCallback));
+  }
+
   set setEnabled(enabled) {
     this._enabled = enabled;
   }
@@ -25,14 +33,6 @@ export default class Mouse {
         camera.rotation.y -= this._x * 0.002;
       }
     };
-  }
-
-  onMouseDown(callback) {
-    return event => {
-      if (this._enabled) {
-        callback();
-      }
-    }
   }
 
   onClickMouse(callback) {

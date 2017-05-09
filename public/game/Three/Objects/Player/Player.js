@@ -15,7 +15,7 @@ export default class Player extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
-      map: textureLoader.load('/static/gameSource/face1.png')
+      map: textureLoader.load('/static/gameSource/face_usual.png')
     });
   }
 }

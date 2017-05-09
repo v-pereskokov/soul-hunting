@@ -1,14 +1,7 @@
-import threeFactory from '../../Three/ThreeFactory/ThreeFactory';
+import {MOVESPEED} from '../../Constants/Constants';
 
 export default class Keyboard {
   constructor() {
-    this._enabled = false;
-    this._velocity = threeFactory.vector3D();
-    this._forward = false;
-    this._backward = false;
-    this._left = false;
-    this._right = false;
-
     this._init();
   }
 
@@ -17,29 +10,36 @@ export default class Keyboard {
     document.addEventListener('keyup', this._onKeyUp());
   }
 
-  get x() {
-    return this._velocity.x;
+  update(camera, delta, checkCollision) {
+    const actualMoveSpeed = delta * MOVESPEED;
+
+    if (this.forward) {
+      camera.translateZ(-(actualMoveSpeed));
+      if (checkCollision(camera.position)) {
+        camera.translateZ(actualMoveSpeed);
+      }
+    }
+    if (this.backward) {
+      camera.translateZ(actualMoveSpeed);
+      if (checkCollision(camera.position)) {
+        camera.translateZ(-actualMoveSpeed);
+      }
+    }
+
+    if (this.left) {
+      camera.translateX(-actualMoveSpeed);
+      if (checkCollision(camera.position)) {
+        camera.translateX(actualMoveSpeed);
+      }
+    }
+    if (this.right) {
+      camera.translateX(actualMoveSpeed);
+      if (checkCollision(camera.position)) {
+        camera.translateX(-actualMoveSpeed);
+      }
+    }
   }
 
-  get y() {
-    return this._velocity.y;
-  }
-
-  get z() {
-    return this._velocity.z;
-  }
-
-  set x(x) {
-    this._velocity.x = x;
-  }
-
-  set y(y) {
-    this._velocity.y = y;
-  }
-
-  set z(z) {
-    this._velocity.z = z;
-  }
   set setEnabled(enabled) {
     this._enabled = enabled;
   }

@@ -12,13 +12,23 @@ export default class GameManager {
       blocker: document.body.querySelector('.blocker'),
       instructions: document.body.querySelector('.instructions')
     }, this._keys, this._mouse);
-  }
 
-  startGame() {
-    new GameScene(
+    this._gameScene = new GameScene(
       camera => this._pointerLockManager.getPointerLock(camera),
       this._keys,
       this._mouse
-    ).start();
+    );
+  }
+
+  startGame() {
+    this._gameScene.start();
   }
 }
+
+// resume + animate
+// shift
+// tab
+// esc
+// design game
+// validation
+// service worker

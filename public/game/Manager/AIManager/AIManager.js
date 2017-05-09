@@ -13,8 +13,6 @@ export default class AIService {
 
       scene.remove(player.object);
       playerStats.kills = ++playerStats.kills;
-
-      $('#score').html(playerStats.kills * 100);
       addAI();
     }
 

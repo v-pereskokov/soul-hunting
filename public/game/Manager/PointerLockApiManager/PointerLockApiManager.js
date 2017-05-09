@@ -42,6 +42,7 @@ export default class PointerLockApiManager {
 
         this._blocker.style.display = 'none';
       } else {
+        controls.setEnabled = false;
         mouse.setEnabled = false;
 
         this._blocker.style.display = '-webkit-box';

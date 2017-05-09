@@ -1,20 +1,10 @@
-import Mouse from "../../Controls/Mouse/Mouse";
-import Keyboard from "../../Controls/Keyboard/Keyboard";
+import Keyboard from '../../Controls/Keyboard/Keyboard';
 import { MOVESPEED } from '../../Constants/Constants';
 
 export default class ControlsManager {
   constructor(camera) {
     this.camera = camera;
-    this.mouse = new Mouse();
     this.keyboard = new Keyboard();
-  }
-
-  setEvents(onClickCallback = null) {
-    document.addEventListener('contextmenu', event => {
-      event.preventDefault();
-    });
-
-    document.addEventListener('click', this.mouse.onClickMouse(onClickCallback));
   }
 
   update(delta, checkCollision) {

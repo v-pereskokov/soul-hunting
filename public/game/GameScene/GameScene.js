@@ -30,11 +30,6 @@ export default class GameScene {
     this._mouse = mouse;
 
     this._isAnimate = true;
-
-    this._previousTime = performance.now();
-    this._raycaster = threeFactory
-      .raycaster(threeFactory.vector3D(),
-        threeFactory.vector3D(0, -1, 0), 0, 10);
   }
 
   start() {
@@ -42,11 +37,16 @@ export default class GameScene {
     this._animate();
   }
 
+  stop() {
+    this._isAnimate = false;
+  }
+
   _init() {
     this._setUpClock();
     this._setUpScene();
     this._setUpFog();
     this._setUpCamera();
+    this._setUpPointerLock();
     this._setUpControls();
 
     this._makeScene();
@@ -81,20 +81,19 @@ export default class GameScene {
     }).getCamera;
   }
 
-  _setUpControls() {
-    this._dopControls = this._pointerLock(this._camera);
-    this._dopControls.setMouseMove(
-      this._mouse.onMouseMove(
-        this._camera,
-        this._dopControls.getPitch,
-        this._dopControls.getObject
-      )
+  _setUpPointerLock() {
+    this._mouse.setEvents(this._createBullet.bind(this));
+
+    this._mouseControls = this._pointerLock(this._camera);
+    this._mouseControls.setMouseMove(
+      this._mouse.onMouseMove(this._camera)
     );
 
-    this._scene.add(this._dopControls.getObject);
+    this._scene.add(this._mouseControls.getObject);
+  }
 
+  _setUpControls() {
     this._controls = new ControlsManager(this._camera);
-    this._controls.setEvents(this._createBullet.bind(this));
   }
 
   _setUpRender() {
@@ -126,6 +125,11 @@ export default class GameScene {
   }
 
   _setUpFloor(size) {
+    const top = new Floor(size).object;
+
+    top.position.y = 130;
+    this._scene.add(top);
+
     this._scene.add(new Floor(size).object);
   }
 
@@ -221,7 +225,7 @@ export default class GameScene {
 
   _render() {
     const delta = this._clock.getDelta();
-    this._controls.update(delta, Helper.checkWallCollision.bind(this), this._dopControls.getObject);
+    this._controls.update(delta, Helper.checkWallCollision.bind(this));
 
     // Update bullets.
     this._updateBullets(delta);
@@ -255,8 +259,7 @@ export default class GameScene {
 
   _death() {
     if (playerStats.health <= 0) {
-      this._isAnimate = false;
-      document.body.querySelector('.wrapper__game').style.display = 'none';
+      this.stop();
     }
   }
 
@@ -269,80 +272,5 @@ export default class GameScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
-  }
-
-  update() {
-    if (this._keys.getEnabled) {
-      this._raycaster.ray.origin.copy(this._dopControls.getObject.position);
-      this._raycaster.ray.origin.y -= 10;
-
-      const time = performance.now();
-
-      this._newAction(time, (time - this._previousTime) / 1000);
-    }
-  }
-
-  _newAction(time, delta, isInObject) {
-    this._keys.x -= this._keys.x * 10.0 * delta;
-    this._keys.z -= this._keys.z * 10.0 * delta;
-
-    this._keys.y -= 9.8 * 100.0 * delta;
-
-    const speed = 1500.0;
-
-
-    if (this._keys._forward) {
-      this._keys.z -= speed * delta;
-      if (Helper.checkWallCollision({
-          x: this._keys.x,
-          z: this._keys.z
-        })) {
-        this._keys.z += speed * delta;
-      }
-    }
-    if (this._keys._backward) {
-      this._keys.z += speed * delta;
-      if (Helper.checkWallCollision({
-          x: this._keys.x,
-          z: this._keys.z
-        })) {
-        this._keys.z -= speed * delta;
-      }
-    }
-
-    if (this._keys._left) {
-      this._keys.x -= speed * delta;
-      if (Helper.checkWallCollision({
-          x: this._keys.x,
-          z: this._keys.z
-        })) {
-        this._keys.x += speed * delta;
-      }
-    }
-    if (this._keys._right) {
-      this._keys.x += speed * delta;
-      if (Helper.checkWallCollision({
-          x: this._keys.x,
-          z: this._keys.z
-        })) {
-        this._keys.x -= speed * delta;
-      }
-    }
-
-    this._keys.y = Math.max(0, this._keys.y);
-
-    this._dopControls.getObject.translateX(this._keys.x * delta);
-    this._dopControls.getObject.translateY(this._keys.y * delta);
-    this._dopControls.getObject.translateZ(this._keys.z * delta);
-
-    if (this._dopControls.getObject.position.y < 10) {
-
-      this._keys.y = 0;
-      this._dopControls.getObject.position.y = 10;
-
-      this._keys._jump = true;
-    }
-
-    this._previousTime = time;
   }
 }
