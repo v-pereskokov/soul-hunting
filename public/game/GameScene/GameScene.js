@@ -79,8 +79,6 @@ export default class GameScene {
     this._camera = new Camera({
       getHeight: UNITSIZE * 0.2
     }).getCamera;
-
-    // this._scene.add(this._camera);
   }
 
   _setUpControls() {
@@ -88,6 +86,7 @@ export default class GameScene {
     this._dopControls.setMouseMove(
       this._mouse.onMouseMove(
         this._camera,
+        this._dopControls.getPitch,
         this._dopControls.getObject
       )
     );

@@ -25,8 +25,8 @@ export default class AIService {
       player.z = Math.random() * 2 - 1;
     }
 
-    player.translateX(0/*speed * player.x*/);
-    player.translateZ(0/*speed * player.z*/);
+    player.translateX(speed * player.x);
+    player.translateZ(speed * player.z);
 
     const position = player.object.position;
     const sector = Helper.getMapSector(position);
@@ -34,8 +34,8 @@ export default class AIService {
     if (sector.x < 0 || sector.x >= map.width ||
       sector.y < 0 || sector.y >= map.height ||
       Helper.checkWallCollision(position)) {
-      player.translateX(0/*-2 * speed * player.x*/);
-      player.translateZ(0/*-2 * speed * player.z*/);
+      player.translateX(-2 * speed * player.x);
+      player.translateZ(-2 * speed * player.z);
       player.x = Math.random() * 2 - 1;
       player.z = Math.random() * 2 - 1;
     }

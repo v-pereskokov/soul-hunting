@@ -1,5 +1,5 @@
 export const DAMAGE = 20;
-export const AI_PAUSE_SHOOT = 1300;
+export const AI_PAUSE_SHOOT = 1000;
 export const WIDTH = window.innerWidth;
 export const HEIGHT = window.innerHeight;
 export const UNITSIZE = 250;
