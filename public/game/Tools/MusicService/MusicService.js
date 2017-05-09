@@ -1,8 +1,8 @@
-import Music from '../../tools/Music/Music';
+import Music from '../Music/Music';
 
 class MusicService {
   constructor() {
-    this._background = new Music('../../static/sounds/background.wav');
+    this._background = new Music('../../../static/sounds/background.wav');
     this._setKeysMute();
   }
 

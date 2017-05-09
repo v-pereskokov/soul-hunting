@@ -131,7 +131,6 @@ canvas {
   box-align: center;
   color: #ffffff;
   text-align: center;
-  cursor: pointer;
 }
 
 .weapon__wrapper {
@@ -198,4 +197,17 @@ canvas {
   }
 }
 
+.loading {
+  width: 100%;
+  height: 100%;
 
+  &-text {
+    position: absolute;
+    z-index: 100;
+    bottom: 20px;
+    right: 0;
+    font-size: 20pt;
+    font-family: "Keep Calm";
+    color: white;
+  }
+}

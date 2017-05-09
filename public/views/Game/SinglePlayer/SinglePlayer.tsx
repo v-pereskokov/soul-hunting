@@ -12,7 +12,9 @@ import '../Game.scss';
 
 class SinglePlayer extends React.Component<void, void> {
   componentWillMount() {
-    musicService.stopBackground();
+    setTimeout(() => {
+      musicService.stopBackground();
+    }, 300);
   }
 
   componentDidMount() {
@@ -32,13 +34,9 @@ class SinglePlayer extends React.Component<void, void> {
               <div>
                 <div className='blocker'>
                   <div className='instructions'>
-                    <span>Click to play</span>
-                    <br/>
-                    <br/>
-                    (W, A, S, D = Move, SPACE = Jump, MOUSE = Look around, LMB = Shoot)
-                    <br/>
-                    <br/>
-                    (F = Fullscreen, ESC - Exit)
+                    <img className='loading' src='/static/images/loading.png'/>
+                    <p className='loading-text'>After preloader disappears,
+                      click on the screen</p>
                   </div>
                 </div>
                 <div className='wrapper__game'>
@@ -81,8 +79,8 @@ class SinglePlayer extends React.Component<void, void> {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
-    device: state.device
+    device: state.device,
   }
 };
 
-export default connect(mapStateToProps, null)(SinglePlayer);
+export default connect(mapStateToProps)(SinglePlayer);

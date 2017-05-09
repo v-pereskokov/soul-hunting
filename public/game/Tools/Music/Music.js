@@ -1,7 +1,4 @@
 export default class Music {
-  _music?: any;
-  _isMute: boolean;
-
   constructor(path = null) {
     this._music = path ? new Audio(path) : null;
     this._isMute = false;
@@ -22,10 +19,8 @@ export default class Music {
   }
 
   stop() {
-    if (this._music.currentTime) {
-      this._music.pause();
-      this._music.currentTime = 0;
-    }
+    this._music.pause();
+    this._music.currentTime = 0;
   }
 
   muteToggle() {
