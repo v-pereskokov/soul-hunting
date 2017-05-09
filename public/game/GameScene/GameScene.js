@@ -2,6 +2,7 @@ import threeFactory from '../Three/ThreeFactory/ThreeFactory';
 import ControlsManager from "../Manager/ControlsManager/ControlsManager";
 import Camera from "../Three/Objects/Camera/Camera";
 import Floor from "../Three/Objects/Floor/Floor";
+import Ceil from "../Three/Objects/Ceil/Ceil";
 import Walls from "../Three/Objects/Walls/Walls";
 import Player from "../Three/Objects/Player/Player";
 import Bullet from "../Three/Objects/Bullet/Bullet";
@@ -116,7 +117,10 @@ export default class GameScene {
   }
 
   _makeScene() {
-    this._setUpFloor(map.width * UNITSIZE);
+    const height = map.width * UNITSIZE;
+
+    this._setUpFloor(height);
+    this._setUpCeil(height);
 
     this._setUpWalls();
 
@@ -125,12 +129,14 @@ export default class GameScene {
   }
 
   _setUpFloor(size) {
-    const top = new Floor(size).object;
-
-    top.position.y = 130;
-    this._scene.add(top);
-
     this._scene.add(new Floor(size).object);
+  }
+
+  _setUpCeil(size) {
+    const ceil = new Ceil(size).object;
+
+    ceil.position.y = 130;
+    this._scene.add(ceil);
   }
 
   _setUpWalls() {
