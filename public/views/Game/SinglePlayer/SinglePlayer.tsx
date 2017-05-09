@@ -5,13 +5,18 @@ import {connect} from 'react-redux';
 import {Mobile} from '../../Mobile/Mobile';
 import {Background} from '../../../components/Background/Background';
 
+import musicService from '../../../service/MusicService/MusicService';
 import GameManager from '../../../game/Manager/GameManager/GameManager.js';
 
 import '../Game.scss';
 
 class SinglePlayer extends React.Component<void, void> {
+  componentWillMount() {
+    musicService.stopBackground();
+  }
+
   componentDidMount() {
-    new GameManager().startGame();
+    new GameManager();
   }
 
   render() {

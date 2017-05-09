@@ -15,6 +15,7 @@ import {Error} from './views/Error/Error';
 import Game from './views/Game/Game';
 import SinglePlayer from './views/Game/SinglePlayer/SinglePlayer';
 
+import musicService from './service/MusicService/MusicService';
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
 import {startServiceWorker} from './service/ServiceWorker/ServiceWorker';
@@ -29,6 +30,8 @@ if (localStorage.token) {
 }
 
 store.dispatch(setDevice(new Device().isDesktop()));
+
+musicService.startBackground();
 
 // startServiceWorker();
 

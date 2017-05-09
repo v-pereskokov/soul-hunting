@@ -25,17 +25,25 @@ import {
 } from '../Constants/Constants';
 
 export default class GameScene {
-  constructor(pointerLock, keys, mouse) {
-    this._pointerLock = pointerLock;
+  constructor(keys, mouse) {
+    this._pointerLock = null;
     this._keys = keys;
     this._mouse = mouse;
 
     this._isAnimate = true;
   }
 
+  setPointerLock(pointerLock) {
+    this._pointerLock = pointerLock;
+  }
+
   start() {
     this._init();
     this._animate();
+  }
+
+  resume() {
+    this._isAnimate = true;
   }
 
   stop() {

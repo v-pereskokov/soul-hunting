@@ -2,20 +2,20 @@ import PointerLock from '../../Tools/PointerLock/PointerLock';
 import CheckPointerLockApi from '../../Tools/PointerLock/CheckPointerLockApi/CheckPointerLockApi';
 
 export default class PointerLockApiManager {
-  constructor(blocks, controls, mouse) {
+  constructor(blocks, controls, mouse, startCallback, stopCallback) {
     this._pointerLockApi = new CheckPointerLockApi();
     this._element = document.body;
 
-    this._init(blocks, controls, mouse);
+    this._init(blocks, controls, mouse, startCallback, stopCallback);
   }
 
   getPointerLock(camera) {
     return this._pointerLockApi.isHave ? new PointerLock(camera) : null;
   }
 
-  _init(blocks, controls, mouse) {
+  _init(blocks, controls, mouse, startCallback, stopCallback) {
     this._setBlocks(blocks);
-    this._setupPointerLockApi(controls, mouse);
+    this._setupPointerLockApi(controls, mouse, startCallback, stopCallback);
   }
 
   _setBlocks(blocks) {
@@ -23,9 +23,9 @@ export default class PointerLockApiManager {
     this._instructions = blocks.instructions;
   }
 
-  _setupPointerLockApi(controls, mouse) {
+  _setupPointerLockApi(controls, mouse, startCallback, stopCallback) {
     if (this._pointerLockApi.isHave) {
-      this._pointerLockApi.addPointerLockChange(this._pointerLockChange(controls, mouse));
+      this._pointerLockApi.addPointerLockChange(this._pointerLockChange(controls, mouse, startCallback, stopCallback));
       this._pointerLockApi.addPointerLockError(this._pointerLockError());
 
       this._instructions.addEventListener('click', this._instructionsEvent(this._element));
@@ -34,14 +34,18 @@ export default class PointerLockApiManager {
     }
   }
 
-  _pointerLockChange(controls, mouse) {
+  _pointerLockChange(controls, mouse, startCallback, stopCallback) {
     return (event) => {
       if (this._checkPointerLockElement()) {
         controls.setEnabled = true;
         mouse.setEnabled = true;
 
         this._blocker.style.display = 'none';
+
+        startCallback();
       } else {
+        stopCallback();
+
         controls.setEnabled = false;
         mouse.setEnabled = false;
 

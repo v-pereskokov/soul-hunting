@@ -8,20 +8,41 @@ export default class GameManager {
     this._mouse = new Mouse();
     this._keys = new Keyboard();
 
-    this._pointerLockManager = new PointerLockApiManager({
-      blocker: document.body.querySelector('.blocker'),
-      instructions: document.body.querySelector('.instructions')
-    }, this._keys, this._mouse);
+    this._gameScene = this._getScene();
+    this._pointerLockManager = this._getPointerLock();
 
-    this._gameScene = new GameScene(
-      camera => this._pointerLockManager.getPointerLock(camera),
-      this._keys,
-      this._mouse
+    this._gameScene.setPointerLock(
+      (camera) => this._pointerLockManager.getPointerLock(camera)
     );
   }
 
   startGame() {
     this._gameScene.start();
+  }
+
+  _getScene() {
+    return new GameScene(
+      this._keys,
+      this._mouse
+    );
+  }
+
+  _getPointerLock() {
+    return new PointerLockApiManager({
+        blocker: document.body.querySelector('.blocker'),
+        instructions: document.body.querySelector('.instructions')
+      },
+      this._keys,
+      this._mouse,
+      () => {
+        this._gameScene.resume();
+        this._gameScene._animate();
+      },
+      () => {
+        this._gameScene.stop();
+        this._gameScene._animate();
+      }
+    );
   }
 }
 
