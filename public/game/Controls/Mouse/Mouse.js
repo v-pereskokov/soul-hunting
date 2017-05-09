@@ -1,9 +1,13 @@
+import AimManager from "../../Manager/AimManager/AimManager";
+
 export default class Mouse {
   constructor() {
     this._x = 0;
     this._y = 0;
 
     this._enabled = false;
+
+    this._aim = new AimManager();
   }
 
   setEvents(onClickCallback) {
@@ -39,6 +43,7 @@ export default class Mouse {
     return event => {
       event.preventDefault();
       if (this._isGame && event.which === 1) {
+        this._aim.start();
         callback();
       } else {
         this._isGame = true;

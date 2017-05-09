@@ -159,6 +159,8 @@ canvas {
     height: 15px;
     position: absolute;
     left: 19px;
+    transition-property: top;
+    transition-duration: 0.21s;
   }
 
   &__right {
@@ -168,6 +170,8 @@ canvas {
     position: absolute;
     top: 19px;
     left: 25px;
+    transition-property: left;
+    transition-duration: 0.21s;
   }
 
   &__bottom {
@@ -177,6 +181,8 @@ canvas {
     position: absolute;
     left: 19px;
     top: 25px;
+    transition-property: top;
+    transition-duration: 0.21s;
   }
 
   &__left {
@@ -185,5 +191,7 @@ canvas {
     height: 2px;
     position: absolute;
     top: 19px;
+    transition-property: left;
+    transition-duration: 0.21s;
   }
 }
