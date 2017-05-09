@@ -1,6 +1,6 @@
 import Helper from "../../Tools/Helper/Helper";
 import { DAMAGE } from '../../Constants/Constants';
-import textureLoader from '../LoaderService/LoaderService';
+import textureLoader from '../LoaderManager/LoaderManager';
 
 export default class CollisionService {
   static collisionBulletWithWall(position) {
@@ -15,15 +15,15 @@ export default class CollisionService {
       const vertices = player.object.geometry.vertices[0];
       const playerPosition = player.object.position;
 
-      const x = Math.abs(vertices.x);
-      const z = Math.abs(vertices.z);
+      const x = Math.abs(vertices.x) * 2;
+      const z = Math.abs(vertices.z) * 2;
 
       if (bulletPosition.x < playerPosition.x + x &&
         bulletPosition.x > playerPosition.x - x &&
         bulletPosition.z < playerPosition.z + z &&
         bulletPosition.z > playerPosition.z - z &&
         bullet.owner !== player.object) {
-
+        
         bulletsService.remove(bulletNumber);
         scene.remove(bullet.object);
         player.health = player.health - DAMAGE;

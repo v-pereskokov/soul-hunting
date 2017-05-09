@@ -1,19 +1,19 @@
 import threeFactory from '../Three/ThreeFactory/ThreeFactory';
-import ControlsManager from "../Managers/ControlsManager/ControlsManager";
+import ControlsManager from "../Manager/ControlsManager/ControlsManager";
 import Camera from "../Three/Objects/Camera/Camera";
 import Floor from "../Three/Objects/Floor/Floor";
 import Walls from "../Three/Objects/Walls/Walls";
 import Player from "../Three/Objects/Player/Player";
 import Bullet from "../Three/Objects/Bullet/Bullet";
-import PlayerService from '../Services/PlayerService/PlayerService';
-import playersService from '../Services/PlayersService/PlayersService';
-import BulletService from '../Services/BulletService/BulletService';
-import bulletsService from '../Services/BulletsService/BulletsService';
+import PlayerService from '../Manager/PlayerManager/PlayerManager';
+import playersService from '../Manager/PlayersManager/PlayersManager';
+import BulletService from '../Manager/BulletManager/BulletManager';
+import bulletsService from '../Manager/BulletsManager/BulletsManager';
 import playerStats from '../Tools/PlayerStats/PlayerStats';
 import map from '../Tools/Map/Map';
 import Helper from "../Tools/Helper/Helper";
-import CollisionService from "../Services/CollisionService/CollisionService";
-import AIService from '../Services/AIService/AIService';
+import CollisionService from "../Manager/CollisionManager/CollisionManager";
+import AIService from '../Manager/AIManager/AIManager';
 import {
   WIDTH,
   HEIGHT,

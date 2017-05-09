@@ -1,6 +1,6 @@
 import threeFactory from '../../ThreeFactory/ThreeFactory';
 import Objects from '../Objects/Objects';
-import textureLoader from '../../../Services/LoaderService/LoaderService';
+import textureLoader from '../../../Manager/LoaderManager/LoaderManager';
 
 export default class Walls extends Objects {
   constructor(color = 1, ...settings) {

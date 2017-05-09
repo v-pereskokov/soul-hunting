@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Mobile} from '../../Mobile/Mobile';
 import {Background} from '../../../components/Background/Background';
 
-import GameManager from '../../../game/Managers/GameManager/GameManager.js';
+import GameManager from '../../../game/Manager/GameManager/GameManager.js';
 
 import '../Game.scss';
 
@@ -30,8 +30,8 @@ class SinglePlayer extends React.Component<void, void> {
                     <img className='parent__inf__wrapper-img' src='/static/gameSource/infinity-icon.png'/>
                   </div>
                 </div>
-                < div className='parent__aim'>
-                  < div className='parent__aim__wrapper'>
+                <div className='parent__aim'>
+                  <div className='parent__aim__wrapper'>
                     <img className='parent__aim__wrapper-img' src='/static/gameSource/aim.png'/>
                   </div>
                 </div>
