@@ -1,21 +1,21 @@
-import PointerLock from '../../Controlls/PointerLock/PointerLock';
-import CheckPointerLockApi from '../../Controlls/PointerLock/CheckPointerLockApi/CheckPointerLockApi';
+import PointerLock from '../../Tools/PointerLock/PointerLock';
+import CheckPointerLockApi from '../../Tools/PointerLock/CheckPointerLockApi/CheckPointerLockApi';
 
 export default class PointerLockApiManager {
-  constructor(blocks, controlls, mouse) {
+  constructor(blocks, controls, mouse) {
     this._pointerLockApi = new CheckPointerLockApi();
     this._element = document.body;
 
-    this._init(blocks, controlls, mouse);
+    this._init(blocks, controls, mouse);
   }
 
   getPointerLock(camera) {
     return this._pointerLockApi.isHave ? new PointerLock(camera) : null;
   }
 
-  _init(blocks, controlls, mouse) {
+  _init(blocks, controls, mouse) {
     this._setBlocks(blocks);
-    this._setupPointerLockApi(controlls, mouse);
+    this._setupPointerLockApi(controls, mouse);
   }
 
   _setBlocks(blocks) {
@@ -23,9 +23,9 @@ export default class PointerLockApiManager {
     this._instructions = blocks.instructions;
   }
 
-  _setupPointerLockApi(controlls, mouse) {
+  _setupPointerLockApi(controls, mouse) {
     if (this._pointerLockApi.isHave) {
-      this._pointerLockApi.addPointerLockChange(this._pointerLockChange(controlls, mouse));
+      this._pointerLockApi.addPointerLockChange(this._pointerLockChange(controls, mouse));
       this._pointerLockApi.addPointerLockError(this._pointerLockError());
 
       this._instructions.addEventListener('click', this._instructionsEvent(this._element));
@@ -34,10 +34,10 @@ export default class PointerLockApiManager {
     }
   }
 
-  _pointerLockChange(controlls, mouse) {
+  _pointerLockChange(controls, mouse) {
     return (event) => {
       if (this._checkPointerLockElement()) {
-        controlls.setEnabled = true;
+        controls.setEnabled = true;
         mouse.setEnabled = true;
 
         this._blocker.style.display = 'none';

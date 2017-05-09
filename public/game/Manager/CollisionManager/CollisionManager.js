@@ -23,7 +23,7 @@ export default class CollisionService {
         bulletPosition.z < playerPosition.z + z &&
         bulletPosition.z > playerPosition.z - z &&
         bullet.owner !== player.object) {
-        
+
         bulletsService.remove(bulletNumber);
         scene.remove(bullet.object);
         player.health = player.health - DAMAGE;

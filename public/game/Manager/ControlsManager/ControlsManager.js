@@ -36,23 +36,23 @@ export default class ControlsManager {
     });
 
     document.addEventListener('click', this.mouse.onClickMouse(onClickCallback));
-    document.addEventListener('mousemove', this.mouse.onMouseMove());
+    // document.addEventListener('mousemove', this.mouse.onMouseMove1());
   }
 
-  update(delta, checkCollision) {
-    if (this.heightSpeed) {
-
-      const y = threeFactory.clamp(
-        this.camera.position.y,
-        this.heightMin,
-        this.heightMax
-      );
-      const heightDelta = y - this.heightMin;
-
-      this.autoSpeedFactor = delta * heightDelta;
-    } else {
-      this.autoSpeedFactor = 0.0;
-    }
+  update(delta, checkCollision, dop) {
+    // if (this.heightSpeed) {
+    //
+    //   const y = threeFactory.clamp(
+    //     this.camera.position.y,
+    //     this.heightMin,
+    //     this.heightMax
+    //   );
+    //   const heightDelta = y - this.heightMin;
+    //
+    //   this.autoSpeedFactor = delta * heightDelta;
+    // } else {
+    //   this.autoSpeedFactor = 0.0;
+    // }
 
     const actualMoveSpeed = delta * MOVESPEED;
 
@@ -82,17 +82,17 @@ export default class ControlsManager {
       }
     }
 
-    const targetPosition = this.target;
-    const position = this.camera.position;
-    const lookSpeed = delta * LOOKSPEED;
-
-    this._changeAngles(lookSpeed);
-    this._changeTarget(targetPosition, position);
-
-    this._changeAngles(lookSpeed);
-    this._changeTarget(targetPosition, position);
-
-    this.camera.lookAt(targetPosition);
+    // const targetPosition = this.target;
+    // const position = this.camera.position;
+    // const lookSpeed = delta * LOOKSPEED;
+    //
+    // this._changeAngles(lookSpeed);
+    // this._changeTarget(targetPosition, position);
+    //
+    // this._changeAngles(lookSpeed);
+    // this._changeTarget(targetPosition, position);
+    //
+    // this.camera.lookAt(targetPosition);
   }
 
   _changeTarget(targetPosition, cameraPosition) {

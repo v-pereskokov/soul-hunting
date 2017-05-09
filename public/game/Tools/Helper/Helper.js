@@ -15,6 +15,8 @@ export default class Helper {
   }
 
   static getMapSector(position) {
+    // console.log(Helper.getSector(position.x));
+
     return {
       x: Helper.getSector(position.x),
       z: Helper.getSector(position.z)

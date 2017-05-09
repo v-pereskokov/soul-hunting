@@ -25,6 +25,17 @@ class SinglePlayer extends React.Component<void, void> {
           <div className='wrapper__game'>
             { device ?
               <div>
+                <div className='blocker'>
+                  <div className='instructions'>
+                    <span>Click to play</span>
+                    <br/>
+                    <br/>
+                    (W, A, S, D = Move, SPACE = Jump, MOUSE = Look around, LMB = Shoot)
+                    <br/>
+                    <br/>
+                    (F = Fullscreen, ESC - Exit)
+                  </div>
+                </div>
                 <div className='parent__inf'>
                   <div className='parent__inf__wrapper'>
                     <img className='parent__inf__wrapper-img' src='/static/gameSource/infinity-icon.png'/>

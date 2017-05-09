@@ -24,8 +24,17 @@ import {
 } from '../Constants/Constants';
 
 export default class GameScene {
-  constructor() {
+  constructor(pointerLock, keys, mouse) {
+    this._pointerLock = pointerLock;
+    this._keys = keys;
+    this._mouse = mouse;
+
     this._isAnimate = true;
+
+    this._previousTime = performance.now();
+    this._raycaster = threeFactory
+      .raycaster(threeFactory.vector3D(),
+        threeFactory.vector3D(0, -1, 0), 0, 10);
   }
 
   start() {
@@ -71,10 +80,20 @@ export default class GameScene {
       getHeight: UNITSIZE * 0.2
     }).getCamera;
 
-    this._scene.add(this._camera);
+    // this._scene.add(this._camera);
   }
 
   _setUpControls() {
+    this._dopControls = this._pointerLock(this._camera);
+    this._dopControls.setMouseMove(
+      this._mouse.onMouseMove(
+        this._camera,
+        this._dopControls.getObject
+      )
+    );
+
+    this._scene.add(this._dopControls.getObject);
+
     this._controls = new ControlsManager(this._camera);
     this._controls.setEvents(this._createBullet.bind(this));
   }
@@ -203,7 +222,7 @@ export default class GameScene {
 
   _render() {
     const delta = this._clock.getDelta();
-    this._controls.update(delta, Helper.checkWallCollision.bind(this));
+    this._controls.update(delta, Helper.checkWallCollision.bind(this), this._dopControls.getObject);
 
     // Update bullets.
     this._updateBullets(delta);
@@ -251,5 +270,80 @@ export default class GameScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
+  }
+
+  update() {
+    if (this._keys.getEnabled) {
+      this._raycaster.ray.origin.copy(this._dopControls.getObject.position);
+      this._raycaster.ray.origin.y -= 10;
+
+      const time = performance.now();
+
+      this._newAction(time, (time - this._previousTime) / 1000);
+    }
+  }
+
+  _newAction(time, delta, isInObject) {
+    this._keys.x -= this._keys.x * 10.0 * delta;
+    this._keys.z -= this._keys.z * 10.0 * delta;
+
+    this._keys.y -= 9.8 * 100.0 * delta;
+
+    const speed = 1500.0;
+
+
+    if (this._keys._forward) {
+      this._keys.z -= speed * delta;
+      if (Helper.checkWallCollision({
+          x: this._keys.x,
+          z: this._keys.z
+        })) {
+        this._keys.z += speed * delta;
+      }
+    }
+    if (this._keys._backward) {
+      this._keys.z += speed * delta;
+      if (Helper.checkWallCollision({
+          x: this._keys.x,
+          z: this._keys.z
+        })) {
+        this._keys.z -= speed * delta;
+      }
+    }
+
+    if (this._keys._left) {
+      this._keys.x -= speed * delta;
+      if (Helper.checkWallCollision({
+          x: this._keys.x,
+          z: this._keys.z
+        })) {
+        this._keys.x += speed * delta;
+      }
+    }
+    if (this._keys._right) {
+      this._keys.x += speed * delta;
+      if (Helper.checkWallCollision({
+          x: this._keys.x,
+          z: this._keys.z
+        })) {
+        this._keys.x -= speed * delta;
+      }
+    }
+
+    this._keys.y = Math.max(0, this._keys.y);
+
+    this._dopControls.getObject.translateX(this._keys.x * delta);
+    this._dopControls.getObject.translateY(this._keys.y * delta);
+    this._dopControls.getObject.translateZ(this._keys.z * delta);
+
+    if (this._dopControls.getObject.position.y < 10) {
+
+      this._keys.y = 0;
+      this._dopControls.getObject.position.y = 10;
+
+      this._keys._jump = true;
+    }
+
+    this._previousTime = time;
   }
 }
