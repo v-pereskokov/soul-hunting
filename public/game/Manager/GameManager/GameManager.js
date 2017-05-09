@@ -32,3 +32,4 @@ export default class GameManager {
 // design game
 // validation
 // service worker
+// verstka mobileelelelleleleleleleleleelelellele

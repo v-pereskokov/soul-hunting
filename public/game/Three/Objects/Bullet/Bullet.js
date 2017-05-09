@@ -14,6 +14,8 @@ export default class Bullet extends Objects {
 
   _setMaterial() {
     this._material = threeFactory.meshBasicMaterial({
+      opacity: 0,
+      transparent: true,
       color: 0x333333
     });
   }
