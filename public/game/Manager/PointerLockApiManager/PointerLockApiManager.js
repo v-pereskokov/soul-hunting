@@ -6,6 +6,8 @@ export default class PointerLockApiManager {
     this._pointerLockApi = new CheckPointerLockApi();
     this._element = document.body;
 
+    this._isFirst = true;
+
     this._init(blocks, controls, mouse, startCallback, stopCallback);
   }
 
@@ -42,7 +44,8 @@ export default class PointerLockApiManager {
 
         this._blocker.style.display = 'none';
 
-        startCallback();
+        startCallback(this._isFirst);
+        this._isFirst = false;
       } else {
         stopCallback();
 

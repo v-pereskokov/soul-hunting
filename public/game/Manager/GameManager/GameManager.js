@@ -34,7 +34,10 @@ export default class GameManager {
       },
       this._keys,
       this._mouse,
-      () => {
+      (isFirst) => {
+        if (isFirst) {
+          this._gameScene._init();
+        }
         this._gameScene.resume();
         this._gameScene._animate();
       },
