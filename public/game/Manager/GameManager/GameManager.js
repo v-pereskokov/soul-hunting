@@ -63,7 +63,7 @@ export default class GameManager {
 
           setTimeout(() => {
             this._gameScene._animate();
-          }, 100);
+          }, 25);
 
           document.body.querySelector('.wrapper__game').style.display = 'block';
 
@@ -88,11 +88,15 @@ export default class GameManager {
 
     const counter = counterWrapper.querySelector('.count__parent-child-text2');
 
+    musicService.stopBackground();
+    musicService.startBeforeGame();
+
     countNumbers(9, 1000,
       (count) => {
-        console.log(counter.innerHTML);
         if (count === 9) {
           this._gameScene.stop();
+        } else if (count === 1) {
+          musicService.stopBeforeGame();
         }
 
         counter.innerHTML = count;

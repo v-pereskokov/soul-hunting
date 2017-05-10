@@ -20,6 +20,7 @@ export default class Music {
 
   stop() {
     this._music.pause();
+    this.muteToggle();
     this._music.currentTime = 0;
   }
 
