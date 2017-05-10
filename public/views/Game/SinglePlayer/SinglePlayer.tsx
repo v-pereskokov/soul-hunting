@@ -4,13 +4,40 @@ import {connect} from 'react-redux';
 
 import {Mobile} from '../../Mobile/Mobile';
 import {Background} from '../../../components/Background/Background';
+import GameTable from '../../../components/GameTable/GameTable';
 
 import musicService from '../../../service/MusicService/MusicService';
 import GameManager from '../../../game/Manager/GameManager/GameManager.js';
 
-import '../Game.scss';
+import './SinglePlayer.scss';
 
-class SinglePlayer extends React.Component<void, void> {
+const header = [{
+  title: '#'
+}, {
+  title: 'Username'
+}, {
+  title: 'Score'
+}];
+
+interface Props {
+  isAuthenticated: boolean;
+  device: boolean;
+  user?: string;
+}
+
+class SinglePlayer extends React.Component<Props, void> {
+  constructor(props: Props) {
+    super(props);
+
+    this._users = [
+      [this.props.user, '0'],
+      ['', ''],
+      ['', ''],
+      ['', ''],
+      ['', '']
+    ];
+  }
+
   componentWillMount() {
     setTimeout(() => {
       musicService.stopBackground();
@@ -61,6 +88,11 @@ class SinglePlayer extends React.Component<void, void> {
                       <img className='weapon__wrapper-img' src='/static/gameSource/weapon.png'/>
                     </div>
                   </div>
+                  <div className='gameTable__wrapper'>
+                    <div className='gameTable__wrapper__table'>
+                      <GameTable header={ header } content={ this._users } />
+                    </div>
+                  </div>
                   <div className='end'>
                   </div>
                 </div>
@@ -81,6 +113,7 @@ class SinglePlayer extends React.Component<void, void> {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    user: state.authentication.user,
     device: state.device,
   }
 };

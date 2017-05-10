@@ -6,8 +6,20 @@ export default class Keyboard {
   }
 
   _init() {
+    this._setKeys();
+
+    this._setTable();
+  }
+
+  _setKeys() {
     document.addEventListener('keydown', this._onKeyDown());
     document.addEventListener('keyup', this._onKeyUp());
+  }
+
+  _setTable() {
+    this._table = document.body.querySelector('.gameTable__wrapper');
+
+    this._activeTable();
   }
 
   update(camera, delta, checkCollision) {
@@ -122,5 +134,18 @@ export default class Keyboard {
       default:
         break;
     }
+  }
+
+  _activeTable() {
+    document.addEventListener('keydown', event => {
+      if (event.keyCode === 81) {
+        this._table.style.display = 'block';
+      }
+    });
+    document.addEventListener('keyup', event => {
+      if (event.keyCode === 81) {
+        this._table.style.display = 'none';
+      }
+    });
   }
 }

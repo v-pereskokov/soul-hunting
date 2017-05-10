@@ -9,6 +9,8 @@ import {Mobile} from '../Mobile/Mobile';
 import {Button} from '../../components/Button/Button';
 import {Back} from '../../components/Back/Back';
 
+import './Game.scss';
+
 const urls = [
   '/game/singleplayer',
   '/game/singleplayer'

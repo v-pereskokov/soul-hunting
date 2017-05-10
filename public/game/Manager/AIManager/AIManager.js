@@ -13,6 +13,11 @@ export default class AIService {
 
       scene.remove(player.object);
       playerStats.kills = ++playerStats.kills;
+      document.body
+        .querySelector('.gameTable')
+        .querySelector('tbody')
+        .querySelectorAll('td')[2].innerHTML = playerStats.kills * 100;
+
       addAI();
     }
 

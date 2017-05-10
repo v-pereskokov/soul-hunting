@@ -171,7 +171,7 @@ export default class GameScene {
   }
 
   _setUpAI() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       this._addAI();
     }
   }
