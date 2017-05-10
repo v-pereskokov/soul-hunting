@@ -112,7 +112,6 @@ export default class GameManager {
   }
 }
 
-// shift
 // esc
 // design game
 // validation

@@ -39,13 +39,17 @@ class SinglePlayer extends React.Component<Props, void> {
   }
 
   componentWillMount() {
-    setTimeout(() => {
-      musicService.stopBackground();
-    }, 300);
+    if (this._isAdmin()) {
+      setTimeout(() => {
+        musicService.stopBackground();
+      }, 300);
+    }
   }
 
   componentDidMount() {
-    new GameManager();
+    if (this._isAdmin()) {
+      new GameManager();
+    }
   }
 
   render() {
@@ -53,7 +57,7 @@ class SinglePlayer extends React.Component<Props, void> {
 
     return (
       <div>
-        { !isAuthenticated ?
+        { !isAuthenticated || !this._isAdmin() ?
           browserHistory.push('/')
           :
           <div>
@@ -112,6 +116,10 @@ class SinglePlayer extends React.Component<Props, void> {
         }
       </div>
     );
+  }
+
+  _isAdmin() {
+    return this.props.user === 'vladoss';
   }
 }
 
