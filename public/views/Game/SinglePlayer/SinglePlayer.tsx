@@ -61,7 +61,7 @@ class SinglePlayer extends React.Component<Props, void> {
               <div>
                 <div className='blocker'>
                   <div className='instructions'>
-                    <img className='loading' src='/static/images/loading.png'/>
+                    <img className='loading' src='/static/images/loading1.png'/>
                     <p className='loading-text'>After preloader disappears,
                       click on the screen</p>
                   </div>

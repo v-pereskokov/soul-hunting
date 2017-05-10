@@ -138,12 +138,16 @@ export default class Keyboard {
 
   _activeTable() {
     document.addEventListener('keydown', event => {
-      if (event.keyCode === 81) {
+      event.preventDefault();
+
+      if (event.keyCode === 9) {
         this._table.style.display = 'block';
       }
     });
     document.addEventListener('keyup', event => {
-      if (event.keyCode === 81) {
+      event.preventDefault();
+
+      if (event.keyCode === 9) {
         this._table.style.display = 'none';
       }
     });
