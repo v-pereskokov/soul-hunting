@@ -6,16 +6,16 @@ import musicService from '../../Tools/MusicService/MusicService';
 import countNumbers from '../../Tools/CountNumbers/CountNumbers';
 
 export default class GameManager {
-  constructor() {
+  constructor(functionGo) {
     this._mouse = new Mouse();
     this._keys = new Keyboard();
 
     musicService.startBackground();
-    this.startPreview();
+    this.startPreview(functionGo);
   }
 
-  start(stopMusic) {
-    this._gameScene = this._getScene();
+  start(stopMusic, functionGo) {
+    this._gameScene = this._getScene(functionGo);
     this._pointerLockManager = this._getPointerLock(stopMusic);
 
     this._gameScene.setPointerLock(
@@ -23,13 +23,13 @@ export default class GameManager {
     );
   }
 
-  startPreview() {
+  startPreview(functionGo) {
     this._togglePreloader(true);
 
     setTimeout(() => {
       this._togglePreloader(false);
       this._setInstructions();
-      this.start(() => musicService.stopBackground());
+      this.start(() => musicService.stopBackground(), functionGo);
     }, 3000);
   }
 
@@ -42,10 +42,11 @@ export default class GameManager {
     document.body.querySelector('.pre-loader__wrapper').style.display = type ? 'block' : 'none';
   }
 
-  _getScene() {
+  _getScene(functionGo) {
     return new GameScene(
       this._keys,
-      this._mouse
+      this._mouse,
+      functionGo
     );
   }
 
@@ -92,15 +93,13 @@ export default class GameManager {
 
     countNumbers(9, 1000,
       (count) => {
-        if (count === 1) {
-          musicService.stopBeforeGame();
-        }
-
         counter.innerHTML = count;
-        end.style.opacity = `0.` + count;
+
+        if (count & 1) {
+          end.style.opacity = `0.` + count;
+        }
       },
       () => {
-        end.style.display = 'none';
         counterWrapper.style.display = 'none';
 
         this._gameScene.resume();
@@ -110,6 +109,8 @@ export default class GameManager {
   }
 }
 
+// fix -6 of undef
+// fix music
 // esc
 // design game
 // validation

@@ -53,12 +53,6 @@ export default class PointerLockApiManager {
 
         controls.setEnabled = false;
         mouse.setEnabled = false;
-
-        this._blocker.style.display = '-webkit-box';
-        this._blocker.style.display = '-moz-box';
-        this._blocker.style.display = 'box';
-
-        this._instructions.style.display = '';
       }
     }
   }

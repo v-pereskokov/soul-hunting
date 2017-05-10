@@ -14,6 +14,7 @@ import map from '../Tools/Map/Map';
 import Helper from "../Tools/Helper/Helper";
 import CollisionService from "../Manager/CollisionManager/CollisionManager";
 import AIService from '../Manager/AIManager/AIManager';
+import musicService from '../Tools/MusicService/MusicService';
 import {
   WIDTH,
   HEIGHT,
@@ -24,13 +25,17 @@ import {
 } from '../Constants/Constants';
 
 export default class GameScene {
-  constructor(keys, mouse) {
+  constructor(keys, mouse, functionGo) {
     this._pointerLock = null;
     this._keys = keys;
     this._mouse = mouse;
 
     this._game = false;
     this._isAnimate = true;
+
+    this._goToGameUrl = functionGo;
+
+    this._setDesign();
   }
 
   setPointerLock(pointerLock) {
@@ -279,6 +284,16 @@ export default class GameScene {
   _death() {
     if (playerStats.health <= 0) {
       this.stop();
+
+      musicService.startEndGame();
+
+      this._openEndGame();
+
+      setTimeout(() => {
+        this._closeEndGame();
+        this._goToGameUrl();
+        location.reload();
+      }, 4000);
     }
   }
 
@@ -291,5 +306,35 @@ export default class GameScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
+  }
+
+  _openEndGame() {
+    this._end.style.opacity = '0.7';
+
+    this._type.innerHTML = 'Singleplayer';
+    this._gameOver.innerHTML = 'Game Over';
+
+    console.log(this._table);
+
+    this._table.style.display = 'block';
+    this._endTitles.style.display = 'block';
+  }
+
+  _closeEndGame() {
+    this._end.style.opacity = '0';
+
+    this._type.innerHTML = '';
+    this._gameOver.innerHTML = '';
+
+    this._table.style.display = 'none';
+    this._endTitles.style.display = 'none';
+  }
+
+  _setDesign() {
+    this._end = document.body.querySelector('.end');
+    this._endTitles = document.body.querySelector('.endGameTheme__wrapper');
+    this._type = this._endTitles.querySelector('.endGameTheme__wrapper-type');
+    this._gameOver = this._endTitles.querySelector('.endGameTheme__wrapper-gameOver');
+    this._table = document.body.querySelector('.gameTable__wrapper');
   }
 }

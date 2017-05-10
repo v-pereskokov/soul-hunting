@@ -48,7 +48,7 @@ class SinglePlayer extends React.Component<Props, void> {
 
   componentDidMount() {
     if (this._isAdmin()) {
-      new GameManager();
+      new GameManager(browserHistory.push.bind(this, '/game'));
     }
   }
 
@@ -94,10 +94,16 @@ class SinglePlayer extends React.Component<Props, void> {
                   </div>
                   <div className='gameTable__wrapper'>
                     <div className='gameTable__wrapper__table'>
-                      <GameTable header={ header } content={ this._users } />
+                      <GameTable header={ header } content={ this._users }/>
                     </div>
                   </div>
                   <div className='end'/>
+                  <div className='endGameTheme__wrapper'>
+                    <div className='endGameTheme__wrapper-parent'>
+                      <p className='endGameTheme__wrapper-type'/>
+                      <p className='endGameTheme__wrapper-gameOver'/>
+                    </div>
+                  </div>
                   <div className='counter'>
                     <div className='count__parent'>
                       <p className='count__parent-child-text1'>MATCH BEGINS IN</p>

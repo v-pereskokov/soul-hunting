@@ -4,6 +4,8 @@ class MusicService {
   constructor() {
     this._background = new Music('../../../static/sounds/background.wav');
     this._beforeStart = new Music('../../../static/sounds/start_game.wav');
+    this._end = new Music('../../../static/sounds/end.wav');
+
     this._setKeysMute();
   }
 
@@ -24,11 +26,19 @@ class MusicService {
   }
 
   startBeforeGame() {
-    this._beforeStart.loopPlay();
+    this._beforeStart.play();
   }
 
   stopBeforeGame() {
     this._beforeStart.stop();
+  }
+
+  startEndGame() {
+    this._end.play();
+  }
+
+  stopEndGame() {
+    this._end.stop();
   }
 }
 
