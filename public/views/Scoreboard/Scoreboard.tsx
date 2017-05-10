@@ -3,7 +3,7 @@ import {Link, browserHistory} from 'react-router'
 import {connect} from 'react-redux';
 
 import {Button} from '../../components/Button/Button';
-import {Table} from '../../components/Table/Table';
+import Table from '../../components/Table/Table';
 import {Background} from '../../components/Background/Background';
 import Random from '../../service/Random/Random';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';

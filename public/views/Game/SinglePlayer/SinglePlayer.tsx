@@ -61,6 +61,8 @@ class SinglePlayer extends React.Component<void, void> {
                       <img className='weapon__wrapper-img' src='/static/gameSource/weapon.png'/>
                     </div>
                   </div>
+                  <div className='end'>
+                  </div>
                 </div>
               </div>
               :

@@ -211,3 +211,15 @@ canvas {
     color: white;
   }
 }
+
+.end {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: grey;
+  opacity: 0.4;
+  display: none;
+  transition-property: display;
+  transition-duration: 3s;
+}

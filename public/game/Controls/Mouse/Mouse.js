@@ -6,6 +6,7 @@ export default class Mouse {
     this._y = 0;
 
     this._enabled = false;
+    this._isGame = false;
 
     this._aim = new AimManager();
   }
@@ -42,7 +43,7 @@ export default class Mouse {
   onClickMouse(callback) {
     return event => {
       event.preventDefault();
-      if (this._isGame && event.which === 1) {
+      if (this._isGame && this._enabled && event.which === 1) {
         this._aim.start();
         callback();
       } else {
