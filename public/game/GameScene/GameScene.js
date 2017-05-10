@@ -284,9 +284,9 @@ export default class GameScene {
   _death() {
     if (playerStats.health <= 0) {
       this.stop();
+      this._keys._deactivateTable();
 
       musicService.startEndGame();
-
       this._openEndGame();
 
       setTimeout(() => {
@@ -313,8 +313,6 @@ export default class GameScene {
 
     this._type.innerHTML = 'Singleplayer';
     this._gameOver.innerHTML = 'Game Over';
-
-    console.log(this._table);
 
     this._table.style.display = 'block';
     this._endTitles.style.display = 'block';

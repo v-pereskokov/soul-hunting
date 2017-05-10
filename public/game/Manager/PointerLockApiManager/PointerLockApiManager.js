@@ -31,6 +31,7 @@ export default class PointerLockApiManager {
       this._pointerLockApi.addPointerLockError(this._pointerLockError());
 
       this._instructions.addEventListener('click', this._instructionsEvent(this._element));
+      document.body.querySelector('.wrapper__game').addEventListener('click', this._instructionsEvent(this._element));
     } else {
       this._instructions.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
     }

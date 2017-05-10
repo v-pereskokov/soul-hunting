@@ -149,20 +149,32 @@ export default class Keyboard {
   }
 
   _activeTable() {
-    document.addEventListener('keydown', event => {
+    document.addEventListener('keydown', this._tabOpen());
+    document.addEventListener('keyup', this._tabClose());
+  }
+
+  _deactivateTable() {
+    document.removeEventListener('keydown', this._tabOpen());
+    document.removeEventListener('keyup', this._tabClose());
+  }
+
+  _tabOpen() {
+    return event => {
       event.preventDefault();
 
       if (event.keyCode === 9) {
         this._table.style.display = 'block';
       }
-    });
+    }
+  }
 
-    document.addEventListener('keyup', event => {
+  _tabClose() {
+    return event => {
       event.preventDefault();
 
       if (event.keyCode === 9) {
         this._table.style.display = 'none';
       }
-    });
+    }
   }
 }
