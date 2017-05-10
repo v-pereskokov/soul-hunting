@@ -60,18 +60,17 @@ export default class GameManager {
         if (isFirst) {
           stopMusic();
           this._gameScene._init();
+          this._gameScene._animate();
 
           setTimeout(() => {
-            this._gameScene._animate();
+            this._gameScene.stop();
           }, 25);
 
           document.body.querySelector('.wrapper__game').style.display = 'block';
 
           this._beforeStart();
-        }
-
-        this._gameScene.resume();
-        if (!isFirst) {
+        } else {
+          this._gameScene.resume();
           this._gameScene._animate();
         }
       },
@@ -93,9 +92,7 @@ export default class GameManager {
 
     countNumbers(9, 1000,
       (count) => {
-        if (count === 9) {
-          this._gameScene.stop();
-        } else if (count === 1) {
+        if (count === 1) {
           musicService.stopBeforeGame();
         }
 
@@ -103,6 +100,7 @@ export default class GameManager {
         end.style.opacity = `0.` + count;
       },
       () => {
+        end.style.display = 'none';
         counterWrapper.style.display = 'none';
 
         this._gameScene.resume();

@@ -42,6 +42,14 @@ export default class GameScene {
     this._animate();
   }
 
+  set game(value) {
+    this._game = value;
+  }
+
+  get game() {
+    return this._game;
+  }
+
   resume() {
     this._isAnimate = true;
   }
@@ -175,7 +183,7 @@ export default class GameScene {
     const position = Helper.getMapSector(this._camera.position);
 
     let [x, z] = Helper.getRandomPosition();
-    while (map.getField(x, z) > 0 || (x === position.x && z === position.z)) {
+    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
       [x, z] = Helper.getRandomPosition();
     }
 
