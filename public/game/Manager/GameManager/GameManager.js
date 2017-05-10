@@ -3,6 +3,7 @@ import Mouse from "../../Controls/Mouse/Mouse";
 import Keyboard from "../../Controls/Keyboard/Keyboard";
 import PointerLockApiManager from "../PointerLockApiManager/PointerLockApiManager";
 import musicService from '../../Tools/MusicService/MusicService';
+import countNumbers from '../../Tools/CountNumbers/CountNumbers';
 
 export default class GameManager {
   constructor() {
@@ -60,10 +61,19 @@ export default class GameManager {
           stopMusic();
           this._gameScene._init();
 
+          setTimeout(() => {
+            this._gameScene._animate();
+          }, 100);
+
           document.body.querySelector('.wrapper__game').style.display = 'block';
+
+          this._beforeStart();
         }
+
         this._gameScene.resume();
-        this._gameScene._animate();
+        if (!isFirst) {
+          this._gameScene._animate();
+        }
       },
       () => {
         this._gameScene.stop();
@@ -71,10 +81,34 @@ export default class GameManager {
       }
     );
   }
+
+  _beforeStart() {
+    const end = document.body.querySelector('.end');
+    const counterWrapper = document.body.querySelector('.counter');
+
+    const counter = counterWrapper.querySelector('.count__parent-child-text2');
+
+    countNumbers(9, 1000,
+      (count) => {
+        console.log(counter.innerHTML);
+        if (count === 9) {
+          this._gameScene.stop();
+        }
+
+        counter.innerHTML = count;
+        end.style.opacity = `0.` + count;
+      },
+      () => {
+        counterWrapper.style.display = 'none';
+
+        this._gameScene.resume();
+        this._gameScene._game = true;
+        this._gameScene._animate();
+      });
+  }
 }
 
 // shift
-// tab
 // esc
 // design game
 // validation

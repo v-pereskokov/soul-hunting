@@ -30,6 +30,7 @@ export default class GameScene {
     this._keys = keys;
     this._mouse = mouse;
 
+    this._game = false;
     this._isAnimate = true;
   }
 
@@ -244,25 +245,27 @@ export default class GameScene {
     // Update bullets.
     this._updateBullets(delta);
 
-    for (let i in playersService.all) {
-      AIService.updateAI(
-        this._scene,
-        playersService,
-        playerStats,
-        delta * MOVESPEEDAI,
-        i,
-        this._addAI.bind(this)
-      );
+    if (this._game) {
+      for (let i in playersService.all) {
+        AIService.updateAI(
+          this._scene,
+          playersService,
+          playerStats,
+          delta * MOVESPEEDAI,
+          i,
+          this._addAI.bind(this)
+        );
 
-      const player = playersService.getPlayer(i);
-      const sector = Helper.getMapSector(player.object.position);
+        const player = playersService.getPlayer(i);
+        const sector = Helper.getMapSector(player.object.position);
 
-      AIService.shoot(
-        this._camera,
-        player,
-        sector,
-        this._createBullet.bind(this)
-      );
+        AIService.shoot(
+          this._camera,
+          player,
+          sector,
+          this._createBullet.bind(this)
+        );
+      }
     }
 
     this._renderer.render(this._scene, this._camera);

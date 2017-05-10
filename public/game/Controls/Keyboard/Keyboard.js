@@ -144,6 +144,7 @@ export default class Keyboard {
         this._table.style.display = 'block';
       }
     });
+
     document.addEventListener('keyup', event => {
       event.preventDefault();
 

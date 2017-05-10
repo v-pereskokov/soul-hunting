@@ -93,7 +93,12 @@ class SinglePlayer extends React.Component<Props, void> {
                       <GameTable header={ header } content={ this._users } />
                     </div>
                   </div>
-                  <div className='end'>
+                  <div className='end'/>
+                  <div className='counter'>
+                    <div className='count__parent'>
+                      <p className='count__parent-child-text1'>MATCH BEGINS IN</p>
+                      <p className='count__parent-child-text2'>10</p>
+                    </div>
                   </div>
                 </div>
               </div>
