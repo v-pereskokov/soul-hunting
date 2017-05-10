@@ -13,6 +13,10 @@ class MusicService {
     this._background.loopPlay();
   }
 
+  startBackgroundSingle() {
+    this._background.play();
+  }
+
   stopBackground() {
     this._background.stop();
   }

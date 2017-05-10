@@ -10,7 +10,6 @@ export default class GameManager {
     this._mouse = new Mouse();
     this._keys = new Keyboard();
 
-    musicService.startBackground();
     this.startPreview(functionGo);
   }
 
@@ -25,6 +24,7 @@ export default class GameManager {
 
   startPreview(functionGo) {
     this._togglePreloader(true);
+    musicService.startBackgroundSingle();
 
     setTimeout(() => {
       this._togglePreloader(false);
@@ -88,7 +88,6 @@ export default class GameManager {
 
     const counter = counterWrapper.querySelector('.count__parent-child-text2');
 
-    musicService.stopBackground();
     musicService.startBeforeGame();
 
     countNumbers(9, 1000,
