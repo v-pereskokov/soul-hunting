@@ -1,7 +1,11 @@
 import * as React from 'react';
 import {GameTableRow} from '../GameTableRow/GameTableRow';
 
-export class GameTableHeader extends React.Component<void, void> {
+interface Props {
+  header: Array<any>;
+}
+
+export class GameTableHeader extends React.Component<Props, void> {
   render() {
     const header = this.props.header.map((item, index) => {
       return (

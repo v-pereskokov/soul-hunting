@@ -3,7 +3,11 @@ import {GameTableRow} from '../GameTableRow/GameTableRow';
 import {GameTableElement} from '../GameTableElement/GameTableElement';
 import {GameTableBody} from '../GameTableBody/GameTableBody';
 
-export class GameTableContent extends React.Component<void, void> {
+interface Props {
+  content: Array<any>;
+}
+
+export class GameTableContent extends React.Component<Props, void> {
   render() {
     const content = this.props.content.map((item, index) => {
       return (

@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-export class GameTableElement extends React.Component<void, void> {
+interface Props {
+  item: any;
+}
+
+export class GameTableElement extends React.Component<Props, void> {
   render() {
     return (
       <td>

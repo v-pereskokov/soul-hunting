@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-export class UserBlockNickName extends React.Component<void, void> {
+interface Props {
+  nickname: string;
+}
+
+export class UserBlockNickName extends React.Component<Props, void> {
   render() {
     return (
       <p className='userblock__username'>

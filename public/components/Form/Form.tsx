@@ -23,19 +23,17 @@ interface Props {
   control: string;
   submit: any;
   type?: string;
-  send: () => any;
+  send: (url: string, data: any) => any;
   handleSubmit?: any;
   name?: string;
-  _errors: any;
-  _form?: any;
 }
 
 class Form extends React.Component<Props, void> {
   _errors: any;
   _form: any;
 
-  constructor(props: Props) {
-    super(props);
+  constructor() {
+    super();
 
     this._errors = {};
     this._form = {};
@@ -88,10 +86,9 @@ class Form extends React.Component<Props, void> {
             className='form'
             name='form'
             ref={ (form: any) => {
-              this.form = form
+              this._form = form
             }}
-            onSubmit={handleSubmit}
-          >
+            onSubmit={handleSubmit}>
             <FormError text={ error }/>
             <FormContent content={ content }/>
             <FormButton text={ control } click={ this.submit.bind(this) }/>
@@ -102,8 +99,8 @@ class Form extends React.Component<Props, void> {
   }
 
   _isValid(errors: any) {
-    for (let error in errors) {
-      if (errors[error]) {
+    for (let error of errors) {
+      if (error) {
         return false;
       }
     }
@@ -144,7 +141,7 @@ class Form extends React.Component<Props, void> {
   }
 
   _getFields() {
-    return this.form.querySelectorAll('input');
+    return this._form.querySelectorAll('input');
   }
 
   _signInPack(data: any) {

@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-export class TableBody extends React.Component<void, void> {
+interface Props {
+  content: Array<any>;
+}
+
+export class TableBody extends React.Component<Props, void> {
   render() {
     return (
       <tbody>

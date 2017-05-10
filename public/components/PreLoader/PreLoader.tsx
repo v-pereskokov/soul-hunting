@@ -3,7 +3,11 @@ import {connect} from 'react-redux';
 
 import './PreLoader.scss';
 
-class PreLoader extends React.Component<void, void> {
+interface Props {
+  show: boolean;
+}
+
+class PreLoader extends React.Component<Props, void> {
   render() {
     const {show} = this.props;
 
@@ -26,7 +30,7 @@ class PreLoader extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     show: state.preloader
   }
