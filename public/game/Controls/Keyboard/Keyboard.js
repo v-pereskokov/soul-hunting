@@ -1,4 +1,4 @@
-import {MOVESPEED} from '../../Constants/Constants';
+import {MOVESPEED, HIGHSPEED} from '../../Constants/Constants';
 
 export default class Keyboard {
   constructor() {
@@ -26,28 +26,28 @@ export default class Keyboard {
     const actualMoveSpeed = delta * MOVESPEED;
 
     if (this.forward) {
-      camera.translateZ(-(actualMoveSpeed));
+      camera.translateZ(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       if (checkCollision(camera.position)) {
-        camera.translateZ(actualMoveSpeed);
+        camera.translateZ(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       }
     }
     if (this.backward) {
-      camera.translateZ(actualMoveSpeed);
+      camera.translateZ(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       if (checkCollision(camera.position)) {
-        camera.translateZ(-actualMoveSpeed);
+        camera.translateZ(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       }
     }
 
     if (this.left) {
-      camera.translateX(-actualMoveSpeed);
+      camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       if (checkCollision(camera.position)) {
-        camera.translateX(actualMoveSpeed);
+        camera.translateX(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       }
     }
     if (this.right) {
-      camera.translateX(actualMoveSpeed);
+      camera.translateX(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       if (checkCollision(camera.position)) {
-        camera.translateX(-actualMoveSpeed);
+        camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       }
     }
   }
@@ -76,14 +76,22 @@ export default class Keyboard {
     return this._right;
   }
 
+  get shift() {
+    return this._shift;
+  }
+
   _onKeyDown() {
     return (event) => {
+      event.preventDefault();
+
       this._setKeyDown(event.keyCode);
     }
   }
 
   _onKeyUp() {
     return (event) => {
+      event.preventDefault();
+
       this._setKeyUp(event.keyCode);
     }
   }
@@ -106,6 +114,8 @@ export default class Keyboard {
       case 68: // d
         this._right = true;
         break;
+      case 16:
+        this._shift = true;
 
       default:
         break;
@@ -130,6 +140,8 @@ export default class Keyboard {
       case 68: // d
         this._right = false;
         break;
+      case 16:
+        this._shift = false;
 
       default:
         break;

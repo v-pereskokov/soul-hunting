@@ -1,5 +1,4 @@
 import threeFactory from '../Three/ThreeFactory/ThreeFactory';
-import ControlsManager from "../Manager/ControlsManager/ControlsManager";
 import Camera from "../Three/Objects/Camera/Camera";
 import Floor from "../Three/Objects/Floor/Floor";
 import Ceil from "../Three/Objects/Ceil/Ceil";
@@ -57,7 +56,6 @@ export default class GameScene {
     this._setUpFog();
     this._setUpCamera();
     this._setUpPointerLock();
-    this._setUpControls();
 
     this._makeScene();
     this._setUpAI();
@@ -100,10 +98,6 @@ export default class GameScene {
     );
 
     this._scene.add(this._mouseControls.getObject);
-  }
-
-  _setUpControls() {
-    this._controls = new ControlsManager(this._camera);
   }
 
   _setUpRender() {
@@ -240,7 +234,7 @@ export default class GameScene {
 
   _render() {
     const delta = this._clock.getDelta();
-    this._controls.update(delta, Helper.checkWallCollision.bind(this));
+    this._keys.update(this._camera, delta, Helper.checkWallCollision.bind(this));
 
     // Update bullets.
     this._updateBullets(delta);

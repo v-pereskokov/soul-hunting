@@ -3,7 +3,8 @@ import map from '../Map/Map';
 export default class Helper {
   static checkWallCollision(position) {
     const positionOnMap = Helper.getMapSector(position);
-    return map.getField(positionOnMap.x, positionOnMap.z) > 0;
+    // return map.getField(positionOnMap.x, positionOnMap.z) > 0;
+    return map._map[positionOnMap.x][positionOnMap.z] > 0;
   }
 
   static distance(x1, y1, x2, y2) {
