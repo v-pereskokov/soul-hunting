@@ -114,3 +114,4 @@ export default class GameManager {
 // design game
 // validation
 // service worker
+// keys (console)
