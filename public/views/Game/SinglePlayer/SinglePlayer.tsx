@@ -26,6 +26,8 @@ interface Props {
 }
 
 class SinglePlayer extends React.Component<Props, void> {
+  _users: Array<Array<string>>;
+
   constructor(props: Props) {
     super(props);
 
@@ -129,7 +131,7 @@ class SinglePlayer extends React.Component<Props, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     user: state.authentication.user,

@@ -2,7 +2,7 @@ export default class Music {
   _music?: any;
   _isMute: boolean;
 
-  constructor(path = null) {
+  constructor(path: string = '') {
     this._music = path ? new Audio(path) : null;
     this._isMute = false;
   }

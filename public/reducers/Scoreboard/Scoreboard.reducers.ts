@@ -1,5 +1,5 @@
-export function page(state = 1, action = {}) {
-  switch(action.type) {
+export function page(state: number = 1, action: any = {}) {
+  switch (action.type) {
     case 'ADD_PAGE':
       return ++state;
     default:
@@ -7,7 +7,7 @@ export function page(state = 1, action = {}) {
   }
 }
 
-export function users (state = [], action) {
+export function users(state: Array<any> = [], action: any) {
   switch (action.type) {
     case 'ADD_USER':
       return [

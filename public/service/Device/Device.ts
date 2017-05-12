@@ -75,7 +75,7 @@ export default class Device {
     return this.isWindows() && (this._find('touch') && !this.isWindowsPhone());
   }
 
-  _find(target):boolean {
+  _find(target: string):boolean {
     return this._userAgent.indexOf(target) !== -1;
   }
 }

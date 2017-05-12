@@ -1,6 +1,8 @@
 import Music from '../../tools/Music/Music';
 
 class MusicService {
+  _background: any;
+
   constructor() {
     this._background = new Music('../../static/sounds/background.wav');
     this._setKeysMute();

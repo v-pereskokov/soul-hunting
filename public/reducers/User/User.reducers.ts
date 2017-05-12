@@ -1,12 +1,12 @@
 import isEmpty from '../../service/Validators/CheckUser/CheckUser';
 
-const initialState = {
+const initialState: any = {
   isAuthenticated: false,
   user: {}
 };
 
-export function authentication(state = initialState, action = {}) {
-  switch(action.type) {
+export function authentication(state: any = initialState, action: any = {}) {
+  switch (action.type) {
     case 'SET_CURRENT_USER':
       return {
         isAuthenticated: isEmpty(action.user),

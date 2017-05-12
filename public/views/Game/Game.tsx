@@ -16,7 +16,17 @@ const urls = [
   '/game/singleplayer'
 ];
 
-class Game extends React.Component<void, void> {
+interface Props {
+  isAuthenticated: boolean;
+  device: boolean;
+  setActive: (button1: any, button2: any, button3: any, current: any) => void;
+  button1: boolean;
+  button2: boolean;
+  button3?: boolean;
+  current: boolean;
+}
+
+class Game extends React.Component<Props, void> {
   constructor() {
     super();
 
@@ -26,9 +36,9 @@ class Game extends React.Component<void, void> {
   render() {
     const {isAuthenticated, device} = this.props;
 
-    const buttons = this._setButtons();
+    const buttons: Array<any> = this._setButtons();
 
-    const buttonsRender = buttons.map((item, index) => {
+    const buttonsRender: Array<any> = buttons.map((item, index) => {
       return (
         <Link to={ item.url } key={ index }>
           <Button
@@ -47,7 +57,7 @@ class Game extends React.Component<void, void> {
           : <div>
             { device ?
               <div>
-                <Back path="/" />
+                <Back path="/"/>
                 <div className='wrapper__form'>
                   <div className='wrapper__main__form'>
                     { buttonsRender }
@@ -65,9 +75,9 @@ class Game extends React.Component<void, void> {
     );
   }
 
-  setKeysButtons(max) {
-    document.addEventListener('keydown', event => {
-      let current = +this.props.current;
+  setKeysButtons(max: number) {
+    document.addEventListener('keydown', (event: any) => {
+      let current: number = +this.props.current;
 
       switch (event.keyCode) {
         case 13:
@@ -93,7 +103,7 @@ class Game extends React.Component<void, void> {
     });
   }
 
-  setActiveButton(number) {
+  setActiveButton(number: number) {
     switch (+number) {
       case 1:
         this.props.setActive(true, false, false, number);
@@ -124,7 +134,7 @@ class Game extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     current: state.buttons[0].current,
@@ -134,9 +144,12 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    setActive: (button1, button2, button3, current) => {
+    setActive: (button1: boolean,
+                button2: boolean,
+                button3: boolean,
+                current: boolean) => {
       dispatch(setActive(button1, button2, button3, current));
     }
   }

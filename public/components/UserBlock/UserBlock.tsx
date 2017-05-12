@@ -48,13 +48,13 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     logout: () => {
       dispatch(togglePreloader());
 
       return logoutUser()
-        .then(response => {
+        .then((response: any) => {
           if (+response.status === 200) {
             localStorage.removeItem('token');
             dispatch(setCurrentUser(null));
@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => {
         });
     },
 
-    setCurrentUser: user => {
+    setCurrentUser: (user: any) => {
       dispatch(setCurrentUser(user))
     }
   }
