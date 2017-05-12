@@ -15,6 +15,6 @@ export function addUser(user: any): any {
   }
 }
 
-export function getUsers(page: string): any {
+export function getUsersAction(page: number): any {
   return transport.get('/users?page=' + page);
 }

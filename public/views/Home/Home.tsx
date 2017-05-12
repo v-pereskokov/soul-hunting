@@ -78,7 +78,7 @@ class Home extends React.Component<Props, void> {
   }
 
   setKeysButtons(max: any) {
-    document.addEventListener('keydown', (event: event) => {
+    document.addEventListener('keydown', (event: any) => {
       let current: number = +this.props.current;
 
       switch (event.keyCode) {

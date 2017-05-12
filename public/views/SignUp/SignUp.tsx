@@ -32,7 +32,11 @@ const signUpFields = [{
   placeholder: '••••••••'
 }];
 
-export class SignUp extends React.Component<void, void> {
+interface Props {
+  isAuthenticated: boolean;
+}
+
+export class SignUp extends React.Component<Props, void> {
   constructor() {
     super();
 
@@ -40,7 +44,7 @@ export class SignUp extends React.Component<void, void> {
   }
 
   setEscape() {
-    document.addEventListener('keydown', event => {
+    document.addEventListener('keydown', (event: any) => {
       switch (event.keyCode) {
         case 27:
           browserHistory.push('/');
@@ -70,7 +74,7 @@ export class SignUp extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated
   }
