@@ -3,11 +3,11 @@ import {Link, browserHistory} from 'react-router'
 import {connect} from 'react-redux';
 
 import {Button} from '../../components/Button/Button';
-import {Table} from '../../components/Table/Table';
+import Table from '../../components/Table/Table';
 import {Background} from '../../components/Background/Background';
 import Random from '../../service/Random/Random';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
-import {addPage, addUser, getUsers} from '../../actions/Scoreboard/Scoreboard.actions';
+import {addPage, addUser, getUsersAction} from '../../actions/Scoreboard/Scoreboard.actions';
 
 import './Scoreboard.scss';
 
@@ -19,7 +19,16 @@ const header = [{
   title: 'Score'
 }];
 
-class Scoreboard extends React.Component<void, void> {
+interface Props {
+  getUsers: (page: number) => void;
+  isAuthenticated: boolean;
+  users: any;
+  page: number;
+}
+
+class Scoreboard extends React.Component<Props, void> {
+  _users: Array<Array<any>>;
+
   componentWillMount() {
     this.props.getUsers(this.props.page);
   }
@@ -54,7 +63,7 @@ class Scoreboard extends React.Component<void, void> {
     );
   }
 
-  _costyl(users) {
+  _costyl(users: Array<Array<any>>) {
     const userArray = this._makeUsersArray(users);
 
     userArray.sort((lhs, rhs) => {
@@ -64,8 +73,8 @@ class Scoreboard extends React.Component<void, void> {
     return userArray;
   }
 
-  _makeUsersArray(users) {
-    let array = [];
+  _makeUsersArray(users: any) {
+    let array: Array<any> = [];
 
     for (let user of users) {
       array.push([user.login, String(Random(1000, 10000))]);
@@ -75,7 +84,7 @@ class Scoreboard extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     page: state.page,
@@ -83,16 +92,16 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    getUsers: (page = 1) => {
+    getUsers: (page: number = 1) => {
       dispatch(togglePreloader());
 
-      return getUsers(page)
-        .then(response => {
+      return getUsersAction(page)
+        .then((response: any) => {
           return response.json();
         })
-        .then(data => {
+        .then((data: any) => {
           dispatch(addPage());
           dispatch(addUser(data));
           dispatch(togglePreloader());

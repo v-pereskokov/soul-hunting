@@ -8,7 +8,12 @@ import UserBlock from '../../components/UserBlock/UserBlock';
 
 import './MainTemplate.scss';
 
-class MainTemplate extends React.Component<void, void> {
+interface Props {
+  isAuthenticated: boolean;
+  device: boolean;
+}
+
+class MainTemplate extends React.Component<Props, void> {
   render() {
     const { isAuthenticated, device } = this.props;
 
@@ -24,7 +29,7 @@ class MainTemplate extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     device: state.device

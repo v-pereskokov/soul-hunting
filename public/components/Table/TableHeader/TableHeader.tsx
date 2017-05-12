@@ -1,7 +1,11 @@
 import * as React from 'react';
 import {TableRow} from '../TableRow/TableRow';
 
-export class TableHeader extends React.Component<void, void> {
+interface Props {
+  header: Array<any>;
+}
+
+export class TableHeader extends React.Component<Props, void> {
   render() {
     const header = this.props.header.map((item, index) => {
       return (

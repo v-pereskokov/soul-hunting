@@ -3,8 +3,8 @@ import isLogin from "./isLogin/isLogin";
 import isEmail from "./isEmail/isEmail";
 import isPassword from "./isPassword/isPassword";
 
-const validate = values => {
-  const errors = {};
+const validate = (values: any) => {
+  const errors: any = {};
 
   checkLogin(values.login, errors);
 
@@ -21,7 +21,7 @@ const validate = values => {
   return errors;
 };
 
-function checkLogin(login, errors) {
+function checkLogin(login: string, errors: any) {
   if (isFill(login)) {
     errors.login = 'Required';
   } else if (!isLogin(login)) {
@@ -29,7 +29,7 @@ function checkLogin(login, errors) {
   }
 }
 
-function checkEmail(email, errors) {
+function checkEmail(email: string, errors: any) {
   if (isFill(email)) {
     errors.email = 'Required';
   } else if (!isEmail(email)) {
@@ -37,7 +37,7 @@ function checkEmail(email, errors) {
   }
 }
 
-function checkPassword1(password, errors) {
+function checkPassword1(password: string, errors: any) {
   if (isFill(password)) {
     errors.password1 = 'Required';
   } else if (isPassword(password)) {
@@ -45,7 +45,7 @@ function checkPassword1(password, errors) {
   }
 }
 
-function checkPassword2(password, errors) {
+function checkPassword2(password: string, errors: any) {
   if (isFill(password)) {
     errors.password2 = 'Required';
   } else if (isPassword(password)) {
@@ -53,7 +53,7 @@ function checkPassword2(password, errors) {
   }
 }
 
-function checkPasswords(password1, password2, errors) {
+function checkPasswords(password1: string, password2: string, errors: any) {
   if (password1 && password2 && password1 !== password2) {
     errors.password2 = 'Passwords doesn\'t match' ;
   }

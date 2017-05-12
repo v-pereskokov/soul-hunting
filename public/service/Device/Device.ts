@@ -3,16 +3,16 @@ export default class Device {
   _userAgent: string;
 
   constructor() {
-    this._devices = window.device;
-    this._userAgent = window.navigator.userAgent.toLowerCase();
+    this._devices = (<any>window).device;
+    this._userAgent = (<any>window).navigator.userAgent.toLowerCase();
   }
 
   isPortrait():boolean {
-    return (window.innerHeight / window.innerWidth) > 1;
+    return ((<any>window).innerHeight / (<any>window).innerWidth) > 1;
   }
 
   isLandscape():boolean {
-    return (window.innerHeight / window.innerWidth) < 1;
+    return ((<any>window).innerHeight / (<any>window).innerWidth) < 1;
   }
 
   isDesktop():boolean {
@@ -64,7 +64,7 @@ export default class Device {
   }
 
   isWindows():boolean {
-    return this._find('windows');
+    return this._find('(<any>window).');
   }
 
   isWindowsPhone():boolean {
@@ -75,7 +75,7 @@ export default class Device {
     return this.isWindows() && (this._find('touch') && !this.isWindowsPhone());
   }
 
-  _find(target):boolean {
+  _find(target: string):boolean {
     return this._userAgent.indexOf(target) !== -1;
   }
 }

@@ -1,6 +1,6 @@
-import { NEXT_BUTTON } from '../../constants/Buttons/Buttons.constants';
+import {NEXT_BUTTON} from '../../constants/Buttons/Buttons.constants';
 
-const initialState = [
+const initialState: Array<any> = [
   {
     current: '1',
   },
@@ -15,7 +15,7 @@ const initialState = [
   }
 ];
 
-function buttons(state = initialState, action) {
+function buttons(state: Array<any> = initialState, action: any) {
   if (action.type === NEXT_BUTTON) {
     return action.payload;
   }

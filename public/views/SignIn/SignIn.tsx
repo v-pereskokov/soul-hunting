@@ -22,7 +22,11 @@ const signInFields = [{
   error: ''
 }];
 
-class SignIn extends React.Component<void, void> {
+interface Props {
+  isAuthenticated: boolean;
+}
+
+class SignIn extends React.Component<Props, void> {
   constructor() {
     super();
 
@@ -30,7 +34,7 @@ class SignIn extends React.Component<void, void> {
   }
 
   setEscape() {
-    document.addEventListener('keydown', event => {
+    document.addEventListener('keydown', (event: any) => {
       switch (event.keyCode) {
         case 27:
           browserHistory.push('/');
@@ -52,7 +56,6 @@ class SignIn extends React.Component<void, void> {
           : <div className='registration'>
             <Form
               fields={ signInFields }
-              error=''
               control='Sign In'
             />
           </div>
@@ -62,7 +65,7 @@ class SignIn extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated
   }

@@ -3,6 +3,7 @@ import * as fetch from 'isomorphic-fetch';
 class Transport {
   private _headers: any;
   private _baseUrl: string;
+  private static __instance: any;
 
   constructor() {
     if (Transport.__instance) {
@@ -74,6 +75,6 @@ class Transport {
 }
 
 const transport = new Transport();
-transport._baseUrl = 'https://ananymous.herokuapp.com/api';
+transport.BaseUrl = 'https://ananymous.herokuapp.com/api';
 
 export default transport;

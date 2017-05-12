@@ -1,6 +1,6 @@
-import { SET_DEVICE } from '../../constants/Mobile/Mobile.constants';
+import {SET_DEVICE} from '../../constants/Mobile/Mobile.constants';
 
-function device(state = true, action) {
+function device(state: any = true, action: any) {
   if (action.type === SET_DEVICE) {
     return action.device;
   }

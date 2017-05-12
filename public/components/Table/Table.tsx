@@ -12,7 +12,7 @@ interface Props {
   content?: Array<any>;
 }
 
-export class Table extends React.Component<Props, void> {
+export default class Table extends React.Component<Props, void> {
   render() {
     return (
       <TableBase>

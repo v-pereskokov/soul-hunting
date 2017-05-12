@@ -7,7 +7,11 @@ import {Information} from '../../components/Information/Information';
 
 import './About.scss'
 
-class About extends React.Component<void, void> {
+interface Props {
+  isAuthenticated: boolean;
+}
+
+class About extends React.Component<Props, void> {
   render() {
     const {isAuthenticated} = this.props;
 
@@ -42,8 +46,10 @@ class About extends React.Component<void, void> {
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = (state: any) => {
+  return {
     isAuthenticated: state.authentication.isAuthenticated
-  })
-)(About);
+  }
+};
+
+export default connect(mapStateToProps)(About);

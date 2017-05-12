@@ -1,0 +1,55 @@
+@media screen {
+  .gameTable {
+    background: #1c1c1c;
+    opacity: 0.8;
+    border-radius: 3px;
+    border-collapse: collapse;
+    height: 320px;
+    margin: auto;
+    max-width: 600px;
+    padding: 5px;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+
+    &-head {
+      bottom: 20px;
+    }
+
+    th {
+      font-size: 23px;
+      font-family: "Keep Calm";
+      font-weight: 100;
+      padding: 24px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      vertical-align: middle;
+    }
+
+    tr {
+      color: white;
+      font-size: 16px;
+      font-weight: normal;
+      text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+    }
+
+    td {
+      padding: 24px;
+    }
+  }
+
+  .edge {
+    border-radius: 3px;
+    background: #C8A177;
+    width: 600px;
+    height: 10px;
+    z-index: 999;
+    position: absolute;
+  }
+
+  .table {
+    top: 100px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+  }
+}

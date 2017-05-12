@@ -11,13 +11,18 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import './UserBlock.scss';
 import {UserBlockIcon} from './UserBlockIcon/UserBlockIcon';
 
-class UserBlock extends React.Component<void, void> {
+interface Props {
+  logout: () => any;
+  user: string;
+}
+
+class UserBlock extends React.Component<Props, void> {
   logout() {
     this.props.logout();
   }
 
   render() {
-    const {user} = this.props;
+    let {user} = this.props;
 
     user = this._checkName(user);
     return (
@@ -29,7 +34,7 @@ class UserBlock extends React.Component<void, void> {
     );
   }
 
-  _checkName(name) {
+  _checkName(name: any) {
     if (name.length > 8) {
       name = name.slice(0, 8) + '...';
     }
@@ -37,19 +42,19 @@ class UserBlock extends React.Component<void, void> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     user: state.authentication.user
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     logout: () => {
       dispatch(togglePreloader());
 
       return logoutUser()
-        .then(response => {
+        .then((response: any) => {
           if (+response.status === 200) {
             localStorage.removeItem('token');
             dispatch(setCurrentUser(null));
@@ -60,10 +65,10 @@ const mapDispatchToProps = dispatch => {
         });
     },
 
-    setCurrentUser: user => {
+    setCurrentUser: (user: any) => {
       dispatch(setCurrentUser(user))
     }
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBlock as any);

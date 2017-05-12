@@ -4,30 +4,32 @@ import {submit} from 'redux-form';
 import {connect} from 'react-redux';
 
 interface Props {
-  text: string;
+  text?: string;
   click?: () => void;
+  submit?: (func: any) => void;
 }
 
 class FormButton extends React.Component<Props, void> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
-    const {dispatch} = this.props;
-
     return (
       <Button
         text={ this.props.text }
         isActive={ true }
         click={ () => {
-          dispatch(submit('form'));
+          this.props.submit(() => submit('form'));
           this.props.click();
-        }
-        }
+        }}
       />
     );
   }
 }
 
-export default connect()(FormButton);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    submit: (submit: any) => {
+      dispatch(submit());
+    }
+  }
+};
+
+export default connect<{}, {}, Props>(null, mapDispatchToProps)(FormButton);
