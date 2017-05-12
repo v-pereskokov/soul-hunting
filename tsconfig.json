@@ -1,4 +1,6 @@
 {
+  "version" : "2.2.2",
+
   "compilerOptions": {
     "allowJs": true,
     "outDir": "./dist/",
