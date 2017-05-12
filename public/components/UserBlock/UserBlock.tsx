@@ -71,4 +71,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBlock as any);

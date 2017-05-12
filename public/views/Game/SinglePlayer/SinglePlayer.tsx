@@ -139,4 +139,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect(mapStateToProps)(SinglePlayer);
+export default connect(mapStateToProps)(SinglePlayer as any);

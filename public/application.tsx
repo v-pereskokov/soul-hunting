@@ -38,15 +38,15 @@ musicService.startBackground();
 export const App = () => (
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path={ RoutesMap.HOME } component={ MainTemplate }>
+      <Route path={ RoutesMap.HOME } component={ MainTemplate as any }>
         <IndexRoute component={ Home }/>
-        <Route path={ RoutesMap.SIGNIN } component={ SignIn }/>
-        <Route path={ RoutesMap.SIGNUP } component={ SignUp }/>
-        <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard }/>
-        <Route path={ RoutesMap.ABOUT } component={ About }/>
-        <Route path={ RoutesMap.GAME } component={ Game }/>
-        <Route path={ RoutesMap.SINGLEPLAYER } component={ SinglePlayer } />
-        <Route path='*' component={ Error }/>
+        <Route path={ RoutesMap.SIGNIN } component={ SignIn as any }/>
+        <Route path={ RoutesMap.SIGNUP } component={ SignUp as any }/>
+        <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard as any }/>
+        <Route path={ RoutesMap.ABOUT } component={ About as any }/>
+        <Route path={ RoutesMap.GAME } component={ Game as any }/>
+        <Route path={ RoutesMap.SINGLEPLAYER } component={ SinglePlayer as any } />
+        <Route path='*' component={ Error as any }/>
       </Route>
     </Router>
   </Provider>

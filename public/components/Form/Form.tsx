@@ -21,9 +21,9 @@ interface Props {
   fields?: Array<any>;
   error?: string;
   control: string;
-  submit: any;
+  submit?: any;
   type?: string;
-  send: (url: string, data: any) => any;
+  send?: (url: string, data: any) => any;
   handleSubmit?: any;
   name?: string;
 }
@@ -189,4 +189,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(ReduxForm);
+export default connect<{}, {}, Props>(null, mapDispatchToProps)(ReduxForm);
