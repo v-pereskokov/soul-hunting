@@ -6,7 +6,7 @@ import {FooterHelp} from './FooterHelp/FooterHelp';
 
 import './Footer.scss';
 
-export class Footer extends React.Component<void, void> {
+export class Footer extends React.Component<any, any> {
   render() {
     return (
       <FooterBase>

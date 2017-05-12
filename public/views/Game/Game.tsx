@@ -26,7 +26,7 @@ interface Props {
   current: boolean;
 }
 
-class Game extends React.Component<Props, void> {
+class Game extends React.Component<Props, any> {
   constructor() {
     super();
 
