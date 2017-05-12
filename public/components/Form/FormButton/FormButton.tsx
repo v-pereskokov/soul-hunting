@@ -4,9 +4,9 @@ import {submit} from 'redux-form';
 import {connect} from 'react-redux';
 
 interface Props {
-  text: string;
+  text?: string;
   click?: () => void;
-  submit: (func: any) => void;
+  submit?: (func: any) => void;
 }
 
 class FormButton extends React.Component<Props, void> {
@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(FormButton);
+export default connect<{}, {}, Props>(null, mapDispatchToProps)(FormButton);

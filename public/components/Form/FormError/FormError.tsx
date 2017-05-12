@@ -5,13 +5,6 @@ interface Props {
 }
 
 export class FormError extends React.Component<Props, void> {
-  constructor(props: Props =
-                {
-                  text: ''
-                }) {
-    super(props);
-  }
-
   render() {
     return (
       <span className='errorText__response'>
