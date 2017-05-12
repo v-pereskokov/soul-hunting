@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class FormHeader extends React.Component<void, void> {
+export class FormHeader extends React.Component<any, any> {
   constructor() {
     super();
   }

@@ -6,7 +6,7 @@ import {LogoRegistration} from './LogoRegistration/LogoRegistration';
 
 import './Logo.scss';
 
-export class Logo extends React.Component<void, void> {
+export class Logo extends React.Component<any, any> {
   render() {
     return (
       <LogoBase >

@@ -7,7 +7,7 @@ import {Button} from '../../components/Button/Button';
 
 import './Mobile.scss';
 
-export class Mobile extends React.Component<void, void> {
+export class Mobile extends React.Component<any, any> {
   render() {
     return (
       <div className='wrapper__mobile'>

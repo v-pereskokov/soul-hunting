@@ -7,7 +7,7 @@ import {Information} from '../../components/Information/Information';
 
 import './Error.scss'
 
-export class Error extends React.Component<void, void> {
+export class Error extends React.Component<any, any> {
   render() {
     return (
       <div className='wrapper__about'>

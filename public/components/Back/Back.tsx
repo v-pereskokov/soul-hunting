@@ -9,7 +9,7 @@ interface Props {
   path: string;
 }
 
-export class Back extends React.Component<Props, void> {
+export class Back extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
   }

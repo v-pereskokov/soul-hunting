@@ -25,7 +25,7 @@ interface Props {
   user?: string;
 }
 
-class SinglePlayer extends React.Component<Props, void> {
+class SinglePlayer extends React.Component<Props, any> {
   _users: Array<Array<string>>;
 
   constructor(props: Props) {

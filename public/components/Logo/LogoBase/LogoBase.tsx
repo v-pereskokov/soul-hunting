@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class LogoBase extends React.Component<void, void> {
+export class LogoBase extends React.Component<any, any> {
   render() {
     return (
       <div className='logo__wrapper animation-open'>

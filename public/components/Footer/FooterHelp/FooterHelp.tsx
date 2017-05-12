@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class FooterHelp extends React.Component<void, void> {
+export class FooterHelp extends React.Component<any, any> {
   render() {
     return (
       <div className='footer__wrapper__help'>

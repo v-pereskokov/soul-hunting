@@ -5,7 +5,7 @@ import {Background} from '../Background/Background';
 
 import './Information.scss';
 
-export class Information extends React.Component<void, void> {
+export class Information extends React.Component<any, any> {
   render() {
     return (
       <div className='wrapper__information'>
