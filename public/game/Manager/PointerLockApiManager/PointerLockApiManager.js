@@ -45,7 +45,7 @@ export default class PointerLockApiManager {
         controls.setEnabled = true;
         mouse.setEnabled = true;
 
-        this._blocker.style.display = 'none';
+        this._isFirst ? this._blocker.style.display = 'none' : null;
 
         startCallback(this._isFirst);
         this._isFirst = false;
