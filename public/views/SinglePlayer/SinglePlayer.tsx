@@ -13,13 +13,14 @@ import {Health} from './Health/Health';
 import {GameShadow} from './GameShadow/GameShadow';
 import {Weapon} from './Weapon/Weapon';
 import {EndGameTheme} from './EndGameTheme/EndGameTheme';
+import {Hurt} from './Hurt/Hurt';
 import {StartGameTheme} from './StartGameTheme/StartGameTheme';
+import {GameMenu} from './GameMenu/GameMenu';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
 
 import './SinglePlayer.scss';
-import {Hurt} from './Hurt/Hurt';
 
 const header = [{
   title: '#'
@@ -87,14 +88,10 @@ class SinglePlayer extends React.Component<Props, any> {
               </div>
 
               <Hurt />
-              <div className='menu_wrapper'>
-                <div className='menu'>
-
-                </div>
-              </div>
               <EndGameTheme />
               <StartGameTheme />
             </div>
+            <GameMenu />
           </div>
           :
           <div className='wrapper__mobile'>

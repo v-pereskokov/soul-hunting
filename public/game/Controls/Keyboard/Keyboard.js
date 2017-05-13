@@ -82,7 +82,7 @@ export default class Keyboard {
 
   _onKeyDown() {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       this._setKeyDown(event.keyCode);
     }
@@ -90,7 +90,7 @@ export default class Keyboard {
 
   _onKeyUp() {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       this._setKeyUp(event.keyCode);
     }
@@ -158,6 +158,7 @@ export default class Keyboard {
     document.removeEventListener('keyup', this._tabClose());
   }
 
+  // bag prevent -> not console -> not nothin'
   _tabOpen() {
     return event => {
       event.preventDefault();
