@@ -18,7 +18,7 @@ export default class SinglePlayer extends Game {
 
   start(stopMusic, functionGo) {
     this._gameScene = this._getScene(functionGo);
-    this._pointerLockManager = this._getPointerLock(stopMusic);
+    this._pointerLockManager = this._getPointerLock(stopMusic, functionGo);
 
     this._gameScene.setPointerLock(
       (camera) => this._pointerLockManager.getPointerLock(camera)
@@ -52,7 +52,7 @@ export default class SinglePlayer extends Game {
     );
   }
 
-  _getPointerLock(stopMusic) {
+  _getPointerLock(stopMusic, functionGo) {
     return new PointerLockApiManager({
         blocker: document.body.querySelector('.blocker'),
         instructions: document.body.querySelector('.instructions')
@@ -80,7 +80,8 @@ export default class SinglePlayer extends Game {
       () => {
         this._gameScene.stop();
         this._gameScene._animate();
-      }
+      },
+      functionGo
     );
   }
 
