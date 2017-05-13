@@ -109,7 +109,11 @@ export default class BaseScene {
       .querySelector('.wrapper__game')
       .appendChild(this._renderer.domElement);
 
-    window.addEventListener('resize', this._resize.bind(this), false);
+    window.addEventListener('resize', (event) => {
+      event.preventDefault();
+
+      this._resize();
+    });
   }
 
   _resize() {

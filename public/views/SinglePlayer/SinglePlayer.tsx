@@ -19,6 +19,7 @@ import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
 
 import './SinglePlayer.scss';
+import {Hurt} from './Hurt/Hurt';
 
 const header = [{
   title: '#'
@@ -50,7 +51,9 @@ class SinglePlayer extends React.Component<Props, any> {
   }
 
   componentWillMount() {
-    if (this._isAdmin()) {
+    if (!this.props.isAuthenticated || !this._isAdmin()) {
+      browserHistory.push('/');
+    } else {
       setTimeout(() => {
         musicService.stopBackground();
       }, 300);
@@ -64,39 +67,39 @@ class SinglePlayer extends React.Component<Props, any> {
   }
 
   render() {
-    const {isAuthenticated, device} = this.props;
+    const {device} = this.props;
 
     return (
       <div>
-        { !isAuthenticated || !this._isAdmin() ?
-          browserHistory.push('/')
-          :
+        { device ?
           <div>
-            { device ?
-              <div>
-                <Instructions />
-                <div className='wrapper__game'>
-                  <Time />
-                  <Aim />
-                  <Health />
-                  <GameShadow />
-                  <Weapon />
-                  <div className='gameTable__wrapper'>
-                    <div className='gameTable__wrapper__table'>
-                      <GameTable header={ header } content={ this._users }/>
-                    </div>
-                  </div>
-                  <div className='hurt'/>
-                  <EndGameTheme />
-                  <StartGameTheme />
+            <Instructions />
+            <div className='wrapper__game'>
+              <Time />
+              <Aim />
+              <Health />
+              <GameShadow />
+              <Weapon />
+              <div className='gameTable__wrapper'>
+                <div className='gameTable__wrapper__table'>
+                  <GameTable header={ header } content={ this._users }/>
                 </div>
               </div>
-              :
-              <div className='wrapper__mobile'>
-                <Background closed={ false }/>
-                <Mobile />
+
+              <Hurt />
+              <div className='menu_wrapper'>
+                <div className='menu'>
+
+                </div>
               </div>
-            }
+              <EndGameTheme />
+              <StartGameTheme />
+            </div>
+          </div>
+          :
+          <div className='wrapper__mobile'>
+            <Background closed={ false }/>
+            <Mobile />
           </div>
         }
       </div>

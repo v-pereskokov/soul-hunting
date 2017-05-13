@@ -21,9 +21,10 @@ export class Error extends React.Component<any, any> {
               <label>Page not found</label>
             </li>
           </ul>
-          <Link to='/'>
-            <Button text='Go to home' isActive={ true }/>
-          </Link>
+          <Button
+            text='Go to home'
+            isActive={ true }
+            pathTo='/'/>
         </Information>
       </div>
     );

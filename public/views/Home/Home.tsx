@@ -51,13 +51,13 @@ class Home extends React.Component<Props, void> {
 
     const buttonsRender: any = buttons.map((item, index) => {
       return (
-        <Link to={ item.url } key={ index }>
+        <div key={ index }>
           <Button
             text={ item.text }
             isActive={ item.isActive }
             mouseOver={ this.setActiveButton.bind(this, item.number) }
-          />
-        </Link>
+            pathTo={item.url}/>
+        </div>
       );
     });
 

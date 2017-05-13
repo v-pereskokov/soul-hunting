@@ -39,7 +39,7 @@ export default class PointerLockApiManager {
 
   _pointerLockChange(controls, mouse, startCallback, stopCallback) {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       if (this._checkPointerLockElement()) {
         controls.setEnabled = true;
@@ -60,14 +60,14 @@ export default class PointerLockApiManager {
 
   _pointerLockError() {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
       this._instructions.style.display = '';
     };
   }
 
   _instructionsEvent(element) {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       this._instructions.style.display = 'none';
 

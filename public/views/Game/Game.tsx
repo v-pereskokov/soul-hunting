@@ -33,42 +33,43 @@ class Game extends React.Component<Props, any> {
     this.setKeysButtons(2);
   }
 
+  componentWillMount() {
+    if (!this.props.isAuthenticated) {
+      browserHistory.push('/');
+    }
+  }
+
   render() {
-    const {isAuthenticated, device} = this.props;
+    const {device} = this.props;
 
     const buttons: Array<any> = this._setButtons();
 
     const buttonsRender: Array<any> = buttons.map((item, index) => {
       return (
-        <Link to={ item.url } key={ index }>
+        <div key={index}>
           <Button
             text={ item.text }
             isActive={ item.isActive }
             mouseOver={ this.setActiveButton.bind(this, item.number) }
-          />
-        </Link>
+            pathTo={item.url}/>
+        </div>
       );
     });
 
     return (
       <div>
-        { !isAuthenticated ?
-          browserHistory.push('/')
-          : <div>
-            { device ?
-              <div>
-                <Back path="/"/>
-                <div className='wrapper__form'>
-                  <div className='wrapper__main__form'>
-                    { buttonsRender }
-                  </div>
-                </div>
-              </div> :
-              <div className='wrapper__mobile'>
-                <Background closed={ false }/>
-                <Mobile />
+        { device ?
+          <div>
+            <Back path="/"/>
+            <div className='wrapper__form'>
+              <div className='wrapper__main__form'>
+                { buttonsRender }
               </div>
-            }
+            </div>
+          </div> :
+          <div className='wrapper__mobile'>
+            <Background closed={ false }/>
+            <Mobile />
           </div>
         }
       </div>

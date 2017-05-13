@@ -17,12 +17,11 @@ export class Back extends React.Component<Props, any> {
   render() {
     return (
       <div className='button__back'>
-        <Link to={ this.props.path }>
-          <Button
-            text='BACK'
-            isActive={ false }
-          />
-        </Link>
+        <Button
+          text='BACK'
+          isActive={ false }
+          pathTo={this.props.path}
+        />
       </div>
     );
   }
