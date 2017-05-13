@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {browserHistory} from 'react-router';
 
-import {Button} from '../../../../components/Button/Button';
+import {Button} from '../../Button/Button';
 
 export class GameMenuButtons extends React.Component<any, any> {
   render() {
