@@ -7,7 +7,7 @@ interface Props {
   content: Array<any>;
 }
 
-export class TableContent extends React.Component<Props, void> {
+export class TableContent extends React.Component<Props, any> {
   render() {
     const content = this.props.content.map((item, index) => {
       return (
