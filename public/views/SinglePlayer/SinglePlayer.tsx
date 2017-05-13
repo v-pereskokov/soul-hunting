@@ -76,18 +76,17 @@ class SinglePlayer extends React.Component<Props, any> {
               <div>
                 <Instructions />
                 <div className='wrapper__game'>
-                  <div>
-                    <Time />
-                    <Aim />
-                    <Health />
-                    <GameShadow />
-                    <Weapon />
-                  </div>
+                  <Time />
+                  <Aim />
+                  <Health />
+                  <GameShadow />
+                  <Weapon />
                   <div className='gameTable__wrapper'>
                     <div className='gameTable__wrapper__table'>
                       <GameTable header={ header } content={ this._users }/>
                     </div>
                   </div>
+                  <div className='hurt'/>
                   <EndGameTheme />
                   <StartGameTheme />
                 </div>
