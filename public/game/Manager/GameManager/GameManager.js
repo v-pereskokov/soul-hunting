@@ -9,7 +9,7 @@ export default class GameManager {
   _startGame(type, functionGo) {
     switch (type) {
       case SINGLEPLAYER:
-        return new SinglePlayer(type, functionGo);
+        return new SinglePlayer(functionGo);
       case MULTIPLAYER:
         return 'soon';
       default:

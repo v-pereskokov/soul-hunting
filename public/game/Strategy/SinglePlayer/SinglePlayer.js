@@ -1,17 +1,17 @@
 import Game from "../Game/Game";
-import GameScene from "../../GameScene/GameScene";
 import Mouse from "../../Controls/Mouse/Mouse";
 import Keyboard from "../../Controls/Keyboard/Keyboard";
 import PointerLockApiManager from "../../Manager/PointerLockApiManager/PointerLockApiManager";
 import musicService from '../../Tools/MusicService/MusicService';
 import countNumbers from '../../Tools/CountNumbers/CountNumbers';
+import SinglePlayerScene from "../../Scenes/SinglePlayerScene/SinglePlayerScene";
 
 export default class SinglePlayer extends Game {
   constructor(functionGo) {
     super();
 
-    this._mouse = new Mouse();
     this._keys = new Keyboard();
+    this._mouse = new Mouse();
 
     this.startPreview(functionGo);
   }
@@ -45,7 +45,7 @@ export default class SinglePlayer extends Game {
   }
 
   _getScene(functionGo) {
-    return new GameScene(
+    return new SinglePlayerScene(
       this._keys,
       this._mouse,
       functionGo

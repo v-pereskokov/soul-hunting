@@ -5,6 +5,6 @@ export default class Game {
   }
 
   start() {
-
+w
   }
 }
