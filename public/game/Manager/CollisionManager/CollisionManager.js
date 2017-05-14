@@ -1,6 +1,7 @@
 import Helper from "../../Tools/Helper/Helper";
 import { DAMAGE } from '../../Constants/Constants';
 import textureLoader from '../LoaderManager/LoaderManager';
+import gameAudioManager from '../GameAudioManager/GameAudioManager';
 
 export default class CollisionService {
   static collisionBulletWithWall(position) {
@@ -23,6 +24,12 @@ export default class CollisionService {
         bulletPosition.z < playerPosition.z + z &&
         bulletPosition.z > playerPosition.z - z &&
         bullet.owner !== player.object) {
+
+        const sound = gameAudioManager.getSound('hit');
+
+        if (sound) {
+          sound.play();
+        }
 
         bulletsService.remove(bulletNumber);
         scene.remove(bullet.object);
@@ -64,8 +71,26 @@ export default class CollisionService {
         playerStats.health = 0;
       }
 
+      let lowHealth = null;
+      if (playerStats.health < 30) {
+        lowHealth = 1 - playerStats.health / 100;
+
+        document.body.querySelector('.hurt').style.opacity = `${lowHealth}`;
+      }
+
+      document.body.querySelector('.hurt').style.opacity = `0.9`;
       document.body.querySelector('.wrapper__health-text').innerHTML = `${playerStats.health}  HP`;
       document.body.querySelector('.wrapper__health-red').style.width = `${playerStats.health}%`;
+
+      setTimeout(() => {
+        document.body.querySelector('.hurt').style.opacity = `${lowHealth ? lowHealth : 0}`;
+      }, 300);
+
+      const sound = gameAudioManager.getSound('pain');
+
+      if (sound) {
+        sound.play();
+      }
 
       bulletsService.remove(bulletIndex);
       scene.remove(bullet.object);

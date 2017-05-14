@@ -19,6 +19,7 @@ class MusicService {
 
   stopBackground() {
     this._background.stop();
+    this._background.stop();
   }
 
   _setKeysMute() {

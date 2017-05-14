@@ -1,4 +1,5 @@
 import {MOVESPEED, HIGHSPEED} from '../../Constants/Constants';
+import gameAudioManager from "../../Manager/GameAudioManager/GameAudioManager";
 
 export default class Keyboard {
   constructor() {
@@ -50,6 +51,23 @@ export default class Keyboard {
         camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       }
     }
+
+    const sound = gameAudioManager.getSound('moving');
+
+    if (sound) {
+      if (this.forward || this.backward ||
+        this.left || this.right) {
+        if (!sound.isPlaying) {
+          sound.play();
+        }
+      } else {
+        if (sound.isPlaying) {
+          setTimeout(() => {
+            sound.stop();
+          }, 100);
+        }
+      }
+    }
   }
 
   set setEnabled(enabled) {
@@ -82,7 +100,7 @@ export default class Keyboard {
 
   _onKeyDown() {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       this._setKeyDown(event.keyCode);
     }
@@ -90,7 +108,7 @@ export default class Keyboard {
 
   _onKeyUp() {
     return (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       this._setKeyUp(event.keyCode);
     }
@@ -116,6 +134,7 @@ export default class Keyboard {
         break;
       case 16:
         this._shift = true;
+        break;
 
       default:
         break;
@@ -123,7 +142,7 @@ export default class Keyboard {
   }
 
   _setKeyUp(code) {
-    switch(code) {
+    switch (code) {
       case 38: // up
       case 87: // w
         this._forward = false;
@@ -142,6 +161,7 @@ export default class Keyboard {
         break;
       case 16:
         this._shift = false;
+        break;
 
       default:
         break;
@@ -158,6 +178,7 @@ export default class Keyboard {
     document.removeEventListener('keyup', this._tabClose());
   }
 
+  // bag prevent -> not console -> not nothin'
   _tabOpen() {
     return event => {
       event.preventDefault();

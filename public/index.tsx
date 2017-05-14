@@ -14,7 +14,7 @@ import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
 import {Error} from './views/Error/Error';
 import Game from './views/Game/Game';
-import SinglePlayer from './views/Game/SinglePlayer/SinglePlayer';
+import SinglePlayer from './views/SinglePlayer/SinglePlayer';
 
 import musicService from './service/MusicService/MusicService';
 import {setCurrentUser} from './actions/User/User.actions';

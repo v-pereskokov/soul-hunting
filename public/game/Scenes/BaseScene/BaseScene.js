@@ -1,39 +1,32 @@
-import threeFactory from '../Three/ThreeFactory/ThreeFactory';
-import Camera from "../Three/Objects/Camera/Camera";
-import Floor from "../Three/Objects/Floor/Floor";
-import Ceil from "../Three/Objects/Ceil/Ceil";
-import Walls from "../Three/Objects/Walls/Walls";
-import Player from "../Three/Objects/Player/Player";
-import Bullet from "../Three/Objects/Bullet/Bullet";
-import PlayerService from '../Manager/PlayerManager/PlayerManager';
-import playersService from '../Manager/PlayersManager/PlayersManager';
-import BulletService from '../Manager/BulletManager/BulletManager';
-import bulletsService from '../Manager/BulletsManager/BulletsManager';
-import playerStats from '../Tools/PlayerStats/PlayerStats';
-import map from '../Tools/Map/Map';
-import Helper from "../Tools/Helper/Helper";
-import CollisionService from "../Manager/CollisionManager/CollisionManager";
-import AIService from '../Manager/AIManager/AIManager';
-import musicService from '../Tools/MusicService/MusicService';
+import threeFactory from '../../Three/ThreeFactory/ThreeFactory';
+import Camera from "../../Three/Objects/Camera/Camera";
+import Floor from "../../Three/Objects/Floor/Floor";
+import Ceil from "../../Three/Objects/Ceil/Ceil";
+import Walls from "../../Three/Objects/Walls/Walls";
+import Bullet from "../../Three/Objects/Bullet/Bullet";
+import BulletService from '../../Manager/BulletManager/BulletManager';
+import bulletsService from '../../Manager/BulletsManager/BulletsManager';
+import map from '../../Tools/Map/Map';
+import Helper from "../../Tools/Helper/Helper";
+import CollisionService from "../../Manager/CollisionManager/CollisionManager";
+import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import {
   WIDTH,
   HEIGHT,
   UNITSIZE,
   WALLHEIGHT,
-  MOVESPEEDAI,
-  BULLETMOVESPEED
-} from '../Constants/Constants';
+} from '../../Constants/Constants';
 
-export default class GameScene {
+export default class BaseScene {
   constructor(keys, mouse, functionGo) {
     this._pointerLock = null;
+
     this._keys = keys;
     this._mouse = mouse;
 
-    this._game = false;
     this._isAnimate = true;
 
-    this._goToGameUrl = functionGo;
+    this._goToFromGame = functionGo;
 
     this._setDesign();
   }
@@ -47,14 +40,6 @@ export default class GameScene {
     this._animate();
   }
 
-  set game(value) {
-    this._game = value;
-  }
-
-  get game() {
-    return this._game;
-  }
-
   resume() {
     this._isAnimate = true;
   }
@@ -63,15 +48,19 @@ export default class GameScene {
     this._isAnimate = false;
   }
 
-  _init() {
+  _initScenePreferences() {
     this._setUpClock();
     this._setUpScene();
     this._setUpFog();
     this._setUpCamera();
     this._setUpPointerLock();
+    this._setUpAudio();
+  }
+
+  _init() {
+    this._initScenePreferences();
 
     this._makeScene();
-    this._setUpAI();
 
     this._setUpRender();
   }
@@ -102,6 +91,13 @@ export default class GameScene {
     }).getCamera;
   }
 
+  _setUpAudio() {
+    this._listenerAudio = threeFactory.audioListener();
+    this._camera.add(this._listenerAudio);
+
+    gameAudioManager.instance(this._listenerAudio);
+  }
+
   _setUpPointerLock() {
     this._mouse.setEvents(this._createBullet.bind(this));
 
@@ -122,7 +118,11 @@ export default class GameScene {
       .querySelector('.wrapper__game')
       .appendChild(this._renderer.domElement);
 
-    window.addEventListener('resize', this._resize.bind(this), false);
+    window.addEventListener('resize', (event) => {
+      event.preventDefault();
+
+      this._resize();
+    });
   }
 
   _resize() {
@@ -178,30 +178,6 @@ export default class GameScene {
     this._scene.add(directionalLight);
   }
 
-  _setUpAI() {
-    for (let i = 0; i < 6; i++) {
-      this._addAI();
-    }
-  }
-
-  _addAI() {
-    const position = Helper.getMapSector(this._camera.position);
-
-    let [x, z] = Helper.getRandomPosition();
-    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-      [x, z] = Helper.getRandomPosition();
-    }
-
-    x = Math.floor(x - map.width / 2) * UNITSIZE;
-    z = Math.floor(z - map.width / 2) * UNITSIZE;
-
-    const playerObject = new Player().object;
-    playerObject.position.set(x, UNITSIZE * 0.15, z);
-
-    playersService.add(new PlayerService(playerObject, 100));
-    this._scene.add(playerObject);
-  }
-
   _updateBullets(delta) {
     for (let i in bulletsService.all) {
       const bullet = bulletsService.getBullet(i);
@@ -210,37 +186,6 @@ export default class GameScene {
       if (CollisionService.collisionBulletWithWall(position)) {
         bulletsService.remove(i);
         this._scene.remove(bullet.object);
-
-        continue;
-      }
-
-      // Collide with AI
-      let hit = CollisionService.collisionBulletWithAi(
-        this._scene,
-        playersService,
-        bulletsService,
-        bullet,
-        position,
-        i
-      );
-
-      // Bullet hits player
-      CollisionService.collisionBulletWithPlayer(
-        this._scene,
-        playerStats,
-        bulletsService,
-        position,
-        this._camera,
-        bullet,
-        i
-      );
-
-      if (!hit) {
-        const speed = delta * BULLETMOVESPEED;
-        const direction = bullet.object.ray.direction;
-
-        bullet.object.translateX(speed * direction.x);
-        bullet.object.translateZ(speed * direction.z);
       }
     }
   }
@@ -252,29 +197,6 @@ export default class GameScene {
     // Update bullets.
     this._updateBullets(delta);
 
-    if (this._game) {
-      for (let i in playersService.all) {
-        AIService.updateAI(
-          this._scene,
-          playersService,
-          playerStats,
-          delta * MOVESPEEDAI,
-          i,
-          this._addAI.bind(this)
-        );
-
-        const player = playersService.getPlayer(i);
-        const sector = Helper.getMapSector(player.object.position);
-
-        AIService.shoot(
-          this._camera,
-          player,
-          sector,
-          this._createBullet.bind(this)
-        );
-      }
-    }
-
     this._renderer.render(this._scene, this._camera);
 
     // Death
@@ -282,19 +204,6 @@ export default class GameScene {
   }
 
   _death() {
-    if (playerStats.health <= 0) {
-      this.stop();
-      this._keys._deactivateTable();
-
-      musicService.startEndGame();
-      this._openEndGame();
-
-      setTimeout(() => {
-        this._closeEndGame();
-        this._goToGameUrl();
-        location.reload();
-      }, 4000);
-    }
   }
 
   _createBullet(object) {
@@ -306,26 +215,6 @@ export default class GameScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
-  }
-
-  _openEndGame() {
-    this._end.style.opacity = '0.7';
-
-    this._type.innerHTML = 'Singleplayer';
-    this._gameOver.innerHTML = 'Game Over';
-
-    this._table.style.display = 'block';
-    this._endTitles.style.display = 'block';
-  }
-
-  _closeEndGame() {
-    this._end.style.opacity = '0';
-
-    this._type.innerHTML = '';
-    this._gameOver.innerHTML = '';
-
-    this._table.style.display = 'none';
-    this._endTitles.style.display = 'none';
   }
 
   _setDesign() {

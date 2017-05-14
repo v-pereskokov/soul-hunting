@@ -22,9 +22,10 @@ export class Mobile extends React.Component<any, any> {
               <label> Please, sign in by computer!</label>
             </li>
           </ul>
-          <Link to='/'>
-            <Button text='Go to home' isActive={ true }/>
-          </Link>
+          <Button
+            text='Go to home'
+            isActive={ true }
+            pathTo='/'/>
         </Information>
       </div>
     );

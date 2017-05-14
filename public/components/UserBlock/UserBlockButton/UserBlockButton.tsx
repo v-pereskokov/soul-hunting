@@ -5,7 +5,7 @@ interface Props {
   click: () => any;
 }
 
-export class UserBlockButton extends React.Component<Props, void> {
+export class UserBlockButton extends React.Component<Props, any> {
   render() {
     return (
       <div className='userblock__button'>
