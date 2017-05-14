@@ -18,8 +18,6 @@ export default class GameManager {
   }
 }
 
-// fix -6 of undef
 // fix music
 // design game
-// validation
 // keys (console)
