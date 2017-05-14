@@ -25,12 +25,44 @@ module.exports = {
       {
         enforce: 'pre', test: /\.js$/,
         loader: 'source-map-loader'
+      },
+
+      // {
+      //   test: /\.scss$/,
+      //   use: ['style-loader', 'css-loader', 'sass-loader']
+      // },
+
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader',/*?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]*/
+          'resolve-url-loader',
+          'sass-loader'
+        ]
+      },
+
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url-loader?limit=10000!img-loader?progressive=true'
+      },
+
+      {
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
       }
     ]
   },
 
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      allChunks: true
+    })
+  ],
+
+  devServer: {
+    contentBase: './public/',
+    publicPath: '/built/'
   }
 };

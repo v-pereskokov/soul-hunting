@@ -1,5 +1,8 @@
 {
+  "version" : "2.2.2",
+
   "compilerOptions": {
+    "allowJs": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -7,6 +10,10 @@
     "target": "es5",
     "jsx": "react"
   },
+
+  "typeRoots": [
+    "./node_modules/@types"
+  ],
 
   "compileOnSave": false,
 

@@ -1,0 +1,433 @@
+.wrapper__game, wrapper__game:-webkit-full-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 22;
+  display: none;
+}
+
+canvas {
+  z-index: 21;
+  position: fixed;
+  left: 0;
+}
+
+.game__background {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(transparent 50%, black);
+  position: absolute;
+  z-index: 40;
+}
+
+.wrapper__health {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  z-index: 43;
+  color: #000 !important;
+  background-color: rgba(176, 176, 176, 0.95) !important;
+  width: 150px;
+
+  &-red {
+    color: #fff !important;
+    background-color: #f40110 !important;
+    height: 24px;
+    width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: 5px;
+    font-family: "Keep Calm";
+    color: #e9e9e9;
+  }
+}
+
+.wrapper__patrons {
+  position: absolute;
+  right: 140px;
+  z-index: 43;
+  width: 150px;
+
+  &-inf {
+    transform: scale(0.2, 0.2);
+    margin-top: 270%;
+    position: absolute;
+    z-index: 45;
+  }
+
+  &-red {
+    color: #fff !important;
+    background-color: #f40110 !important;
+    height: 24px;
+    width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: 5px;
+    font-family: "Keep Calm";
+    color: #e9e9e9;
+  }
+}
+
+.parent__inf {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 45;
+
+  &__wrapper {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: -90px;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    &-img {
+      transform: scale(0.2, 0.2);
+      opacity: 0.9;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: none;
+    }
+  }
+}
+
+.blocker {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 55;
+}
+
+.instructions {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  color: #ffffff;
+  text-align: center;
+}
+
+.weapon__wrapper {
+  position: absolute;
+  bottom: 0;
+  z-index: 39;
+  width: 100%;
+  height: 40%;
+
+  &-img {
+    position: relative;
+    left: 12%;
+  }
+}
+
+.sight {
+  position: fixed;
+  bottom: calc( 50vh - 45px );
+  width: 40px;
+  height: 40px;
+  z-index: 999;
+  left: calc( 50vw - 15px );
+
+  &__top {
+    width: 2px;
+    background-color: white;
+    height: 15px;
+    position: absolute;
+    left: 19px;
+    transition-property: top;
+    transition-duration: 0.21s;
+  }
+
+  &__right {
+    width: 15px;
+    background-color: white;
+    height: 2px;
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    transition-property: left;
+    transition-duration: 0.21s;
+  }
+
+  &__bottom {
+    width: 2px;
+    background-color: white;
+    height: 15px;
+    position: absolute;
+    left: 19px;
+    top: 25px;
+    transition-property: top;
+    transition-duration: 0.21s;
+  }
+
+  &__left {
+    width: 15px;
+    background-color: white;
+    height: 2px;
+    position: absolute;
+    top: 19px;
+    transition-property: left;
+    transition-duration: 0.21s;
+  }
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+
+  &-text {
+    position: absolute;
+    z-index: 100;
+    bottom: 20px;
+    right: 0;
+    font-size: 20pt;
+    font-family: "Keep Calm";
+    color: white;
+  }
+}
+
+.end {
+  position: absolute;
+  z-index: 990;
+  width: 100%;
+  height: 100%;
+  background: grey;
+  opacity: 0.9;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+}
+
+.hurt {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(transparent 50%, darkred);
+  position: absolute;
+  z-index: 40;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}
+
+.count__parent {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+
+  &-child-text1 {
+    font-family: "Keep Calm";
+    font-size: 17pt;
+    color: white;
+    position: absolute;
+    top: 35%;
+    right: 0;
+    bottom: 0;
+    left: 1%;
+    margin: auto;
+  }
+
+  &-child-text2 {
+    font-family: "Keep Calm";
+    font-size: 23pt;
+    color: #E5E500;
+    position: absolute;
+    top: 45%;
+    right: 0;
+    bottom: 0;
+    left: 1%;
+    margin: auto;
+  }
+}
+
+.counter {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.endGameTheme__wrapper {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  &-parent {
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+  }
+
+  &-type {
+    font-family: "Keep Calm";
+    font-size: 14pt;
+    color: white;
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    left: 1%;
+    margin: auto;
+  }
+
+  &-gameOver {
+    font-family: "Keep Calm";
+    font-size: 28pt;
+    color: #34dc7e;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.menu__wrapper__parent {
+  position: absolute;
+  z-index: 997;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  opacity: 0.8;
+  display: none;
+
+
+  &-center {
+    z-index: 998;
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.menu__wrapper__parent-buttons {
+  position: absolute;
+  z-index: 998;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  display: none;
+
+
+  &-center {
+    z-index: 998;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.menu__wrapper__parent-topic {
+  position: absolute;
+  z-index: 997;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  display: none;
+
+
+  &-center {
+    z-index: 998;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.game__menu-buttons {
+  position: relative;
+  top: 40%;
+}
+
+.game__menu-topic {
+  position: relative;
+  top: 5%;
+  color: white;
+  font-family: "Keep Calm";
+  font-size: 24pt;
+
+  &-br {
+    position: relative;
+    top: 8%;
+    width: 400px;
+    height: 2px;
+    background: white;
+    margin: auto;
+  }
+}
+
+.menu {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  background: black;
+}
+
+.menu__wrapper {
+  position: absolute;
+  z-index: 993;
+  width: 100%;
+  height: 100%;
+  background: black;
+  top: 0;
+  opacity: 0.6;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+  display: none;
+}

@@ -1,0 +1,116 @@
+@media screen {
+  .wrapper__information {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    top: 0;
+  }
+
+  .information {
+    &__wrapper-form {
+      position: relative;
+      top: 50px;
+      margin: 0 auto;
+      max-width: 400px;
+      z-index: 1;
+    }
+
+    &__form {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__form-header {
+      background: #1b1e24;
+      width: 100%;
+      height: 60px;
+      margin: 0 auto;
+      border-radius: 10px 10px 0 0;
+      padding-top: 15px;
+
+      & span {
+        color: white;
+        font-family: 'Astakhov Skin';
+        font-size: 30pt;
+        padding-right: 10px;
+      }
+    }
+
+    &__form-content {
+      position: relative;
+      max-width: 400px;
+      border-radius: 0 0 10px 10px;
+      padding: 20px;
+      font-family: 'Keep Calm';
+      background: white;
+
+      & ul {
+        margin-top: 30px;
+      }
+
+      & hr {
+        border-top: 1px dotted #000;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .wrapper__information {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .information {
+    &__wrapper-form {
+      position: relative;
+      top: 600px;
+      margin: 0 auto;
+      max-width: 400px;
+      z-index: 1;
+      transform: scale(2, 2);
+    }
+
+    &__form {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__form-header {
+      background: #1b1e24;
+      width: 100%;
+      height: 60px;
+      margin: 0 auto;
+      border-radius: 10px 10px 0 0;
+      padding-top: 15px;
+
+      & span {
+        color: white;
+        font-family: 'Astakhov Skin';
+        font-size: 30pt;
+        padding-right: 10px;
+      }
+    }
+
+    &__form-content {
+      position: relative;
+      max-width: 400px;
+      border-radius: 0 0 10px 10px;
+      padding: 20px;
+      font-family: 'Keep Calm';
+      background: white;
+
+      & ul {
+        margin-top: 30px;
+      }
+
+      & hr {
+        border-top: 1px dotted #000;
+      }
+    }
+  }
+}
+

@@ -4,24 +4,48 @@
   "description": "Soul-hunting",
   "main": "bundle.js",
   "scripts": {
-    "test": "npm start"
+    "start": "node server.js",
+    "test": "npm start",
+    "webpack": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "author": "Ananymous",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^15.0.21",
-    "@types/react-dom": "^0.14.23",
+    "@types/isomorphic-fetch": "0.0.34",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-form": "^6.6.3",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/history": "^4.5.0",
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-redux": "^4.4.38",
+    "@types/react-router": "^3.0.0",
+    "@types/react-router-redux": "^5.0.1",
+    "@types/redux-form": "^6.6.1",
     "awesome-typescript-loader": "^3.1.2",
+    "body-parser": "^1.17.1",
     "css-loader": "^0.28.0",
+    "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "img-loader": "^2.0.0",
+    "node-sass": "^4.5.2",
+    "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
     "source-map-loader": "^0.2.1",
+    "style-loader": "^0.16.1",
+    "tslint": "^5.2.0",
     "typescript": "^2.2.2",
-    "webpack": "^2.3.3"
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.4.5"
   }
 }
