@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 import {Button} from '../../components/Button/Button';
 import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actions';
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
-import './Home.scss';
+import * as style from './Home.scss';
 
 const auth = localStorage.token;
 
@@ -64,12 +64,12 @@ class Home extends React.Component<Props, void> {
     return (
       <div
         className={ isAuthenticated && device ?
-          'wrapper__form1' :
-          'wrapper__form' }>
+          style.wrapper__form1 :
+          style.wrapper__form }>
         <div className={ isAuthenticated && device ?
-          'wrapper__main__form1' :
-          'wrapper__main__form' }>
-          <div className='main__form'>
+          style.wrapper__main__form1 :
+          style.wrapper__main__form }>
+          <div className={style.main__form}>
             { buttonsRender }
           </div>
         </div>
