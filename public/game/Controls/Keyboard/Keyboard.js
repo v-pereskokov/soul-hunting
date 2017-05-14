@@ -56,11 +56,16 @@ export default class Keyboard {
 
     if (sound) {
       if (this.forward || this.backward ||
-        this.left || this.right ||
-        !sound.isPlaying) {
-        sound.play();
+        this.left || this.right) {
+        if (!sound.isPlaying) {
+          sound.play();
+        }
       } else {
-        sound.stop();
+        if (sound.isPlaying) {
+          setTimeout(() => {
+            sound.stop();
+          }, 100);
+        }
       }
     }
   }

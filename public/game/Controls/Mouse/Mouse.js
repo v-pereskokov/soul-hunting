@@ -1,4 +1,5 @@
 import AimManager from "../../Manager/AimManager/AimManager";
+import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 
 export default class Mouse {
   constructor() {
@@ -16,7 +17,7 @@ export default class Mouse {
       event.preventDefault();
     });
 
-    document.addEventListener('click', this.onClickMouse(onClickCallback));
+    document.addEventListener('mousedown', this.onMouseDown(onClickCallback));
   }
 
   set setEnabled(enabled) {
@@ -40,14 +41,26 @@ export default class Mouse {
     };
   }
 
-  onClickMouse(callback) {
+  onMouseDown(callback) {
     return event => {
       event.preventDefault();
-      if (this._isGame && this._enabled && event.which === 1) {
+
+      const sound = gameAudioManager.getSound('shoot');
+
+      if (this._enabled && event.which === 1) {
         this._aim.start();
+
+        if (sound) {
+          sound.play();
+        }
+
+        setTimeout(() => {
+          if (sound.isPlaying) {
+            sound.stop();
+          }
+        }, 300);
+
         callback();
-      } else {
-        this._isGame = true;
       }
     }
   }

@@ -28,8 +28,6 @@ class GameAudioManager {
     this._loader.load(path, buffer => {
       let key = path.substr(26, path.length - 30);
 
-      console.log(key);
-
       this._sounds[key] = threeFactory.audio(this._listener);
       this._sounds[key].setBuffer(buffer);
       this._sounds[key].started = false;
