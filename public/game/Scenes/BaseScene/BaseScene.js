@@ -9,6 +9,7 @@ import bulletsService from '../../Manager/BulletsManager/BulletsManager';
 import map from '../../Tools/Map/Map';
 import Helper from "../../Tools/Helper/Helper";
 import CollisionService from "../../Manager/CollisionManager/CollisionManager";
+import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import {
   WIDTH,
   HEIGHT,
@@ -53,6 +54,7 @@ export default class BaseScene {
     this._setUpFog();
     this._setUpCamera();
     this._setUpPointerLock();
+    this._setUpAudio();
   }
 
   _init() {
@@ -87,6 +89,13 @@ export default class BaseScene {
     this._camera = new Camera({
       getHeight: UNITSIZE * 0.2
     }).getCamera;
+  }
+
+  _setUpAudio() {
+    this._listenerAudio = threeFactory.audioListener();
+    this._camera.add(this._listenerAudio);
+
+    gameAudioManager.instance(this._listenerAudio);
   }
 
   _setUpPointerLock() {

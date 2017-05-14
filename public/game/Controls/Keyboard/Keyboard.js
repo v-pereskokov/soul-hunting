@@ -1,4 +1,5 @@
 import {MOVESPEED, HIGHSPEED} from '../../Constants/Constants';
+import gameAudioManager from "../../Manager/GameAudioManager/GameAudioManager";
 
 export default class Keyboard {
   constructor() {
@@ -48,6 +49,18 @@ export default class Keyboard {
       camera.translateX(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       if (checkCollision(camera.position)) {
         camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
+      }
+    }
+
+    const sound = gameAudioManager.getSound('moving');
+
+    if (sound) {
+      if (this.forward || this.backward ||
+        this.left || this.right ||
+        !sound.isPlaying) {
+        sound.play();
+      } else {
+        sound.stop();
       }
     }
   }
@@ -116,6 +129,7 @@ export default class Keyboard {
         break;
       case 16:
         this._shift = true;
+        break;
 
       default:
         break;
@@ -123,7 +137,7 @@ export default class Keyboard {
   }
 
   _setKeyUp(code) {
-    switch(code) {
+    switch (code) {
       case 38: // up
       case 87: // w
         this._forward = false;
@@ -142,6 +156,7 @@ export default class Keyboard {
         break;
       case 16:
         this._shift = false;
+        break;
 
       default:
         break;

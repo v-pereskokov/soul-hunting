@@ -20,8 +20,6 @@ export default class GameManager {
 
 // fix -6 of undef
 // fix music
-// esc
 // design game
 // validation
-// service worker
 // keys (console)

@@ -141,6 +141,18 @@ class ThreeFactory {
   textureLoader() {
     return new this._three.TextureLoader();
   }
+
+  audioLoader() {
+    return new this._three.AudioLoader();
+  }
+
+  audio(listener) {
+    return new this._three.Audio(listener);
+  }
+
+  audioListener() {
+    return new this._three.AudioListener();
+  }
 }
 
 const threeFactory = new ThreeFactory();

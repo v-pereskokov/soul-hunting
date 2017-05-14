@@ -39,8 +39,6 @@ export default class SinglePlayerScene extends BaseScene {
     this._setUpAI();
 
     this._setUpRender();
-
-    console.log(this._renderer);
   }
 
   _setUpAI() {
