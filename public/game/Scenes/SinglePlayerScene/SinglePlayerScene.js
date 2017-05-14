@@ -33,6 +33,7 @@ export default class SinglePlayerScene extends BaseScene {
   }
 
   _init() {
+    musicService.stopBackground();
     this._initScenePreferences();
 
     this._makeScene();
@@ -129,12 +130,12 @@ export default class SinglePlayerScene extends BaseScene {
         const player = playersService.getPlayer(i);
         const sector = Helper.getMapSector(player.object.position);
 
-        // AIService.shoot(
-        //   this._camera,
-        //   player,
-        //   sector,
-        //   this._createBullet.bind(this)
-        // );
+        AIService.shoot(
+          this._camera,
+          player,
+          sector,
+          this._createBullet.bind(this)
+        );
       }
     }
 

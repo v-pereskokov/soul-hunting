@@ -7,8 +7,6 @@ export default class Mouse {
     this._y = 0;
 
     this._enabled = false;
-    this._isGame = false;
-
     this._aim = new AimManager();
   }
 
@@ -22,10 +20,6 @@ export default class Mouse {
 
   set setEnabled(enabled) {
     this._enabled = enabled;
-  }
-
-  get getEnabled() {
-    return this._enabled;
   }
 
   onMouseMove(camera) {

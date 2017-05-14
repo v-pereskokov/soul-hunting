@@ -32,7 +32,9 @@ export default class SinglePlayer extends Game {
     setTimeout(() => {
       this._togglePreloader(false);
       this._setInstructions();
-      this.start(() => musicService.stopBackground(), functionGo);
+      this.start(() => {
+        musicService.stopBackground();
+      }, functionGo);
     }, 3000);
   }
 
@@ -73,6 +75,7 @@ export default class SinglePlayer extends Game {
 
           this._beforeStart();
         } else {
+          stopMusic();
           this._gameScene.resume();
           this._gameScene._animate();
         }
