@@ -12,7 +12,7 @@ env:
 before_script:
   - npm install
 script:
-  - npm run webpack-prod
+  - npm run webpack
 after_success:
   - mkdir archive
   - mv * archive
