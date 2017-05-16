@@ -14,6 +14,8 @@ class Transport {
     this._baseUrl = '';
 
     Transport.__instance = this;
+
+    this.setUpHeaders();
   }
 
   get BaseUrl(): string {
@@ -24,53 +26,43 @@ class Transport {
     this._baseUrl = url;
   }
 
-  get Headers(): any {
-    return this._headers;
-  }
-
-  set Headers(value: any) {
-    if (!(value && (`${value}` === '[object Object]'))) {
-      throw new TypeError('Headers must be a plain object');
-    }
-
-    const valid = Object.keys(value).every(key => typeof value[key] === 'string');
-
-    if (!valid) {
-      throw new TypeError('Headers must be a plain object');
-    }
-
-    this._headers = value;
-  }
-
   public get(uri: string): any {
-    return this._senderGet(uri, 'GET');
+    return this._sender(uri, 'GET');
   }
 
   public post(uri: string, data: any = {}): any {
-    return this._senderPost(uri, 'POST', data);
+    return this._sender(uri, 'POST', data);
   }
 
-  private _senderPost(uri: string, _method: string, data: any,
-              _headers: any = { 'Content-Type': 'application/json; charset=utf-8' },
-              coockies: string = 'include'): any {
-    return fetch(this._baseUrl + uri, {
-      method: _method,
-      headers: _headers,
-      mode: 'cors',
-      body: data,
-      credentials: coockies
-    });
+  private _sender(uri: string, type?: string, data?: any): any {
+    const options = {
+      method: type,
+      body: data
+    };
+
+    return fetch(this._baseUrl + uri, this.setRequest(options));
   }
 
-  private _senderGet(uri: string, _method: string,
-             _headers: any = { 'Content-Type': 'application/json; charset=utf-8' },
-             coockies: string = 'include'): any {
-    return fetch(this._baseUrl + uri, {
-      method: _method,
-      headers: _headers,
+  private setRequest(options?: any): any {
+    return {
+      method: options.method,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: options.body,
       mode: 'cors',
-      credentials: coockies
-    });
+      credentials: 'include',
+      cache: 'default'
+    };
+  }
+
+  private getFetchRequest(options?: any): any {
+    return this.setRequest(options);
+  }
+
+  private setUpHeaders() {
+    this._headers = new Headers();
+    this._headers.append('Content-Type', 'application/json');
   }
 }
 
