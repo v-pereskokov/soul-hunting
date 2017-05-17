@@ -18,4 +18,6 @@ after_success:
   - mv * archive
   - tar -czf package.tgz archive
   - export SSHPASS=$DEPLOY_PASS
-  - ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+  - echo $DEPLOY_USER@$DEPLOY_HOST
+  - cat $DEPLOY_PATH/deploy.sh
+#  - ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
