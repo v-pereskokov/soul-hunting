@@ -5,13 +5,13 @@ node_js:
 branches:
   only:
   - master
+addons:
+  apt:
+    packages:
+      - sshpass
 before_script:
   - npm install
 script:
   - npm run webpack
 after_success:
-  - mkdir archive
-  - mv * archive
-  - tar -czf package.tgz archive
-  - ssh -o "StrictHostKeyChecking no" $DEPLOY_USER@$DEPLOY_HOST
-  - cat $DEPLOY_PATH/deploy.sh
+  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "echo hello"
