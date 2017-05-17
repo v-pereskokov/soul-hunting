@@ -1,10 +1,10 @@
 #!/bin/bash
 
-rm -rf ./public/built
+rm -rf ./public
 
 tar -xzf package.tgz
 rm package.tgz
 
-mv -f archive/public/built ./public/
+mv -f archive/public ./
 
 rm -rf archive
