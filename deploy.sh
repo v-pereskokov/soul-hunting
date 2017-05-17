@@ -8,4 +8,4 @@ cd test
 
 # Extract the package
 tar -xzf package.tgz
-rm package.tgz
+rm package.tgz 
