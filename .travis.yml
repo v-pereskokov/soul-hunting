@@ -14,4 +14,8 @@ before_script:
 script:
   - npm run webpack
 after_success:
-  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && ./deploy.sh"
+  - mkdir archive
+  - mv * archive
+  - tar -czf package.tgz archive
+  - sshpass scp package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
