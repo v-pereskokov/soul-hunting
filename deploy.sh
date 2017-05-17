@@ -1,6 +1,4 @@
 #!/bin/bash
 
-touch top.txt
-cat hello > top.txt
-# Extract the package
-mkdir test
+git pull origin master
+npm run webpack
