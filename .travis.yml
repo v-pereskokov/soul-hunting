@@ -14,4 +14,4 @@ before_script:
 script:
   - npm run webpack
 after_success:
-  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "cd /var/www/www-root/data/www/soul-hunting.ru && mkdir test"
+  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && mkdir test"
