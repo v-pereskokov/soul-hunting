@@ -13,5 +13,5 @@ after_success:
   - mkdir archive
   - mv * archive
   - tar -czf package.tgz archive
-  - yes | ssh $DEPLOY_USER@$DEPLOY_HOST
+  - ssh -o "StrictHostKeyChecking no" $DEPLOY_USER@$DEPLOY_HOST
   - cat $DEPLOY_PATH/deploy.sh
