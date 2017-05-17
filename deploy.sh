@@ -4,7 +4,7 @@
 tar -xzf package.tgz
 rm package.tgz
 
-touch archive/public/built/top.txt
-mv archive/public/built ./public/
+touch test/archive/public/built/top.txt
+mv test/archive/public/built ./public/
 
-rm -rf archive
+rm -rf test
