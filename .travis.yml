@@ -18,4 +18,4 @@ after_success:
   - mv * archive
   - tar -czf package.tgz archive
   - scp -o StrictHostKeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST cd $DEPLOY_PATH && ./deploy.sh
+  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && ./deploy.sh"
