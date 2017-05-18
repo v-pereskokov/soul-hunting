@@ -7,7 +7,7 @@ import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actio
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
-import * as style from './Home.scss';
+import style from './Home.scss';
 
 const auth = localStorage.token;
 
@@ -69,7 +69,7 @@ class Home extends React.Component<Props, void> {
         <div className={ isAuthenticated && device ?
           style.wrapper__main__form1 :
           style.wrapper__main__form }>
-          <div className={style.main__form}>
+          <div className="main__form">
             { buttonsRender }
           </div>
         </div>

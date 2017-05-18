@@ -24,23 +24,16 @@ module.exports = {
       },
 
       {
-        enforce: 'pre', test: /\.js$/,
+        enforce: 'pre',
+        test: /\.js$/,
         loader: 'source-map-loader'
-      },
-
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?modules,localIdentName="[name]-[local]-[hash:base64:6]"'
-        }),
       },
 
       {
         test: /\.scss$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'css-loader?modules&localIdentName=[hash:base64:5]',
           'resolve-url-loader',
           'sass-loader'
         ]
