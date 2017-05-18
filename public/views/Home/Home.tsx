@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import * as CSSModules from 'react-css-modules';
 
 import {Button} from '../../components/Button/Button';
 import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actions';
@@ -9,6 +8,7 @@ import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import style from './Home.scss';
+import CSSModules from 'react-css-modules';
 
 const auth = localStorage.token;
 
@@ -24,7 +24,7 @@ const urls = auth ? [
 // Error test:
 // click enter -> esc -> don't work
 
-interface Props extends CSSModules.InjectedCSSModuleProps {
+interface Props {
   isAuthenticated: boolean;
   device: boolean;
   setActive: (button1: any, button2: any, button3: any, current: any) => void;
@@ -35,6 +35,7 @@ interface Props extends CSSModules.InjectedCSSModuleProps {
   checkAuth: () => void;
 }
 
+@CSSModules(style)
 class Home extends React.Component<Props, void> {
   constructor() {
     super();
@@ -211,5 +212,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-const component: any = CSSModules(Home, style);
-export default connect(mapStateToProps, mapDispatchToProps)(component);
+export default connect(mapStateToProps, mapDispatchToProps)(Home as any);
