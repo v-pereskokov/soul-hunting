@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import * as CSSModules from 'react-css-modules';
 
 import {Button} from '../../components/Button/Button';
 import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actions';
@@ -23,7 +24,7 @@ const urls = auth ? [
 // Error test:
 // click enter -> esc -> don't work
 
-interface Props {
+interface Props extends CSSModules.InjectedCSSModuleProps {
   isAuthenticated: boolean;
   device: boolean;
   setActive: (button1: any, button2: any, button3: any, current: any) => void;
@@ -46,8 +47,10 @@ class Home extends React.Component<Props, void> {
   }
 
   render() {
-    const {isAuthenticated, device}: any = this.props;
+    const {isAuthenticated, device} = this.props;
     const buttons: Array<any> = this._setButtons(isAuthenticated);
+
+    console.log(CSSModules);
 
     const buttonsRender: any = buttons.map((item, index) => {
       return (
@@ -64,12 +67,12 @@ class Home extends React.Component<Props, void> {
     return (
       <div
         className={ isAuthenticated && device ?
-          style.wrapper__form1 :
-          style.wrapper__form }>
+          'wrapper__form1' :
+          'wrapper__form' }>
         <div className={ isAuthenticated && device ?
-          style.wrapper__main__form1 :
-          style.wrapper__main__form }>
-          <div className="main__form">
+          'wrapper__main__form1' :
+          'wrapper__main__form' }>
+          <div className='main__form'>
             { buttonsRender }
           </div>
         </div>
@@ -208,4 +211,5 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home as any);
+const component: any = CSSModules(Home, style);
+export default connect(mapStateToProps, mapDispatchToProps)(component);

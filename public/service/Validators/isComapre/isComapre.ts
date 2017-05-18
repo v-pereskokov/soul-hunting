@@ -1,4 +1,4 @@
-const isCompare = ((lhs, rhs) => {
+const isCompare = ((lhs: any, rhs: any) => {
   return lhs === rhs;
 });
 
