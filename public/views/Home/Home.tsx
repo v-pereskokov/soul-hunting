@@ -7,8 +7,7 @@ import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actio
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
-import style from './Home.scss';
-import CSSModules from 'react-css-modules';
+import './Home.scss';
 
 const auth = localStorage.token;
 
@@ -35,7 +34,6 @@ interface Props {
   checkAuth: () => void;
 }
 
-@CSSModules(style)
 class Home extends React.Component<Props, void> {
   constructor() {
     super();
@@ -50,8 +48,6 @@ class Home extends React.Component<Props, void> {
   render() {
     const {isAuthenticated, device} = this.props;
     const buttons: Array<any> = this._setButtons(isAuthenticated);
-
-    console.log(CSSModules);
 
     const buttonsRender: any = buttons.map((item, index) => {
       return (

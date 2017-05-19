@@ -33,7 +33,7 @@ module.exports = {
         test: /\.scss$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&localIdentName=[hash:base64:5]',
+          'css-loader',
           'resolve-url-loader',
           'sass-loader'
         ]
