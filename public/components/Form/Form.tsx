@@ -11,7 +11,7 @@ import {FormLabel} from './FormLabel/FormLabel';
 import {FormContent} from './FormContent/FormContent';
 import FormButton from './FormButton/FormButton';
 import validate from '../../service/Validators/index';
-import {send} from '../../actions/Form/Form.actions';
+import {send, setError} from '../../actions/Form/Form.actions';
 import {setCurrentUser} from '../../actions/User/User.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
@@ -26,6 +26,7 @@ interface Props {
   send?: (url: string, data: any) => any;
   handleSubmit?: any;
   name?: string;
+  setError?: (error: string) => void;
 }
 
 class Form extends React.Component<Props, void> {
@@ -37,26 +38,6 @@ class Form extends React.Component<Props, void> {
 
     this._errors = {};
     this._form = {};
-  }
-
-  submit() {
-    if (this._isValid(this._errors)) {
-      const fields = this._getFields();
-      const isSignIn = fields.length === 2;
-
-      let data: any = isSignIn ?
-        this._signInPack(fields) :
-        this._signUpPack(fields);
-
-      data = JSON.stringify(data);
-
-      isSignIn ? this._send('/signin', data)
-        : this._send('/signup', data);
-    }
-  }
-
-  _send(url: string, data: any): any {
-    return this.props.send(url, data);
   }
 
   render() {
@@ -98,8 +79,28 @@ class Form extends React.Component<Props, void> {
     );
   }
 
+  submit() {
+    if (this._isValid(this._errors)) {
+      const fields = this._getFields();
+      const isSignIn = fields.length === 2;
+
+      let data: any = isSignIn ?
+        this._signInPack(fields) :
+        this._signUpPack(fields);
+
+      data = JSON.stringify(data);
+
+      isSignIn ? this._send('/signin', data)
+        : this._send('/signup', data);
+    }
+  }
+
+  _send(url: string, data: any): any {
+    return this.props.send(url, data);
+  }
+
   _isValid(errors: any) {
-    for (let error of errors) {
+    for (let error of Object.values(errors)) {
       if (error) {
         return false;
       }
@@ -113,7 +114,6 @@ class Form extends React.Component<Props, void> {
               input, label, type,
               description, placeholder, names,
               meta: {
-                asyncValidating,
                 touched,
                 error
               }
@@ -167,8 +167,18 @@ const ReduxForm: any = reduxForm({
   }
 })(Form);
 
+const mapStateToProps = (state: any) => {
+  return {
+    error: state.error
+  }
+};
+
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    setError: (error: string) => {
+      dispatch(setError(error));
+    },
+
     send: (url: string, data: any) => {
       dispatch(togglePreloader());
 
@@ -178,9 +188,12 @@ const mapDispatchToProps = (dispatch: any) => {
           data = data.username ? data.username : data.login;
 
           if (+response.status === 200) {
+            dispatch(setError(''));
             localStorage.setItem('token', data);
             dispatch(setCurrentUser(data));
             browserHistory.push('/');
+          } else {
+            dispatch(setError(response.statusText));
           }
 
           dispatch(togglePreloader());
@@ -189,4 +202,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(null, mapDispatchToProps)(ReduxForm);
+export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(ReduxForm);

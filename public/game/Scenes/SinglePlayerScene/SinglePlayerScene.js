@@ -154,6 +154,7 @@ export default class SinglePlayerScene extends BaseScene {
       this._openEndGame();
 
       setTimeout(() => {
+        localStorage.setItem('singlePlayerScore', playerStats.kills * 100);
         this._closeEndGame();
         this._goToFromGame();
         location.reload();

@@ -1,23 +1,22 @@
 {
-  "version" : "2.2.2",
-
+  "version": "2.2.2",
   "compilerOptions": {
     "allowJs": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "es5",
-    "jsx": "react"
+    "target": "es2017",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "types/**"
+    ]
   },
-
-  "typeRoots": [
-    "./node_modules/@types"
-  ],
-
   "compileOnSave": false,
-
-  "include": [
-    "./src/**/*"
+  "exclude": [
+    "node_modules",
+    "public/built"
   ]
 }

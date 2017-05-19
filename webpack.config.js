@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const combineLoaders = require('webpack-combine-loaders');
 
 module.exports = {
   entry: {
@@ -23,20 +24,16 @@ module.exports = {
       },
 
       {
-        enforce: 'pre', test: /\.js$/,
+        enforce: 'pre',
+        test: /\.js$/,
         loader: 'source-map-loader'
       },
-
-      // {
-      //   test: /\.scss$/,
-      //   use: ['style-loader', 'css-loader', 'sass-loader']
-      // },
 
       {
         test: /\.scss$/,
         loaders: [
           'style-loader',
-          'css-loader',/*?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]*/
+          'css-loader',
           'resolve-url-loader',
           'sass-loader'
         ]
