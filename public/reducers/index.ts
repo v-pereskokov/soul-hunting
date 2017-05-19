@@ -7,6 +7,7 @@ import {authentication} from './User/User.reducers';
 import {page, users} from './Scoreboard/Scoreboard.reducers';
 import preloader from './PreLoader/Preloader.reducers';
 import device from './Mobile/Mobile.reducers';
+import error from './Form/Form.reducers';
 
 const reducer = combineReducers({
   authentication,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   users,
   preloader,
   device,
+  error,
   routing: routerReducer,
   form: formReducer
 });
