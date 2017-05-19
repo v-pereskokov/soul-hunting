@@ -99,7 +99,8 @@ class Form extends React.Component<Props, void> {
   }
 
   _isValid(errors: any) {
-    for (let error of errors) {
+    for (let error of Object.values(errors)) {
+      console.log(error);
       if (error) {
         return false;
       }
