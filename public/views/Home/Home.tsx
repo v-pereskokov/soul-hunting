@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
 import {Button} from '../../components/Button/Button';
-import {checkAuthentication, setCurrentUser} from '../../actions/User/User.actions';
+import {checkAuthentication, setCurrentUser, setScore} from '../../actions/User/User.actions';
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
@@ -25,6 +25,7 @@ const urls = auth ? [
 
 interface Props {
   isAuthenticated: boolean;
+  user?: string;
   device: boolean;
   setActive: (button1: any, button2: any, button3: any, current: any) => void;
   button1: boolean;
@@ -43,6 +44,10 @@ class Home extends React.Component<Props, void> {
 
   componentWillMount() {
     this.props.checkAuth();
+
+    if (this.props.isAuthenticated) {
+      this._sendScoreToBack();
+    }
   }
 
   render() {
@@ -156,11 +161,34 @@ class Home extends React.Component<Props, void> {
       }
     ];
   }
+
+  _sendScoreToBack() {
+    const userData: string = localStorage.getItem('singlePlayerScore');
+    if (userData) {
+      const {user} = this.props;
+
+      console.log(userData);
+      console.log({
+        login: user,
+        sScore: userData
+      });
+
+      if (userData) {
+        setScore(JSON.stringify({
+          login: user,
+          sScore: userData
+        }));
+
+        localStorage.removeItem('singlePlayerScore');
+      }
+    }
+  }
 }
 
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    user: state.authentication.user,
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,

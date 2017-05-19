@@ -40,26 +40,6 @@ class Form extends React.Component<Props, void> {
     this._form = {};
   }
 
-  submit() {
-    if (this._isValid(this._errors)) {
-      const fields = this._getFields();
-      const isSignIn = fields.length === 2;
-
-      let data: any = isSignIn ?
-        this._signInPack(fields) :
-        this._signUpPack(fields);
-
-      data = JSON.stringify(data);
-
-      isSignIn ? this._send('/signin', data)
-        : this._send('/signup', data);
-    }
-  }
-
-  _send(url: string, data: any): any {
-    return this.props.send(url, data);
-  }
-
   render() {
     const {handleSubmit, fields, error, control}: any = this.props;
 
@@ -79,8 +59,6 @@ class Form extends React.Component<Props, void> {
       )
     });
 
-    console.log(error);
-
     return (
       <div className='form__wrapper-elements'>
         <div className='wrapper__form-center'>
@@ -99,6 +77,26 @@ class Form extends React.Component<Props, void> {
         </div>
       </div>
     );
+  }
+
+  submit() {
+    if (this._isValid(this._errors)) {
+      const fields = this._getFields();
+      const isSignIn = fields.length === 2;
+
+      let data: any = isSignIn ?
+        this._signInPack(fields) :
+        this._signUpPack(fields);
+
+      data = JSON.stringify(data);
+
+      isSignIn ? this._send('/signin', data)
+        : this._send('/signup', data);
+    }
+  }
+
+  _send(url: string, data: any): any {
+    return this.props.send(url, data);
   }
 
   _isValid(errors: any) {
