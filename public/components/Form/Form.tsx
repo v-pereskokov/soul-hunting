@@ -50,7 +50,7 @@ class Form extends React.Component<Props, void> {
             name={ item.name }
             names={ item.name }
             type={ item.type }
-            component={ this._renderField() }
+            component={ this._renderField }
             label={ item.title }
             description={ item.description }
             placeholder={ item.placeholder }
@@ -109,17 +109,16 @@ class Form extends React.Component<Props, void> {
     return true;
   }
 
-  _renderField() {
-    return ({
-              input, label, type,
-              description, placeholder, names,
-              meta: {
-                touched,
-                error
-              }
-            }: any) => (
+  _renderField({
+                 input, label, type,
+                 description, placeholder, names,
+                 meta: {
+                   touched,
+                   error
+                 }
+               }: any) {
+    return (
       <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
-        { this._setError(names, error) }
         <FormLabel title={ label }/>
         <FormInput
           name={ names }
@@ -182,7 +181,7 @@ const mapDispatchToProps = (dispatch: any) => {
     send: (url: string, data: any) => {
       dispatch(togglePreloader());
 
-      return send(url, data)
+      send(url, data)
         .then((response: any) => {
           data = JSON.parse(data);
           data = data.username ? data.username : data.login;
