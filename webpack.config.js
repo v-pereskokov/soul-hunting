@@ -26,7 +26,7 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.js$/,
-        loader: 'source-map-loader'
+        use: ['babel-loader', 'source-map-loader']
       },
 
       {
