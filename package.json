@@ -5,7 +5,7 @@
   "main": "bundle.js",
   "scripts": {
     "start": "node server.js",
-    "tests": "./test.sh",
+    "tests": "./test/test.sh",
     "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.js",
     "webpack-dev": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },

@@ -1,7 +1,7 @@
 import transport from '../../../public/service/Transport/Transoprt.js';
 
 describe('Api tests', () => {
-  it('Ошибка при logout', (done) => {
+  it('Logout error', (done) => {
     transport.post('/logout')
       .then(response => {
         expect(response.status).toEqual(401);
@@ -9,7 +9,7 @@ describe('Api tests', () => {
       });
   });
 
-  it('Конфликт при регистрации', (done) => {
+  it('Register conflict', (done) => {
     transport.post('/signup', JSON.stringify({
       'login': 'passan228',
       'email': 'robiqt2281@mail.ru',
@@ -21,7 +21,7 @@ describe('Api tests', () => {
       });
   });
 
-  it('Вход', (done) => {
+  it('Sign In', (done) => {
     transport.post('/signin', JSON.stringify({
       'username': 'robiqt2281@mail.ru',
       'password': 'qwertyqwerty'
@@ -32,7 +32,7 @@ describe('Api tests', () => {
       });
   });
 
-  it('Юзеры', (done) => {
+  it('Users', (done) => {
     transport.get('/users')
       .then(response => {
         expect(response.status).toEqual(200);
