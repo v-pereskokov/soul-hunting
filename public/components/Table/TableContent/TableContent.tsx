@@ -15,6 +15,7 @@ export class TableContent extends React.Component<Props, any> {
           <TableElement item={ index + 1 }/>
           <TableElement item={ item[0] }/>
           <TableElement item={ item[1] }/>
+          <TableElement item={ item[2] }/>
         </TableRow>
       );
     });
