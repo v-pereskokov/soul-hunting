@@ -13,9 +13,11 @@ const validate = (values: any) => {
   checkPassword1(values.password1, errors);
 
   if (values.password2) {
-    checkPassword2(values.password2, errors);
-
-    checkPasswords(values.password1, values.password2, errors);
+    if (checkPassword2(values.password2, errors)) {
+      checkPasswords(values.password1, values.password2, errors);
+    }
+  } else {
+    errors.password2 = 'Required';
   }
 
   return errors;
@@ -48,9 +50,13 @@ function checkPassword1(password: string, errors: any) {
 function checkPassword2(password: string, errors: any) {
   if (isFill(password)) {
     errors.password2 = 'Required';
+    return false;
   } else if (isPassword(password)) {
     errors.password2 = 'Input correct password';
+    return false;
   }
+
+  return true;
 }
 
 function checkPasswords(password1: string, password2: string, errors: any) {
