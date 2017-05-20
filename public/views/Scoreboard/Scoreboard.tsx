@@ -78,7 +78,7 @@ class Scoreboard extends React.Component<Props, void> {
     let array: Array<any> = [];
 
     for (let user of users) {
-      array.push([user.login, user.sScore, 0]);
+      array.push([user.login, user.sScore, user.mScore]);
     }
 
     return array;
