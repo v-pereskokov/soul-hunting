@@ -17,7 +17,7 @@
     border-collapse: collapse;
     height: 320px;
     margin: auto;
-    max-width: 600px;
+    max-width: 900px;
     padding: 5px;
     width: 100%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +48,7 @@
       font-size: 23px;
       font-weight: 100;
       padding: 24px;
-      text-align: left;
+      text-align: center;
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
       vertical-align: middle;
     }
@@ -88,10 +88,12 @@
 
     tr:nth-child(odd) td {
       background: #EBEBEB;
+      text-align: center;
     }
 
     tr:nth-child(odd):hover td {
       background: #4E5066;
+      text-align: center;
     }
 
     tr:last-child td:first-child {
@@ -111,10 +113,12 @@
       font-size: 18px;
       text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
       border-right: 1px solid #C1C3D1;
+      text-align: center;
     }
 
     td:last-child {
       border-right: 0px;
+      text-align: center;
     }
 
     th.text-left {

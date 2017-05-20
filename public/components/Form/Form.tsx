@@ -17,6 +17,8 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Form.scss';
 
+const errors: any = {};
+
 interface Props {
   fields?: Array<any>;
   error?: string;
@@ -50,7 +52,7 @@ class Form extends React.Component<Props, void> {
             name={ item.name }
             names={ item.name }
             type={ item.type }
-            component={ this._renderField() }
+            component={ this._renderField }
             label={ item.title }
             description={ item.description }
             placeholder={ item.placeholder }
@@ -80,7 +82,7 @@ class Form extends React.Component<Props, void> {
   }
 
   submit() {
-    if (this._isValid(this._errors)) {
+    if (this._isValid()) {
       const fields = this._getFields();
       const isSignIn = fields.length === 2;
 
@@ -99,7 +101,7 @@ class Form extends React.Component<Props, void> {
     return this.props.send(url, data);
   }
 
-  _isValid(errors: any) {
+  _isValid() {
     for (let error of Object.values(errors)) {
       if (error) {
         return false;
@@ -109,17 +111,17 @@ class Form extends React.Component<Props, void> {
     return true;
   }
 
-  _renderField() {
-    return ({
-              input, label, type,
-              description, placeholder, names,
-              meta: {
-                touched,
-                error
-              }
-            }: any) => (
+  _renderField({
+                 input, label, type,
+                 description, placeholder, names,
+                 meta: {
+                   touched,
+                   error
+                 }
+               }: any) {
+    errors[names] = !!error;
+    return (
       <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
-        { this._setError(names, error) }
         <FormLabel title={ label }/>
         <FormInput
           name={ names }
@@ -134,10 +136,6 @@ class Form extends React.Component<Props, void> {
         />
       </li>
     );
-  }
-
-  _setError(name: string, error: string) {
-    this._errors[name] = error;
   }
 
   _getFields() {
@@ -182,18 +180,24 @@ const mapDispatchToProps = (dispatch: any) => {
     send: (url: string, data: any) => {
       dispatch(togglePreloader());
 
-      return send(url, data)
+      send(url, data)
         .then((response: any) => {
           data = JSON.parse(data);
           data = data.username ? data.username : data.login;
 
-          if (+response.status === 200) {
-            dispatch(setError(''));
-            localStorage.setItem('token', data);
-            dispatch(setCurrentUser(data));
-            browserHistory.push('/');
-          } else {
-            dispatch(setError(response.statusText));
+          switch (+response.status) {
+            case 200:
+              dispatch(setError(''));
+              localStorage.setItem('token', data);
+              dispatch(setCurrentUser(data));
+              browserHistory.push('/');
+              break;
+            case 403:
+            case 404:
+              dispatch(setError(response.statusText));
+              break;
+            default:
+              break;
           }
 
           dispatch(togglePreloader());
