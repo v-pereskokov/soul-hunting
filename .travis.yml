@@ -12,6 +12,7 @@ addons:
 before_script:
   - npm install
 script:
+  - npm run tests
   - npm run webpack-prod
 after_success:
   - mkdir archive
