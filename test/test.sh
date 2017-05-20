@@ -1,10 +1,10 @@
 #!/bin/bash
 
-tsc public/service/Transport/Transoprt.ts
-tsc public/service/Validators/isFill/isFill.ts
-tsc public/service/Validators/isLogin/isLogin.ts
-tsc public/service/Validators/isEmail/isEmail.ts
-tsc public/service/Validators/isPassword/isPassword.ts
+tsc --target es5 public/service/Transport/Transoprt.ts
+tsc --target es5 public/service/Validators/isFill/isFill.ts
+tsc --target es5 public/service/Validators/isLogin/isLogin.ts
+tsc --target es5 public/service/Validators/isEmail/isEmail.ts
+tsc --target es5 public/service/Validators/isPassword/isPassword.ts
 
 jasmine JASMINE_CONFIG_PATH=test/unit/jasmine.json
 

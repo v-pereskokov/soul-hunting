@@ -53,7 +53,6 @@ describe('Api tests', () => {
         })
         .then(data => {
           expect(data.length).toEqual(5);
-          console.log(data);
           done(true);
         });
     });
