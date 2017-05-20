@@ -38,7 +38,7 @@ class Scoreboard extends React.Component<Props, void> {
     const {isAuthenticated, users} = this.props;
 
     this._users = this._getUsers(users);
-    
+
     return (
       <div className='wrapper__scoreboard'>
         <Background closed={ true }/>
