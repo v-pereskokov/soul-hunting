@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf -- !(deploy.sh)
+
 tar -xzf package.tgz
 rm package.tgz
 
