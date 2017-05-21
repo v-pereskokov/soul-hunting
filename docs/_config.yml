@@ -1,1 +1,11 @@
+name: Soul-Hunting GitHub Page
+
 theme: jekyll-theme-cayman
+
+author: Vladislav Pereskokov
+
+author_email: vladpereskokov@mail.ru
+
+source: /docs/
+
+include: [/docs/, index.md]

@@ -1,10 +1,10 @@
-![Logo](docs/assets/logo.png)
+![Logo](assets/logo.png)
 
 Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE.JS and more.
 
 #### [Play the game](https://www.soul-hunting.ru) / [Github.io page](https://vladpereskokov.github.io/soul-hunting/)
 
-![Main](docs/assets/main.png)
+![Main](assets/main.png)
 
 ## Install
 
@@ -36,7 +36,7 @@ The game has been tested in the following platforms:
 
 Chrome | Opera | Firefox | Chrome for Mobile |
 --- | --- | --- | --- |
-![Chrome](./docs/assets/chrome.png) | ![Opera](docs/assets/opera.png) | ![Firefox](docs/assets/firefox.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
+![Chrome](assets/chrome.png) | ![Opera](assets/opera.png) | ![Firefox](assets/firefox.png) | ![Chrome for mobile](assets/chrome_mobile.png) 
 
 ## Development stack
 - Server: NodeJS / Express / Socket.io / Nginx / CI [TRAVIS]
