@@ -41,9 +41,70 @@ Chrome | Opera | Firefox | Chrome for Mobile |
 ![Chrome](docs/assets/chrome.png) | ![Opera](docs/assets/opera.png) | ![Firefox](docs/assets/firefox.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
 
 ## Development stack
-- Server: NodeJS / Express / Socket.io / Nginx / CI [TRAVIS]
-- Client: TypeScript / JavaScript / React / React-Router / Redux / Three.js / Service Worker / 
-- Tools: Webpack / Sass / Jasmine / GitHub Pages / SSH 
+
+### Frontend
+
+#### Server
+
+##### Node JS
+![Node JS](docs/assets/nodejs.png)
+
+##### Nginx
+![Nginx](docs/assets/nginx.png)
+
+##### Node JS. Express
+![Express](docs/assets/express.png)
+
+##### Socket.io
+![Scoket.io](docs/assets/socket.png)
+
+#### Client
+
+##### TypeScript
+![TypeScript](docs/assets/ts.svg)
+
+##### JavaScript
+![JavaScript](docs/assets/JavaScript.jpg)
+
+##### React
+![React](docs/assets/react.png)
+
+##### Redux
+![Redux](docs/assets/redux.png)
+
+##### Three.js
+![Three.js](docs/assets/threejs.png)
+
+##### Service Worker
+![Service Worker](docs/assets/service-worker.png)
+
+#### Tools
+
+##### Webpack
+![Webpack](docs/assets/webpack.png)
+
+##### Sass
+![Sass](docs/assets/sass.png)
+
+##### Travis
+![Travis](docs/assets/travis.png)
+
+##### Jasmine
+![Jasmine](docs/assets/jasmine.png)
+
+##### GitHub Pages
+![GitHub Pages](docs/assets/gpages.png)
+
+### BackEnd
+
+##### Java
+![Java](docs/assets/java.jpg)
+
+##### Spring
+![Spring](docs/assets/spring.png)
+
+##### PostgreSQL
+![PostgreSQL](docs/assets/postgres.png)
 
 ## Did you find a bug?
 
