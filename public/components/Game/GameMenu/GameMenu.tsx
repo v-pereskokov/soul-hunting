@@ -5,7 +5,11 @@ import {GameMenuWrapper} from './GameMenuWrapper/GameMenuWrapper';
 import {GameMenuButtons} from './GameMenuButtons/GameMenuButtons';
 import {GameMenuTopic} from './GameMenuTopic/GameMenuTopic';
 
-export class GameMenu extends React.Component<any, any> {
+interface Props {
+  text: string;
+}
+
+export class GameMenu extends React.Component<Props, any> {
   render() {
 
     return (
@@ -13,7 +17,7 @@ export class GameMenu extends React.Component<any, any> {
         <GameMenuBackground />
         <GameMenuWrapper />
         <GameMenuButtons />
-        <GameMenuTopic text='Singleplayer' />
+        <GameMenuTopic text={this.props.text} />
       </div>
     );
   }

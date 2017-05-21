@@ -21,33 +21,6 @@ canvas {
   z-index: 40;
 }
 
-.wrapper__health {
-  position: absolute;
-  bottom: 40px;
-  right: 50px;
-  z-index: 43;
-  color: #000 !important;
-  background-color: rgba(176, 176, 176, 0.95) !important;
-  width: 150px;
-
-  &-red {
-    color: #fff !important;
-    background-color: #f40110 !important;
-    height: 24px;
-    width: 100%;
-  }
-
-  &-text {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    top: 5px;
-    font-family: "Keep Calm";
-    color: #e9e9e9;
-  }
-}
-
 .wrapper__patrons {
   position: absolute;
   right: 140px;
@@ -130,19 +103,6 @@ canvas {
   box-align: center;
   color: #ffffff;
   text-align: center;
-}
-
-.weapon__wrapper {
-  position: absolute;
-  bottom: 0;
-  z-index: 39;
-  width: 100%;
-  height: 40%;
-
-  &-img {
-    position: relative;
-    left: 12%;
-  }
 }
 
 .sight {
@@ -316,7 +276,7 @@ canvas {
 }
 
 .menu__wrapper__parent {
-  position: absolute;
+  position: fixed;
   z-index: 997;
   width: 100%;
   height: 100%;
@@ -341,7 +301,7 @@ canvas {
 }
 
 .menu__wrapper__parent-buttons {
-  position: absolute;
+  position: fixed;
   z-index: 998;
   width: 100%;
   height: 100%;
@@ -365,7 +325,7 @@ canvas {
 }
 
 .menu__wrapper__parent-topic {
-  position: absolute;
+  position: fixed;
   z-index: 997;
   width: 100%;
   height: 100%;
@@ -420,7 +380,7 @@ canvas {
 }
 
 .menu__wrapper {
-  position: absolute;
+  position: fixed;
   z-index: 993;
   width: 100%;
   height: 100%;
