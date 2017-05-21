@@ -41,9 +41,37 @@ Chrome | Opera | Firefox | Chrome for Mobile |
 ![Chrome](docs/assets/chrome.png) | ![Opera](docs/assets/opera.png) | ![Firefox](docs/assets/firefox.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
 
 ## Development stack
-- Server: NodeJS / Express / Socket.io / Nginx / CI [TRAVIS]
-- Client: TypeScript / JavaScript / React / React-Router / Redux / Three.js / Service Worker / 
-- Tools: Webpack / Sass / Jasmine / GitHub Pages / SSH 
+
+### Frontend
+
+#### Server
+
+- Node JS
+- Nginx
+- Express
+- Socket.io
+
+#### Client
+
+- TypeScript
+- JavaScript
+- React + Redux
+- Three,js
+- Service Worker
+
+#### Tools
+
+- Webpack
+- Sass
+- CI [TRAVIS, APPVEYOR]
+- Jasmine
+- GitHub Pages
+
+### Backend
+
+- Java
+- Spring
+- PostgreSQL
 
 ## Did you find a bug?
 
