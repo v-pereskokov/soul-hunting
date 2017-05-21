@@ -61,7 +61,7 @@ Chrome | Opera | Firefox | Chrome for Mobile |
 #### Client
 
 ##### TypeScript
-![TypeScript](docs/assets/ts.svg)
+![TypeScript](docs/assets/ts.png)
 
 ##### JavaScript
 ![JavaScript](docs/assets/JavaScript.jpg)
