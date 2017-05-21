@@ -43,7 +43,7 @@ class Form extends React.Component<Props, void> {
   }
 
   render() {
-    const {handleSubmit, fields, error, control}: any = this.props;
+    const {handleSubmit, fields, errors, control}: any = this.props;
 
     const content: Array<any> = fields.map((item: any, index: number) => {
       return (
@@ -72,7 +72,7 @@ class Form extends React.Component<Props, void> {
               this._form = form
             }}
             onSubmit={handleSubmit}>
-            <FormError text={ error }/>
+            <FormError text={ errors }/>
             <FormContent content={ content }/>
             <FormButton text={ control } click={ this.submit.bind(this) }/>
           </form>
@@ -194,12 +194,15 @@ const mapDispatchToProps = (dispatch: any) => {
               break;
             case 403:
             case 404:
-              dispatch(setError(response.statusText));
-              break;
+              return response.json();
             default:
               break;
           }
 
+          dispatch(togglePreloader());
+        })
+        .then((data: any) => {
+          dispatch(setError(data.message));
           dispatch(togglePreloader());
         });
     }
