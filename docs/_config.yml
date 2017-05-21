@@ -8,4 +8,9 @@ author_email: vladpereskokov@mail.ru
 
 source: /docs/
 
-include: [/docs/, index.md]
+exclude:
+  - LICENSE
+  - README.md
+
+include:
+  - index.md
