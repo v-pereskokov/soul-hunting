@@ -5,12 +5,3 @@ theme: jekyll-theme-cayman
 author: Vladislav Pereskokov
 
 author_email: vladpereskokov@mail.ru
-
-source: /docs/
-
-exclude:
-  - LICENSE
-  - README.md
-
-include:
-  - index.md
