@@ -42,7 +42,3 @@ Chrome | Opera | Firefox | Chrome for Mobile |
 - Server: NodeJS / Express / Socket.io / Nginx / CI [TRAVIS]
 - Client: TypeScript / JavaScript / React / React-Router / Redux / Three.js / Service Worker / 
 - Tools: Webpack / Sass / Jasmine / GitHub Pages / SSH 
-
-## Did you find a bug?
-
-Please report on the [issues tab](https://github.com/vladpereskokov/soul-hunting/issues).
