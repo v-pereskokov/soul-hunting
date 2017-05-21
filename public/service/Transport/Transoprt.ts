@@ -1,9 +1,9 @@
 import * as fetch from 'isomorphic-fetch';
 
 class Transport {
+  private static __instance: any;
   private _headers: any;
   private _baseUrl: string;
-  private static __instance: any;
 
   constructor() {
     if (Transport.__instance) {

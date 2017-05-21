@@ -2,7 +2,7 @@ import {NEXT_BUTTON} from '../../constants/Buttons/Buttons.constants';
 
 const initialState: Array<any> = [
   {
-    current: '1',
+    current: '1'
   },
   {
     button: true

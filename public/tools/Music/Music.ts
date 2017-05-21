@@ -1,17 +1,17 @@
 export default class Music {
-  _music?: any;
-  _isMute: boolean;
+  private _music?: any;
+  private _isMute: boolean;
 
   constructor(path: string = '') {
     this._music = path ? new Audio(path) : null;
     this._isMute = false;
   }
 
-  play() {
+  public play() {
     this._music.play();
   }
 
-  loopPlay() {
+  public loopPlay() {
     if (this._music) {
       this._music.addEventListener('ended', () => {
         this._music.currentTime = 0;
@@ -21,19 +21,19 @@ export default class Music {
     }
   }
 
-  stop() {
+  public stop() {
     if (this._music.currentTime) {
       this._music.pause();
       this._music.currentTime = 0;
     }
   }
 
-  muteToggle() {
+  public muteToggle() {
     this._music.volume = this._isMute ? 1.0 : 0.0;
     this._isMute = !this._isMute;
   }
 
-  _getObject() {
+  public _getObject() {
     return this._music;
   }
 }
