@@ -1,4 +1,4 @@
-import AimManager from "../../Manager/AimManager/AimManager";
+import AimManager from '../../Manager/AimManager/AimManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 
 export default class Mouse {
@@ -59,4 +59,3 @@ export default class Mouse {
     }
   }
 }
-
