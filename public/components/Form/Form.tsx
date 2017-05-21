@@ -42,6 +42,10 @@ class Form extends React.Component<Props, void> {
     this._form = {};
   }
 
+  componentWillMount() {
+    this.props.setError('');
+  }
+
   render() {
     const {handleSubmit, fields, errors, control}: any = this.props;
 
@@ -167,7 +171,7 @@ const ReduxForm: any = reduxForm({
 
 const mapStateToProps = (state: any) => {
   return {
-    error: state.error
+    errors: state.error
   }
 };
 
@@ -194,6 +198,7 @@ const mapDispatchToProps = (dispatch: any) => {
               break;
             case 403:
             case 404:
+            case 409:
               return response.json();
             default:
               break;
