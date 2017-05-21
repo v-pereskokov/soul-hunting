@@ -4,6 +4,8 @@ import gameAudioManager from "../../Manager/GameAudioManager/GameAudioManager";
 export default class Keyboard {
   constructor() {
     this._init();
+
+    this._shiftBlock = document.body.querySelector('.weapon__wrapper-img');
   }
 
   _init() {
@@ -25,6 +27,14 @@ export default class Keyboard {
 
   update(camera, delta, checkCollision) {
     const actualMoveSpeed = delta * MOVESPEED;
+
+    if (this._shift) {
+      this._shiftBlock.classList.remove('swaying');
+      this._shiftBlock.classList.add('swaying-run');
+    } else {
+      this._shiftBlock.classList.remove('swaying-run');
+      this._shiftBlock.classList.add('swaying');
+    }
 
     if (this.forward) {
       camera.translateZ(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
