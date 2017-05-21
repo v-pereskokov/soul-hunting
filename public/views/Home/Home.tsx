@@ -166,13 +166,7 @@ class Home extends React.Component<Props, void> {
     const userData: string = localStorage.getItem('singlePlayerScore');
     if (userData) {
       const {user} = this.props;
-
-      console.log(userData);
-      console.log({
-        login: user,
-        sScore: userData
-      });
-
+      
       if (userData) {
         setScore(JSON.stringify({
           login: user,

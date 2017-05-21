@@ -2,7 +2,6 @@ import {NEXT_BUTTON} from '../../constants/Buttons/Buttons.constants';
 
 export function setActive(button1: any, button2: any, button3: any, current: any): any {
   return {
-    type: NEXT_BUTTON,
     payload: [
       {
         current
@@ -16,6 +15,7 @@ export function setActive(button1: any, button2: any, button3: any, current: any
       {
         button: button3
       }
-    ]
-  }
+    ],
+    type: NEXT_BUTTON
+  };
 }

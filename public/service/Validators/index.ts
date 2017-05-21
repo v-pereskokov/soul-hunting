@@ -1,7 +1,7 @@
 import isFill from './isFill/isFill';
-import isLogin from "./isLogin/isLogin";
-import isEmail from "./isEmail/isEmail";
-import isPassword from "./isPassword/isPassword";
+import isLogin from './isLogin/isLogin';
+import isEmail from './isEmail/isEmail';
+import isPassword from './isPassword/isPassword';
 
 const validate = (values: any) => {
   const errors: any = {};

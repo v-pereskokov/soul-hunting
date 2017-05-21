@@ -1,5 +1,5 @@
-import transport from '../../service/Transport/Transoprt';
 import {SET_CURRENT_USER} from '../../constants/User/User.constants';
+import transport from '../../service/Transport/Transoprt';
 
 export function setCurrentUser(user: any): any {
   return {

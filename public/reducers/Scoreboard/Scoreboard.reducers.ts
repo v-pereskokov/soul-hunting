@@ -15,6 +15,6 @@ export function users(state: Array<any> = [], action: any) {
         ...action.data
       ];
     default:
-      return state
+      return state;
   }
 }

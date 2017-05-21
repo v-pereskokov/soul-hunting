@@ -1,23 +1,23 @@
 import Music from '../../tools/Music/Music';
 
 class MusicService {
-  _background: any;
+  private _background: any;
 
   constructor() {
     this._background = new Music('../../static/sounds/background.wav');
     this._setKeysMute();
   }
 
-  startBackground() {
+  public startBackground() {
     this._background.loopPlay();
   }
 
-  stopBackground() {
+  public stopBackground() {
     this._background.stop();
   }
 
-  _setKeysMute() {
-    document.addEventListener('keydown', event => {
+  private _setKeysMute() {
+    document.addEventListener('keydown', (event: any) => {
       if (event.altKey && event.keyCode === 77) {
         this._background.muteToggle();
       }
