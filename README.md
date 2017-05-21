@@ -12,7 +12,7 @@ The game has been tested in the following platforms:
 
 Chrome | Opera | Firefox | Chrome for Mobile |
 --- | --- | --- | --- |
-![Chrome](docs/assets/chrome.png) | ![Opera](docs/assets/opera.png) | ![Firefox](docs/assets/firefox.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
+![Chrome](./docs/assets/chrome.png) | ![Opera](docs/assets/opera.png) | ![Firefox](docs/assets/firefox.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
 
 ## Development stack
 - Server: NodeJS / Express / Socket.io / Nginx / CI [TRAVIS]
