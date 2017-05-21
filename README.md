@@ -46,65 +46,32 @@ Chrome | Opera | Firefox | Chrome for Mobile |
 
 #### Server
 
-##### Node JS
-![Node JS](docs/assets/nodejs.png)
-
-##### Nginx
-![Nginx](docs/assets/nginx.png)
-
-##### Node JS. Express
-![Express](docs/assets/express.png)
-
-##### Socket.io
-![Scoket.io](docs/assets/socket.png)
+- Node JS
+- Nginx
+- Express
+- Socket.io
 
 #### Client
 
-##### TypeScript
-![TypeScript](docs/assets/ts.png)
-
-##### JavaScript
-![JavaScript](docs/assets/JavaScript.jpg)
-
-##### React
-![React](docs/assets/react.png)
-
-##### Redux
-![Redux](docs/assets/redux.png)
-
-##### Three.js
-![Three.js](docs/assets/threejs.png)
-
-##### Service Worker
-![Service Worker](docs/assets/service-worker.png)
+- TypeScript
+- JavaScript
+- React + Redux
+- Three,js
+- Service Worker
 
 #### Tools
 
-##### Webpack
-![Webpack](docs/assets/webpack.png)
+- Webpack
+- Sass
+- CI [TRAVIS, APPVEYOR]
+- Jasmine
+- GitHub Pages
 
-##### Sass
-![Sass](docs/assets/sass.png)
+### Backend
 
-##### Travis
-![Travis](docs/assets/travis.png)
-
-##### Jasmine
-![Jasmine](docs/assets/jasmine.png)
-
-##### GitHub Pages
-![GitHub Pages](docs/assets/gpages.png)
-
-### BackEnd
-
-##### Java
-![Java](docs/assets/java.jpg)
-
-##### Spring
-![Spring](docs/assets/spring.png)
-
-##### PostgreSQL
-![PostgreSQL](docs/assets/postgres.png)
+- Java
+- Spring
+- PostgreSQL
 
 ## Did you find a bug?
 
