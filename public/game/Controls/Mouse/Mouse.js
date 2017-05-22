@@ -1,5 +1,6 @@
 import AimManager from '../../Manager/AimManager/AimManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
+import SpriteManager from '../../Manager/SpriteManager/SpriteManager';
 
 export default class Mouse {
   constructor() {
@@ -38,6 +39,8 @@ export default class Mouse {
   onMouseDown(callback) {
     return event => {
       event.preventDefault();
+      
+      const spriteManager = new SpriteManager();
 
       const sound = gameAudioManager.getSound('shoot');
 
