@@ -19,12 +19,9 @@
   }
 }
 
-.shoot__wrapper {
+.shooterAnimation {
   z-index: 38;
-  position: fixed;
-  color: white;
-  bottom: calc( 50vh - 130px );
-  width: 40px;
-  height: 40px;
-  left: calc( 50vw + 30px );
+  position: absolute;
+  bottom: calc(50vh - 130px);
+  left: calc(50vw + 40px);
 }

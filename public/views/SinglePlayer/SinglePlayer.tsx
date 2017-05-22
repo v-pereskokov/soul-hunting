@@ -85,9 +85,7 @@ class SinglePlayer extends React.Component<Props, any> {
                 </div>
               </div>
 
-              <div className='shoot__wrapper'>
-                <canvas className='shooterAnimation'/>
-              </div>
+              <canvas className='shooterAnimation'/>
               <Hurt />
               <EndGameTheme />
               <StartGameTheme />

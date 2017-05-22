@@ -2,27 +2,40 @@ import Sprite from '../../Tools/Sprite/Sprite';
 
 export default class SpriteManager {
   constructor() {
+    this._isStop = false;
+
     this._createObjectImage();
     this._createCanvas();
-
-    console.log(this._canvas);
-    console.log(this._objectImage);
 
     this._object = new Sprite(
       this._canvas.getContext('2d'),
       5,
       13,
-      100,
+      1000,
       100,
       this._objectImage
     );
   }
 
   loop() {
-    requestAnimationFrame(this.loop.bind(this));
+    if (!this._isStop) {
+      requestAnimationFrame(this.loop.bind(this));
+    }
 
     this._object.update();
     this._object.render();
+  }
+
+  start() {
+    this._isStop = false;
+    this._object.reset();
+    this.loop();
+  }
+
+  stop() {
+    this._isStop = true;
+    this.loop();
+    this._object.clear();
   }
 
   _createCanvas() {
@@ -34,7 +47,7 @@ export default class SpriteManager {
   _createObjectImage() {
     this._objectImage = new Image();
 
-    this._objectImage.addEventListener('load', this.loop.bind(this));
+    this._objectImage.addEventListener('load', () => console.log('sprite load'));
     this._objectImage.src = '/static/gameSource/shoot.png';
   }
 }

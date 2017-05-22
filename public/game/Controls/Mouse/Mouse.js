@@ -9,6 +9,8 @@ export default class Mouse {
 
     this._enabled = false;
     this._aim = new AimManager();
+
+    this._shootAnimate = new SpriteManager();
   }
 
   setEvents(onClickCallback) {
@@ -39,8 +41,13 @@ export default class Mouse {
   onMouseDown(callback) {
     return event => {
       event.preventDefault();
-      
-      const spriteManager = new SpriteManager();
+
+      if (this._shootAnimate) {
+        this._shootAnimate.stop();
+      }
+
+      this._shootAnimate = new SpriteManager();
+      this._shootAnimate.start();
 
       const sound = gameAudioManager.getSound('shoot');
 
@@ -50,6 +57,10 @@ export default class Mouse {
         if (sound) {
           sound.play();
         }
+
+        setTimeout(() => {
+          this._shootAnimate.stop();
+        }, 900);
 
         setTimeout(() => {
           if (sound.isPlaying) {
