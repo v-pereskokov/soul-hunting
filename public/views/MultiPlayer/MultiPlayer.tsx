@@ -26,6 +26,8 @@ const header = [{
   title: 'Username'
 }, {
   title: 'Score'
+}, {
+  title: 'Death'
 }];
 
 interface Props {
@@ -41,11 +43,11 @@ class MultiPlayer extends React.Component<Props, any> {
     super(props);
 
     this._users = [
-      [this.props.user, '0'],
-      ['', ''],
-      ['', ''],
-      ['', ''],
-      ['', '']
+      [this.props.user, '0', '0'],
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
     ];
   }
 
