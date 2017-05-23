@@ -37,28 +37,28 @@ export default class Keyboard {
     }
 
     if (this.forward) {
-      camera.translateZ(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
+      camera.translateZ(-(actualMoveSpeed * (1 + delta) + (this._shift ? delta * HIGHSPEED : 0)));
       if (checkCollision(camera.position)) {
-        camera.translateZ(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
+        camera.translateZ(actualMoveSpeed * (1 + delta) + (this._shift ? delta * HIGHSPEED : 0));
       }
     }
     if (this.backward) {
       camera.translateZ(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       if (checkCollision(camera.position)) {
-        camera.translateZ(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
+        camera.translateZ(-(actualMoveSpeed * (1 + delta) + (this._shift ? delta * HIGHSPEED : 0)));
       }
     }
 
     if (this.left) {
       camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
       if (checkCollision(camera.position)) {
-        camera.translateX(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
+        camera.translateX(actualMoveSpeed * (1 + delta) + (this._shift ? delta * HIGHSPEED : 0));
       }
     }
     if (this.right) {
       camera.translateX(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0));
       if (checkCollision(camera.position)) {
-        camera.translateX(-(actualMoveSpeed + (this._shift ? delta * HIGHSPEED : 0)));
+        camera.translateX(-(actualMoveSpeed * (1 + delta) + (this._shift ? delta * HIGHSPEED : 0)));
       }
     }
 
