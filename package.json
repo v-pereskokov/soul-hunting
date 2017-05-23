@@ -7,8 +7,8 @@
     "start": "node server.js",
     "tests": "./test/test.sh",
     "codeStyle": "tslint -c tslint.json 'src/**/*.ts?(x)'",
-    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js -p",
-    "webpack-dev": "./node_modules/.bin/webpack --config webpack.config.dev.js"
+    "webpack-prod": "./node_modules/.bin/webpack --config ./config/webpack.config.prod.js -p",
+    "webpack-dev": "./node_modules/.bin/webpack --config ./config/webpack.config.dev.js"
   },
   "author": "Ananymous",
   "license": "ISC",
