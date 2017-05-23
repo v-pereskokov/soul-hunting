@@ -3,6 +3,8 @@ import {browserHistory} from 'react-router';
 
 import {Button} from '../../../Button/Button';
 
+import './GameMenuButtons.scss';
+
 export class GameMenuButtons extends React.Component<any, any> {
   render() {
 
