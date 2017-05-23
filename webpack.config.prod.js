@@ -1,5 +1,4 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const combineLoaders = require('webpack-combine-loaders');
 
 module.exports = {
   entry: {
@@ -9,8 +8,6 @@ module.exports = {
     filename: '[name].js',
     path: __dirname + '/public/built'
   },
-
-  devtool: 'source-map',
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
