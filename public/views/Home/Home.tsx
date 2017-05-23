@@ -70,7 +70,7 @@ class Home extends React.Component<Props, void> {
       <div
         className={ isAuthenticated && device ?
           'wrapper__form1' :
-          'wrapper__form device' }>
+          'wrapper__form mobile' }>
         <div className={ isAuthenticated && device ?
           'wrapper__main__form1' :
           'wrapper__main__form' }>
