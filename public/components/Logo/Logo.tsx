@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {LogoBase} from './LogoBase/LogoBase';
+import LogoBase from './LogoBase/LogoBase';
 import {LogoTitle} from './LogoTitle/LogoTitle';
 import {LogoRegistration} from './LogoRegistration/LogoRegistration';
 
