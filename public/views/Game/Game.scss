@@ -105,57 +105,6 @@ canvas {
   text-align: center;
 }
 
-.sight {
-  position: fixed;
-  left: calc(50vw - 15px);
-  bottom: calc(50vh - 45px);
-  width: 40px;
-  height: 40px;
-  z-index: 999;
-
-  &__top {
-    width: 2px;
-    background-color: white;
-    height: 15px;
-    position: absolute;
-    left: 19px;
-    transition-property: top;
-    transition-duration: 0.21s;
-  }
-
-  &__right {
-    width: 15px;
-    background-color: white;
-    height: 2px;
-    position: absolute;
-    top: 19px;
-    left: 25px;
-    transition-property: left;
-    transition-duration: 0.21s;
-  }
-
-  &__bottom {
-    width: 2px;
-    background-color: white;
-    height: 15px;
-    position: absolute;
-    left: 19px;
-    top: 25px;
-    transition-property: top;
-    transition-duration: 0.21s;
-  }
-
-  &__left {
-    width: 15px;
-    background-color: white;
-    height: 2px;
-    position: absolute;
-    top: 19px;
-    transition-property: left;
-    transition-duration: 0.21s;
-  }
-}
-
 .loading {
   width: 100%;
   height: 100%;

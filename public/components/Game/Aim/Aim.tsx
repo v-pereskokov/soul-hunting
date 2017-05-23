@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './Aim';
+
 export class Aim extends React.Component<any, any> {
   render() {
 
