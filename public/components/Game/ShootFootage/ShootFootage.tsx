@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './ShootFootage.tsx';
+import './ShootFootage.scss';
 
 export class ShootFootage extends React.Component<any, any> {
   render() {

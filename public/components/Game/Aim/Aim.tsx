@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Aim';
+import './Aim.scss';
 
 export class Aim extends React.Component<any, any> {
   render() {
