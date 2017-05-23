@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './EndGameTheme.scss';
+
 export class EndGameTheme extends React.Component<any, any> {
   render() {
 
