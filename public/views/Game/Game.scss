@@ -13,14 +13,6 @@ canvas {
   left: 0;
 }
 
-.game__background {
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(transparent 50%, black);
-  position: absolute;
-  z-index: 40;
-}
-
 .wrapper__patrons {
   position: absolute;
   right: 140px;
