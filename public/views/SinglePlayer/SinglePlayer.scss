@@ -22,6 +22,9 @@
 .shooterAnimation {
   z-index: 38;
   position: absolute;
-  bottom: calc(50vh - 130px);
-  left: calc(50vw + 40px);
+  opacity: 0.7;
+  left: 40px;
+  top: 150px;
+  transform: scale(0.3, 0.3);
+  display: none;
 }

@@ -85,7 +85,7 @@ class SinglePlayer extends React.Component<Props, any> {
                 </div>
               </div>
 
-              <canvas className='shooterAnimation'/>
+              <img src='/static/gameSource/shootFootage.png' className='shooterAnimation'/>
               <Hurt />
               <EndGameTheme />
               <StartGameTheme />
