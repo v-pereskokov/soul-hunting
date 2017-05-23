@@ -15,6 +15,7 @@ import {EndGameTheme} from '../../components/Game/EndGameTheme/EndGameTheme';
 import {Hurt} from '../../components/Game/Hurt/Hurt';
 import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameTheme';
 import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
+import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -85,7 +86,7 @@ class SinglePlayer extends React.Component<Props, any> {
                 </div>
               </div>
 
-              <img src='/static/gameSource/shootFootage.png' className='shooterAnimation'/>
+              <ShootFootage />
               <Hurt />
               <EndGameTheme />
               <StartGameTheme />
