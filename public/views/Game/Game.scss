@@ -107,11 +107,11 @@ canvas {
 
 .sight {
   position: fixed;
-  bottom: calc( 50vh - 45px );
+  left: calc(50vw - 15px);
+  bottom: calc(50vh - 45px);
   width: 40px;
   height: 40px;
   z-index: 999;
-  left: calc( 50vw - 15px );
 
   &__top {
     width: 2px;
@@ -286,7 +286,6 @@ canvas {
   opacity: 0.8;
   display: none;
 
-
   &-center {
     z-index: 998;
     width: 400px;
@@ -310,7 +309,6 @@ canvas {
   overflow: auto;
   display: none;
 
-
   &-center {
     z-index: 998;
     width: 100%;
@@ -333,7 +331,6 @@ canvas {
   left: 0;
   overflow: auto;
   display: none;
-
 
   &-center {
     z-index: 998;

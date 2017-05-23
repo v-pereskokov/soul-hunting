@@ -21,10 +21,10 @@
 
 .shooterAnimation {
   z-index: 38;
-  position: absolute;
   opacity: 0.7;
-  left: 40px;
-  top: 150px;
+  position: fixed;
+  left: calc(50vw - 560px);
+  bottom: calc(50vh - 465px);
   transform: scale(0.3, 0.3);
   display: none;
 }
