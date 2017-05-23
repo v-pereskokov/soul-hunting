@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {SINGLEPLAYER} from '../../constants/Game/Game';
 import {Mobile} from '../Mobile/Mobile';
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 import GameTable from '../../components/Game/GameTable/GameTable';
 import {Instructions} from '../../components/Instructions/Instructions';
 import {Aim} from '../../components/Game/Aim/Aim';

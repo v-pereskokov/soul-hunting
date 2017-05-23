@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-import {Background} from '../../components/Background/Background';
+
+import Background from '../../components/Background/Background';
 import Form from '../../components/Form/Form';
 
 import './SignIn.scss';

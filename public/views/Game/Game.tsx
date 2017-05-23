@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 import {Mobile} from '../Mobile/Mobile';
 import {Button} from '../../components/Button/Button';
 import {Back} from '../../components/Back/Back';
