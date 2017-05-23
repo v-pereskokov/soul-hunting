@@ -1,0 +1,12 @@
+.menu__wrapper {
+  position: fixed;
+  z-index: 993;
+  width: 100%;
+  height: 100%;
+  background: black;
+  top: 0;
+  opacity: 0.6;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+  display: none;
+}
