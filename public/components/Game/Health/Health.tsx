@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './Health.scss';
+
 export class Health extends React.Component<any, any> {
   render() {
 

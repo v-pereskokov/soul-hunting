@@ -1,4 +1,4 @@
-import AimManager from "../../Manager/AimManager/AimManager";
+import AimManager from '../../Manager/AimManager/AimManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 
 export default class Mouse {
@@ -8,6 +8,8 @@ export default class Mouse {
 
     this._enabled = false;
     this._aim = new AimManager();
+
+    this._shootAnimate = document.body.querySelector('.shooterAnimation');
   }
 
   setEvents(onClickCallback) {
@@ -39,6 +41,9 @@ export default class Mouse {
     return event => {
       event.preventDefault();
 
+      this._shootAnimate.style.display = 'block';
+      this._shootAnimate.style.display = 'block';
+
       const sound = gameAudioManager.getSound('shoot');
 
       if (this._enabled && event.which === 1) {
@@ -47,6 +52,10 @@ export default class Mouse {
         if (sound) {
           sound.play();
         }
+
+        setTimeout(() => {
+          this._shootAnimate.style.display = 'none';
+        }, 100);
 
         setTimeout(() => {
           if (sound.isPlaying) {
@@ -59,4 +68,3 @@ export default class Mouse {
     }
   }
 }
-

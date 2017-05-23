@@ -1,0 +1,68 @@
+.weapon__wrapper {
+  position: absolute;
+  bottom: 0;
+  z-index: 39;
+  width: 100%;
+  height: 40%;
+
+  &-img {
+    position: relative;
+    left: 12%;
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: translateY(-5px);
+  }
+  15% {
+    transform: translateY(5px);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  65% {
+    transform: translateY(-5px);
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes swing-run {
+  0% {
+    transform: translate(-10px, -10px);
+  }
+  15% {
+    transform: translate(10px, 10px);
+  }
+  30% {
+    transform: translate(-10px, -10px);
+  }
+  50% {
+    transform: translate(10px, 10px);
+  }
+  65% {
+    transform: translate(-10px, -10px);
+  }
+  80% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(-10px, -10px);
+  }
+}
+
+.swaying {
+  animation: swing 6s infinite;
+}
+
+.swaying-run {
+  animation: swing-run 1.5s infinite;
+}

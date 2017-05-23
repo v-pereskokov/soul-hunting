@@ -1,0 +1,26 @@
+.wrapper__health {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  z-index: 43;
+  color: #000 !important;
+  background-color: rgba(176, 176, 176, 0.95) !important;
+  width: 190px;
+
+  &-red {
+    color: #fff !important;
+    background-color: #f40110 !important;
+    height: 32px;
+    width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: 10px;
+    font-family: "Keep Calm";
+    color: #e9e9e9;
+  }
+}

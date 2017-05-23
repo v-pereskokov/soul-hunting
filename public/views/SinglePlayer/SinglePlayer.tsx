@@ -5,17 +5,16 @@ import {connect} from 'react-redux';
 import {SINGLEPLAYER} from '../../constants/Game/Game';
 import {Mobile} from '../Mobile/Mobile';
 import {Background} from '../../components/Background/Background';
-import GameTable from '../../components/GameTable/GameTable';
+import GameTable from '../../components/Game/GameTable/GameTable';
 import {Instructions} from '../../components/Instructions/Instructions';
-import {Time} from '../../components/Time/Time';
-import {Aim} from '../../components/Aim/Aim';
-import {Health} from '../../components/Health/Health';
-import {GameShadow} from '../../components/GameShadow/GameShadow';
-import {Weapon} from '../../components/Weapon/Weapon';
-import {EndGameTheme} from '../../components/EndGameTheme/EndGameTheme';
-import {Hurt} from '../../components/Hurt/Hurt';
-import {StartGameTheme} from '../../components/StartGameTheme/StartGameTheme';
-import {GameMenu} from '../../components/GameMenu/GameMenu';
+import {Aim} from '../../components/Game/Aim/Aim';
+import {Health} from '../../components/Game/Health/Health';
+import {GameShadow} from '../../components/Game/GameShadow/GameShadow';
+import {Weapon} from '../../components/Game/Weapon/Weapon';
+import {EndGameTheme} from '../../components/Game/EndGameTheme/EndGameTheme';
+import {Hurt} from '../../components/Game/Hurt/Hurt';
+import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameTheme';
+import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -76,7 +75,6 @@ class SinglePlayer extends React.Component<Props, any> {
           <div>
             <Instructions />
             <div className='wrapper__game'>
-              <Time />
               <Aim />
               <Health />
               <GameShadow />
@@ -87,11 +85,12 @@ class SinglePlayer extends React.Component<Props, any> {
                 </div>
               </div>
 
+              <img src='/static/gameSource/shootFootage.png' className='shooterAnimation'/>
               <Hurt />
               <EndGameTheme />
               <StartGameTheme />
             </div>
-            <GameMenu />
+            <GameMenu text='Singleplayer'/>
           </div>
           :
           <div className='wrapper__mobile'>

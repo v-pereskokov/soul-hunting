@@ -8,6 +8,7 @@ import {Background} from '../../components/Background/Background';
 import {Mobile} from '../Mobile/Mobile';
 import {Button} from '../../components/Button/Button';
 import {Back} from '../../components/Back/Back';
+import {setScore} from '../../actions/User/User.actions';
 
 import './Game.scss';
 
@@ -18,6 +19,7 @@ const urls = [
 
 interface Props {
   isAuthenticated: boolean;
+  user?: string;
   device: boolean;
   setActive: (button1: any, button2: any, button3: any, current: any) => void;
   button1: boolean;
@@ -37,6 +39,8 @@ class Game extends React.Component<Props, any> {
     if (!this.props.isAuthenticated) {
       browserHistory.push('/');
     }
+
+    this._sendScoreToBack();
   }
 
   render() {
@@ -133,11 +137,28 @@ class Game extends React.Component<Props, any> {
       },
     ]
   }
+
+  _sendScoreToBack() {
+    const userData: string = localStorage.getItem('singlePlayerScore');
+    if (userData) {
+      const {user} = this.props;
+
+      if (userData) {
+        setScore(JSON.stringify({
+          login: user,
+          sScore: userData
+        }));
+
+        localStorage.removeItem('singlePlayerScore');
+      }
+    }
+  }
 }
 
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    user: state.authentication.user,
     current: state.buttons[0].current,
     button1: state.buttons[1].button,
     button2: state.buttons[2].button,
@@ -156,4 +177,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps)(Game as any);

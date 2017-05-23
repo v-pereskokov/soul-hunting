@@ -18,3 +18,13 @@
     margin: auto;
   }
 }
+
+.shooterAnimation {
+  z-index: 38;
+  position: absolute;
+  opacity: 0.7;
+  left: 40px;
+  top: 150px;
+  transform: scale(0.3, 0.3);
+  display: none;
+}
