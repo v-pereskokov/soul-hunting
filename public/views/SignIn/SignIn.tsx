@@ -24,6 +24,7 @@ const signInFields = [{
 
 interface Props {
   isAuthenticated: boolean;
+  device?: boolean;
 }
 
 class SignIn extends React.Component<Props, void> {
@@ -46,14 +47,15 @@ class SignIn extends React.Component<Props, void> {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const {isAuthenticated, device} = this.props;
+    const classes = device ? 'registration' : 'mobile__registration';
 
     return (
       <div className='wrapper__registration'>
         <Background closed={ true }/>
         { isAuthenticated ?
           browserHistory.push('/')
-          : <div className='registration'>
+          : <div className={ classes }>
             <Form
               fields={ signInFields }
               control='Sign In'
@@ -67,9 +69,10 @@ class SignIn extends React.Component<Props, void> {
 
 const mapStateToProps = (state: any) => {
   return {
-    isAuthenticated: state.authentication.isAuthenticated
+    isAuthenticated: state.authentication.isAuthenticated,
+    device: state.device
   }
 };
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps)(SignIn as any);
 
