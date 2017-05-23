@@ -38,6 +38,7 @@ export default class PointerLockApiManager {
     this._gameMenuWrapper = document.body.querySelector('.menu__wrapper__parent');
     this._gameMenuButtons = document.body.querySelector('.menu__wrapper__parent-buttons');
     this._gameMenuTopic = document.body.querySelector('.menu__wrapper__parent-topic');
+    this._shootAnimate = document.body.querySelector('.shooterAnimation');
 
     const buttons = this._gameMenuButtons
       .querySelector('.game__menu-buttons').children;
@@ -62,6 +63,7 @@ export default class PointerLockApiManager {
     this._gameMenuWrapper.style.display = 'none';
     this._gameMenuButtons.style.display = 'none';
     this._gameMenuTopic.style.display = 'none';
+    this._shootAnimate.style.display = 'none';
   }
 
   _init(blocks, controls, mouse, startCallback, stopCallback) {

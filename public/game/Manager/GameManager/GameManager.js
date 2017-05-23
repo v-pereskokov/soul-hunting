@@ -17,7 +17,3 @@ export default class GameManager {
     }
   }
 }
-
-// fix music
-// design game
-// keys (console)
