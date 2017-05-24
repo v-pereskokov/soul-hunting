@@ -232,4 +232,27 @@ export default class BaseScene {
     this._gameOver = this._endTitles.querySelector('.endGameTheme__wrapper-gameOver');
     this._table = document.body.querySelector('.gameTable__wrapper');
   }
+
+  _openEndGame() {
+
+  }
+
+  _showBlockEndGame() {
+    this._end.style.opacity = '0.7';
+
+    this._gameOver.innerHTML = 'Game Over';
+
+    this._table.style.display = 'block';
+    this._endTitles.style.display = 'block';
+  }
+
+  _closeEndGame() {
+    this._end.style.opacity = '0';
+
+    this._type.innerHTML = '';
+    this._gameOver.innerHTML = '';
+
+    this._table.style.display = 'none';
+    this._endTitles.style.display = 'none';
+  }
 }
