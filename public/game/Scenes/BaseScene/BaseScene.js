@@ -10,9 +10,7 @@ import map from '../../Tools/Map/Map';
 import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
-import GameWebSocket from '../../Tools/GameWebSocket/GameWebSocket';
 import PlayerService from '../../Manager/PlayerManager/PlayerManager';
-import {SOCKET_ADDRESS} from '../../Constants/Socket';
 import {
   WIDTH,
   HEIGHT,
@@ -26,9 +24,6 @@ export default class BaseScene {
 
     this._keys = keys;
     this._mouse = mouse;
-
-    const protocol = GameWebSocket.isSSL() ? 'wss' : 'ws';
-    this._webSocket = new GameWebSocket(`wss://${SOCKET_ADDRESS}/game`);
 
     this._player = new PlayerService(this._camera, 100);
 

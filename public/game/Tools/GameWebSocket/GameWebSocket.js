@@ -7,30 +7,28 @@ export default class GameWebSocket {
     this._ws.send(JSON.stringify(data));
   }
 
-  onOpen(callback) {
+  onOpen(callback = null) {
     this._ws.onopen = () => {
-      console.log("Соединено");
-      callback();
+      callback ? callback() : null;
     };
   }
 
   onMessage(callback) {
     this._ws.onmessage = event => {
-      console.log("Mes");
       callback(event);
     };
   }
 
   onError(callback) {
     this._ws.onerror = error => {
-      console.log("Error " + error);
+      console.log('Error ' + error);
       callback(error);
     };
   }
 
   onClose(callback) {
     this._ws.onclose = event => {
-      console.log("Closed");
+      event.wasClean ? console.log('Closed clean') : console.log('Error closed');
       callback(event);
     };
   }

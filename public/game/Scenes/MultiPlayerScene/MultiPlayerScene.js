@@ -11,17 +11,24 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
+import GameWebSocketManager from '../../Manager/GameWebSocketManager/GameWebSocketManager';
 import {
   UNITSIZE,
   MOVESPEEDAI,
   BULLETMOVESPEED
 } from '../../Constants/Constants';
+import {
+  INITIALIZE_PLAYER,
+  SNAPSHOT,
+  REMOVE_PLAYER
+} from '../../Constants/MultiPlayer';
 
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, functionGo) {
     super(keys, mouse, functionGo);
 
     this._game = false;
+    this._webSocketManager = new GameWebSocketManager();
   }
 
   set game(value) {
@@ -33,30 +40,23 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _init() {
-    this._setUpWebSockets();
+    this._webSocketManager.setOnMessage(this._setUpWebSockets());
     musicService.stopBackground();
 
     this._initScenePreferences();
 
     this._makeScene();
-    this._setUpAI();
 
     this._setUpRender();
   }
 
   _setUpWebSockets() {
-    this._webSocket.onOpen(() => {});
-    this._webSocket.onMessage(event => {
-      const content = JSON.parse(event.data);
-      const data = JSON.parse(content.data);
-
-      console.log(data);
-
+    return (content, data) => {
       switch (content.type) {
-        case 'InitializePlayer':
+        case INITIALIZE_PLAYER:
           this._player.id = data;
           break;
-        case 'Snapshot':
+        case SNAPSHOT:
           // update leaderboard
 
           if (data.shot) {
@@ -115,7 +115,7 @@ export default class MultiPlayerScene extends BaseScene {
             }
           });
           break;
-        case 'RemovePlayer':
+        case REMOVE_PLAYER:
           data.forEach(element => {
             // remove from map
             // delete from massive players
@@ -124,18 +124,7 @@ export default class MultiPlayerScene extends BaseScene {
         default:
           break;
       }
-    });
-
-    this._webSocket.onClose(event => {
-      if (event.wasClean) {
-        console.log('Закрыто чисто');
-      } else {
-        console.log('Обрыв');
-      }
-
-      console.log('код: ' + event.code + 'причина ' + event.reason);
-      this._id = -1;
-    });
+    };
   }
 
   _animate() {
@@ -145,37 +134,31 @@ export default class MultiPlayerScene extends BaseScene {
 
     this._render();
 
-    let {x, y, z} = this._camera.position;
-    const position = {x, y, z};
+    // let {x, y, z} = this._camera.position;
+    // const position = {x, y, z};
+    //
+    // x = this._camera.rotation.x;
+    // y = this._camera.rotation.y;
+    // z = this._camera.rotation.z;
+    //
+    // const camera = {x, y, z};
+    //
+    // let json = {
+    //   type: 'application.mechanics.base.UserSnap',
+    //   data: {
+    //     position,
+    //     id: this._player.id,
+    //     camera,
+    //     firing: false
+    //   }
+    // };
+    //
+    // // setTimeout(() => {
+    // //   this._webSocket.send(json);
+    // // }, 10000);
+    //
+    // this._webSocket.send(json);
 
-    x = this._camera.rotation.x;
-    y = this._camera.rotation.y;
-    z = this._camera.rotation.z;
-
-    const camera = {x, y, z};
-
-    let json = {
-      type: 'application.mechanics.base.UserSnap',
-      data: {
-        position,
-        id: this._player.id,
-        camera,
-        firing: false
-      }
-    };
-
-    // setTimeout(() => {
-    //   this._webSocket.send(json);
-    // }, 10000);
-
-    this._webSocket.send(json);
-
-  }
-
-  _setUpAI() {
-    for (let i = 0; i < 6; i++) {
-      this._addAI();
-    }
   }
 
   _addAI() {
