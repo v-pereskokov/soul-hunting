@@ -9,6 +9,7 @@ app.use('/scoreboard', express.static('public'));
 app.use('/about', express.static('public'));
 app.use('/game', express.static('public'));
 app.use('/game/singleplayer', express.static('public'));
+app.use('/game/multiplayer', express.static('public'));
 
 app.use(parser.json());
 

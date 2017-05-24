@@ -1,4 +1,4 @@
-export default class WebSocket {
+export default class GameWebSocket {
   constructor(address) {
     this._ws = new WebSocket(address);
   }
@@ -33,5 +33,9 @@ export default class WebSocket {
       console.log("Closed");
       callback(event);
     };
+  }
+
+  static isSSL() {
+    return window.location.protocol === 'https:';
   }
 }
