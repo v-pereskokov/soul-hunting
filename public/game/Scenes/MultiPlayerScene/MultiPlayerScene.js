@@ -90,7 +90,7 @@ export default class MultiPlayerScene extends BaseScene {
             // players - manager
             if (this._players[`id${playerId}`] === undefined) {
               // cube
-              this._players[`id${playerId}`] = new PlayerObject();
+              // this._players[`id${playerId}`] = new PlayerObject();
 
               const position = Helper.getMapSector(this._camera.position);
 
@@ -134,31 +134,26 @@ export default class MultiPlayerScene extends BaseScene {
 
     this._render();
 
-    // let {x, y, z} = this._camera.position;
-    // const position = {x, y, z};
-    //
-    // x = this._camera.rotation.x;
-    // y = this._camera.rotation.y;
-    // z = this._camera.rotation.z;
-    //
-    // const camera = {x, y, z};
-    //
-    // let json = {
-    //   type: 'application.mechanics.base.UserSnap',
-    //   data: {
-    //     position,
-    //     id: this._player.id,
-    //     camera,
-    //     firing: false
-    //   }
-    // };
-    //
-    // // setTimeout(() => {
-    // //   this._webSocket.send(json);
-    // // }, 10000);
-    //
-    // this._webSocket.send(json);
+    let {x, y, z} = this._camera.position;
+    const position = {x, y, z};
 
+    x = this._camera.rotation.x;
+    y = this._camera.rotation.y;
+    z = this._camera.rotation.z;
+
+    const camera = {x, y, z};
+
+    let json = {
+      type: 'application.mechanics.base.UserSnap',
+      data: {
+        position,
+        id: this._player.id,
+        camera,
+        firing: false
+      }
+    };
+
+    this._webSocketManager.send(json);
   }
 
   _addAI() {

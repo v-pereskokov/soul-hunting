@@ -10,6 +10,10 @@ export default class GameWebSocketManager {
     this._onClose();
   }
 
+  send(data) {
+    this._webSocket.send(data);
+  }
+
   setOnMessage(callback) {
     this._webSocket.onMessage(event => {
       const content = JSON.parse(event.data);
