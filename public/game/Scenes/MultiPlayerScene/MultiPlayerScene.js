@@ -33,13 +33,143 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _init() {
+    this._setUpWebSockets();
     musicService.stopBackground();
+
     this._initScenePreferences();
 
     this._makeScene();
     this._setUpAI();
 
     this._setUpRender();
+  }
+
+  _setUpWebSockets() {
+    this._webSocket.onOpen(() => {});
+    this._webSocket.onMessage(event => {
+      const content = JSON.parse(event.data);
+      const data = JSON.parse(content.data);
+
+      console.log(data);
+
+      switch (content.type) {
+        case 'InitializePlayer':
+          this._player.id = data;
+          break;
+        case 'Snapshot':
+          // update leaderboard
+
+          if (data.shot) {
+            // anim
+          }
+
+          // change hp
+
+          if (data.hp === 0) {
+            // reborn
+          }
+
+          // show death on screen
+
+          data.players.forEach(player => {
+            const playerId = player.id;
+
+            if (playerId === this._player.id) {
+              return;
+            }
+
+            const playerPosition = player.position;
+
+            if (playerPosition === null) {
+              console.log('Враг без координат');
+              return;
+            }
+
+            this._players = {};
+
+            // players - manager
+            if (this._players[`id${playerId}`] === undefined) {
+              // cube
+              this._players[`id${playerId}`] = new PlayerObject();
+
+              const position = Helper.getMapSector(this._camera.position);
+
+              let [x, z] = Helper.getRandomPosition();
+              while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
+                [x, z] = Helper.getRandomPosition();
+              }
+
+              x = Math.floor(x - map.width / 2) * UNITSIZE;
+              z = Math.floor(z - map.width / 2) * UNITSIZE;
+
+              const playerObject = new Player().object;
+              playerObject.position.set(x, UNITSIZE * 0.15, z);
+
+              // playersService.add(new PlayerService(playerObject, 100));
+              this._scene.add(playerObject);
+              // add to map
+
+              // update leaderboard
+            } else {
+              this._players[`id${playerId}`].position.copy(playerPosition);
+            }
+          });
+          break;
+        case 'RemovePlayer':
+          data.forEach(element => {
+            // remove from map
+            // delete from massive players
+          });
+          break;
+        default:
+          break;
+      }
+    });
+
+    this._webSocket.onClose(event => {
+      if (event.wasClean) {
+        console.log('Закрыто чисто');
+      } else {
+        console.log('Обрыв');
+      }
+
+      console.log('код: ' + event.code + 'причина ' + event.reason);
+      this._id = -1;
+    });
+  }
+
+  _animate() {
+    if (this._isAnimate) {
+      requestAnimationFrame(this._animate.bind(this));
+    }
+
+    this._render();
+
+    let {x, y, z} = this._camera.position;
+    const position = {x, y, z};
+
+    x = this._camera.rotation.x;
+    y = this._camera.rotation.y;
+    z = this._camera.rotation.z;
+
+    const camera = {x, y, z};
+
+    let json = {
+      type: 'application.mechanics.base.UserSnap',
+      data: {
+        position,
+        id: this._player.id,
+        camera,
+        firing: false
+      }
+    };
+
+    // setTimeout(() => {
+    //   this._webSocket.send(json);
+    // }, 10000);
+
+    this._webSocket.send(json);
+
   }
 
   _setUpAI() {

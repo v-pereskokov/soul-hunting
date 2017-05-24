@@ -2,7 +2,7 @@ import * as React from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 
-import {SINGLEPLAYER} from '../../constants/Game/Game';
+import {MULTIPLAYER} from '../../constants/Game/Game';
 import {Mobile} from '../Mobile/Mobile';
 import Background from '../../components/Background/Background';
 import GameTable from '../../components/Game/GameTable/GameTable';
@@ -63,7 +63,7 @@ class MultiPlayer extends React.Component<Props, any> {
 
   componentDidMount() {
     if (this._isAdmin()) {
-      new GameManager(SINGLEPLAYER, browserHistory.push.bind(this, '/game'));
+      new GameManager(MULTIPLAYER, browserHistory.push.bind(this, '/game'));
     }
   }
 

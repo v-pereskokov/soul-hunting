@@ -11,9 +11,8 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import GameWebSocket from '../../Tools/GameWebSocket/GameWebSocket';
-import {SOCKET_ADDRESS} from '../../Constants/Socket';
 import PlayerService from '../../Manager/PlayerManager/PlayerManager';
-import Player from '../../Three/Objects/Player/Player';
+import {SOCKET_ADDRESS} from '../../Constants/Socket';
 import {
   WIDTH,
   HEIGHT,
@@ -29,7 +28,8 @@ export default class BaseScene {
     this._mouse = mouse;
 
     const protocol = GameWebSocket.isSSL() ? 'wss' : 'ws';
-    this._webSocket = new GameWebSocket(`${protocol}://${SOCKET_ADDRESS}/game`);
+    this._webSocket = new GameWebSocket(`wss://${SOCKET_ADDRESS}/game`);
+
     this._player = new PlayerService(this._camera, 100);
 
     this._isAnimate = true;
@@ -57,7 +57,6 @@ export default class BaseScene {
   }
 
   _initScenePreferences() {
-    this._setUpWebSockets();
     this._setUpClock();
     this._setUpScene();
     this._setUpFog();
@@ -80,125 +79,6 @@ export default class BaseScene {
     }
 
     this._render();
-
-    let {x, y, z} = this._camera.position;
-    const position = {x, y, z};
-
-    x = this._camera.rotation.x;
-    y = this._camera.rotation.y;
-    z = this._camera.rotation.z;
-
-    const camera = {x, y, z};
-
-    let json = {
-      type: 'application.mechanics.base.UserSnap',
-      data: {
-        position,
-        id: this._player.id,
-        camera,
-        firing: false
-      }
-    };
-
-    // setTimeout(() => {
-    //   this._webSocket.send(json);
-    // }, 10000);
-
-    this._webSocket.send(json);
-
-  }
-
-  _setUpWebSockets() {
-    this._webSocket.onOpen(() => {});
-    this._webSocket.onMessage(event => {
-      console.log(event);
-      // const content = JSON.parse(JSON.stringify(event));
-      // const data = JSON.parse(content.data);
-
-      switch (content.type) {
-        case 'InitializePlayer':
-          this._player.id = data;
-          break;
-        case 'Snapshot':
-          // update leaderboard
-
-          if (data.shot) {
-            // anim
-          }
-
-          // change hp
-
-          if (data.hp === 0) {
-            // reborn
-          }
-
-          // show death on screen
-
-          data.players.forEach(player => {
-            const playerId = player.id;
-
-            if (playerId === this._player.id) {
-              return;
-            }
-
-            const playerPosition = player.position;
-
-            if (playerPosition === null) {
-              console.log('Враг без координат');
-              return;
-            }
-
-            this._players = {};
-
-            // players - manager
-            if (this._players[`id${playerId}`] === undefined) {
-              // cube
-              this._players[`id${playerId}`] = new PlayerObject();
-
-              const position = Helper.getMapSector(this._camera.position);
-
-              let [x, z] = Helper.getRandomPosition();
-              while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-                [x, z] = Helper.getRandomPosition();
-              }
-
-              x = Math.floor(x - map.width / 2) * UNITSIZE;
-              z = Math.floor(z - map.width / 2) * UNITSIZE;
-
-              const playerObject = new Player().object;
-              playerObject.position.set(x, UNITSIZE * 0.15, z);
-
-              // playersService.add(new PlayerService(playerObject, 100));
-              this._scene.add(playerObject);
-              // add to map
-
-              // update leaderboard
-            } else {
-              this._players[`id${playerId}`].position.copy(playerPosition);
-            }
-          });
-          break;
-        case 'RemovePlayer':
-          data.forEach(element => {
-            // remove from map
-            // delete from massive players
-          });
-          break;
-        default:
-          break;
-      }
-    });
-
-    this._webSocket.onClose(event => {
-      if (event.wasClean) {
-        console.log('Закрыто чисто');
-      } else {
-        console.log('Обрыв');
-      }
-
-      console.log('код: ' + event.code + 'причина ' + event.reason);
-      this._id = -1;
-    });
   }
 
   _setUpClock() {
