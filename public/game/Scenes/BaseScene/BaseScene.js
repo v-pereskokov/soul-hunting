@@ -234,13 +234,7 @@ export default class BaseScene {
   }
 
   _openEndGame() {
-
-  }
-
-  _showBlockEndGame() {
     this._end.style.opacity = '0.7';
-
-    this._gameOver.innerHTML = 'Game Over';
 
     this._table.style.display = 'block';
     this._endTitles.style.display = 'block';
@@ -248,9 +242,6 @@ export default class BaseScene {
 
   _closeEndGame() {
     this._end.style.opacity = '0';
-
-    this._type.innerHTML = '';
-    this._gameOver.innerHTML = '';
 
     this._table.style.display = 'none';
     this._endTitles.style.display = 'none';

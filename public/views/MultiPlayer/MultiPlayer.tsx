@@ -88,7 +88,7 @@ class MultiPlayer extends React.Component<Props, any> {
 
               <ShootFootage />
               <Hurt />
-              <EndGameTheme />
+              <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
             </div>
             <GameMenu text='Multiplayer'/>

@@ -172,9 +172,4 @@ export default class SinglePlayerScene extends BaseScene {
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
   }
-
-  _openEndGame() {
-    this._type.innerHTML = 'Singleplayer';
-    this._showBlockEndGame();
-  }
 }

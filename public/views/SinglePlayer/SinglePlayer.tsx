@@ -88,7 +88,7 @@ class SinglePlayer extends React.Component<Props, any> {
 
               <ShootFootage />
               <Hurt />
-              <EndGameTheme />
+              <EndGameTheme text='Singleplayer'/>
               <StartGameTheme />
             </div>
             <GameMenu text='Singleplayer'/>

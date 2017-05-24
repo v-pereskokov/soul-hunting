@@ -302,9 +302,4 @@ export default class MultiPlayerScene extends BaseScene {
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
   }
-
-  _openEndGame() {
-    this._type.innerHTML = 'Multiplayer';
-    this._showBlockEndGame();
-  }
 }
