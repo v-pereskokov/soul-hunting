@@ -20,6 +20,10 @@ export default class PlayersService {
     this._playersFullPlayer[`id${index}`] = data;
   }
 
+  removeFullPlayer(index) {
+    delete this._playersFullPlayer[`id${index}`];
+  }
+
   remove(index) {
     this._players.splice(index, 1);
   }

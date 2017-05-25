@@ -90,7 +90,7 @@ export default class MultiPlayerScene extends BaseScene {
 
             // players - manager
             if (this._players.getFullPlayer(`id${playerId}`) === undefined) {
-              const playerObject = new Player().object
+              const playerObject = new Player().object;
               this._players.setFullPlayer(playerId, playerObject);
               this._players.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
@@ -108,8 +108,8 @@ export default class MultiPlayerScene extends BaseScene {
           break;
         case REMOVE_PLAYER:
           data.forEach(element => {
-            // remove from map
-            // delete from massive players
+            this._scene.remove(this._players.getFullPlayer(element));
+            this._players.removeFullPlayer(element);
           });
           break;
         default:
