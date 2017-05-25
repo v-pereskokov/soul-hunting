@@ -85,7 +85,6 @@ export default class MultiPlayerScene extends BaseScene {
             const playerPosition = player.position;
 
             if (playerPosition === null) {
-              // console.log('Враг без координат');
               return;
             }
 
@@ -143,7 +142,7 @@ export default class MultiPlayerScene extends BaseScene {
         position,
         id: this._player.id,
         camera,
-        firing: false
+        firing: true
       }
     };
 

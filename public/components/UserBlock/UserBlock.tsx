@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
-import {UserBlockBase} from './UserBlockBase/UserBlockBase';
+import UserBlockBase from './UserBlockBase/UserBlockBase';
 import {UserBlockNickName} from './UserBlockNickName/UserBlockNickName';
 import {UserBlockButton} from './UserBlockButton/UserBlockButton';
 import {logoutUser, setCurrentUser} from '../../actions/User/User.actions';

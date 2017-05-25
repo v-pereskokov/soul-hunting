@@ -3,7 +3,7 @@ import {SOCKET_ADDRESS} from '../../Constants/Socket';
 
 export default class GameWebSocketManager {
   constructor() {
-    const protocol = GameWebSocket.isSSL() ? 'wss' : 'ws';
+    const protocol = GameWebSocket.isSSL() ? 'wss' : 'ws'; // in prod use protocol
     this._webSocket = new GameWebSocket(`wss://${SOCKET_ADDRESS}/game`);
   }
 
