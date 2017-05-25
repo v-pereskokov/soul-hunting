@@ -1,0 +1,32 @@
+.killedStats {
+  position: absolute;
+  width: 250px;
+  height: 45px;
+  background: #1B1E24;
+  margin: 5px;
+  right: 0;
+  z-index: 40;
+
+  &__username {
+    color: white;
+    font-family: 'Keep Calm';
+    font-size: 12pt;
+    position: relative;
+    top: 15px;
+    left: 0px;
+  }
+
+  &__button {
+    position: relative;
+    left: 90px;
+    top: -19px;
+  }
+
+  &__userphoto {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: -106px;
+    left: 20px;
+  }
+}

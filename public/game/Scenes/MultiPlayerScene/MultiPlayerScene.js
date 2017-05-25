@@ -53,9 +53,11 @@ export default class MultiPlayerScene extends BaseScene {
 
   _setUpWebSockets() {
     return (content, data) => {
+      console.log(content);
+
       switch (content.type) {
-        case INITIALIZE_PLAYER:
-          console.log(data);
+        case 'InitializePlayer':
+          console.log('wqewqeqwewqewqeqwwqewqewq');
           this._player.id = data;
           break;
         case SNAPSHOT:
@@ -145,14 +147,7 @@ export default class MultiPlayerScene extends BaseScene {
       }
     };
 
-    if (a) {
-      this._webSocketManager.send(json);
-    } else {
-      setTimeout(() => {
-        a = true;
-        this._webSocketManager.send(json);
-      }, 4000);
-    }
+    this._webSocketManager.send(json);
   }
 
   _addAI() {
