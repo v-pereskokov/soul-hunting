@@ -11,7 +11,6 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
-import GameWebSocketManager from '../../Manager/GameWebSocketManager/GameWebSocketManager';
 import {
   UNITSIZE,
   MOVESPEEDAI,
@@ -26,11 +25,11 @@ import {
 let a = false;
 
 export default class MultiPlayerScene extends BaseScene {
-  constructor(keys, mouse, functionGo) {
+  constructor(keys, mouse, gameWebSocketManager, functionGo) {
     super(keys, mouse, functionGo);
 
     this._game = false;
-    this._webSocketManager = new GameWebSocketManager();
+    this._webSocketManager = gameWebSocketManager;
   }
 
   set game(value) {
@@ -84,7 +83,7 @@ export default class MultiPlayerScene extends BaseScene {
             const playerPosition = player.position;
 
             if (playerPosition === null) {
-              console.log('Враг без координат');
+              // console.log('Враг без координат');
               return;
             }
 

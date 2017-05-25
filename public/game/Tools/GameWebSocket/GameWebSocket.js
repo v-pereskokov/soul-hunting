@@ -9,6 +9,7 @@ export default class GameWebSocket {
 
   onOpen(callback = null) {
     this._ws.onopen = () => {
+      console.log('Open');
       callback ? callback() : null;
     };
   }

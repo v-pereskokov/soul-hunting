@@ -3,6 +3,7 @@ import Keyboard from '../../Controls/Keyboard/Keyboard';
 import PointerLockApiManager from '../../Manager/PointerLockApiManager/PointerLockApiManager';
 import musicService from '../../Tools/MusicService/MusicService';
 import countNumbers from '../../Tools/CountNumbers/CountNumbers';
+import GameWebSocketManager from '../../Manager/GameWebSocketManager/GameWebSocketManager';
 
 export default class Game {
   constructor(functionGo, type = null) {
@@ -10,11 +11,19 @@ export default class Game {
     this._keys = new Keyboard();
     this._mouse = new Mouse();
 
+    this._ws = null;
+
+    if (this._type) {
+      this._ws = new GameWebSocketManager();
+
+      this._ws._onClose();
+    }
+
     this.startPreview(functionGo);
   }
 
   start(stopMusic, functionGo) {
-    this._gameScene = this._getScene(functionGo);
+    this._gameScene = this._getScene(functionGo, this._type ? this._ws : null);
     this._pointerLockManager = this._getPointerLock(stopMusic, functionGo);
 
     this._gameScene.setPointerLock(
@@ -26,13 +35,13 @@ export default class Game {
     this._togglePreloader(true);
     musicService.startBackgroundSingle();
 
-    setTimeout(() => {
+    this._ws._onOpen(() => {
       this._togglePreloader(false);
       this._setInstructions();
       this.start(() => {
         musicService.stopBackground();
       }, functionGo);
-    }, 3000);
+    });
   }
 
   _setInstructions() {
@@ -43,7 +52,7 @@ export default class Game {
     document.body.querySelector('.pre-loader__wrapper').style.display = type ? 'block' : 'none';
   }
 
-  _getScene(functionGo) {
+  _getScene(functionGo, webSocket = null) {
 
   }
 
@@ -62,7 +71,7 @@ export default class Game {
 
           setTimeout(() => {
             this._gameScene.stop();
-          }, 25);
+          }, 5);
 
           document.body.querySelector('.wrapper__game').style.display = 'block';
 
