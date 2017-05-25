@@ -1,6 +1,7 @@
 export default class PlayersService {
   constructor() {
     this._players = [];
+    this._playersFullPlayer = {};
   }
 
   add(player) {
@@ -12,13 +13,11 @@ export default class PlayersService {
   }
 
   getFullPlayer(index) {
-    for (let player of this._players) {
-      if (player[index] !== undefined) {
-        return player[index];
-      }
-    }
+    return this._playersFullPlayer[index];
+  }
 
-    return false;
+  setFullPlayer(index, data) {
+    this._playersFullPlayer[`id${index}`] = data;
   }
 
   remove(index) {

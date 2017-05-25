@@ -89,36 +89,20 @@ export default class MultiPlayerScene extends BaseScene {
             this._players = {};
 
             // players - manager
-            if (!this._players.getFullPlayer(`id${playerId}`)) {
+            if (this._players.getFullPlayer(`id${playerId}`) === undefined) {
+              const playerObject = new Player().object
+              this._players.setFullPlayer(playerId, playerObject);
+              this._players.getFullPlayer(`id${playerId}`)
+                .position.copy(playerPosition);
 
+              this._players.add(new PlayerService(playerObject, 100));
+
+              this._scene.add(playerObject);
+
+              // generate table
             } else {
               this._players.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
-            }
-
-            if (this._players[`id${playerId}`] === undefined) {
-
-              // cube
-              // this._players[`id${playerId}`] = new PlayerObject();
-
-              // const position = Helper.getMapSector(this._camera.position);
-              //
-              // let [x, z] = Helper.getRandomPosition();
-              // while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-              //   [x, z] = Helper.getRandomPosition();
-              // }
-              //
-              // x = Math.floor(x - map.width / 2) * UNITSIZE;
-              // z = Math.floor(z - map.width / 2) * UNITSIZE;
-              //
-              // const playerObject = new Player().object;
-              // playerObject.position.set(x, UNITSIZE * 0.15, z);
-              //
-              // // playersService.add(new PlayerService(playerObject, 100));
-              // this._scene.add(playerObject);
-              // add to map
-
-              // update leaderboard
             }
           });
           break;
