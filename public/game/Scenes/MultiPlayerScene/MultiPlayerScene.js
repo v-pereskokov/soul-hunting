@@ -89,6 +89,13 @@ export default class MultiPlayerScene extends BaseScene {
             this._players = {};
 
             // players - manager
+            if (!this._players.getFullPlayer(`id${playerId}`)) {
+
+            } else {
+              this._players.getFullPlayer(`id${playerId}`)
+                .position.copy(playerPosition);
+            }
+
             if (this._players[`id${playerId}`] === undefined) {
 
               // cube
@@ -112,8 +119,6 @@ export default class MultiPlayerScene extends BaseScene {
               // add to map
 
               // update leaderboard
-            } else {
-              this._players[`id${playerId}`].position.copy(playerPosition);
             }
           });
           break;

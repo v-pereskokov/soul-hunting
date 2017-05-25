@@ -11,6 +11,16 @@ export default class PlayersService {
     return this._players[index];
   }
 
+  getFullPlayer(index) {
+    for (let player of this._players) {
+      if (player[index] !== undefined) {
+        return player[index];
+      }
+    }
+
+    return false;
+  }
+
   remove(index) {
     this._players.splice(index, 1);
   }
