@@ -89,30 +89,28 @@ export default class MultiPlayerScene extends BaseScene {
               return;
             }
 
-            this._players = {};
-
             // players - manager
-            if (this._players.getFullPlayer(`id${playerId}`) === undefined) {
+            if (this._playersService.getFullPlayer(`id${playerId}`) === undefined) {
               const playerObject = new Player().object;
-              this._players.setFullPlayer(playerId, playerObject);
-              this._players.getFullPlayer(`id${playerId}`)
+              this._playersService.setFullPlayer(playerId, playerObject);
+              this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
 
-              this._players.add(new PlayerService(playerObject, 100));
+              this._playersService.add(new PlayerService(playerObject, 100));
 
               this._scene.add(playerObject);
 
               // generate table
             } else {
-              this._players.getFullPlayer(`id${playerId}`)
+              this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
             }
           });
           break;
         case REMOVE_PLAYER:
           data.forEach(element => {
-            this._scene.remove(this._players.getFullPlayer(element));
-            this._players.removeFullPlayer(element);
+            this._scene.remove(this._playersService.getFullPlayer(element));
+            this._playersService.removeFullPlayer(element);
           });
           break;
         default:
@@ -136,6 +134,8 @@ export default class MultiPlayerScene extends BaseScene {
     z = this._camera.rotation.z;
 
     const camera = {x, y, z};
+
+    console.log(this._player.id);
 
     let json = {
       type: 'application.mechanics.base.UserSnap',

@@ -109,7 +109,7 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   _isAdmin() {
-    return this.props.user === 'vladoss';
+    return this.props.user === 'vladoss' || this.props.user === 'aaa' || this.props.user.toLowerCase() === 'bbb' || this.props.user === 'ccc';
   }
 }
 
