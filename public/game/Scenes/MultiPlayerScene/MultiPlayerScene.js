@@ -23,6 +23,8 @@ import {
   REMOVE_PLAYER
 } from '../../Constants/MultiPlayer';
 
+let a = false;
+
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, functionGo) {
     super(keys, mouse, functionGo);
@@ -144,7 +146,14 @@ export default class MultiPlayerScene extends BaseScene {
       }
     };
 
-    this._webSocketManager.send(json);
+    if (a) {
+      this._webSocketManager.send(json);
+    } else {
+      setTimeout(() => {
+        a = true;
+        this._webSocketManager.send(json);
+      }, 4000);
+    }
   }
 
   _addAI() {
