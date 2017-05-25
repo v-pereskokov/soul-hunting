@@ -49,7 +49,9 @@ export default class PlayerService {
     return this._kills;
   }
 
-  get id() {}
+  get id() {
+    return this._id;
+  }
 
   get x() {
     return this._lastRandomX;

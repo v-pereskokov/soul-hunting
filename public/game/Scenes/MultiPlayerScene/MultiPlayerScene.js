@@ -11,7 +11,6 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
-import GameWebSocketManager from '../../Manager/GameWebSocketManager/GameWebSocketManager';
 import {
   UNITSIZE,
   MOVESPEEDAI,
@@ -26,11 +25,11 @@ import {
 let a = false;
 
 export default class MultiPlayerScene extends BaseScene {
-  constructor(keys, mouse, functionGo) {
+  constructor(keys, mouse, gameWebSocketManager, functionGo) {
     super(keys, mouse, functionGo);
 
     this._game = false;
-    this._webSocketManager = new GameWebSocketManager();
+    this._webSocketManager = gameWebSocketManager;
   }
 
   set game(value) {
@@ -54,9 +53,11 @@ export default class MultiPlayerScene extends BaseScene {
 
   _setUpWebSockets() {
     return (content, data) => {
+      console.log(content);
+
       switch (content.type) {
-        case INITIALIZE_PLAYER:
-          console.log(data);
+        case 'InitializePlayer':
+          console.log('wqewqeqwewqewqeqwwqewqewq');
           this._player.id = data;
           break;
         case SNAPSHOT:
@@ -84,34 +85,32 @@ export default class MultiPlayerScene extends BaseScene {
             const playerPosition = player.position;
 
             if (playerPosition === null) {
-              console.log('Враг без координат');
+              // console.log('Враг без координат');
               return;
             }
 
-            this._players = {};
-
             // players - manager
-            if (this._players.getFullPlayer(`id${playerId}`) === undefined) {
+            if (this._playersService.getFullPlayer(`id${playerId}`) === undefined) {
               const playerObject = new Player().object;
-              this._players.setFullPlayer(playerId, playerObject);
-              this._players.getFullPlayer(`id${playerId}`)
+              this._playersService.setFullPlayer(playerId, playerObject);
+              this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
 
-              this._players.add(new PlayerService(playerObject, 100));
+              this._playersService.add(new PlayerService(playerObject, 100));
 
               this._scene.add(playerObject);
 
               // generate table
             } else {
-              this._players.getFullPlayer(`id${playerId}`)
+              this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
             }
           });
           break;
         case REMOVE_PLAYER:
           data.forEach(element => {
-            this._scene.remove(this._players.getFullPlayer(element));
-            this._players.removeFullPlayer(element);
+            this._scene.remove(this._playersService.getFullPlayer(element));
+            this._playersService.removeFullPlayer(element);
           });
           break;
         default:
@@ -136,6 +135,8 @@ export default class MultiPlayerScene extends BaseScene {
 
     const camera = {x, y, z};
 
+    console.log(this._player.id);
+
     let json = {
       type: 'application.mechanics.base.UserSnap',
       data: {
@@ -146,14 +147,7 @@ export default class MultiPlayerScene extends BaseScene {
       }
     };
 
-    if (a) {
-      this._webSocketManager.send(json);
-    } else {
-      setTimeout(() => {
-        a = true;
-        this._webSocketManager.send(json);
-      }, 4000);
-    }
+    this._webSocketManager.send(json);
   }
 
   _addAI() {

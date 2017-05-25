@@ -20,6 +20,8 @@ import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
 
+import './MultiPlayer.scss';
+
 const header = [{
   title: '#'
 }, {
@@ -90,6 +92,9 @@ class MultiPlayer extends React.Component<Props, any> {
               <Hurt />
               <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
+              <div className='killedStats'>
+                <p className='killedStats__username'>Gamer killed gamer</p>
+              </div>
             </div>
             <GameMenu text='Multiplayer'/>
           </div>
@@ -104,7 +109,7 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   _isAdmin() {
-    return this.props.user === 'vladoss';
+    return this.props.user === 'vladoss' || this.props.user === 'aaa' || this.props.user.toLowerCase() === 'bbb' || this.props.user === 'ccc';
   }
 }
 

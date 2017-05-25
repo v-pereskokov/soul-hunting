@@ -5,9 +5,12 @@ export default class GameWebSocketManager {
   constructor() {
     const protocol = GameWebSocket.isSSL() ? 'wss' : 'ws';
     this._webSocket = new GameWebSocket(`wss://${SOCKET_ADDRESS}/game`);
+  }
 
-    this._onOpen();
-    this._onClose();
+  start(onOpenCallback, onMessageCallback, onCloseCallback) {
+    this._onOpen(onOpenCallback);
+    this.setOnMessage(onMessageCallback);
+    this._onClose(onCloseCallback);
   }
 
   send(data) {
@@ -19,20 +22,19 @@ export default class GameWebSocketManager {
       const content = JSON.parse(event.data);
       const data = JSON.parse(content.data);
 
-      console.log(data);
+      // console.log(data);
 
       callback(content, data);
     });
   }
 
-  _onOpen() {
-    this._webSocket.onOpen();
+  _onOpen(callback) {
+    this._webSocket.onOpen(callback);
   }
 
-  _onClose() {
+  _onClose(onCloseCallback = null) {
     this._webSocket.onClose(event => {
       console.log('код: ' + event.code + 'причина ' + event.reason);
-      this._id = -1;
     });
   }
 }
