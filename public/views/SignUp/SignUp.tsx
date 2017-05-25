@@ -2,7 +2,7 @@ import * as React from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import Form from '../../components/Form/Form';
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 
 import './SignUp.scss';
 

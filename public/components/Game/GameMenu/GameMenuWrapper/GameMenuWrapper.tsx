@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './GameMenuWrapper.scss';
+
 export class GameMenuWrapper extends React.Component<any, any> {
   render() {
 

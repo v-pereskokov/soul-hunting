@@ -1,0 +1,10 @@
+.hurt {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(transparent 50%, darkred);
+  position: absolute;
+  z-index: 40;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 
 import {setActive} from '../../actions/Buttons/Buttons.actions';
 
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 import {Mobile} from '../Mobile/Mobile';
 import {Button} from '../../components/Button/Button';
 import {Back} from '../../components/Back/Back';
@@ -14,7 +14,7 @@ import './Game.scss';
 
 const urls = [
   '/game/singleplayer',
-  '/game/singleplayer'
+  '/game/multiplayer'
 ];
 
 interface Props {
@@ -132,7 +132,7 @@ class Game extends React.Component<Props, any> {
       {
         number: 2,
         text: 'MULTIPLAYER',
-        url: '/game/MULTIPLAYER',
+        url: '/game/multiplayer',
         isActive: this.props.button2
       },
     ]

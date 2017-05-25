@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {SINGLEPLAYER} from '../../constants/Game/Game';
 import {Mobile} from '../Mobile/Mobile';
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 import GameTable from '../../components/Game/GameTable/GameTable';
 import {Instructions} from '../../components/Instructions/Instructions';
 import {Aim} from '../../components/Game/Aim/Aim';
@@ -15,6 +15,7 @@ import {EndGameTheme} from '../../components/Game/EndGameTheme/EndGameTheme';
 import {Hurt} from '../../components/Game/Hurt/Hurt';
 import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameTheme';
 import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
+import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -85,9 +86,9 @@ class SinglePlayer extends React.Component<Props, any> {
                 </div>
               </div>
 
-              <img src='/static/gameSource/shootFootage.png' className='shooterAnimation'/>
+              <ShootFootage />
               <Hurt />
-              <EndGameTheme />
+              <EndGameTheme text='Singleplayer'/>
               <StartGameTheme />
             </div>
             <GameMenu text='Singleplayer'/>

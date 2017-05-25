@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {Link} from 'react-router'
 
-import {TableBase} from './TableBase/TableBase';
+import TableBase from './TableBase/TableBase';
 import {TableHeader} from './TableHeader/TableHeader';
 import {TableContent} from './TableContent/TableContent';
 

@@ -3,6 +3,7 @@ export default class PlayerService {
     this._playerObject = playerObject;
     this._health = health;
     this._kills = 0;
+    this._id = -1;
 
     this._lastRandomX = Math.random();
     this._lastRandomZ = Math.random();
@@ -18,6 +19,10 @@ export default class PlayerService {
 
   set kills(kills) {
     this._kills = kills;
+  }
+
+  set id(id) {
+    this._id = id;
   }
 
   set x(x) {
@@ -43,6 +48,8 @@ export default class PlayerService {
   get kills() {
     return this._kills;
   }
+
+  get id() {}
 
   get x() {
     return this._lastRandomX;

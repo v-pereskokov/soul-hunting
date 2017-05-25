@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Link, browserHistory} from 'react-router'
+import {browserHistory} from 'react-router'
 import {connect} from 'react-redux';
 
 import {Button} from '../../components/Button/Button';
 import Table from '../../components/Table/Table';
-import {Background} from '../../components/Background/Background';
+import Background from '../../components/Background/Background';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import {addPage, addUser, getUsersAction} from '../../actions/Scoreboard/Scoreboard.actions';
 
@@ -23,6 +23,7 @@ const header = [{
 interface Props {
   getUsers: (page: number) => void;
   isAuthenticated: boolean;
+  device?: boolean;
   users: any;
   page: number;
 }
@@ -35,7 +36,8 @@ class Scoreboard extends React.Component<Props, void> {
   }
 
   render() {
-    const {isAuthenticated, users} = this.props;
+    const {isAuthenticated, users, device} = this.props;
+    const classes = `table ${device ? '' : 'mobile__table'}`;
 
     this._users = this._getUsers(users);
 
@@ -45,7 +47,7 @@ class Scoreboard extends React.Component<Props, void> {
         { !isAuthenticated ?
           browserHistory.push('/')
           :
-          <div className='table'>
+          <div className={ classes }>
             <Table header={ header } content={ this._users }/>
             <div className='more__button'>
               <Button
@@ -88,6 +90,7 @@ class Scoreboard extends React.Component<Props, void> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    device: state.device,
     page: state.page,
     users: state.users
   }
@@ -111,4 +114,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard as any);

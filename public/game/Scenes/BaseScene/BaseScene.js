@@ -1,15 +1,17 @@
 import threeFactory from '../../Three/ThreeFactory/ThreeFactory';
-import Camera from "../../Three/Objects/Camera/Camera";
-import Floor from "../../Three/Objects/Floor/Floor";
-import Ceil from "../../Three/Objects/Ceil/Ceil";
-import Walls from "../../Three/Objects/Walls/Walls";
-import Bullet from "../../Three/Objects/Bullet/Bullet";
+import Camera from '../../Three/Objects/Camera/Camera';
+import Floor from '../../Three/Objects/Floor/Floor';
+import Ceil from '../../Three/Objects/Ceil/Ceil';
+import Walls from '../../Three/Objects/Walls/Walls';
+import Bullet from '../../Three/Objects/Bullet/Bullet';
 import BulletService from '../../Manager/BulletManager/BulletManager';
 import bulletsService from '../../Manager/BulletsManager/BulletsManager';
 import map from '../../Tools/Map/Map';
-import Helper from "../../Tools/Helper/Helper";
-import CollisionService from "../../Manager/CollisionManager/CollisionManager";
+import Helper from '../../Tools/Helper/Helper';
+import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
+import PlayerService from '../../Manager/PlayerManager/PlayerManager';
+import PlayersService from '../../Manager/PlayersManager/PlayersManager';
 import {
   WIDTH,
   HEIGHT,
@@ -24,8 +26,10 @@ export default class BaseScene {
     this._keys = keys;
     this._mouse = mouse;
 
-    this._isAnimate = true;
+    this._player = new PlayerService(this._camera, 100);
+    this._playersService = new PlayersService();
 
+    this._isAnimate = true;
     this._goToFromGame = functionGo;
 
     this._setDesign();
@@ -223,5 +227,19 @@ export default class BaseScene {
     this._type = this._endTitles.querySelector('.endGameTheme__wrapper-type');
     this._gameOver = this._endTitles.querySelector('.endGameTheme__wrapper-gameOver');
     this._table = document.body.querySelector('.gameTable__wrapper');
+  }
+
+  _openEndGame() {
+    this._end.style.opacity = '0.7';
+
+    this._table.style.display = 'block';
+    this._endTitles.style.display = 'block';
+  }
+
+  _closeEndGame() {
+    this._end.style.opacity = '0';
+
+    this._table.style.display = 'none';
+    this._endTitles.style.display = 'none';
   }
 }

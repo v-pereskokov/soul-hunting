@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {browserHistory} from 'react-router';
 
-import {Background} from '../Background/Background';
+import Background from '../Background/Background';
 
 import './Information.scss';
 

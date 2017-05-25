@@ -1,5 +1,6 @@
-import {MULTIPLAYER, SINGLEPLAYER} from "../../Constants/Types";
-import SinglePlayer from "../../Strategy/SinglePlayer/SinglePlayer";
+import {MULTIPLAYER, SINGLEPLAYER} from '../../Constants/Types';
+import SinglePlayer from '../../Strategy/SinglePlayer/SinglePlayer';
+import MultiPlayer from '../../Strategy/MultiPlayer/MultiPlayer';
 
 export default class GameManager {
   constructor(type, functionGo) {
@@ -11,13 +12,9 @@ export default class GameManager {
       case SINGLEPLAYER:
         return new SinglePlayer(functionGo);
       case MULTIPLAYER:
-        return 'soon';
+        return new MultiPlayer(functionGo);
       default:
         return null;
     }
   }
 }
-
-// fix music
-// design game
-// keys (console)

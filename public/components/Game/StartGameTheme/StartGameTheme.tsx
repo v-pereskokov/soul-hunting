@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './StartGameTheme.scss';
+
 export class StartGameTheme extends React.Component<any, any> {
   render() {
 

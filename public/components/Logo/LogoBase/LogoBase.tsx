@@ -1,9 +1,16 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 
-export class LogoBase extends React.Component<any, any> {
+interface Props {
+  device?: boolean;
+}
+
+class LogoBase extends React.Component<Props, any> {
   render() {
+    const classes = `logo__wrapper ${this.props.device ? '' : 'mobile__logo'} animation-open`;
+
     return (
-      <div className='logo__wrapper animation-open'>
+      <div className={ classes }>
         <div className='logo__header'>
           { this.props.children }
         </div>
@@ -11,3 +18,11 @@ export class LogoBase extends React.Component<any, any> {
     );
   }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    device: state.device
+  }
+};
+
+export default connect(mapStateToProps)(LogoBase as any);

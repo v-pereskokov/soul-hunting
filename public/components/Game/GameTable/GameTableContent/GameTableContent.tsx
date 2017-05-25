@@ -15,6 +15,7 @@ export class GameTableContent extends React.Component<Props, void> {
           <GameTableElement item={ index === 0 ? index + 1 : ''}/>
           <GameTableElement item={ item[0] }/>
           <GameTableElement item={ item[1] }/>
+          <GameTableElement item={ item[2] }/>
         </GameTableRow>
       );
     });

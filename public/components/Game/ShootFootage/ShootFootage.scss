@@ -1,0 +1,9 @@
+.shooterAnimation {
+  z-index: 38;
+  opacity: 0.7;
+  position: fixed;
+  left: calc(50vw - 560px);
+  bottom: calc(50vh - 465px);
+  transform: scale(0.3, 0.3);
+  display: none;
+}

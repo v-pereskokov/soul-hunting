@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './GameMenuTopic.scss';
+
 interface Props {
   text: string;
 }

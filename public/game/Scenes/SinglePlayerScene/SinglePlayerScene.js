@@ -1,14 +1,13 @@
-import BaseScene from "../BaseScene/BaseScene";
-import Player from "../../Three/Objects/Player/Player";
-import Bullet from "../../Three/Objects/Bullet/Bullet";
+import BaseScene from '../BaseScene/BaseScene';
+import Player from '../../Three/Objects/Player/Player';
+import Bullet from '../../Three/Objects/Bullet/Bullet';
 import PlayerService from '../../Manager/PlayerManager/PlayerManager';
-import playersService from '../../Manager/PlayersManager/PlayersManager';
 import BulletService from '../../Manager/BulletManager/BulletManager';
 import bulletsService from '../../Manager/BulletsManager/BulletsManager';
 import playerStats from '../../Tools/PlayerStats/PlayerStats';
 import map from '../../Tools/Map/Map';
-import Helper from "../../Tools/Helper/Helper";
-import CollisionService from "../../Manager/CollisionManager/CollisionManager";
+import Helper from '../../Tools/Helper/Helper';
+import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
 import {
@@ -62,7 +61,7 @@ export default class SinglePlayerScene extends BaseScene {
     const playerObject = new Player().object;
     playerObject.position.set(x, UNITSIZE * 0.15, z);
 
-    playersService.add(new PlayerService(playerObject, 100));
+    this._playersService.add(new PlayerService(playerObject, 100));
     this._scene.add(playerObject);
   }
 
@@ -81,7 +80,7 @@ export default class SinglePlayerScene extends BaseScene {
       // Collide with AI
       let hit = CollisionService.collisionBulletWithAi(
         this._scene,
-        playersService,
+        this._playersService,
         bulletsService,
         bullet,
         position,
@@ -117,25 +116,25 @@ export default class SinglePlayerScene extends BaseScene {
     this._updateBullets(delta);
 
     if (this._game) {
-      for (let i in playersService.all) {
+      for (let i in this._playersService.all) {
         AIService.updateAI(
           this._scene,
-          playersService,
+          this._playersService,
           playerStats,
           delta * MOVESPEEDAI,
           i,
           this._addAI.bind(this)
         );
 
-        const player = playersService.getPlayer(i);
+        const player = this._playersService.getPlayer(i);
         const sector = Helper.getMapSector(player.object.position);
 
-        // AIService.shoot(
-        //   this._camera,
-        //   player,
-        //   sector,
-        //   this._createBullet.bind(this)
-        // );
+        AIService.shoot(
+          this._camera,
+          player,
+          sector,
+          this._createBullet.bind(this)
+        );
       }
     }
 
@@ -171,25 +170,5 @@ export default class SinglePlayerScene extends BaseScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
-  }
-
-  _openEndGame() {
-    this._end.style.opacity = '0.7';
-
-    this._type.innerHTML = 'Singleplayer';
-    this._gameOver.innerHTML = 'Game Over';
-
-    this._table.style.display = 'block';
-    this._endTitles.style.display = 'block';
-  }
-
-  _closeEndGame() {
-    this._end.style.opacity = '0';
-
-    this._type.innerHTML = '';
-    this._gameOver.innerHTML = '';
-
-    this._table.style.display = 'none';
-    this._endTitles.style.display = 'none';
   }
 }
