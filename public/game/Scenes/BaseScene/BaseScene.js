@@ -11,6 +11,7 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import PlayerService from '../../Manager/PlayerManager/PlayerManager';
+import PlayersService from '../../Manager/PlayersManager/PlayersManager';
 import {
   WIDTH,
   HEIGHT,
@@ -26,9 +27,9 @@ export default class BaseScene {
     this._mouse = mouse;
 
     this._player = new PlayerService(this._camera, 100);
+    this._playersService = new PlayersService();
 
     this._isAnimate = true;
-
     this._goToFromGame = functionGo;
 
     this._setDesign();

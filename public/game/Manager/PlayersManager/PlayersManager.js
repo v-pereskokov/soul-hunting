@@ -1,4 +1,4 @@
-class PlayersService {
+export default class PlayersService {
   constructor() {
     this._players = [];
   }
@@ -23,7 +23,3 @@ class PlayersService {
     return this._players;
   }
 }
-
-const playersService = new PlayersService();
-
-export default playersService;
