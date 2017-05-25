@@ -4,8 +4,6 @@ import MultiPlayerScene from '../../Scenes/MultiPlayerScene/MultiPlayerScene';
 export default class MultiPlayer extends Game {
   constructor(functionGo) {
     super(functionGo, true);
-
-
   }
 
   _getScene(functionGo, webSocket) {

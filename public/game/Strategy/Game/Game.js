@@ -35,13 +35,29 @@ export default class Game {
     this._togglePreloader(true);
     musicService.startBackgroundSingle();
 
-    this._ws._onOpen(() => {
-      this._togglePreloader(false);
-      this._setInstructions();
-      this.start(() => {
-        musicService.stopBackground();
-      }, functionGo);
-    });
+    if (this._ws) {
+      const start = Date.now();
+
+      this._ws._onOpen(() => {
+        const delta = Date.now - start;
+
+        setTimeout(() => {
+          this._startGame(functionGo);
+        }, delta > 3000 ? 0 : delta);
+      });
+    } else {
+      setTimeout(() => {
+        this._startGame(functionGo);
+      }, 3000);
+    }
+  }
+
+  _startGame(functionGo) {
+    this._togglePreloader(false);
+    this._setInstructions();
+    this.start(() => {
+      musicService.stopBackground();
+    }, functionGo);
   }
 
   _setInstructions() {

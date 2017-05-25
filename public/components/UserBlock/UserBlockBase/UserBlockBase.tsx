@@ -8,7 +8,7 @@ interface Props {
 class UserBlockBase extends React.Component<Props, any> {
   render() {
     const classes = `userblock ${this.props.device ? '' : 'mobile__userblock'}`;
-    
+
     return (
       <div className={ classes }>
         { this.props.children }
