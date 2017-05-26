@@ -45,11 +45,7 @@ class MultiPlayer extends React.Component<Props, any> {
     super(props);
 
     this._users = [
-      [this.props.user, '0', '0'],
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', '']
+      [this.props.user, '0', '0']
     ];
   }
 
