@@ -61,7 +61,7 @@ export default class MultiPlayerScene extends BaseScene {
       switch (content.type) {
         case SNAPSHOT:
           if (!this._isInitLeaderboard) {
-            this._updateTable(this._makeListPlayers(data.players));
+            this._updateTable(this._makeListPlayers(data.players), this._id);
             this._isInitLeaderboard = true;
           }
 
@@ -101,8 +101,7 @@ export default class MultiPlayerScene extends BaseScene {
 
               this._scene.add(playerObject);
 
-              // generate table
-              this._updateTable(this._makeListPlayers(data.players));
+              this._updateTable(this._makeListPlayers(data.players), this._id);
             } else {
               this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
@@ -126,28 +125,36 @@ export default class MultiPlayerScene extends BaseScene {
       requestAnimationFrame(this._animate.bind(this));
     }
 
+    this._updateBackEnd();
     this._render();
+  }
 
-    let {x, y, z} = this._camera.position;
-    const position = {x, y, z};
-
-    x = this._camera.rotation.x;
-    y = this._camera.rotation.y;
-    z = this._camera.rotation.z;
-
-    const camera = {x, y, z};
-
-    let json = {
+  _updateBackEnd() {
+    this._webSocketManager.send({
       type: 'application.mechanics.base.UserSnap',
       data: {
-        position,
+        position: this._getCameraPosition(),
         id: this._player.id,
-        camera,
-        firing: true
+        camera: this._getCameraRotation(),
+        firing: false
       }
-    };
+    });
+  }
 
-    this._webSocketManager.send(json);
+  _getCameraPosition() {
+    return {
+      x: this._camera.position.x,
+      y: this._camera.position.y,
+      z: this._camera.position.z
+    };
+  }
+
+  _getCameraRotation() {
+    return {
+      x: this._camera.rotation.x,
+      y: this._camera.rotation.y,
+      z: this._camera.rotation.z
+    };
   }
 
   _addAI() {
@@ -275,15 +282,15 @@ export default class MultiPlayerScene extends BaseScene {
     this._scene.add(bullet.object);
   }
 
-  _updateTable(data, type) {
-    this._gameTableManager.setData(data, type);
+  _updateTable(data, id, type) {
+    this._gameTableManager.setData(data, id, type);
   }
 
   _makeListPlayers(list) {
     const players = [];
 
     for (let field of list) {
-      players.push([field.login, field.kills, field.deaths]);
+      players.push([field.login, field.kills, field.deaths, field.id]);
     }
 
     return players;
