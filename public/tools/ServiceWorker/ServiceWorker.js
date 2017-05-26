@@ -32,6 +32,9 @@ this.addEventListener('install', event => {
         console.log('Opened cache');
         return cache.addAll(URLS);
       })
+      .catch(err => {
+        console.log(err);
+      })
   );
 });
 
