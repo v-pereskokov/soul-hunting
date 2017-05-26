@@ -1,6 +1,6 @@
 .stats {
   position: absolute;
-  width: 250px;
+  width: 100px;
   height: 45px;
   background: #1B1E24;
   margin: 5px;
@@ -15,4 +15,30 @@
     top: 15px;
     left: 0px;
   }
+
+  &__position {
+    &-leftUp {
+      margin: 5px !important;
+      left: 0 !important;
+    }
+
+    &-leftDown {
+      margin: -5px !important;
+      right: 0 !important;
+      bottom: 0;
+    }
+
+    &-rightUp {
+      margin: 5px !important;
+      right: 0 !important;
+    }
+  }
+}
+
+.mini {
+  width: 100px !important;
+}
+
+.big {
+  width: 250px !important;
 }

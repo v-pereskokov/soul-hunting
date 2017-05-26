@@ -21,8 +21,6 @@ import {Information} from '../../components/Game/Information/Information';
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
 
-import './MultiPlayer.scss';
-
 const header = [{
   title: '#'
 }, {
@@ -89,7 +87,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <Hurt />
               <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
-              <Information text='Alpha'/>
+              <Information text='Alpha' isMini={ true }/>
             </div>
             <GameMenu text='Multiplayer'/>
           </div>
