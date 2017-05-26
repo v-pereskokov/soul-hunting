@@ -33,7 +33,7 @@ if (localStorage.token) {
 
 store.dispatch(setDevice(new Device().isDesktop()));
 
-musicService.startBackground();
+// musicService.startBackground();
 
 // startServiceWorker();
 

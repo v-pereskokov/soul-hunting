@@ -13,17 +13,15 @@ const URLS = [
   '/static/fonts/KeepCalm-Medium.ttf',
 
   '/static/images/arrows.png',
-  '/static/images/background.png',
+  '/static/images/background.jpg',
   '/static/images/enter_button.png',
   '/static/images/registeredtm.png',
   '/static/images/userphoto.png',
   '/static/images/bullet-icon.png',
   '/static/images/infinity-icon.png',
 
-  '/built/',
   '/built/style.css',
-  '/built/bundle.js',
-  '/built/bundle.js.map'
+  '/built/bundle.js'
 ];
 
 this.addEventListener('install', event => {
