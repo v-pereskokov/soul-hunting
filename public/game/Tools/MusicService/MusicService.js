@@ -2,6 +2,7 @@ import Music from '../Music/Music';
 
 class MusicService {
   constructor() {
+    this._background = new Music('../../../static/sounds/background.wav');
     this._beforeStart = new Music('../../../static/sounds/start_game.wav');
     this._end = new Music('../../../static/sounds/end.wav');
 
