@@ -136,7 +136,7 @@ export default class MultiPlayerScene extends BaseScene {
         position: this._getCameraPosition(),
         id: this._player.id,
         camera: this._getCameraRotation(),
-        firing: true
+        firing: false
       }
     });
   }
