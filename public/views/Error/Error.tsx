@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {Button} from '../../components/Button/Button';
 import Background from '../../components/Background/Background';
-import {Information} from '../../components/Information/Information';
+import Information from '../../components/Information/Information';
 
 import './Error.scss'
 

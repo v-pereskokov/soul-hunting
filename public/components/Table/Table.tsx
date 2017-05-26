@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import TableBase from './TableBase/TableBase';
 import {TableHeader} from './TableHeader/TableHeader';
-import {TableContent} from './TableContent/TableContent';
+import TableContent from './TableContent/TableContent';
 
 import './Table.scss';
 

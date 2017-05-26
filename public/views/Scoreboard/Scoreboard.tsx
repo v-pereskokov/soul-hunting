@@ -10,7 +10,7 @@ import {addPage, addUser, getUsersAction} from '../../actions/Scoreboard/Scorebo
 
 import './Scoreboard.scss';
 
-const header = [{
+let header = [{
   title: '#'
 }, {
   title: 'Username'
@@ -30,6 +30,7 @@ interface Props {
 
 class Scoreboard extends React.Component<Props, void> {
   _users: Array<Array<any>>;
+  _headers: Array<any>;
 
   componentWillMount() {
     this.props.getUsers(this.props.page);
@@ -39,7 +40,21 @@ class Scoreboard extends React.Component<Props, void> {
     const {isAuthenticated, users, device} = this.props;
     const classes = `table ${device ? '' : 'mobile__table'}`;
 
+    this._headers = [{
+      title: '#'
+    }, {
+      title: 'Username'
+    }, {
+      title: 'Singleplayer score'
+    }, {
+      title: 'Multiplayer score'
+    }];
+
     this._users = this._getUsers(users);
+
+    this.changeData();
+
+    console.log(this.props.users);
 
     return (
       <div className='wrapper__scoreboard'>
@@ -48,7 +63,7 @@ class Scoreboard extends React.Component<Props, void> {
           browserHistory.push('/')
           :
           <div className={ classes }>
-            <Table header={ header } content={ this._users }/>
+            <Table header={ this._headers } content={ this._users }/>
             <div className='more__button'>
               <Button
                 text='More'
@@ -66,6 +81,10 @@ class Scoreboard extends React.Component<Props, void> {
     );
   }
 
+  changeData() {
+    this._headers = [this._headers[1], this._headers[2]];
+  }
+
   _getUsers(users: Array<Array<any>>) {
     const userArray = this._makeUsersArray(users);
 
@@ -80,7 +99,11 @@ class Scoreboard extends React.Component<Props, void> {
     let array: Array<any> = [];
 
     for (let user of users) {
-      array.push([user.login, user.sScore, user.mScore]);
+      if (this.props.device) {
+        array.push([user.login, user.sScore, user.mScore]);
+      } else {
+        array.push([user.login, user.mScore]);
+      }
     }
 
     return array;
