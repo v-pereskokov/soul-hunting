@@ -47,12 +47,29 @@ export default class MultiPlayerScene extends BaseScene {
     this._webSocketManager.setOnMessage(this._setUpWebSockets());
     musicService.stopBackground();
 
+    this._findConnectInformation();
     this._setMouseWebSocketHandler();
     this._initScenePreferences();
 
     this._makeScene();
 
     this._setUpRender();
+  }
+
+  _findConnectInformation() {
+    this._connectionInfo = document.body.querySelector('.stats__position-leftDown');
+    this._connectionInfoText = this._connectionInfo.getElementsByTagName('p')[0];
+
+    this._hideConnectionInfo();
+  }
+
+  _hideConnectionInfo() {
+    this._connectionInfo.style.display = 'none';
+  }
+
+  _showConnectionInfo(text) {
+    this._connectionInfo.style.display = 'block';
+    this._connectionInfoText.innerHTML = `${text} connected`;
   }
 
   _setMouseWebSocketHandler() {
@@ -114,6 +131,11 @@ export default class MultiPlayerScene extends BaseScene {
               this._scene.add(playerObject);
 
               this._updateTable(this._makeListPlayers(data.players), this._id);
+              this._showConnectionInfo(player.login);
+
+              setTimeout(() => {
+                this._hideConnectionInfo();
+              }, 5000);
             } else {
               this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
