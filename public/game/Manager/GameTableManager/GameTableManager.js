@@ -9,16 +9,18 @@ export default class GameTableManager {
 
   _getContentFields(list) {
     let content = '<tr>';
+    
+    console.log(list);
 
-    for (let field of list) {
-      for (let index in field) {
-        if (index > 0) {
-          content += `<td>${field[index]}</td>`;
-        } else {
-          content += `<td>${index + 1}</td>`;
-        }
+    for (let fieldIndex in list) {
+      content += `<td>${+fieldIndex + 1}</td>`;
+      const field = list[fieldIndex];
+      for (let dataIndex in field) {
+        content += `<td>${field[dataIndex]}</td>`;
       }
     }
+
+    console.log(content);
 
     content += '</tr>';
 
@@ -26,7 +28,6 @@ export default class GameTableManager {
   }
 
   _sortList(list, type) {
-    console.log(list.sort(this._comparator(type)));
     return list.sort(this._comparator(type));
   }
 

@@ -32,6 +32,7 @@ export default class MultiPlayerScene extends BaseScene {
     this._webSocketManager = gameWebSocketManager;
     this._gameTableManager = new GameTableManager();
 
+    this._isInitLeaderboard = false;
   }
 
   set game(value) {
@@ -55,11 +56,14 @@ export default class MultiPlayerScene extends BaseScene {
 
   _setUpWebSockets() {
     return (content, data) => {
-      console.log(data);
+      console.log(content);
 
       switch (content.type) {
         case SNAPSHOT:
-          // update leaderboard
+          if (!this._isInitLeaderboard) {
+            this._updateTable(this._makeListPlayers(data.players));
+            this._isInitLeaderboard = true;
+          }
 
           if (data.shot) {
             // anim
@@ -275,7 +279,7 @@ export default class MultiPlayerScene extends BaseScene {
     this._gameTableManager.setData(data, type);
   }
 
-  _makeListPlayers(list){
+  _makeListPlayers(list) {
     const players = [];
 
     for (let field of list) {
