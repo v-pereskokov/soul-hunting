@@ -218,11 +218,13 @@ const mapDispatchToProps = (dispatch: any) => {
             data.data
               .then((user: any) => {
                 localStorage.setItem('token', user.login);
+                localStorage.setItem('id', user.id);
                 dispatch(setCurrentUser(user.login));
                 dispatch(togglePreloader());
               });
           } else {
             localStorage.removeItem('token');
+            localStorage.removeItem('id');
             dispatch(setCurrentUser(''));
             dispatch(togglePreloader());
           }
