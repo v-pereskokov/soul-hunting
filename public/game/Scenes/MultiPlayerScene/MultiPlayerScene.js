@@ -126,28 +126,36 @@ export default class MultiPlayerScene extends BaseScene {
       requestAnimationFrame(this._animate.bind(this));
     }
 
+    this._updateBackEnd();
     this._render();
+  }
 
-    let {x, y, z} = this._camera.position;
-    const position = {x, y, z};
-
-    x = this._camera.rotation.x;
-    y = this._camera.rotation.y;
-    z = this._camera.rotation.z;
-
-    const camera = {x, y, z};
-
-    let json = {
+  _updateBackEnd() {
+    this._webSocketManager.send({
       type: 'application.mechanics.base.UserSnap',
       data: {
-        position,
+        position: this._getCameraPosition(),
         id: this._player.id,
-        camera,
+        camera: this._getCameraRotation(),
         firing: true
       }
-    };
+    });
+  }
 
-    this._webSocketManager.send(json);
+  _getCameraPosition() {
+    return {
+      x: this._camera.position.x,
+      y: this._camera.position.y,
+      z: this._camera.position.z
+    };
+  }
+
+  _getCameraRotation() {
+    return {
+      x: this._camera.rotation.x,
+      y: this._camera.rotation.y,
+      z: this._camera.rotation.z
+    };
   }
 
   _addAI() {

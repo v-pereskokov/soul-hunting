@@ -8,21 +8,17 @@ export default class GameTableManager {
   }
 
   _getContentFields(list) {
-    let content = '<tr>';
-    
-    console.log(list);
+    let content = '';
 
     for (let fieldIndex in list) {
+      content += '<tr>';
       content += `<td>${+fieldIndex + 1}</td>`;
       const field = list[fieldIndex];
       for (let dataIndex in field) {
         content += `<td>${field[dataIndex]}</td>`;
       }
+      content += '</tr>';
     }
-
-    console.log(content);
-
-    content += '</tr>';
 
     return content;
   }
