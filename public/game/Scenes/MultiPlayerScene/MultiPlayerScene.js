@@ -11,25 +11,28 @@ import Helper from '../../Tools/Helper/Helper';
 import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
+import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import {
   UNITSIZE,
   MOVESPEEDAI,
   BULLETMOVESPEED
 } from '../../Constants/Constants';
 import {
-  INITIALIZE_PLAYER,
   SNAPSHOT,
   REMOVE_PLAYER
 } from '../../Constants/MultiPlayer';
-
-let a = false;
 
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, gameWebSocketManager, functionGo) {
     super(keys, mouse, functionGo);
 
     this._game = false;
+    this._id = +localStorage.getItem('id');
+
     this._webSocketManager = gameWebSocketManager;
+    this._gameTableManager = new GameTableManager();
+
+    this._isInitLeaderboard = false;
   }
 
   set game(value) {
@@ -56,12 +59,11 @@ export default class MultiPlayerScene extends BaseScene {
       console.log(content);
 
       switch (content.type) {
-        case 'InitializePlayer':
-          console.log('wqewqeqwewqewqeqwwqewqewq');
-          this._player.id = data;
-          break;
         case SNAPSHOT:
-          // update leaderboard
+          if (!this._isInitLeaderboard) {
+            this._updateTable(this._makeListPlayers(data.players));
+            this._isInitLeaderboard = true;
+          }
 
           if (data.shot) {
             // anim
@@ -78,7 +80,7 @@ export default class MultiPlayerScene extends BaseScene {
           data.players.forEach(player => {
             const playerId = player.id;
 
-            if (playerId === this._player.id) {
+            if (playerId === this._id) {
               return;
             }
 
@@ -100,6 +102,7 @@ export default class MultiPlayerScene extends BaseScene {
               this._scene.add(playerObject);
 
               // generate table
+              this._updateTable(this._makeListPlayers(data.players));
             } else {
               this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
@@ -133,8 +136,6 @@ export default class MultiPlayerScene extends BaseScene {
     z = this._camera.rotation.z;
 
     const camera = {x, y, z};
-
-    console.log(this._player.id);
 
     let json = {
       type: 'application.mechanics.base.UserSnap',
@@ -272,5 +273,19 @@ export default class MultiPlayerScene extends BaseScene {
 
     bulletsService.add(bullet);
     this._scene.add(bullet.object);
+  }
+
+  _updateTable(data, type) {
+    this._gameTableManager.setData(data, type);
+  }
+
+  _makeListPlayers(list) {
+    const players = [];
+
+    for (let field of list) {
+      players.push([field.login, field.kills, field.deaths]);
+    }
+
+    return players;
   }
 }

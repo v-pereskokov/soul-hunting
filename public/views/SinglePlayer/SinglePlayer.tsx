@@ -43,11 +43,7 @@ class SinglePlayer extends React.Component<Props, any> {
     super(props);
 
     this._users = [
-      [this.props.user, '0'],
-      ['', ''],
-      ['', ''],
-      ['', ''],
-      ['', '']
+      [this.props.user, '0']
     ];
   }
 

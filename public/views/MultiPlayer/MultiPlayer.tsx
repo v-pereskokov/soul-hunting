@@ -45,11 +45,7 @@ class MultiPlayer extends React.Component<Props, any> {
     super(props);
 
     this._users = [
-      [this.props.user, '0', '0'],
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', '']
+      []
     ];
   }
 
@@ -93,7 +89,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
               <div className='killedStats'>
-                <p className='killedStats__username'>Gamer killed gamer</p>
+                <p className='killedStats__username'>Alpha</p>
               </div>
             </div>
             <GameMenu text='Multiplayer'/>
