@@ -47,6 +47,7 @@ export default class MultiPlayerScene extends BaseScene {
     this._webSocketManager.setOnMessage(this._setUpWebSockets());
     musicService.stopBackground();
 
+    this._setMouseWebSocketHandler();
     this._initScenePreferences();
 
     this._makeScene();
@@ -54,9 +55,20 @@ export default class MultiPlayerScene extends BaseScene {
     this._setUpRender();
   }
 
+  _setMouseWebSocketHandler() {
+    document.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+
+      if (event.which === 1) {
+        console.log(true);
+        this._updateBackEnd(true);
+      }
+    });
+  }
+
   _setUpWebSockets() {
     return (content, data) => {
-      console.log(content);
+      console.log(data);
 
       switch (content.type) {
         case SNAPSHOT:
@@ -125,18 +137,22 @@ export default class MultiPlayerScene extends BaseScene {
       requestAnimationFrame(this._animate.bind(this));
     }
 
-    this._updateBackEnd();
+    this._webSocketManager.send(JSON.stringify({}));
     this._render();
+
+    setTimeout(() => {
+      this._updateBackEnd(false);
+    }, 500);
   }
 
-  _updateBackEnd() {
+  _updateBackEnd(shooting) {
     this._webSocketManager.send({
       type: 'application.mechanics.base.UserSnap',
       data: {
         position: this._getCameraPosition(),
         id: this._player.id,
         camera: this._getCameraRotation(),
-        firing: false
+        shooting
       }
     });
   }
