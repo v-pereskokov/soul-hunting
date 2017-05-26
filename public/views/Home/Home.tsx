@@ -170,7 +170,7 @@ class Home extends React.Component<Props, void> {
       
       if (userData) {
         setScore(JSON.stringify({
-          login: user,
+          username: user,
           sScore: userData
         }));
 
