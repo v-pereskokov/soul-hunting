@@ -61,7 +61,7 @@ export default class MultiPlayerScene extends BaseScene {
       switch (content.type) {
         case SNAPSHOT:
           if (!this._isInitLeaderboard) {
-            this._updateTable(this._makeListPlayers(data.players));
+            this._updateTable(this._makeListPlayers(data.players), this._id);
             this._isInitLeaderboard = true;
           }
 
@@ -101,8 +101,7 @@ export default class MultiPlayerScene extends BaseScene {
 
               this._scene.add(playerObject);
 
-              // generate table
-              this._updateTable(this._makeListPlayers(data.players));
+              this._updateTable(this._makeListPlayers(data.players), this._id);
             } else {
               this._playersService.getFullPlayer(`id${playerId}`)
                 .position.copy(playerPosition);
@@ -283,15 +282,15 @@ export default class MultiPlayerScene extends BaseScene {
     this._scene.add(bullet.object);
   }
 
-  _updateTable(data, type) {
-    this._gameTableManager.setData(data, type);
+  _updateTable(data, id, type) {
+    this._gameTableManager.setData(data, id, type);
   }
 
   _makeListPlayers(list) {
     const players = [];
 
     for (let field of list) {
-      players.push([field.login, field.kills, field.deaths]);
+      players.push([field.login, field.kills, field.deaths, field.id]);
     }
 
     return players;
