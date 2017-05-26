@@ -140,15 +140,17 @@ class Game extends React.Component<Props, any> {
 
   _sendScoreToBack() {
     const userData: string = localStorage.getItem('singlePlayerScore');
+    console.log(userData);
     if (userData) {
       const {user} = this.props;
 
       if (userData) {
         setScore(JSON.stringify({
-          login: user,
+          username: user,
           sScore: userData
         }));
 
+        console.log(user);
         localStorage.removeItem('singlePlayerScore');
       }
     }
