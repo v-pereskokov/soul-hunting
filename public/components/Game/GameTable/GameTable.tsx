@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Link} from 'react-router'
 
 import {GameTableBase} from './GameTableBase/GameTableBase';
 import {GameTableHeader} from './GameTableHeader/GameTableHeader';
