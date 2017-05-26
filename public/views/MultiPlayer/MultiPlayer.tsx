@@ -16,6 +16,7 @@ import {Hurt} from '../../components/Game/Hurt/Hurt';
 import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameTheme';
 import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
 import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
+import {Information} from '../../components/Game/Information/Information';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -88,9 +89,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <Hurt />
               <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
-              <div className='killedStats'>
-                <p className='killedStats__username'>Alpha</p>
-              </div>
+              <Information text='Alpha'/>
             </div>
             <GameMenu text='Multiplayer'/>
           </div>
