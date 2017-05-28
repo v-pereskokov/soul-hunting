@@ -1,27 +1,17 @@
 import BaseScene from '../BaseScene/BaseScene';
 import Player from '../../Three/Objects/Player/Player';
-import Bullet from '../../Three/Objects/Bullet/Bullet';
 import PlayerService from '../../Manager/PlayerManager/PlayerManager';
-import playersService from '../../Manager/PlayersManager/PlayersManager';
-import BulletService from '../../Manager/BulletManager/BulletManager';
-import bulletsService from '../../Manager/BulletsManager/BulletsManager';
 import playerStats from '../../Tools/PlayerStats/PlayerStats';
-import map from '../../Tools/Map/Map';
 import Helper from '../../Tools/Helper/Helper';
-import CollisionService from '../../Manager/CollisionManager/CollisionManager';
-import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
-import {
-  UNITSIZE,
-  MOVESPEEDAI,
-  BULLETMOVESPEED
-} from '../../Constants/Constants';
+import map from '../../Tools/Map/Map';
 import {
   SNAPSHOT,
   REMOVE_PLAYER
 } from '../../Constants/MultiPlayer';
+import {UNITSIZE} from '../../Constants/Constants';
 
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, gameWebSocketManager, functionGo) {
@@ -34,6 +24,7 @@ export default class MultiPlayerScene extends BaseScene {
     this._gameTableManager = new GameTableManager();
 
     this._isInitLeaderboard = false;
+    this._killed = false;
   }
 
   set game(value) {
@@ -76,8 +67,7 @@ export default class MultiPlayerScene extends BaseScene {
     document.addEventListener('mousedown', (event) => {
       event.preventDefault();
 
-      if (event.which === 1) {
-        console.log(true);
+      if (!this._killed && event.which === 1) {
         this._updateBackEnd(true);
       }
     });
@@ -99,7 +89,23 @@ export default class MultiPlayerScene extends BaseScene {
           }
 
           if (data.hp === 0) {
-            // reborn
+            let time = 3;
+
+            const interval = setInterval( () => {
+              if (time === -1) {
+                clearInterval(interval);
+                return;
+              }
+              time--;
+            }, 1000);
+
+            this._killed = true;
+
+            setTimeout(() => {
+              this._killed = false;
+
+              this._playersService.getFullPlayer(`id${this._id}`).position.copy(this._getRandomCoords());
+            }, 3100)
           }
 
           // show death on screen
@@ -117,7 +123,6 @@ export default class MultiPlayerScene extends BaseScene {
               return;
             }
 
-            // players - manager
             if (!this._playersService.getFullPlayer(`id${playerId}`)) {
               const playerObject = new Player().object;
               this._playersService.setFullPlayer(playerId, playerObject);
@@ -150,6 +155,21 @@ export default class MultiPlayerScene extends BaseScene {
         default:
           break;
       }
+    };
+  }
+
+  _getRandomCoords() {
+    const position = Helper.getMapSector(this._camera.position);
+    let [x, z] = Helper.getRandomPosition();
+
+    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
+      [x, z] = Helper.getRandomPosition();
+    }
+
+    return {
+      x: Math.floor(x - map.width / 2) * UNITSIZE,
+      y: 50,
+      z: Math.floor(z - map.width / 2) * UNITSIZE
     };
   }
 

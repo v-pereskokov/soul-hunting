@@ -188,7 +188,6 @@ export default class Keyboard {
     document.removeEventListener('keyup', this._tabClose());
   }
 
-  // bag prevent -> not console -> not nothin'
   _tabOpen() {
     return event => {
       event.preventDefault();
