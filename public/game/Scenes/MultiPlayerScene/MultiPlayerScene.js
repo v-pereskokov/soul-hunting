@@ -119,7 +119,7 @@ export default class MultiPlayerScene extends BaseScene {
             }
 
             // players - manager
-            if (this._playersService.getFullPlayer(`id${playerId}`) === undefined) {
+            if (!this._playersService.getFullPlayer(`id${playerId}`)) {
               const playerObject = new Player().object;
               this._playersService.setFullPlayer(playerId, playerObject);
               this._playersService.getFullPlayer(`id${playerId}`)

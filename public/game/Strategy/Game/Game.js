@@ -81,13 +81,18 @@ export default class Game {
           this._gameScene._init();
           this._gameScene._animate();
 
-          setTimeout(() => {
-            this._gameScene.stop();
-          }, 5);
-
           document.body.querySelector('.wrapper__game').style.display = 'block';
 
-          this._beforeStart();
+          if (!this._ws) {
+            setTimeout(() => {
+              this._gameScene.stop();
+            }, 5);
+
+            this._beforeStart();
+          } else {
+            document.body.querySelector('.end').style.display = 'none';
+            document.body.querySelector('.counter').style.display = 'none';
+          }
         } else {
           this._gameScene.resume();
           this._gameScene._animate();
