@@ -19,12 +19,15 @@ class PreLoader extends React.Component<Props, void> {
       <div
         className='pre-loader__wrapper'
         style={style}>
-          <div className='pre-loader'>
-            <div className='line square'/>
-            <div className='line square2'/>
-            <div className='line square3'/>
-            <div className='line square4'/>
-          </div>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
+        <span className='loader-block'/>
       </div>
     );
   }
