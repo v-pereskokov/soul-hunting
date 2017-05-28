@@ -52,9 +52,9 @@ class Scoreboard extends React.Component<Props, void> {
 
     this._users = this._getUsers(users);
 
-    this.changeData();
-
-    console.log(this.props.users);
+    if (!device) {
+      this.changeData();
+    }
 
     return (
       <div className='wrapper__scoreboard'>

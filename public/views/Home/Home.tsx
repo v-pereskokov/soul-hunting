@@ -53,7 +53,7 @@ class Home extends React.Component<Props, void> {
   render() {
     const {isAuthenticated, device} = this.props;
     const buttons: Array<any> = this._setButtons(isAuthenticated);
-    const classes = `wrapper__form`;
+    const classes = `wrapper__form ${device ? '' : 'mobile'}`;
 
     const buttonsRender: any = buttons.map((item, index) => {
       return (
@@ -69,10 +69,10 @@ class Home extends React.Component<Props, void> {
 
     return (
       <div
-        className={ isAuthenticated ?
+        className={ isAuthenticated && device ?
           'wrapper__form1' :
           classes }>
-        <div className={ isAuthenticated ?
+        <div className={ isAuthenticated && device ?
           'wrapper__main__form1' :
           'wrapper__main__form' }>
           <div className='main__form'>
