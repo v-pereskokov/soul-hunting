@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {Link, browserHistory} from 'react-router';
 
 import Background from '../../components/Background/Background';
-import {Information} from '../../components/Information/Information';
+import Information from '../../components/Information/Information';
 import {Button} from '../../components/Button/Button';
 
 import './Mobile.scss';

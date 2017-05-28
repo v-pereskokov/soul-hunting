@@ -147,11 +147,5 @@
   }
 }
 
-.mobile__table {
-  top: 500px !important;
-  transform: scale(1.5, 1.5);
-
-  &__scoreboard {
-    max-width: 620px !important;
-  }
+.mobile__table__scoreboard {
 }

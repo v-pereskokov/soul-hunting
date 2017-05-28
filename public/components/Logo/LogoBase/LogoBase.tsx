@@ -7,7 +7,7 @@ interface Props {
 
 class LogoBase extends React.Component<Props, any> {
   render() {
-    const classes = `logo__wrapper ${this.props.device ? '' : 'mobile__logo'} animation-open`;
+    const classes = `logo__wrapper animation-open`;
 
     return (
       <div className={ classes }>
