@@ -158,12 +158,11 @@ export default class MultiPlayerScene extends BaseScene {
       requestAnimationFrame(this._animate.bind(this));
     }
 
-    this._webSocketManager.send(JSON.stringify({}));
     this._render();
 
     setTimeout(() => {
       this._updateBackEnd(false);
-    }, 500);
+    }, 100);
   }
 
   _updateBackEnd(shooting) {
