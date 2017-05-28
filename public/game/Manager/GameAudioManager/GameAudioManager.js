@@ -21,7 +21,6 @@ class GameAudioManager {
     this._load(MOVING);
     this._load(SHOOT);
     this._load(PAIN);
-    this._load(HIT);
   }
 
   _load(path) {

@@ -49,19 +49,13 @@ export default class Mouse {
       if (this._enabled && event.which === 1) {
         this._aim.start();
 
-        if (sound) {
+        if (sound && !sound.isPlaying) {
           sound.play();
         }
 
         setTimeout(() => {
           this._shootAnimate.style.display = 'none';
         }, 100);
-
-        setTimeout(() => {
-          if (sound.isPlaying) {
-            sound.stop();
-          }
-        }, 300);
 
         callback();
       }

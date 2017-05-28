@@ -32,7 +32,6 @@ export default class SinglePlayerScene extends BaseScene {
   }
 
   _init() {
-    musicService.stopBackground();
     this._initScenePreferences();
 
     this._makeScene();

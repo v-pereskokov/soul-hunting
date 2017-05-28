@@ -45,7 +45,6 @@ export default class MultiPlayerScene extends BaseScene {
 
   _init() {
     this._webSocketManager.setOnMessage(this._setUpWebSockets());
-    musicService.stopBackground();
 
     this._findConnectInformation();
     this._setMouseWebSocketHandler();
@@ -120,7 +119,7 @@ export default class MultiPlayerScene extends BaseScene {
             }
 
             // players - manager
-            if (this._playersService.getFullPlayer(`id${playerId}`) === undefined) {
+            if (!this._playersService.getFullPlayer(`id${playerId}`)) {
               const playerObject = new Player().object;
               this._playersService.setFullPlayer(playerId, playerObject);
               this._playersService.getFullPlayer(`id${playerId}`)
@@ -189,9 +188,8 @@ export default class MultiPlayerScene extends BaseScene {
 
   _getCameraRotation() {
     return {
-      x: this._camera.rotation.x,
-      y: this._camera.rotation.y,
-      z: this._camera.rotation.z
+      phi: 0,
+      theta: this._camera.rotation.y
     };
   }
 

@@ -207,7 +207,7 @@ const mapDispatchToProps = (dispatch: any) => {
           dispatch(togglePreloader());
         })
         .then((data: any) => {
-          dispatch(setError(data.message));
+          dispatch(setError(data ? data.message : ''));
           dispatch(togglePreloader());
         });
     }
