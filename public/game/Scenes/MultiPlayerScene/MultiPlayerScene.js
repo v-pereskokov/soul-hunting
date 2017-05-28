@@ -12,6 +12,7 @@ import CollisionService from '../../Manager/CollisionManager/CollisionManager';
 import AIService from '../../Manager/AIManager/AIManager';
 import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
+import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import {
   UNITSIZE,
   MOVESPEEDAI,
@@ -94,10 +95,8 @@ export default class MultiPlayerScene extends BaseScene {
           }
 
           if (data.shot) {
-            // anim
+            this._changeStats(data.hp);
           }
-
-          // change hp
 
           if (data.hp === 0) {
             // reborn
@@ -129,7 +128,6 @@ export default class MultiPlayerScene extends BaseScene {
 
               this._scene.add(playerObject);
 
-              this._updateTable(this._makeListPlayers(data.players), this._id);
               this._showConnectionInfo(player.login);
 
               setTimeout(() => {
@@ -140,6 +138,8 @@ export default class MultiPlayerScene extends BaseScene {
                 .position.copy(playerPosition);
             }
           });
+
+          this._updateTable(this._makeListPlayers(data.players), this._id);
           break;
         case REMOVE_PLAYER:
           data.forEach(element => {
@@ -192,100 +192,12 @@ export default class MultiPlayerScene extends BaseScene {
     };
   }
 
-  _addAI() {
-    const position = Helper.getMapSector(this._camera.position);
-
-    let [x, z] = Helper.getRandomPosition();
-    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-      [x, z] = Helper.getRandomPosition();
-    }
-
-    x = Math.floor(x - map.width / 2) * UNITSIZE;
-    z = Math.floor(z - map.width / 2) * UNITSIZE;
-
-    const playerObject = new Player().object;
-    playerObject.position.set(x, UNITSIZE * 0.15, z);
-
-    playersService.add(new PlayerService(playerObject, 100));
-    this._scene.add(playerObject);
-  }
-
-  _updateBullets(delta) {
-    for (let i in bulletsService.all) {
-      const bullet = bulletsService.getBullet(i);
-      const position = bullet.object.position;
-
-      if (CollisionService.collisionBulletWithWall(position)) {
-        bulletsService.remove(i);
-        this._scene.remove(bullet.object);
-
-        continue;
-      }
-
-      // Collide with AI
-      let hit = CollisionService.collisionBulletWithAi(
-        this._scene,
-        playersService,
-        bulletsService,
-        bullet,
-        position,
-        i
-      );
-
-      // Bullet hits player
-      CollisionService.collisionBulletWithPlayer(
-        this._scene,
-        playerStats,
-        bulletsService,
-        position,
-        this._camera,
-        bullet,
-        i
-      );
-
-      if (!hit) {
-        const speed = delta * BULLETMOVESPEED;
-        const direction = bullet.object.ray.direction;
-
-        bullet.object.translateX(speed * direction.x);
-        bullet.object.translateZ(speed * direction.z);
-      }
-    }
-  }
-
   _render() {
     const delta = this._clock.getDelta();
     this._keys.update(this._camera, delta, Helper.checkWallCollision.bind(this));
 
-    // Update bullets.
-    this._updateBullets(delta);
-
-    if (this._game) {
-      for (let i in playersService.all) {
-        AIService.updateAI(
-          this._scene,
-          playersService,
-          playerStats,
-          delta * MOVESPEEDAI,
-          i,
-          this._addAI.bind(this)
-        );
-
-        const player = playersService.getPlayer(i);
-        const sector = Helper.getMapSector(player.object.position);
-
-        AIService.shoot(
-          this._camera,
-          player,
-          sector,
-          this._createBullet.bind(this)
-        );
-      }
-    }
-
     this._renderer.render(this._scene, this._camera);
 
-    // Death
     this._death();
   }
 
@@ -306,18 +218,8 @@ export default class MultiPlayerScene extends BaseScene {
     }
   }
 
-  _createBullet(object) {
-    if (object === undefined) {
-      object = this._camera;
-    }
-
-    const bullet = new BulletService(new Bullet().object, object, this._camera);
-
-    bulletsService.add(bullet);
-    this._scene.add(bullet.object);
-  }
-
   _updateTable(data, id, type) {
+    console.log(data);
     this._gameTableManager.setData(data, id, type);
   }
 
@@ -329,5 +231,30 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     return players;
+  }
+
+  _changeStats(health) {
+    let lowHealth = null;
+    const hurt = document.body.querySelector('.hurt');
+
+    if (health < 30) {
+      lowHealth = 1 - health / 100;
+
+      hurt.style.opacity = `${lowHealth}`;
+    }
+
+    hurt.style.opacity = `0.9`;
+    document.body.querySelector('.wrapper__health-text').innerHTML = `${health}  HP`;
+    document.body.querySelector('.wrapper__health-red').style.width = `${health}%`;
+
+    setTimeout(() => {
+      hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
+    }, 300);
+
+    const sound = gameAudioManager.getSound('pain');
+
+    if (sound) {
+      sound.play();
+    }
   }
 }
