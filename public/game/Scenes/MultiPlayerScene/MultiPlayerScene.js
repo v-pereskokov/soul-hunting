@@ -45,7 +45,6 @@ export default class MultiPlayerScene extends BaseScene {
 
   _init() {
     this._webSocketManager.setOnMessage(this._setUpWebSockets());
-    musicService.stopBackground();
 
     this._findConnectInformation();
     this._setMouseWebSocketHandler();

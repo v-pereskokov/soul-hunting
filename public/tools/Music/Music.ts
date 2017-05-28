@@ -22,10 +22,8 @@ export default class Music {
   }
 
   public stop() {
-    if (this._music.currentTime) {
-      this._music.pause();
-      this._music.currentTime = 0;
-    }
+    this._music.pause();
+    this._music.currentTime = 0;
   }
 
   public muteToggle() {

@@ -22,9 +22,9 @@ export default class Game {
     this.startPreview(functionGo);
   }
 
-  start(stopMusic, functionGo) {
+  start(functionGo) {
     this._gameScene = this._getScene(functionGo, this._type ? this._ws : null);
-    this._pointerLockManager = this._getPointerLock(stopMusic, functionGo);
+    this._pointerLockManager = this._getPointerLock(functionGo);
 
     this._gameScene.setPointerLock(
       (camera) => this._pointerLockManager.getPointerLock(camera)
@@ -33,7 +33,6 @@ export default class Game {
 
   startPreview(functionGo) {
     this._togglePreloader(true);
-    musicService.startBackgroundSingle();
 
     if (this._ws) {
       const start = Date.now();
@@ -55,9 +54,7 @@ export default class Game {
   _startGame(functionGo) {
     this._togglePreloader(false);
     this._setInstructions();
-    this.start(() => {
-      musicService.stopBackground();
-    }, functionGo);
+    this.start(functionGo);
   }
 
   _setInstructions() {
@@ -72,7 +69,7 @@ export default class Game {
 
   }
 
-  _getPointerLock(stopMusic, functionGo) {
+  _getPointerLock(functionGo) {
     return new PointerLockApiManager({
         blocker: document.body.querySelector('.blocker'),
         instructions: document.body.querySelector('.instructions')
@@ -81,7 +78,6 @@ export default class Game {
       this._mouse,
       (isFirst) => {
         if (isFirst) {
-          stopMusic();
           this._gameScene._init();
           this._gameScene._animate();
 
@@ -93,7 +89,6 @@ export default class Game {
 
           this._beforeStart();
         } else {
-          stopMusic();
           this._gameScene.resume();
           this._gameScene._animate();
         }

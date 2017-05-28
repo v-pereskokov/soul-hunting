@@ -25,12 +25,6 @@ export default class CollisionService {
         bulletPosition.z > playerPosition.z - z &&
         bullet.owner !== player.object) {
 
-        const sound = gameAudioManager.getSound('hit');
-
-        if (sound) {
-          sound.play();
-        }
-
         bulletsService.remove(bulletNumber);
         scene.remove(bullet.object);
         player.health = player.health - DAMAGE;

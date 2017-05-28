@@ -50,15 +50,12 @@ class SinglePlayer extends React.Component<Props, any> {
   componentWillMount() {
     if (!this.props.isAuthenticated || !this._isAdmin()) {
       browserHistory.push('/');
-    } else {
-      setTimeout(() => {
-        musicService.stopBackground();
-      }, 300);
     }
   }
 
   componentDidMount() {
     if (this._isAdmin()) {
+      musicService.stopBackground();
       new GameManager(SINGLEPLAYER, browserHistory.push.bind(this, '/game'));
     }
   }
