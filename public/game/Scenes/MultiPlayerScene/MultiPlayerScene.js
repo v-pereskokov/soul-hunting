@@ -162,7 +162,7 @@ export default class MultiPlayerScene extends BaseScene {
 
     setTimeout(() => {
       this._updateBackEnd(false);
-    }, 100);
+    }, 30);
   }
 
   _updateBackEnd(shooting) {
