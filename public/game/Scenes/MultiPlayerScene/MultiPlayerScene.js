@@ -188,8 +188,8 @@ export default class MultiPlayerScene extends BaseScene {
 
   _getCameraRotation() {
     return {
-      phi: 0,
-      theta: this._camera.rotation.y
+      phi: this._camera.rotation.y,
+      theta: 0
     };
   }
 

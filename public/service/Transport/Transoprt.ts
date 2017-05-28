@@ -50,7 +50,6 @@ class Transport {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: options.body,
-      mode: 'cors',
       credentials: 'include',
       cache: 'default'
     };
