@@ -42,7 +42,7 @@ export default class Game {
 
         setTimeout(() => {
           this._startGame(functionGo);
-        }, delta > 3000 ? 0 : delta);
+        }, delta > 3000 ? 0 : 3000 - delta);
       });
     } else {
       setTimeout(() => {
