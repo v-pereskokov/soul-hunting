@@ -230,7 +230,7 @@ export default class MultiPlayerScene extends BaseScene {
       this._openEndGame();
 
       setTimeout(() => {
-        localStorage.setItem('singlePlayerScore', playerStats.kills * 100);
+        localStorage.setItem('multiPlayerScore', playerStats.kills * 100);
         this._closeEndGame();
         this._goToFromGame();
         location.reload();

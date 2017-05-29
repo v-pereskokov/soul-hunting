@@ -139,18 +139,18 @@ class Game extends React.Component<Props, any> {
   }
 
   _sendScoreToBack() {
-    const userData: string = localStorage.getItem('singlePlayerScore');
-    if (userData) {
-      const {user} = this.props;
+    const sScore: string = localStorage.getItem('singlePlayerScore');
+    const mScore: string = localStorage.getItem('multiPlayerScore');
 
-      if (userData) {
-        setScore(JSON.stringify({
-          username: user,
-          sScore: userData
-        }));
+    if (sScore || mScore) {
+      setScore(JSON.stringify({
+        username: this.props.user,
+        sScore: sScore ? sScore : 0,
+        mScore: mScore ? mScore : 0
+      }));
 
-        localStorage.removeItem('singlePlayerScore');
-      }
+      localStorage.removeItem('singlePlayerScore');
+      localStorage.removeItem('multiPlayerScore');
     }
   }
 }
