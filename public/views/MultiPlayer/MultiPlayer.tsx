@@ -89,6 +89,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <StartGameTheme />
               <Information text='Alpha' isMini={ true } type='info'/>
               <Information text='' isMini={ false } type='connect'/>
+              <Information text='Killed' isMini={ false } type='kill'/>
             </div>
             <GameMenu text='Multiplayer'/>
           </div>
