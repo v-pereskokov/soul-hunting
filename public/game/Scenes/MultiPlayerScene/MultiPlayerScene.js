@@ -76,86 +76,77 @@ export default class MultiPlayerScene extends BaseScene {
   _setUpWebSockets() {
     return (content, data) => {
       console.log(data);
-
       switch (content.type) {
         case SNAPSHOT:
-          if (!this._isInitLeaderboard) {
-            this._updateTable(this._makeListPlayers(data.players), this._id);
-            this._isInitLeaderboard = true;
-          }
-
-          if (data.shot) {
-            this._changeStats(data.hp);
-          }
-
-          if (data.hp === 0) {
-            let time = 3;
-
-            const interval = setInterval( () => {
-              if (time === -1) {
-                clearInterval(interval);
-                return;
-              }
-              time--;
-            }, 1000);
-
-            this._killed = true;
-
-            setTimeout(() => {
-              this._killed = false;
-
-              this._playersService.getFullPlayer(`id${this._id}`).position.copy(this._getRandomCoords());
-            }, 3100)
-          }
-
-          // show death on screen
-
-          data.players.forEach(player => {
-            const playerId = player.id;
-
-            if (playerId === this._id) {
-              return;
-            }
-
-            const playerPosition = player.position;
-
-            if (playerPosition === null) {
-              return;
-            }
-
-            if (!this._playersService.getFullPlayer(`id${playerId}`)) {
-              const playerObject = new Player().object;
-              this._playersService.setFullPlayer(playerId, playerObject);
-              this._playersService.getFullPlayer(`id${playerId}`)
-                .position.copy(playerPosition);
-
-              this._playersService.add(new PlayerService(playerObject, 100));
-
-              this._scene.add(playerObject);
-
-              this._showConnectionInfo(player.login);
-
-              setTimeout(() => {
-                this._hideConnectionInfo();
-              }, 5000);
-            } else {
-              this._playersService.getFullPlayer(`id${playerId}`)
-                .position.copy(playerPosition);
-            }
-          });
-
-          this._updateTable(this._makeListPlayers(data.players), this._id);
+          this._updateGame(data);
           break;
         case REMOVE_PLAYER:
-          data.forEach(element => {
-            this._scene.remove(this._playersService.getFullPlayer(element));
-            this._playersService.removeFullPlayer(element);
-          });
+          this._removePlayer(data);
           break;
         default:
           break;
       }
     };
+  }
+
+  _updateGame(data) {
+    if (!this._isInitLeaderboard) {
+      this._updateTable(this._makeListPlayers(data.players), this._id);
+      this._isInitLeaderboard = true;
+    }
+
+    if (data.shot) {
+      this._changeStats(data.hp);
+    }
+
+    if (data.hp === 0) {
+      const {x, y, z} = Helper.randomVector(50);
+
+      this._camera.position.copy({x, y, z});
+    }
+
+    data.players.forEach(player => {
+      const playerId = player.id;
+
+      if (playerId === this._id) {
+        return;
+      }
+
+      const playerPosition = player.position;
+
+      if (playerPosition === null) {
+        return;
+      }
+
+      if (!this._playersService.getFullPlayer(`id${playerId}`)) {
+        const playerObject = new Player().object;
+        this._playersService.setFullPlayer(playerId, playerObject);
+        this._playersService.getFullPlayer(`id${playerId}`)
+          .position.copy(playerPosition);
+
+        this._playersService.add(new PlayerService(playerObject, 100));
+
+        this._scene.add(playerObject);
+
+        this._showConnectionInfo(player.login);
+
+        setTimeout(() => {
+          this._hideConnectionInfo();
+        }, 5000);
+      } else {
+        this._playersService.getFullPlayer(`id${playerId}`)
+          .position.copy(playerPosition);
+      }
+    });
+
+    this._updateTable(this._makeListPlayers(data.players), this._id);
+  }
+
+  _removePlayer(data) {
+    data.forEach(element => {
+      this._scene.remove(this._playersService.getFullPlayer(element));
+      this._playersService.removeFullPlayer(element);
+    });
   }
 
   _getRandomCoords() {

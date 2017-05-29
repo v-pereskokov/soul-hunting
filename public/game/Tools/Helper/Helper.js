@@ -1,4 +1,5 @@
 import map from '../Map/Map';
+import {UNITSIZE} from '../../Constants/Constants';
 
 export default class Helper {
   static checkWallCollision(position) {
@@ -9,6 +10,19 @@ export default class Helper {
     }
 
     return false;
+  }
+
+  static randomVector(y) {
+    let [x, z] = Helper.getRandomPosition();
+    while (map._map[x][z] > 0) {
+      [x, z] = Helper.getRandomPosition();
+    }
+
+    return {
+      x: Math.floor(x - map.width / 2) * UNITSIZE,
+      z: Math.floor(z - map.width / 2) * UNITSIZE,
+      y
+    };
   }
 
   static distance(x1, y1, x2, y2) {
@@ -23,11 +37,11 @@ export default class Helper {
     return {
       x: Helper.getSector(position.x),
       z: Helper.getSector(position.z)
-    }
+    };
   }
 
   static getSector(position) {
-    return Math.floor((position + 250 / 2) / 250 + map.width / 2)
+    return Math.floor((position + 250 / 2) / 250 + map.width / 2);
   }
 
   static random(min, max) {
