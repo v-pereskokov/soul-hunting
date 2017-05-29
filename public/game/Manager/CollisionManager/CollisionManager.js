@@ -66,18 +66,20 @@ export default class CollisionService {
       }
 
       let lowHealth = null;
+      const hurt = document.body.querySelector('.hurt');
+
       if (playerStats.health < 30) {
         lowHealth = 1 - playerStats.health / 100;
 
-        document.body.querySelector('.hurt').style.opacity = `${lowHealth}`;
+        hurt.style.opacity = `${lowHealth}`;
       }
 
-      document.body.querySelector('.hurt').style.opacity = `0.9`;
+      hurt.style.opacity = `0.9`;
       document.body.querySelector('.wrapper__health-text').innerHTML = `${playerStats.health}  HP`;
       document.body.querySelector('.wrapper__health-red').style.width = `${playerStats.health}%`;
 
       setTimeout(() => {
-        document.body.querySelector('.hurt').style.opacity = `${lowHealth ? lowHealth : 0}`;
+        hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
       }, 300);
 
       const sound = gameAudioManager.getSound('pain');
