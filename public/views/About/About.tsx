@@ -28,9 +28,6 @@ class About extends React.Component<Props, void> {
               <li className='author__name'>
                 <label>Pereskokov Vladislav</label>
               </li>
-              <li className='author__name'>
-                <label>Artyuhov Vladislav</label>
-              </li>
             </ul>
             <p className='field__develop'>BackEnd</p>
             <hr />

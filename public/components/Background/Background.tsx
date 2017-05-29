@@ -21,8 +21,7 @@ class Background extends React.Component<Props, void> {
           </span>
         </Link>
         }
-        <div className='back'>
-        </div>
+        <div className='back'/>
       </div>
     );
   }

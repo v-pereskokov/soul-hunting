@@ -203,8 +203,6 @@ const mapDispatchToProps = (dispatch: any) => {
             default:
               break;
           }
-
-          dispatch(togglePreloader());
         })
         .then((data: any) => {
           dispatch(setError(data ? data.message : ''));
