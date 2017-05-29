@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    general:
+      branches:
+        only:
+          - master
     working_directory: ~/soul-hunting
     docker:
       - image: circleci/node:4.8.2
