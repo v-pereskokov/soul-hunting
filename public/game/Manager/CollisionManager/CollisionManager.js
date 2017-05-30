@@ -51,7 +51,8 @@ export default class CollisionService {
   }
 
   static collisionBulletWithPlayer(scene, playerStats, bulletsService,
-                                   bulletPosition, camera, bullet, bulletIndex) {
+                                   bulletPosition, camera, bullet,
+                                   healthText, healthProgress, bulletIndex) {
     if (Helper.distance(
       bulletPosition.x,
         bulletPosition.z,
@@ -75,8 +76,8 @@ export default class CollisionService {
       }
 
       hurt.style.opacity = `0.9`;
-      document.body.querySelector('.wrapper__health-text').innerHTML = `${playerStats.health}  HP`;
-      document.body.querySelector('.wrapper__health-red').style.width = `${playerStats.health}%`;
+      healthText.innerHTML = `${playerStats.health}  HP`;
+      healthProgress.style.width = `${playerStats.health}%`;
 
       setTimeout(() => {
         hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;

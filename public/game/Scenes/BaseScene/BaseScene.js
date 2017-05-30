@@ -229,6 +229,8 @@ export default class BaseScene {
     this._table = document.body.querySelector('.gameTable__wrapper');
     this._stats = document.body.querySelector('.stats__position-rightUp');
     this._kills = this._stats ? this._stats.getElementsByTagName('p')[0] : null;
+    this._healthText = document.body.querySelector('.wrapper__health-text');
+    this._healthProgress = document.body.querySelector('.wrapper__health-red');
   }
 
   _openEndGame() {
