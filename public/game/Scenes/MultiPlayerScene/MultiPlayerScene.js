@@ -6,6 +6,7 @@ import Helper from '../../Tools/Helper/Helper';
 import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
+import textureLoader from '../../Manager/LoaderManager/LoaderManager';
 import {
   SNAPSHOT,
   REMOVE_PLAYER
@@ -135,8 +136,12 @@ export default class MultiPlayerScene extends BaseScene {
 
       if (!this._playersService.getFullPlayer(`id${playerId}`)) {
         const playerObject = new Player().object;
-        this._playersService.setFullPlayer(playerId, playerObject);
+        this._playersService.setFullPlayer(playerId, {
+          playerObject,
+          isAngry: false
+        });
         this._playersService.getFullPlayer(`id${playerId}`)
+          .playerObject
           .position.copy(playerPosition);
 
         this._playersService.add(new PlayerService(playerObject, 100));
@@ -149,8 +154,21 @@ export default class MultiPlayerScene extends BaseScene {
           this._hideConnectionInfo();
         }, 5000);
       } else {
-        this._playersService.getFullPlayer(`id${playerId}`)
-          .position.copy(playerPosition);
+        const playerStats = this._playersService.getFullPlayer(`id${playerId}`);
+        playerStats.playerObject.position.copy(playerPosition);
+
+        const color = playerStats.playerObject.material.color;
+        const percent = player.hp / 100;
+
+        if (!playerStats.isAngry && percent < 1) {
+          playerStats.playerObject.material.map = textureLoader.load('/static/gameSource/face_angry.png');
+          playerStats.isAngry = true;
+        } else if (playerStats.isAngry && percent === 1) {
+          playerStats.playerObject.material.map = textureLoader.load('/static/gameSource/face_usual.png');
+          playerStats.isAngry = false;
+        }
+
+        percent < 1 ? color.setRGB(1, percent, percent) : color.setRGB(1, 1, 1);
       }
     });
 
