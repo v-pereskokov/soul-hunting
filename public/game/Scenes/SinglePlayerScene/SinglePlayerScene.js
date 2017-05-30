@@ -94,6 +94,8 @@ export default class SinglePlayerScene extends BaseScene {
         position,
         this._camera,
         bullet,
+        this._healthText,
+        this._healthProgress,
         i
       );
 

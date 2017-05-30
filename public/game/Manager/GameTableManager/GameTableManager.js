@@ -4,7 +4,6 @@ export default class GameTableManager {
   }
 
   setData(list, id, type = true) {
-    console.log(list);
     this._table.innerHTML = '';
     this._getContentFields(this._table, this._sortList(list, type), id);
   }

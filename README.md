@@ -1,6 +1,7 @@
 ![Logo](docs/assets/logo.png)
 
-[![Build Status](https://travis-ci.com/vladpereskokov/soul-hunting.svg?token=vgWpgFdW3m8asKepzCnQ&branch=master)](https://travis-ci.com/vladpereskokov/soul-hunting)
+[![Build Status](https://travis-ci.com/vladpereskokov/soul-hunting.svg?token=vgWpgFdW3m8asKepzCnQ&branch=master)](https://travis-ci.com/vladpereskokov/soul-hunting) 
+[![CircleCI](https://circleci.com/gh/vladpereskokov/soul-hunting.svg?style=svg&circle-token=118ac22e77990fb008c3d5f85caec63b627f5500)](https://circleci.com/gh/vladpereskokov/soul-hunting)
 
 Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE.JS and more.
 

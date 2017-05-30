@@ -33,7 +33,6 @@ export default class Mouse {
           0;
 
         camera.rotation.y -= this._x * 0.002;
-        console.log(camera.rotation.y);
       }
     };
   }

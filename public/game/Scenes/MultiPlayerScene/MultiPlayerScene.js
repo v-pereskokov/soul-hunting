@@ -6,12 +6,11 @@ import Helper from '../../Tools/Helper/Helper';
 import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
-import map from '../../Tools/Map/Map';
+import textureLoader from '../../Manager/LoaderManager/LoaderManager';
 import {
   SNAPSHOT,
   REMOVE_PLAYER
 } from '../../Constants/MultiPlayer';
-import {UNITSIZE} from '../../Constants/Constants';
 
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, gameWebSocketManager, functionGo) {
@@ -25,6 +24,9 @@ export default class MultiPlayerScene extends BaseScene {
 
     this._isInitLeaderboard = false;
     this._killed = false;
+
+    this._stats.style.display = 'none';
+    this._hurt = document.body.querySelector('.hurt');
   }
 
   set game(value) {
@@ -76,6 +78,7 @@ export default class MultiPlayerScene extends BaseScene {
   _setUpWebSockets() {
     return (content, data) => {
       console.log(data);
+
       switch (content.type) {
         case SNAPSHOT:
           this._updateGame(data);
@@ -96,8 +99,11 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     if (data.shot) {
+      this._showShoot(data.hp);
       this._changeStats(data.hp);
     }
+
+    this._changeStats(data.hp);
 
     if (data.hp === 0) {
       const {x, y, z} = Helper.randomVector(50);
@@ -106,6 +112,16 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     data.players.forEach(player => {
+      if (player.victims.length > 0) {
+        player.victims.forEach(victim => {
+          this._setKills(player.login, victim.login);
+
+          setTimeout(() => {
+            this._stopStats();
+          }, 3000);
+        });
+      }
+
       const playerId = player.id;
 
       if (playerId === this._id) {
@@ -120,8 +136,12 @@ export default class MultiPlayerScene extends BaseScene {
 
       if (!this._playersService.getFullPlayer(`id${playerId}`)) {
         const playerObject = new Player().object;
-        this._playersService.setFullPlayer(playerId, playerObject);
+        this._playersService.setFullPlayer(playerId, {
+          playerObject,
+          isAngry: false
+        });
         this._playersService.getFullPlayer(`id${playerId}`)
+          .playerObject
           .position.copy(playerPosition);
 
         this._playersService.add(new PlayerService(playerObject, 100));
@@ -134,8 +154,21 @@ export default class MultiPlayerScene extends BaseScene {
           this._hideConnectionInfo();
         }, 5000);
       } else {
-        this._playersService.getFullPlayer(`id${playerId}`)
-          .position.copy(playerPosition);
+        const playerStats = this._playersService.getFullPlayer(`id${playerId}`);
+        playerStats.playerObject.position.copy(playerPosition);
+
+        const color = playerStats.playerObject.material.color;
+        const percent = player.hp / 100;
+
+        if (!playerStats.isAngry && percent < 1) {
+          playerStats.playerObject.material.map = textureLoader.load('/static/gameSource/face_angry.png');
+          playerStats.isAngry = true;
+        } else if (playerStats.isAngry && percent === 1) {
+          playerStats.playerObject.material.map = textureLoader.load('/static/gameSource/face_usual.png');
+          playerStats.isAngry = false;
+        }
+
+        percent < 1 ? color.setRGB(1, percent, percent) : color.setRGB(1, 1, 1);
       }
     });
 
@@ -147,21 +180,6 @@ export default class MultiPlayerScene extends BaseScene {
       this._scene.remove(this._playersService.getFullPlayer(element));
       this._playersService.removeFullPlayer(element);
     });
-  }
-
-  _getRandomCoords() {
-    const position = Helper.getMapSector(this._camera.position);
-    let [x, z] = Helper.getRandomPosition();
-
-    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-      [x, z] = Helper.getRandomPosition();
-    }
-
-    return {
-      x: Math.floor(x - map.width / 2) * UNITSIZE,
-      y: 50,
-      z: Math.floor(z - map.width / 2) * UNITSIZE
-    };
   }
 
   _animate() {
@@ -230,7 +248,6 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _updateTable(data, id, type) {
-    console.log(data);
     this._gameTableManager.setData(data, id, type);
   }
 
@@ -244,22 +261,19 @@ export default class MultiPlayerScene extends BaseScene {
     return players;
   }
 
-  _changeStats(health) {
+  _showShoot(health) {
     let lowHealth = null;
-    const hurt = document.body.querySelector('.hurt');
 
     if (health < 30) {
       lowHealth = 1 - health / 100;
 
-      hurt.style.opacity = `${lowHealth}`;
+      this._hurt.style.opacity = `${lowHealth}`;
     }
 
-    hurt.style.opacity = `0.9`;
-    document.body.querySelector('.wrapper__health-text').innerHTML = `${health}  HP`;
-    document.body.querySelector('.wrapper__health-red').style.width = `${health}%`;
+    this._hurt.style.opacity = `0.9`;
 
     setTimeout(() => {
-      hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
+      this._hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
     }, 300);
 
     const sound = gameAudioManager.getSound('pain');
@@ -267,5 +281,31 @@ export default class MultiPlayerScene extends BaseScene {
     if (sound) {
       sound.play();
     }
+  }
+
+  _changeStats(health) {
+    if (+health === 100) {
+      this._hurt.style.opacity = `0`;
+    }
+
+    this._healthText.innerHTML = `${health}  HP`;
+    this._healthProgress.style.width = `${health}%`;
+  }
+
+  _setKills(hunt, soul) {
+    this._stats.style.display = 'block';
+    this._kills.innerHTML = `${this._changeUsername(hunt)} killed ${this._changeUsername(soul)}`;
+  }
+
+  _stopStats() {
+    this._stats.style.display = 'none';
+  }
+
+  _changeUsername(name) {
+    if (name.length > 7) {
+      name = name.slice(0, 7) + '...';
+    }
+
+    return name.toUpperCase();
   }
 }

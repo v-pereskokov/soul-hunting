@@ -22,8 +22,6 @@ export default class GameWebSocketManager {
       const content = JSON.parse(event.data);
       const data = JSON.parse(content.data);
 
-      // console.log(data);
-
       callback(content, data);
     });
   }
