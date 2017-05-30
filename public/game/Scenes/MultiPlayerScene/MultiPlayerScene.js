@@ -6,12 +6,10 @@ import Helper from '../../Tools/Helper/Helper';
 import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
-import map from '../../Tools/Map/Map';
 import {
   SNAPSHOT,
   REMOVE_PLAYER
 } from '../../Constants/MultiPlayer';
-import {UNITSIZE} from '../../Constants/Constants';
 
 export default class MultiPlayerScene extends BaseScene {
   constructor(keys, mouse, gameWebSocketManager, functionGo) {
@@ -27,6 +25,7 @@ export default class MultiPlayerScene extends BaseScene {
     this._killed = false;
 
     this._stats.style.display = 'none';
+    this._hurt = document.body.querySelector('.hurt');
   }
 
   set game(value) {
@@ -99,8 +98,11 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     if (data.shot) {
+      this._showShoot(data.hp);
       this._changeStats(data.hp);
     }
+
+    this._changeStats(data.hp);
 
     if (data.hp === 0) {
       const {x, y, z} = Helper.randomVector(50);
@@ -241,22 +243,19 @@ export default class MultiPlayerScene extends BaseScene {
     return players;
   }
 
-  _changeStats(health) {
+  _showShoot(health) {
     let lowHealth = null;
-    const hurt = document.body.querySelector('.hurt');
 
     if (health < 30) {
       lowHealth = 1 - health / 100;
 
-      hurt.style.opacity = `${lowHealth}`;
+      this._hurt.style.opacity = `${lowHealth}`;
     }
 
-    hurt.style.opacity = `0.9`;
-    document.body.querySelector('.wrapper__health-text').innerHTML = `${health}  HP`;
-    document.body.querySelector('.wrapper__health-red').style.width = `${health}%`;
+    this._hurt.style.opacity = `0.9`;
 
     setTimeout(() => {
-      hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
+      this._hurt.style.opacity = `${lowHealth ? lowHealth : 0}`;
     }, 300);
 
     const sound = gameAudioManager.getSound('pain');
@@ -264,6 +263,15 @@ export default class MultiPlayerScene extends BaseScene {
     if (sound) {
       sound.play();
     }
+  }
+
+  _changeStats(health) {
+    if (+health === 100) {
+      this._hurt.style.opacity = `0`;
+    }
+
+    this._healthText.innerHTML = `${health}  HP`;
+    this._healthProgress.style.width = `${health}%`;
   }
 
   _setKills(hunt, soul) {
@@ -276,9 +284,10 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _changeUsername(name) {
-    if (name.length > 6) {
-      name = name.slice(0, 6) + '...';
+    if (name.length > 7) {
+      name = name.slice(0, 7) + '...';
     }
+
     return name.toUpperCase();
   }
 }
