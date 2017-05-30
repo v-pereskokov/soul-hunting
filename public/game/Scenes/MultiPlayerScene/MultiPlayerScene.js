@@ -78,6 +78,7 @@ export default class MultiPlayerScene extends BaseScene {
   _setUpWebSockets() {
     return (content, data) => {
       console.log(data);
+
       switch (content.type) {
         case SNAPSHOT:
           this._updateGame(data);
@@ -227,7 +228,6 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _updateTable(data, id, type) {
-    console.log(data);
     this._gameTableManager.setData(data, id, type);
   }
 
@@ -276,7 +276,6 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _changeUsername(name) {
-    console.log(name);
     if (name.length > 6) {
       name = name.slice(0, 6) + '...';
     }
