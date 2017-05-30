@@ -25,6 +25,8 @@ export default class MultiPlayerScene extends BaseScene {
 
     this._isInitLeaderboard = false;
     this._killed = false;
+
+    this._stats.style.display = 'none';
   }
 
   set game(value) {
@@ -106,6 +108,16 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     data.players.forEach(player => {
+      if (player.victims.length > 0) {
+        player.victims.forEach(victim => {
+          this._setKills(player.login, victim.login);
+
+          setTimeout(() => {
+            this._stopStats();
+          }, 3000);
+        });
+      }
+
       const playerId = player.id;
 
       if (playerId === this._id) {
@@ -147,21 +159,6 @@ export default class MultiPlayerScene extends BaseScene {
       this._scene.remove(this._playersService.getFullPlayer(element));
       this._playersService.removeFullPlayer(element);
     });
-  }
-
-  _getRandomCoords() {
-    const position = Helper.getMapSector(this._camera.position);
-    let [x, z] = Helper.getRandomPosition();
-
-    while (map._map[x][z] > 0 || (x === position.x && z === position.z)) {
-      [x, z] = Helper.getRandomPosition();
-    }
-
-    return {
-      x: Math.floor(x - map.width / 2) * UNITSIZE,
-      y: 50,
-      z: Math.floor(z - map.width / 2) * UNITSIZE
-    };
   }
 
   _animate() {
@@ -267,5 +264,22 @@ export default class MultiPlayerScene extends BaseScene {
     if (sound) {
       sound.play();
     }
+  }
+
+  _setKills(hunt, soul) {
+    this._stats.style.display = 'block';
+    this._kills.innerHTML = `${this._changeUsername(hunt)} killed ${this._changeUsername(soul)}`;
+  }
+
+  _stopStats() {
+    this._stats.style.display = 'none';
+  }
+
+  _changeUsername(name) {
+    console.log(name);
+    if (name.length > 6) {
+      name = name.slice(0, 6) + '...';
+    }
+    return name.toUpperCase();
   }
 }
