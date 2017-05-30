@@ -1,6 +1,6 @@
 ![Logo](docs/assets/logo.png)
 
-[![Build Status](https://travis-ci.com/vladpereskokov/soul-hunting.svg?token=vgWpgFdW3m8asKepzCnQ&branch=master)](https://travis-ci.com/vladpereskokov/soul-hunting) 
+[![Build Status](https://travis-ci.com/vladpereskokov/soul-hunting.svg?token=vgWpgFdW3m8asKepzCnQ&branch=master&label=Travis)](https://travis-ci.com/vladpereskokov/soul-hunting) 
 [![CircleCI](https://circleci.com/gh/vladpereskokov/soul-hunting.svg?style=svg&circle-token=118ac22e77990fb008c3d5f85caec63b627f5500)](https://circleci.com/gh/vladpereskokov/soul-hunting)
 
 Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE.JS and more.
@@ -9,8 +9,71 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
 
 ![Main](docs/assets/main.png)
 
-## Install
+## Table of contents
 
+- [Description](#description)
+- [Beta test](#beta)
+- [Modes](#modes)  
+  * [SinglePlayer](#sp)
+  * [MultiPlayer](#mp)
+- [Controls](#constrols)
+- [Install](#install)  
+  * [Start](#installstart)
+  * [Tests](#installtests)
+- [Browser support](#browsersupport)
+- [Development stack](#devstack)
+  * [Frontend](#devstackfront)
+    + [Server](#devstackfrontserver)
+    + [Client](#devstackfrontclient)
+    + [Tools](#devstackfronttools)
+  * [Backend](#devstackback)
+- [Developers](#developers)
+- [Help us](#help)
+
+## Description
+<a name="description"></a>
+
+Game for fun.   
+**"It's not a bug, it's a feature!"**
+
+## Beta
+<a name="beta"></a>
+
+If you want to play in beta test - register with nickname: ***YOURNICKNAME_beta***  
+Where '_beta' - must have!
+
+## Modes
+<a name="modes"></a>
+
+#### SinglePlayer
+<a name="sp"></a>
+
+SinglePlayer is a mode which the player must continue playing for as long as possible without dying.  
+***Your task: destroy targets and survive.***  
+
+#### MultiPlayer
+<a name="mp"></a>
+
+Free-for-all is a death match Multiplayer Mode. 
+Five (max) players face off against each other in a match to the death. 
+It's everyone vs everyone, there are no assists points! 
+If the time runs out, the player with the most kills will win.  
+***Limit time: 10 minutes***
+
+## Controls
+<a name="constrols"></a>
+
+![Controls](docs/assets/loading1.png)
+
++ WASD - **move**
++ LMB - **shoot**
++ SHIFT - **run**
++ TAB - **scoreboard**
++ ESC - **menu**
+
+## Install
+<a name="install"></a>
+<a name="installstart"></a>
 ```sh
 npm install
 ```
@@ -24,6 +87,7 @@ npm start
 ```
 
 #### Tests and TSLint start
+<a name="installtests"></a>
 
 ```sh
 npm run tests
@@ -34,18 +98,24 @@ npm run codeStyle
 ```
 
 ## Browser support
+<a name="browsersupport"></a>
 
 The game has been tested in the following platforms:
 
 Chrome | Safari | Opera | Chrome for Mobile |
 --- | --- | --- | --- |
-![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png) 
+![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png)
+ 
+Max resolution is 1440 x 900.
 
 ## Development stack
+<a name="devstack"></a>
 
 ### Frontend
+<a name="devstackfront"></a>
 
 #### Server
+<a name="devstackfrontserver"></a>
 
 - Node JS
 - Nginx
@@ -53,6 +123,7 @@ Chrome | Safari | Opera | Chrome for Mobile |
 - Socket.io
 
 #### Client
+<a name="devstackfrontclient"></a>
 
 - TypeScript
 - JavaScript
@@ -61,6 +132,7 @@ Chrome | Safari | Opera | Chrome for Mobile |
 - Service Worker
 
 #### Tools
+<a name="devstackfronttools"></a>
 
 - Webpack
 - Sass
@@ -69,11 +141,20 @@ Chrome | Safari | Opera | Chrome for Mobile |
 - GitHub Pages
 
 ### Backend
+<a name="devstackback"></a>
 
 - Java
 - Spring
 - PostgreSQL
 
-## Did you find a bug?
+## Developers
+<a name="developers"></a>
 
+- [Pereskokov Vladislav](https://github.com/vladpereskokov)
+- [Nabokov Denis](https://github.com/Chocco-Crokko)
+
+## Did you find a bug?
+<a name="help"></a>
+
+Give feedback [Google forms](http://bit.ly/2qDS5d4)  
 Please report on the [issues tab](https://github.com/vladpereskokov/soul-hunting/issues).
