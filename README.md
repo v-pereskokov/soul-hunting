@@ -7,8 +7,6 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
 
 #### [Play the game](https://www.soul-hunting.ru) / [Github.io page](https://vladpereskokov.github.io/soul-hunting/)
 
-![Main](docs/assets/main.png)
-
 ## Table of contents
 
 - [Description](#description)
@@ -30,8 +28,10 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
 - [Developers](#developers)
 - [Help us](#help)
 
-## Description
 <a name="description"></a>
+![Main](docs/assets/main.png)
+
+## Description
 
 Game for fun.   
 **"It's not a bug, it's a feature!"**
