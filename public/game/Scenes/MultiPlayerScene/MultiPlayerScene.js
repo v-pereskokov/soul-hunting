@@ -180,9 +180,10 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _removePlayer(data) {
-    data.forEach(element => {
-      this._scene.remove(this._playersService.getFullPlayer(element));
-      this._playersService.removeFullPlayer(element);
+    console.log('REMOOOOOVE');
+    data.forEach(id => {
+      this._scene.remove(this._playersService.getFullPlayer(`id${id}`).playerObject);
+      this._playersService.removeFullPlayer(id);
     });
   }
 
