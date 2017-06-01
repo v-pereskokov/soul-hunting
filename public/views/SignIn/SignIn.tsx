@@ -11,14 +11,14 @@ const signInFields = [{
   title: 'Login',
   name: 'login',
   type: 'text',
-  description: 'Enter username',
-  placeholder: 'Username',
+  description: 'Must be at least 2 characters',
+  placeholder: 'Ivan Petrov',
   error: ''
 }, {
   title: 'Password',
   name: 'password1',
   type: 'password',
-  description: 'Enter password',
+  description: '8 characters or more. Be tricky',
   placeholder: '••••••••',
   error: ''
 }];
