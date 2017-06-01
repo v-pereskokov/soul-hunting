@@ -128,7 +128,7 @@ Max resolution is 1440 x 900.
 - TypeScript
 - JavaScript
 - React + Redux
-- Three,js
+- Three.js
 - Service Worker
 
 #### Tools

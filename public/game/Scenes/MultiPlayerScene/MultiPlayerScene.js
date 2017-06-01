@@ -9,7 +9,8 @@ import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import textureLoader from '../../Manager/LoaderManager/LoaderManager';
 import {
   SNAPSHOT,
-  REMOVE_PLAYER
+  REMOVE_PLAYER,
+  END_GAME
 } from '../../Constants/MultiPlayer';
 
 export default class MultiPlayerScene extends BaseScene {
@@ -85,6 +86,9 @@ export default class MultiPlayerScene extends BaseScene {
           break;
         case REMOVE_PLAYER:
           this._removePlayer(data);
+          break;
+        case END_GAME:
+          this._endGame();
           break;
         default:
           break;
@@ -176,9 +180,10 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _removePlayer(data) {
-    data.forEach(element => {
-      this._scene.remove(this._playersService.getFullPlayer(element));
-      this._playersService.removeFullPlayer(element);
+    console.log('REMOOOOOVE');
+    data.forEach(id => {
+      this._scene.remove(this._playersService.getFullPlayer(`id${id}`).playerObject);
+      this._playersService.removeFullPlayer(id);
     });
   }
 
@@ -226,25 +231,21 @@ export default class MultiPlayerScene extends BaseScene {
     this._keys.update(this._camera, delta, Helper.checkWallCollision.bind(this));
 
     this._renderer.render(this._scene, this._camera);
-
-    this._death();
   }
 
-  _death() {
-    if (playerStats.health <= 0) {
-      this.stop();
-      this._keys._deactivateTable();
+  _endGame() {
+    this.stop();
+    this._keys._deactivateTable();
 
-      musicService.startEndGame();
-      this._openEndGame();
+    musicService.startEndGame();
+    this._openEndGame();
 
-      setTimeout(() => {
-        localStorage.setItem('multiPlayerScore', playerStats.kills * 100);
-        this._closeEndGame();
-        this._goToFromGame();
-        location.reload();
-      }, 4000);
-    }
+    setTimeout(() => {
+      localStorage.setItem('multiPlayerScore', playerStats.kills * 100);
+      this._closeEndGame();
+      this._goToFromGame();
+      location.reload();
+    }, 4000);
   }
 
   _updateTable(data, id, type) {
