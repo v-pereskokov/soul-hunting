@@ -323,6 +323,6 @@ export default class MultiPlayerScene extends BaseScene {
 
   _updateTime(time) {
     const resultTime = timeHandler(time);
-    this._time.innerHTML = `${resultTime.minutes}:${resultTime.seconds}`;
+    this._time.innerHTML = `${resultTime.minutes}:${(resultTime.seconds + '').length === 1 ? `0${resultTime.seconds}` : resultTime.seconds}`;
   }
 }
