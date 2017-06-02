@@ -25,6 +25,7 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
     + [Tools](#devstackfronttools)
   * [Backend](#devstackback)
 - [Developers](#developers)
+- [Links to source code](#links)
 - [Help us](#help)
 
 <a name="description"></a>
@@ -146,6 +147,12 @@ Max resolution is 1440 x 900.
 
 - [Pereskokov Vladislav](https://github.com/vladpereskokov)
 - [Nabokov Denis](https://github.com/Chocco-Crokko)
+
+## Links to source code
+<a name="links"></a>
+
+- [Frontend](https://github.com/vladpereskokov/soul-hunting)
+- [Backend](https://github.com/Chocco-Crokko/ananymous-02-2017)
 
 ## Help us
 <a name="help"></a>
