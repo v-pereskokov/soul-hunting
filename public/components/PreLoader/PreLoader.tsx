@@ -39,4 +39,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect(mapStateToProps)(PreLoader);
+export default connect(mapStateToProps)(PreLoader as any);

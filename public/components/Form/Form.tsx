@@ -212,4 +212,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(ReduxForm);
+export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(ReduxForm as any);
