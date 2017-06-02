@@ -80,7 +80,7 @@ Max resolution is 1440 x 900.
 For MAC OS:  
 - <kbd>command</kbd> + <kbd><</kbd>
 - Go to "Privacy"
-- Choose "Always allow"
+- Choose "Always allow"  
 ![MacOS](docs/assets/MacOS.png)
 
 For iOS:
