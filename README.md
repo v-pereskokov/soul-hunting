@@ -14,10 +14,10 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
   * [SinglePlayer](#sp)
   * [MultiPlayer](#mp)
 - [Controls](#constrols)
+- [Browser support](#browsersupport)
 - [Install](#install)  
   * [Start](#installstart)
   * [Tests](#installtests)
-- [Browser support](#browsersupport)
 - [Development stack](#devstack)
   * [Frontend](#devstackfront)
     + [Server](#devstackfrontserver)
@@ -66,6 +66,17 @@ If the time runs out, the player with the most kills will win.
 + TAB - **scoreboard**
 + ESC - **menu**
 
+## Browser support
+<a name="browsersupport"></a>
+
+The game has been tested in the following platforms:
+
+Chrome | Safari | Opera | Yandex Browser | Chrome for Mobile |
+--- | --- | --- | --- | --- |
+![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Yandex Browser](docs/assets/yandex_browser.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png)
+ 
+Max resolution is 1440 x 900.
+
 ## Install
 <a name="install"></a>
 <a name="installstart"></a>
@@ -91,17 +102,6 @@ npm run tests
 ```sh
 npm run codeStyle
 ```
-
-## Browser support
-<a name="browsersupport"></a>
-
-The game has been tested in the following platforms:
-
-Chrome | Safari | Opera | Yandex Browser | Chrome for Mobile |
---- | --- | --- | --- | --- |
-![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Yandex Browser](docs/assets/yandex_browser.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png)
- 
-Max resolution is 1440 x 900.
 
 ## Development stack
 <a name="devstack"></a>
