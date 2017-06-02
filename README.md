@@ -97,7 +97,7 @@ npm run codeStyle
 The game has been tested in the following platforms:
 
 Chrome | Safari | Opera | Yandex Browser | Chrome for Mobile |
---- | --- | --- | --- |
+--- | --- | --- | --- | --- |
 ![Chrome](docs/assets/chrome_00000.png) | ![Safari](docs/assets/safari_00000.png) | ![Opera](docs/assets/opera_00000.png) | ![Yandex Browser](docs/assets/yandex_browser_00000.png) | ![Chrome for mobile](docs/assets/chrome_mobile_00000.png)
  
 Max resolution is 1440 x 900.
