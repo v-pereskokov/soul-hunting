@@ -71,11 +71,26 @@ If the time runs out, the player with the most kills will win.
 
 The game has been tested in the following platforms:
 
-Chrome | Safari | Opera | Yandex Browser | Chrome for Mobile |
+Chrome | Safari* | Opera | Yandex Browser | Chrome for Mobile |
 --- | --- | --- | --- | --- |
 ![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Yandex Browser](docs/assets/yandex_browser.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png)
  
-Max resolution is 1440 x 900.
+Max resolution is 1440 x 900.    
+***\*Safari!***  
+For MAC OS:  
+- <kbd>command</kbd> + <kbd><</kbd>
+- Go to "Privacy"
+- Choose "Always allow"
+![MacOS](docs/assets/MacOS.png)
+
+For iOS:
+- Go to "Settings"
+- Go to "Safari"
+- Go to "Block Cookies"
+- Choose "Always allow"
+![iossetting](docs/assets/iPhoneSettings.jpeg)
+![iossettingcookie](docs/assets/iphoneCookie.jpeg)
+
 
 ## Install
 <a name="install"></a>
