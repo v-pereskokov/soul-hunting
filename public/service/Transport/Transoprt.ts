@@ -50,7 +50,6 @@ class Transport {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: options.body,
-      mode: 'cors',
       credentials: 'include',
       cache: 'default'
     };
@@ -67,6 +66,6 @@ class Transport {
 }
 
 const transport = new Transport();
-transport.BaseUrl = 'https://ananymous.herokuapp.com/api';
+transport.BaseUrl = '/api';
 
 export default transport;
