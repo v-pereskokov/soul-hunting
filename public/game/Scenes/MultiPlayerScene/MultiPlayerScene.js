@@ -7,6 +7,7 @@ import musicService from '../../Tools/MusicService/MusicService';
 import GameTableManager from '../../Manager/GameTableManager/GameTableManager';
 import gameAudioManager from '../../Manager/GameAudioManager/GameAudioManager';
 import textureLoader from '../../Manager/LoaderManager/LoaderManager';
+import timeHandler from '../../Tools/TimeHandler/TimeHandler';
 import {
   SNAPSHOT,
   REMOVE_PLAYER,
@@ -28,6 +29,7 @@ export default class MultiPlayerScene extends BaseScene {
 
     this._stats.style.display = 'none';
     this._hurt = document.body.querySelector('.hurt');
+    this._time = document.body.querySelector('.parent__inf__wrapper');
   }
 
   set game(value) {
@@ -115,6 +117,16 @@ export default class MultiPlayerScene extends BaseScene {
       this._camera.position.copy({x, y, z});
     }
 
+    if (+data.timeLeft === 1) {
+      this._isAnimate = false;
+      this._animate();
+      this._endGame();
+
+      return;
+    }
+
+    this._updateTime(data.timeLeft);
+
     data.players.forEach(player => {
       if (player.victims.length > 0) {
         player.victims.forEach(victim => {
@@ -180,7 +192,6 @@ export default class MultiPlayerScene extends BaseScene {
   }
 
   _removePlayer(data) {
-    console.log('REMOOOOOVE');
     data.forEach(id => {
       this._scene.remove(this._playersService.getFullPlayer(`id${id}`).playerObject);
       this._playersService.removeFullPlayer(id);
@@ -308,5 +319,10 @@ export default class MultiPlayerScene extends BaseScene {
     }
 
     return name.toUpperCase();
+  }
+
+  _updateTime(time) {
+    const resultTime = timeHandler(time);
+    this._time.innerHTML = `${resultTime.minutes}:${resultTime.seconds}`;
   }
 }

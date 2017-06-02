@@ -48,7 +48,9 @@ class SinglePlayer extends React.Component<Props, any> {
   }
 
   componentWillMount() {
-    browserHistory.push('/');
+    if (!this.props.isAuthenticated) {
+      browserHistory.push('/');
+    }
   }
 
   componentDidMount() {

@@ -234,6 +234,7 @@ export default class BaseScene {
   }
 
   _openEndGame() {
+    this._end.style.display = 'block';
     this._end.style.opacity = '0.7';
 
     this._table.style.display = 'block';

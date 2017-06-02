@@ -17,6 +17,7 @@ import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameThem
 import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
 import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
 import {Information} from '../../components/Game/Information/Information';
+import {Time} from '../../components/Game/Time/Time';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -76,6 +77,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <Health />
               <GameShadow />
               <Weapon />
+              <Time />
               <div className='gameTable__wrapper'>
                 <div className='gameTable__wrapper__table'>
                   <GameTable header={ header } content={ this._users }/>
