@@ -17,6 +17,7 @@ import {StartGameTheme} from '../../components/Game/StartGameTheme/StartGameThem
 import {GameMenu} from '../../components/Game/GameMenu/GameMenu';
 import {ShootFootage} from '../../components/Game/ShootFootage/ShootFootage';
 import {Information} from '../../components/Game/Information/Information';
+import {Time} from '../../components/Game/Time/Time';
 
 import musicService from '../../service/MusicService/MusicService';
 import GameManager from '../../game/Manager/GameManager/GameManager.js';
@@ -49,7 +50,7 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   componentWillMount() {
-    if (!this.props.isAuthenticated || !this._isAdmin()) {
+    if (!this.props.isAuthenticated) {
       browserHistory.push('/');
     } else {
       setTimeout(() => {
@@ -59,9 +60,8 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   componentDidMount() {
-    if (this._isAdmin()) {
-      new GameManager(MULTIPLAYER, browserHistory.push.bind(this, '/game'));
-    }
+    musicService.stopBackground();
+    new GameManager(MULTIPLAYER, browserHistory.push.bind(this, '/game'));
   }
 
   render() {
@@ -77,6 +77,7 @@ class MultiPlayer extends React.Component<Props, any> {
               <Health />
               <GameShadow />
               <Weapon />
+              <Time />
               <div className='gameTable__wrapper'>
                 <div className='gameTable__wrapper__table'>
                   <GameTable header={ header } content={ this._users }/>
@@ -87,7 +88,6 @@ class MultiPlayer extends React.Component<Props, any> {
               <Hurt />
               <EndGameTheme text='Multiplayer'/>
               <StartGameTheme />
-              <Information text='Beta' isMini={ true } type='info'/>
               <Information text='' isMini={ false } type='connect'/>
               <Information text='Killed' isMini={ false } type='kill'/>
             </div>
@@ -101,12 +101,6 @@ class MultiPlayer extends React.Component<Props, any> {
         }
       </div>
     );
-  }
-
-  _isAdmin() {
-    return this.props.user.indexOf('beta') || this.props.user === 'vladoss' ||
-      this.props.user === 'aaa' || this.props.user.toLowerCase() === 'bbb' ||
-      this.props.user === 'ccc';
   }
 }
 

@@ -48,16 +48,14 @@ class SinglePlayer extends React.Component<Props, any> {
   }
 
   componentWillMount() {
-    if (!this.props.isAuthenticated || !this._isAdmin()) {
+    if (!this.props.isAuthenticated) {
       browserHistory.push('/');
     }
   }
 
   componentDidMount() {
-    if (this._isAdmin()) {
-      musicService.stopBackground();
-      new GameManager(SINGLEPLAYER, browserHistory.push.bind(this, '/game'));
-    }
+    musicService.stopBackground();
+    new GameManager(SINGLEPLAYER, browserHistory.push.bind(this, '/game'));
   }
 
   render() {
@@ -94,12 +92,6 @@ class SinglePlayer extends React.Component<Props, any> {
         }
       </div>
     );
-  }
-
-  _isAdmin() {
-    return this.props.user.indexOf('beta') || this.props.user === 'vladoss' ||
-      this.props.user === 'aaa' || this.props.user.toLowerCase() === 'bbb' ||
-      this.props.user === 'ccc';
   }
 }
 

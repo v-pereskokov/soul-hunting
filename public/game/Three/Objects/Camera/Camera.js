@@ -15,7 +15,7 @@ export default class Camera {
       .perspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
 
     const {x, z} = Helper.randomVector(50);
-    
+
     this._camera.position.set(x, player.getHeight, z);
     this._camera.lookAt(threeFactory.vector3D(0, player.getHeight, 0));
   }
