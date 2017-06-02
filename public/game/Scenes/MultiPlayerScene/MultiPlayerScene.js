@@ -80,8 +80,6 @@ export default class MultiPlayerScene extends BaseScene {
 
   _setUpWebSockets() {
     return (content, data) => {
-      console.log(data);
-
       switch (content.type) {
         case SNAPSHOT:
           this._updateGame(data);
