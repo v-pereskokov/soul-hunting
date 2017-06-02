@@ -5,12 +5,11 @@
 
 Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE.JS and more.
 
-#### [Play the game](https://www.soul-hunting.ru) / [Github.io page](https://vladpereskokov.github.io/soul-hunting/)
+#### [Play the game](https://www.soul-hunting.ru) / [Documentation](https://vladpereskokov.github.io/soul-hunting/) / [Presentation](https://vladpereskokov.github.io/presentation-soul-hunting/)
 
 ## Table of contents
 
 - [Description](#description)
-- [Beta test](#beta)
 - [Modes](#modes)  
   * [SinglePlayer](#sp)
   * [MultiPlayer](#mp)
@@ -34,13 +33,8 @@ Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE
 ## Description
 
 Game for fun.   
-**"It's not a bug, it's a feature!"**
-
-## Beta
-<a name="beta"></a>
-
-If you want to play in beta test - register with nickname: ***YOURNICKNAME_beta***  
-Where '_beta' - must have!
+**"It's not a bug, it's a feature!"**  
+[TRAILER](https://www.youtube.com/watch?v=yQHC7jtA8rc)
 
 ## Modes
 <a name="modes"></a>
@@ -102,9 +96,9 @@ npm run codeStyle
 
 The game has been tested in the following platforms:
 
-Chrome | Safari | Opera | Chrome for Mobile |
+Chrome | Safari | Opera | Yandex Browser | Chrome for Mobile |
 --- | --- | --- | --- |
-![Chrome](docs/assets/chrome.png) | ![Safari](docs/assets/safari.png) | ![Opera](docs/assets/opera.png) | ![Chrome for mobile](docs/assets/chrome_mobile.png)
+![Chrome](docs/assets/chrome_00000.png) | ![Safari](docs/assets/safari_00000.png) | ![Opera](docs/assets/opera_00000.png) | ![Yandex Browser](docs/assets/yandex_browser_00000.png) | ![Chrome for mobile](docs/assets/chrome_mobile_00000.png)
  
 Max resolution is 1440 x 900.
 
@@ -153,8 +147,8 @@ Max resolution is 1440 x 900.
 - [Pereskokov Vladislav](https://github.com/vladpereskokov)
 - [Nabokov Denis](https://github.com/Chocco-Crokko)
 
-## Did you find a bug?
+## Help us
 <a name="help"></a>
 
 Give feedback [Google forms](http://bit.ly/2qDS5d4)  
-Please report on the [issues tab](https://github.com/vladpereskokov/soul-hunting/issues).
+Did you find a bug? Please report on the [issues tab](https://github.com/vladpereskokov/soul-hunting/issues).
