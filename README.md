@@ -87,7 +87,7 @@ For iOS:
 - Go to "Settings"
 - Go to "Safari"
 - Go to "Block Cookies"
-- Choose "Always allow"
+- Choose "Always allow"  
 ![iossetting](docs/assets/iPhoneSettings.jpeg)
 ![iossettingcookie](docs/assets/iphoneCookie.jpeg)
 
