@@ -47,9 +47,9 @@ class Form extends React.Component<Props, void> {
   }
 
   render() {
-    const {handleSubmit, fields, errors, control}: any = this.props;
+    const {handleSubmit, fields1, errors, control}: any = this.props;
 
-    const content: Array<any> = fields.map((item: any, index: number) => {
+    const content: Array<any> = fields1.map((item: any, index: number) => {
       return (
         <div key={ index }>
           <Field
@@ -212,4 +212,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(ReduxForm as any);
+export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(ReduxForm);

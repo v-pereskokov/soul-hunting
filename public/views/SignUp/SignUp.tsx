@@ -64,9 +64,7 @@ export class SignUp extends React.Component<Props, void> {
         { isAuthenticated ?
           browserHistory.push('/')
           : <div className='registration'>
-            <Form
-              fields={signUpFields}
-              control='Sign Up'/>
+            <Form fields={signUpFields} control='Sign Up'/>
           </div>
         }
       </div>
@@ -80,4 +78,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(SignUp as any);
+export default connect(mapStateToProps)(SignUp);
