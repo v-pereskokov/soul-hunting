@@ -49,4 +49,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(TableContent as any);
+export default connect<{}, {}, Props>(mapStateToProps)(TableContent);

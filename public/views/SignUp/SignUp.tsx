@@ -80,4 +80,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(SignUp);
+export default connect<{}, {}, Props>(mapStateToProps)(SignUp as any);

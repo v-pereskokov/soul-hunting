@@ -33,4 +33,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(Background as any);
+export default connect<{}, {}, Props>(mapStateToProps)(Background);
