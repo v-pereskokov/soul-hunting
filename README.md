@@ -5,7 +5,7 @@
 
 Soul-Hunting game written in TypeScript and JavaScript using REACT, REDUX, THREE.JS and more.
 
-#### [Play the game](https://www.soul-hunting.ru" target="_blank) / [Documentation](https://vladpereskokov.github.io/soul-hunting/" target="_blank) / [Presentation](https://vladpereskokov.github.io/presentation-soul-hunting/)
+#### [Play the game](https://www.soul-hunting.ru/) / [Documentation](https://vladpereskokov.github.io/soul-hunting/) / [Presentation](https://vladpereskokov.github.io/presentation-soul-hunting/)
 
 ## Table of contents
 
