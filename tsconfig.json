@@ -11,7 +11,8 @@
     "typeRoots": [
       "node_modules/@types",
       "types/**"
-    ]
+    ],
+    "lib": ["es2015", "es2017", "dom"]
   },
   "compileOnSave": false,
   "exclude": [
