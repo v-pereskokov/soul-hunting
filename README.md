@@ -131,7 +131,7 @@ npm run codeStyle
 
 - Webpack
 - Sass
-- CI [TRAVIS, APPVEYOR]
+- CI [TRAVIS, APPVEYOR, CIRCLE CI]
 - Jasmine
 - GitHub Pages
 
