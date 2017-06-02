@@ -21,8 +21,8 @@ const errors: any = {};
 
 interface Props {
   fields?: Array<any>;
-  error?: string;
   control: string;
+  error?: string;
   submit?: any;
   type?: string;
   send?: (url: string, data: any) => any;
@@ -47,9 +47,9 @@ class Form extends React.Component<Props, void> {
   }
 
   render() {
-    const {handleSubmit, fields1, errors, control}: any = this.props;
+    const {handleSubmit, fields, errors, control}: any = this.props;
 
-    const content: Array<any> = fields1.map((item: any, index: number) => {
+    const content: Array<any> = fields.map((item: any, index: number) => {
       return (
         <div key={ index }>
           <Field
