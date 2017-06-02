@@ -43,7 +43,7 @@ Game for fun.
 <a name="sp"></a>
 
 SinglePlayer is a mode which the player must continue playing for as long as possible without dying.  
-***Your task: destroy targets and survive.***  
+***Task: destroy targets and survive.***  
 
 #### MultiPlayer
 <a name="mp"></a>
