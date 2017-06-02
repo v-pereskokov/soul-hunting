@@ -49,7 +49,7 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   componentWillMount() {
-    if (!this.props.isAuthenticated || !this._isAdmin()) {
+    if (!this.props.isAuthenticated) {
       browserHistory.push('/');
     } else {
       setTimeout(() => {
@@ -59,9 +59,8 @@ class MultiPlayer extends React.Component<Props, any> {
   }
 
   componentDidMount() {
-    if (this._isAdmin()) {
-      new GameManager(MULTIPLAYER, browserHistory.push.bind(this, '/game'));
-    }
+    musicService.stopBackground();
+    new GameManager(MULTIPLAYER, browserHistory.push.bind(this, '/game'));
   }
 
   render() {
@@ -100,12 +99,6 @@ class MultiPlayer extends React.Component<Props, any> {
         }
       </div>
     );
-  }
-
-  _isAdmin() {
-    return this.props.user.indexOf('beta') || this.props.user === 'vladoss' ||
-      this.props.user === 'aaa' || this.props.user.toLowerCase() === 'bbb' ||
-      this.props.user === 'ccc';
   }
 }
 
