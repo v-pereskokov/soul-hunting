@@ -137,4 +137,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard as any);
+export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(Scoreboard as any);

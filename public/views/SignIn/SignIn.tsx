@@ -75,5 +75,5 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect(mapStateToProps)(SignIn as any);
+export default connect<{}, {}, Props>(mapStateToProps)(SignIn as any);
 
