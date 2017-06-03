@@ -31,7 +31,11 @@ interface Props {
   setError?: (error: string) => void;
 }
 
-class Form extends React.Component<Props, void> {
+interface State {
+
+}
+
+class Form extends React.Component<Props, State> {
   _errors: any;
   _form: any;
 

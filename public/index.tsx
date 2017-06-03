@@ -35,7 +35,7 @@ store.dispatch(setDevice(new Device().isDesktop()));
 
 musicService.startBackground();
 
-startServiceWorker();
+// startServiceWorker();
 
 const App = () => (
   <Provider store={ store }>
