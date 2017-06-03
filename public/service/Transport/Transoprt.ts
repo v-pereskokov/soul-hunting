@@ -66,6 +66,6 @@ class Transport {
 }
 
 const transport = new Transport();
-transport.BaseUrl = '/api';
+transport.BaseUrl = 'https://ananymous.herokuapp.com/api';
 
 export default transport;

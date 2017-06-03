@@ -20,6 +20,10 @@ const URLS = [
   '/static/images/bullet-icon.png',
   '/static/images/infinity-icon.png',
 
+  '/static/sounds/background.wav',
+  '/static/sounds/end.wav',
+  '/static/sounds/start_game.wav',
+
   '/built/style.css',
   '/built/bundle.js'
 ];
