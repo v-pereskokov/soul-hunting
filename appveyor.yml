@@ -10,6 +10,4 @@ install:
 test_script:
   - node --version
   - npm --version
-  - npm run codeStyle
   - npm run tests
-  - npm run webpack-prod
