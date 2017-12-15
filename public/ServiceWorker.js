@@ -1,7 +1,6 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const URLS = [
   '/',
-  '/index.html',
   '/application.tsx',
   '/index.tsx',
 
